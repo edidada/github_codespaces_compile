@@ -1,4 +1,4 @@
-#! /bin/gcc
+#! /bin/bash
 sudo apt update
 sudo apt install build-essential zlib1g-dev libncurses5-dev libssl-dev libreadline-dev libsqlite3-dev wget llvm -y
 wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.gz
