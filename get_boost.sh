@@ -1,7 +1,9 @@
 #!/bin/bash
-git clone https://github.com/boostorg/boost.git
-cd boost/
-git checkout boost-1.65.0
+#git clone https://github.com/boostorg/boost.git
+wget https://boostorg.jfrog.io/artifactory/main/release/1.65.0/source/boost_1_65_0.tar.gz
+#cd boost/
+cd boost_*/
+#git checkout boost-1.65.0
 git submodule init
 git submodule update
 ./bootstrap.sh --with-libraries=all
