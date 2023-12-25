@@ -26,7 +26,7 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
-          cache: maven
+          cache: gradle
       - name: get_elasticsearch
         run:  |
           sudo apt update
