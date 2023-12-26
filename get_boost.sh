@@ -9,4 +9,5 @@ git submodule init
 git submodule update
 ./bootstrap.sh --with-libraries=all
 sudo ./b2 install
+./b2 --show-libraries
 sudo ldconfig
