@@ -1,6 +1,7 @@
 #! /bin/bash
 #! /bin/bash
 pip3 install conan==2.0.16
+conan profile detect
 sudo update
 sudo apt-get install autoconf automake libtool curl make unzip -y
 git clone https://github.com/conan-io/examples2.git
