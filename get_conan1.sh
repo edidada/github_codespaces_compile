@@ -5,11 +5,10 @@ conan profile update settings.compiler.libcxx=libstdc++11 default
 sudo update
 sudo apt-get install autoconf automake libtool curl make unzip -y
 git clone https://github.com/conan-io/examples.git
-cd examples/tutorial/consuming_packages/tool_requires
+cd examples/libraries/poco/md5
 rm -rf build
-mkdir build
-conan install . --output-folder=build --build=missing
-cd build
-cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+mkdir build && cd build
+conan install ..
+cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
 cmake --build .
-./compressor
+./bin/md5
