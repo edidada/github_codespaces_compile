@@ -10,8 +10,13 @@ rm -rf build
 mkdir build
 cd build
 conan install .. --output-folder=build --build=missing
+chmod +x conanbuild.sh
+./conanbuild.sh
+chmod +x conanrun.sh
+./conanrun.sh
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ./compressor
-cd examples2/example/conanfile/package_info/components
+cd ~/examples2/example/conanfile/package_info/components
 conan create .
+rm -rf ~/examples2
