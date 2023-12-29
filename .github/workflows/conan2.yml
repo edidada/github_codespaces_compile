@@ -29,4 +29,6 @@ jobs:
       run: |
         sudo apt update
         chmod +x ./get_conan2.sh
+        chmod +x ./run_conan_exam2.sh
         ./get_conan2.sh
+        ./run_conan_exam2.sh
