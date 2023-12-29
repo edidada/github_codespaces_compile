@@ -10,5 +10,5 @@ cd build
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ./compressor
-cd examples2/example/conanfile/package_info/components
+cd examples/example/conanfile/package_info/components
 conan create .
