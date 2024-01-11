@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_curl_cmake.sh
-        ./get_curl_cmake.sh
+        chmod +x ./get_curl.sh
+        ./get_curl.sh
