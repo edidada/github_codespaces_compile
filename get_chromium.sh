@@ -4,6 +4,7 @@ curPwd=$(pwd)
 export PATH="$curPwd/depot_tools:$PATH"
 mkdir chromium && cd chromium
 fetch --nohooks chromium
+gclient sync
 cd src
 ./build/install-build-deps.sh
 gclient runhooks
