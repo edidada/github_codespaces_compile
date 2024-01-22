@@ -8,6 +8,7 @@ cd examples/libraries/poco/md5
 rm -rf build
 mkdir build && cd build
 conan install ..
+conan build ..
 cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ./bin/md5
