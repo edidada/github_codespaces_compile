@@ -1,4 +1,4 @@
-#! /usr/bash
+#! /bin/bash
 sudo apt update
 sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev libbz2-dev -y
 wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
