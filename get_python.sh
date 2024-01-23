@@ -8,3 +8,6 @@ cd Python-2.7.18
 make -j 4
 sudo make altinstall
 python2.7 --version
+sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+export PATH=/usr/local/bin:$PATH
+python --version
