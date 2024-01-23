@@ -19,3 +19,7 @@ sudo apt-get install  sox subversion libatlas3-base -y
 cd tools && extras/check_dependencies.sh
 extras/install_irstlm.sh
 make -j4
+cd ../src
+./configure --shared
+make depend -j 8
+make -j 8
