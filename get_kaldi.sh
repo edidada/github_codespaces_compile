@@ -14,7 +14,7 @@ sudo ln -s /usr/local/bin/python2.7 /usr/local/bin/python
 export PATH=/usr/local/bin:$PATH
 python --version
 cd ..
-sudo apt-get install  sox subversion libatlas3-base -y
+sudo apt-get install  sox subversion libatlas3-base liblapack-dev libatlas-base-dev -y
 #sudo apt-get install  g++ zlib1g-dev make automake autoconf bzip2 unzip wget sox libtool subversion python2.7 python3 libatlas-dev libatlas-base-dev -y
 cd tools && extras/check_dependencies.sh
 extras/install_irstlm.sh
