@@ -1,4 +1,5 @@
 #! /bin/bash
+sudo apt update
 git clone https://github.com/llvm/llvm-project.git
 cd llvm-project
 git checkout llvmorg-17.0.6
