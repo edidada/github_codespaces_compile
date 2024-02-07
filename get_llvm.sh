@@ -5,4 +5,4 @@ cd llvm-project
 git checkout llvmorg-17.0.6
 mkdir build && cd build
 cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm
-make
+make -j5
