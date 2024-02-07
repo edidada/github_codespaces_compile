@@ -1,6 +1,7 @@
 #! /bin/bash
 cd "$(dirname "$0")"
 sudo apt update
+sudo apt-get install libc6-dev libc6-dev-i386 -y
 sudo apt install build-essential zlib1g-dev libncurses5-dev libssl-dev libreadline-dev libsqlite3-dev wget llvm -y
 wget https://mirror.linux-ia64.org/gnu/gcc/releases/gcc-11.4.0/gcc-11.4.0.tar.gz -O gcc-11.4.0.tar.gz --no-check-certificate
 ls -la gcc-11.4.0.tar.gz
