@@ -1,6 +1,7 @@
 #! /bin/bash
+cd "$(dirname "$0")"
 sudo apt update
-sudo apt install build-essential zlib1g-dev libncurses5-dev libssl-dev libreadline-dev libsqlite3-dev wget llvm -y
+sudo apt install build-essential git libc6-dev-i386 zlib1g-dev libncurses5-dev libssl-dev libreadline-dev libsqlite3-dev wget llvm -y
 wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.gz
 ls -la gcc-11.2.0.tar.gz
 tar -zxvf gcc-11.2.0.tar.gz
