@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 echo "git clone boost"
 git clone -b boost-1.66.0 https://github.com/boostorg/boost.git
 cd boost*/
