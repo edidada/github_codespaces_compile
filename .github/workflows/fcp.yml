@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: get_boost
+    - name: get_fcp
 #      uses: hecrj/setup-rust@v1
 #      with:
 #        rust-version: stable
