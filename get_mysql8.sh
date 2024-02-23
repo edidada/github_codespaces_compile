@@ -10,8 +10,9 @@ sudo ./b2 install
 cd ../
 git clone -b mysql-8.0.4 https://github.com/mysql/mysql-server.git
 cd mysql-server
+rm -rf build
 mkdir build && cd build
 export BOOST_ROOT=/usr/local/boost  
 export BOOST_INCLUDEDIR=$BOOST_ROOT/include
-cmake .. -DWITH_BOOST=/usr/local/boost -DWITH_SSL=system
+cmake .. -DDOWNLOAD_BOOST=1 -DWITH_BOOST=../../boost -DWITH_SSL=system
 make -j5
