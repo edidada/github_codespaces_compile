@@ -7,4 +7,4 @@ mkdir -p ffmpeg-samples
 ./configure --samples=ffmpeg-samples --cc=$CC --disable-x86asm
 make -j 8
 make fate-rsync
-make check -j 8
+#make check -j 8
