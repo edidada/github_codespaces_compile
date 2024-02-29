@@ -5,5 +5,5 @@ cd xlnt
 mkdir build && cd build
 cmake -D STATIC=ON -G Xcode ..
 cmake --build .
-sudo make install
-cd bin && ./xlnt.test
+#sudo make install
+#cd bin && ./xlnt.test
