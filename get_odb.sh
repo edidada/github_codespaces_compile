@@ -1,6 +1,7 @@
 #! /bin/bash
 cd "$(dirname "$0")"
 sudo apt update
+autoconf --version
 git clone -b 2.4.0 https://git.codesynthesis.com/odb/libodb.git
 cd libodb
 sudo apt-get install gcc-10-plugin-dev
