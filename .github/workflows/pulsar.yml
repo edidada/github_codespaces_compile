@@ -24,8 +24,6 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-    steps:
-    - uses: actions/checkout@v3
 
     - name: get_pulsar
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
