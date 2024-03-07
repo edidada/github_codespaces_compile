@@ -7,6 +7,7 @@ sudo apt update
 sudo apt install curl ninja-build -y
 sudo apt install python3-routes -y
 ./install-deps.sh
+pip3 install cython
 ./do_cmake.sh
 cd build
-ninja
+cmake --build .
