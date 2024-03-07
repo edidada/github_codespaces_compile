@@ -10,4 +10,4 @@ git clone https://github.com/happyfish100/fastdfs.git
 cd fastdfs
 git checkout V6.08
 ./make.sh clean && ./make.sh && sudo ./make.sh install
-./setup.sh /etc/fdfs
+sudo ./setup.sh /etc/fdfs
