@@ -20,18 +20,18 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          java-version: '8'
-          distribution: 'temurin'
-          cache: maven
+    - uses: actions/checkout@v3
+    - name: Set up JDK 8
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+        cache: maven
 
-      - name: get_sentinel
-        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-        run: |
-          sudo apt update
-          chmod +x ./get_sentinel.sh
-          ./get_sentinel.sh
+    - name: get_sentinel
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      run: |
+        sudo apt update
+        chmod +x ./get_sentinel.sh
+        ./get_sentinel.sh
