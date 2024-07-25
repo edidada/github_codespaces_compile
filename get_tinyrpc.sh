@@ -18,7 +18,8 @@ sudo cp /usr/include/tinyxml.h /usr/include/tinyxml/
 #wget -O v1.2.0.tar.gz https://github.com/Gooddbird/tinyrpc/archive/refs/tags/v1.2.0.tar.gz
 git clone https://github.com/Gooddbird/tinyrpc
 cd tinyrpc
-git checkout v1.2.0
+# git checkout v1.2.0
+git checkout 3db2785f7c46d64b70999894154aa4096f1a13ef
 cd testcases
 protoc --cpp_out=./ test_tinypb_server.proto
 cd ..
