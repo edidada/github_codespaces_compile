@@ -4,9 +4,9 @@ name: build handy
 
 on:
   push:
-    branches: [ "cpp/handy" ]
+    branches: [ "cpp/handy/linux" ]
   pull_request:
-    branches: [ "cpp/handy" ]
+    branches: [ "cpp/handy/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
