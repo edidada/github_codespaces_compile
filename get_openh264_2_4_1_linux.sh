@@ -1,12 +1,16 @@
 #! /bin/bash
 cd "$(dirname "$0")"
 sudo apt update
+sudo apt install -y ninja-build meson nasm
+echo "meson version"
 which meson
+meson version
+echo "ninja version"
 which ninja
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install nasm
+ninja version
+echo "nasm version"
 which nasm
-sudo apt install -y ninja-build meson
+nasm version
 git clone https://github.com/cisco/openh264.git
 cd openh264
 git checkout v2.4.1
