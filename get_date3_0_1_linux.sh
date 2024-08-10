@@ -9,4 +9,4 @@ mkdir build
 cd build
 cmake -DENABLE_DATE_TESTING=ON -DBUILD_TZ_LIB=ON ../
 cmake --build .
-cmake --install .
+sudo cmake --install .
