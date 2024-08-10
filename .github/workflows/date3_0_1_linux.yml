@@ -4,9 +4,9 @@ name: build get_date_linux
 
 on:
   push:
-    branches: [ "cpp/date3_0_1/linu" ]
+    branches: [ "cpp/date3_0_1/linux" ]
   pull_request:
-    branches: [ "cpp/date3_0_1/linu" ]
+    branches: [ "cpp/date3_0_1/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
