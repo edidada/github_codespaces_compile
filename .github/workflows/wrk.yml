@@ -4,9 +4,9 @@ name: build wrk
 
 on:
   push:
-    branches: [ "c/wrk" ]
+    branches: [ "c/wrk/linux" ]
   pull_request:
-    branches: [ "c/wrk" ]
+    branches: [ "c/wrk/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
