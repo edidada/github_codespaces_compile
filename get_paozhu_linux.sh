@@ -12,6 +12,7 @@ sudo apt-get install mysql-client -y
 sudo apt-get install libmysqlclient-dev -y
 git clone https://github.com/hggq/paozhu.git
 cd paozhu
+unzip asio.zip
 mkdir build
 cd build
 cmake ..
