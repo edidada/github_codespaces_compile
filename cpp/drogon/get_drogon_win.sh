@@ -12,3 +12,12 @@ cd build
 cmake ..
 make -j4 && sudo make install
 /usr/local/bin/drogon_ctl version
+cd ../
+git checkout v1.9.9
+git submodule update --init
+rm -rf build && mkdir build
+cd build
+cmake ..
+rm -rf /usr/local/bin/drogon_ctl
+make -j4 && sudo make install
+/usr/local/bin/drogon_ctl version
