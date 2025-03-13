@@ -33,7 +33,6 @@ sudo apt install -y qt6-base-dev qt6-base-private-dev qt6-svg-dev qt6-wayland qt
 sudo apt-get install -y ffmpeg
 git clone --recursive https://github.com/obsproject/obs-studio.git
 cd obs-studio
-mkdir build
-cd build
-cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
+cmake --preset ubuntu
+cmake --build --preset ubuntu
+cmake --install --preset ubuntu
