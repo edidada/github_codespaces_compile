@@ -30,10 +30,6 @@ sudo apt install -y libavcodec-dev libavdevice-dev libavfilter-dev libavformat-d
 #       libwebsocketpp-dev \
 #       libasio-dev
 sudo apt install -y qt6-base-dev qt6-base-private-dev qt6-svg-dev qt6-wayland qt6-image-formats-plugins libasound2-dev libfdk-aac-dev libfontconfig-dev libfreetype6-dev libjack-jackd2-dev libpulse-dev libsndio-dev libspeexdsp-dev libudev-dev libv4l-dev libva-dev libvlc-dev libvpl-dev libdrm-dev nlohmann-json3-dev libwebsocketpp-dev libasio-dev
-sudo add-apt-repository ppa:savoury1/ffmpeg4
-sudo add-apt-repository ppa:savoury1/ffmpeg7
-sudo apt-get update
-sudo apt-get upgrade && sudo apt-get dist-upgrade
 sudo apt-get install -y ffmpeg
 git clone --recursive https://github.com/obsproject/obs-studio.git
 cd obs-studio
