@@ -22,6 +22,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: get_ffmpeg
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      run: |
+        echo "cmake --version"
+        cmake --version
+        sudo add-apt-repository ppa:jonathonf/ffmpeg-6
+        sudo apt update
+        sudo apt install -y ffmpeg libavformat-dev libavutil-dev libswscale-dev libswresample-dev
+        echo "libavformat info"
+        dpkg -L libavformat-dev
+        dpkg -L libavutil-dev
+        dpkg -L libswscale-dev
+        dpkg -L libswresample-dev
+
     - name: get_obs_studio
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
@@ -29,3 +44,5 @@ jobs:
         sudo apt update
         chmod +x ./c/obs_studio/linux/get_obs_studio_linux.sh
         ./c/obs_studio/linux/get_obs_studio_linux.sh
+#        chmod +x ./c/obs_studio/linux/get_obs_studio_linux_preset.sh
+#        ./c/obs_studio/linux/get_obs_studio_linux_preset.sh
