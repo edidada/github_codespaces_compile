@@ -4,6 +4,7 @@ wget --no-check-certificate https://github.com/FFmpeg/FFmpeg/archive/refs/tags/n
 tar -zxvf n6.1.1.tar.gz
 cd FFmpeg*
 mkdir -p ffmpeg-samples
+./configure --help
 ./configure --prefix=/usr/local/ffmpeg --samples=ffmpeg-samples --cc=$CC --disable-x86asm
 make -j 8
 make fate-rsync
