@@ -37,4 +37,4 @@ jobs:
         git checkout 31.0.2
         cmake --preset windows-x64
         cmake --build --preset windows-x64 --config RelWithDebInfo
-        cmake --install build_x64 --preset windows-x64 --config RelWithDebInfo
+        cmake --install build_x64 --config RelWithDebInfo
