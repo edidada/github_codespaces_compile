@@ -4,9 +4,9 @@ name: build obs_studio win
 
 on:
   push:
-    branches: [ "c/obs_studio/win" ]
+    branches: [ "c/obs_studio_win" ]
   pull_request:
-    branches: [ "c/obs_studio/win" ]
+    branches: [ "c/obs_studio_win" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
