@@ -28,13 +28,13 @@ jobs:
       run: |
         cmake --version
 
-    - name: get_obs_studio
+    - name: get_obs_studio_win
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         git clone --recursive https://github.com/obsproject/obs-studio.git
         cd obs-studio
         git checkout 31.0.2
-        cmake --preset windows-x64 --config RelWithDebInfo
+        cmake --preset windows-x64
         cmake --build --preset windows-x64 --config RelWithDebInfo
         cmake --install --preset windows-x64 --config RelWithDebInfo
