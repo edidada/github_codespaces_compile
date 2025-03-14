@@ -1,8 +1,13 @@
 #! /bin/bash
+cd "$(dirname "$0")"
 sudo apt-get update
-sudo apt-get install -y build-essential autoconf libtool
+git clone https://github.com/happyfish100/libfastcommon.git
+cd libfastcommon
+git checkout V1.0.56
+./make.sh clean && ./make.sh && sudo ./make.sh install
+cd ../
 git clone https://github.com/happyfish100/fastdfs.git
 cd fastdfs
-./make.sh
-./configure
-make
+git checkout V6.08
+./make.sh clean && ./make.sh && sudo ./make.sh install
+sudo ./setup.sh /etc/fdfs
