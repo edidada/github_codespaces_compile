@@ -7,6 +7,8 @@ cd tool
 mvn clean package
 ls target -la
 cd ../
+mvn package
+ls runtime/Java/target -la
 cd runtime/Cpp
 mkdir build && cd build
 cmake -DANTLR_BUILD_CPP_TESTS=OFF ..
