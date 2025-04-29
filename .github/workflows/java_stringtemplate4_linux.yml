@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./java/antlr/linux/get_java_stringtemplate4_linux.sh
-        ./java/antlr/linux/get_java_stringtemplate4_linux.sh
+        chmod +x ./java/stringtemplate4/linux/get_java_stringtemplate4_linux.sh
+        ./java/stringtemplate4/linux/get_java_stringtemplate4_linux.sh
