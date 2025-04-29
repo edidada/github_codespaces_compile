@@ -4,9 +4,9 @@ name: build stringtemplate4 linux
 
 on:
   push:
-    branches: [ "java/stringtemplate4/linux" ]
+    branches: [ "java/stringtemplate/linux" ]
   pull_request:
-    branches: [ "java/stringtemplate4/linux" ]
+    branches: [ "java/stringtemplate/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
