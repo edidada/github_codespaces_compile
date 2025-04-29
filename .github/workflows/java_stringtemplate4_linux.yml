@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build antlr linux
+name: build stringtemplate4 linux
 
 on:
   push:
-    branches: [ "java/antlr/linux" ]
+    branches: [ "java/stringtemplate4/linux" ]
   pull_request:
-    branches: [ "java/antlr/linux" ]
+    branches: [ "java/stringtemplate4/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
