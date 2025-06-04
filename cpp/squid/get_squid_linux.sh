@@ -6,3 +6,6 @@ git clone -b SQUID_7_0_1 https://github.com/squid-cache/squid.git
 cd squid
 chmod +x bootstrap.sh
 ./bootstrap.sh
+./configure
+make -j4
+sudo make install
