@@ -8,3 +8,5 @@ git checkout v1.7.7
 make -j4
 sudo make install
 find /usr/local/include/ -name "tbox.h"
+xmake -v
+xmake install
