@@ -4,9 +4,9 @@ name: build tbox linux
 
 on:
   push:
-    branches: [ "c/tbox/linux" ]
+    branches: [ "c/tbox177/linux" ]
   pull_request:
-    branches: [ "c/tbox/linux" ]
+    branches: [ "c/tbox177/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
