@@ -7,5 +7,4 @@ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 brew install git automake cmake wget pkg-config gnu-tar ninja nasm meson
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 git clone --recursive https://github.com/telegramdesktop/tdesktop.git
-git checkout v5.15.3
 ./tdesktop/Telegram/build/prepare/mac.sh
