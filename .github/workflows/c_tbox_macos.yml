@@ -32,5 +32,7 @@ jobs:
           ./c/tbox/get_tbox_brew_macos.sh
 
       - name: install tbox
+        env: # 定义全局环境变量
+          XMAKE_ROOT: 'y'
         run: |
           sudo xmake install --installdir=/usr/local/Cellar/tbox/1.7.7
