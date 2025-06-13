@@ -11,4 +11,3 @@ brew install xmake
 xmake --version
 xmake -v
 sudo mkdir -p /usr/local/Cellar/tbox/1.7.7
-sudo xmake --root install --installdir=/usr/local/Cellar/tbox/1.7.7

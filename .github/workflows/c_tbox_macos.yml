@@ -18,6 +18,8 @@ jobs:
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: macos-latest
+    env: # 定义全局环境变量
+      XMAKE_ROOT: 'y'
 
     steps:
       - uses: actions/checkout@v3
@@ -28,3 +30,7 @@ jobs:
         run: |
           chmod +x ./c/tbox/get_tbox_brew_macos.sh
           ./c/tbox/get_tbox_brew_macos.sh
+
+      - name: install tbox
+        run: |
+          sudo xmake install --installdir=/usr/local/Cellar/tbox/1.7.7
