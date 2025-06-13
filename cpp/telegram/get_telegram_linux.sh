@@ -11,5 +11,4 @@ poetry --version
 mkdir TBuild
 cd TBuild
 git clone --recursive https://github.com/telegramdesktop/tdesktop.git
-git checkout v5.15.3
 ./tdesktop/Telegram/build/prepare/linux.sh
