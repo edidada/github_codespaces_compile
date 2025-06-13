@@ -1,5 +1,10 @@
 #! /bin/bash
 cd "$(dirname "$0")"
+echo "qmake version"
+qmake --version
+brew install qt@6
+export PATH="/usr/local/opt/qt@6/bin:$PATH"
+qmake --version
 mkdir TBuild
 cd TBuild
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
