@@ -10,5 +10,5 @@ find /usr/local/include/ -name "tbox.h"
 brew install xmake
 xmake --version
 xmake -v
-mkdir -p /usr/local/Cellar/tbox/1.7.7
+sudo mkdir -p /usr/local/Cellar/tbox/1.7.7
 xmake install --installdir=/usr/local/Cellar/tbox/1.7.7
