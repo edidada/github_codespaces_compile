@@ -28,7 +28,3 @@ jobs:
         run: |
           chmod +x ./c/tbox/get_tbox_brew_macos.sh
           ./c/tbox/get_tbox_brew_macos.sh
-
-      - name: install tbox
-        run: |
-          sudo xmake install --installdir=~/.local/Cellar/tbox/1.7.7 --root
