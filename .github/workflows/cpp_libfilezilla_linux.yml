@@ -21,15 +21,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: wget libfilezilla
+        run: |
+          wget -O libfilezilla-0.50.0.tar.xz https://dl3.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=Lafu1Ycp6g8ABpHqaShf2w&x=1750312053
 
       - name: get_libfilezilla_linux
         run: |
           chmod +x ./cpp/libfilezilla/get_libfilezilla_linux.sh
           ./cpp/libfilezilla/get_libfilezilla_linux.sh
-
-      - name: wget libfilezilla
-        run: |
-          wget -O libfilezilla-0.50.0.tar.xz https://dl3.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=Lafu1Ycp6g8ABpHqaShf2w&x=1750312053
 
       - name: get_libfilezilla_linux2
         run: |
