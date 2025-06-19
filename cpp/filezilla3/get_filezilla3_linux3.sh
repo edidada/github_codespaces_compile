@@ -6,5 +6,5 @@ svn switch https://svn.filezilla-project.org/svn/FileZilla3/tags/3.56.0
 autoreconf --install --force --verbose
 mkdir compile
 cd compile
-../configure
+../configure --with-pugixml=builtin
 make -j$(nproc)
