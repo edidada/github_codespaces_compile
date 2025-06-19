@@ -3,7 +3,7 @@ cd "$(dirname "$0")"
 sudo add-apt-repository ppa:mhier/libboost-latest
 sudo apt update
 apt search libboost1
-sudo apt install subversion libboost1.81-all-dev libwxgtk3.0-gtk3-dev -y
+sudo apt install subversion xdg-utils libboost1.81-all-dev libwxgtk3.0-gtk3-dev -y
 wget -O libfilezilla-0.50.0.tar.xz https://dl1.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=_2qMQ6SfZVO0U0Z8Pll2RA&x=1743654277
 tar -xvf libfilezilla-0.50.0.tar.xz
 cd libfilezilla-0.50.0/
