@@ -34,7 +34,9 @@ jobs:
         run: |
           echo "which libfilezilla"
           ls -la libfilezilla-0.50.0.tar.xz
+          ls -la files/libfilezilla-0.50.0.tar.xz
           tar -xvf libfilezilla-0.50.0.tar.xz
+          tar -xvf files/libfilezilla-0.50.0.tar.xz
           cd libfilezilla-0.50.0/
           ./configure --prefix=/usr/local
           make -j$(nproc)
