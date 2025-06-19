@@ -8,6 +8,7 @@ echo "which svn"
 which svn
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 pkg-config --exists gtk+-2.0 && echo "GTK+ 2 is available"
+pkg-config gtk+-2.0 --libs
 wget -O libfilezilla-0.50.0.tar.xz https://dl1.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=_2qMQ6SfZVO0U0Z8Pll2RA&x=1743654277
 tar -xvf libfilezilla-0.50.0.tar.xz
 cd libfilezilla-0.50.0/
