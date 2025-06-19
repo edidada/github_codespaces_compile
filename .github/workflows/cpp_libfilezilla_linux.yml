@@ -32,6 +32,8 @@ jobs:
 
       - name: get_libfilezilla_linux2
         run: |
+          sudo apt update
+          sudo apt install nettle-dev -y
           echo "which libfilezilla"
           ls -la libfilezilla-0.50.0.tar.xz
           ls -la files/libfilezilla-0.50.0.tar.xz
