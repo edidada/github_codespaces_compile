@@ -26,8 +26,9 @@ cd ./wxWidgets-3.2.1
 make -j$(nproc)
 sudo make install
 cd ../
-svn checkout https://svn.filezilla-project.org/svn/FileZilla3/trunk FileZilla3
+svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk FileZilla3
 cd FileZilla3
+svn switch https://svn.filezilla-project.org/svn/FileZilla3/tags/3.56.0
 autoreconf --install --force --verbose
 mkdir compile
 cd compile
