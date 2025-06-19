@@ -28,6 +28,7 @@ jobs:
       - name: get_libfilezilla_linux
         run: |
           chmod +x ./cpp/libfilezilla/get_libfilezilla_linux.sh
+          ./cpp/libfilezilla/get_libfilezilla_linux.sh
 
       - name: get_libfilezilla_linux2
         run: |
