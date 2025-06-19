@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: wget libfilezilla
         run: |
           wget -O libfilezilla-0.50.0.tar.xz https://dl3.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=Lafu1Ycp6g8ABpHqaShf2w&x=1750312053
@@ -33,7 +33,7 @@ jobs:
       - name: get_libfilezilla_linux2
         run: |
           echo "which libfilezilla"
-          ls -la
+          ls -la libfilezilla-0.50.0.tar.xz
           tar -xvf libfilezilla-0.50.0.tar.xz
           cd libfilezilla-0.50.0/
           ./configure --prefix=/usr/local
