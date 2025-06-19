@@ -10,8 +10,9 @@ which svn
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 pkg-config --exists gtk+-2.0 && echo "GTK+ 2 is available"
 pkg-config gtk+-2.0 --libs
-svn co https://svn.filezilla-project.org/svn/libfilezilla/trunk libfilezilla
-cd libfilezilla/
+wget -O libfilezilla-0.50.0.tar.xz https://dl3.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=Lafu1Ycp6g8ABpHqaShf2w&x=1750312053
+tar -xvf libfilezilla-0.50.0.tar.xz
+cd libfilezilla-0.50.0/
 ./configure --prefix=/usr/local
 make -j$(nproc)
 sudo make install
