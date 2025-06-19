@@ -10,7 +10,7 @@ which svn
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 pkg-config --exists gtk+-2.0 && echo "GTK+ 2 is available"
 pkg-config gtk+-2.0 --libs
-tar -xvf files/libfilezilla-0.50.0.tar.xz
+tar -xvf ../../files/libfilezilla-0.50.0.tar.xz
 cd libfilezilla-0.50.0/
 ./configure --prefix=/usr/local
 make -j$(nproc)
