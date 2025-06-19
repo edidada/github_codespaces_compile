@@ -22,6 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: libfilezilla
+        run: |
+          tar -xvf files/libfilezilla-0.50.0.tar.xz
+          cd libfilezilla-0.50.0/
+          ./configure --prefix=/usr/local
+          make -j$(nproc)
+          sudo make install
+          export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+          echo "libfilezilla"
+          pkg-config --modversion libfilezilla
+
       - name: get_filezilla3_1
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
