@@ -10,7 +10,7 @@ which svn
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 pkg-config --exists gtk+-2.0 && echo "GTK+ 2 is available"
 pkg-config gtk+-2.0 --libs
-svn co https://svn.filezilla-project.org/svn/libfilezilla/trunk
+svn co https://svn.filezilla-project.org/svn/libfilezilla/trunk libfilezilla
 cd libfilezilla/
 ./configure --prefix=/usr/local
 make -j$(nproc)
@@ -26,7 +26,7 @@ cd ./wxWidgets-3.2.1
 make -j$(nproc)
 sudo make install
 cd ../
-svn checkout https://svn.filezilla-project.org/svn/FileZilla3/trunk
+svn checkout https://svn.filezilla-project.org/svn/FileZilla3/trunk FileZilla3
 cd FileZilla3
 autoreconf --install --force --verbose
 mkdir compile
