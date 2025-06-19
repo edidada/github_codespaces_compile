@@ -29,17 +29,6 @@ jobs:
           chmod +x ./cpp/filezilla3/get_filezilla3_linux1.sh
           ./cpp/filezilla3/get_filezilla3_linux1.sh
 
-      - name: libfilezilla
-        run: |
-          tar -xvf files/libfilezilla-0.50.0.tar.xz
-          cd libfilezilla-0.50.0/
-          ./configure --prefix=/usr/local
-          make -j$(nproc)
-          sudo make install
-          export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
-          echo "libfilezilla"
-          pkg-config --modversion libfilezilla
-
       - name: get_filezilla3_2
         run: |
           chmod +x ./cpp/filezilla3/get_filezilla3_linux2.sh
