@@ -28,14 +28,12 @@ jobs:
       - name: get_libfilezilla_linux
         run: |
           chmod +x ./cpp/libfilezilla/get_libfilezilla_linux.sh
-          ./cpp/libfilezilla/get_libfilezilla_linux.sh
 
       - name: get_libfilezilla_linux2
         run: |
           echo "which libfilezilla"
           ls -la libfilezilla-0.50.0.tar.xz
           ls -la files/libfilezilla-0.50.0.tar.xz
-          tar -xvf libfilezilla-0.50.0.tar.xz
           tar -xvf files/libfilezilla-0.50.0.tar.xz
           cd libfilezilla-0.50.0/
           ./configure --prefix=/usr/local
