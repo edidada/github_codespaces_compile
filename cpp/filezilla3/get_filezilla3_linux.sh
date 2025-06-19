@@ -22,7 +22,7 @@ cd ../
 wget -O wxWidgets-3.2.1.zip https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.zip
 unzip wxWidgets-3.2.1.zip -d ./wxWidgets-3.2.1
 cd ./wxWidgets-3.2.1
-./configure
+./configure --prefix=/usr/local
 make -j$(nproc)
 sudo make install
 cd ../
