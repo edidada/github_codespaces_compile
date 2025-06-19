@@ -18,11 +18,3 @@ sudo make install
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 echo "libfilezilla"
 pkg-config --modversion libfilezilla
-cd ../
-wget -O wxWidgets-3.2.1.zip https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.zip
-unzip wxWidgets-3.2.1.zip -d ./wxWidgets-3.2.1
-cd ./wxWidgets-3.2.1
-./configure
-make -j$(nproc)
-sudo make install
-cd ../

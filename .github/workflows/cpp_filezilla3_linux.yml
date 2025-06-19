@@ -33,3 +33,8 @@ jobs:
         run: |
           chmod +x ./cpp/filezilla3/get_filezilla3_linux2.sh
           ./cpp/filezilla3/get_filezilla3_linux2.sh
+
+      - name: get_filezilla3_3
+        run: |
+          chmod +x ./cpp/filezilla3/get_filezilla3_linux3.sh
+          ./cpp/filezilla3/get_filezilla3_linux3.sh

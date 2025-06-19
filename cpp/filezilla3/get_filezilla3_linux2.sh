@@ -1,9 +1,9 @@
 #! /bin/bash
 cd "$(dirname "$0")"
-svn checkout https://svn.filezilla-project.org/svn/FileZilla3/trunk FileZilla3
-cd FileZilla3
-autoreconf --install --force --verbose
-mkdir compile
-cd compile
-../configure
+wget -O wxWidgets-3.2.1.zip https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.zip
+unzip wxWidgets-3.2.1.zip -d ./wxWidgets-3.2.1
+cd ./wxWidgets-3.2.1
+./configure
 make -j$(nproc)
+sudo make install
+cd ../
