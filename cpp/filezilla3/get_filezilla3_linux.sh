@@ -11,15 +11,16 @@ cd libfilezilla-0.50.0/
 make -j$(nproc)
 sudo make install
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+echo "libfilezilla"
 pkg-config --modversion libfilezilla
-cd "$(dirname "$0")"
+cd ../
 wget -O wxWidgets-3.2.1.zip https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.zip
 unzip wxWidgets-3.2.1.zip -d ./wxWidgets-3.2.1
 cd ./wxWidgets-3.2.1
-./configure --with-wx-config=/usr/local/bin/wx-config
+./configure
 make -j$(nproc)
 sudo make install
-cd "$(dirname "$0")"
+cd ../
 svn checkout https://svn.filezilla-project.org/svn/FileZilla3/trunk
 cd FileZilla3
 autoreconf --install --force --verbose
