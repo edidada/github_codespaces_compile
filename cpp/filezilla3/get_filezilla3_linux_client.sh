@@ -6,7 +6,7 @@ svn co https://svn.filezilla-project.org/svn/FileZilla3/tags/3.56.0/ fz
 cd fz
 autoreconf -i
 ./configure --with-pugixml=builtin
-make
-make install
+make -j4
+sudo make install
 sudo cp src/engine/.libs/libfzclient-private-3.56.0.so /lib/
 filezilla
