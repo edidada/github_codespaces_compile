@@ -8,5 +8,3 @@ autoreconf -i
 ./configure --with-pugixml=builtin
 make -j4
 sudo make install
-sudo cp src/engine/.libs/libfzclient-private-3.56.0.so /lib/
-filezilla
