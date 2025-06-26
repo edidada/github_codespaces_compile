@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 brew update
 brew install libdill
-brew install libfilezilla wxwidgets gnutls dbus gtk+3 sqlite gettext svn
+brew install wxwidgets gnutls dbus gtk+3 sqlite gettext svn
 # 确保找到 Homebrew 的库和头文件
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/opt/homebrew/opt/sqlite/lib/pkgconfig:/opt/homebrew/opt/gnutls/lib/pkgconfig:$PKG_CONFIG_PATH"
 export LDFLAGS="-L/opt/homebrew/opt/gnutls/lib -L/opt/homebrew/opt/sqlite/lib -L/opt/homebrew/opt/gettext/lib"
