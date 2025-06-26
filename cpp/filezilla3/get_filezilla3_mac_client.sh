@@ -1,7 +1,6 @@
 #! /bin/bash
 cd "$(dirname "$0")"
 brew update
-brew install libdill
 brew install autoconf automake libtool wxwidgets gnutls dbus gtk+3 sqlite gettext svn
 # 确保找到 Homebrew 的库和头文件
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/opt/homebrew/opt/sqlite/lib/pkgconfig:/opt/homebrew/opt/gnutls/lib/pkgconfig:$PKG_CONFIG_PATH"
