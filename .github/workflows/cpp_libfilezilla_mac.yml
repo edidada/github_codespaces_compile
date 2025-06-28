@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build filezilla3 linux
+name: build libfilezilla mac
 
 on:
   push:
-    branches: [ "cpp/filezilla3/linux" ]
+    branches: [ "cpp/libfilezilla/mac" ]
   pull_request:
-    branches: [ "cpp/filezilla3/linux" ]
+    branches: [ "cpp/libfilezilla/mac" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -21,20 +21,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: get_filezilla3_1
-        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      - name: wget libfilezilla
         run: |
-          chmod +x ./cpp/filezilla3/get_filezilla3_linux1.sh
-          ./cpp/filezilla3/get_filezilla3_linux1.sh
+          wget -O libfilezilla-0.50.0.tar.xz https://dl3.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=Lafu1Ycp6g8ABpHqaShf2w&x=1750312053
 
-      - name: get_filezilla3_2
+      - name: get_libfilezilla_mac
         run: |
-          chmod +x ./cpp/filezilla3/get_filezilla3_linux2.sh
-          ./cpp/filezilla3/get_filezilla3_linux2.sh
-
-      - name: get_filezilla3_3
-        run: |
-          chmod +x ./cpp/filezilla3/get_filezilla3_linux3.sh
-          ./cpp/filezilla3/get_filezilla3_linux3.sh
+          chmod +x ./cpp/libfilezilla/get_libfilezilla_mac.sh
+          ./cpp/libfilezilla/get_libfilezilla_mac.sh
