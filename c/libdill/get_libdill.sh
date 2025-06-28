@@ -1,8 +1,8 @@
 #! /bin/bash
-sudo apt-get update
-wget https://libdill.org/libdill-2.14.tar.gz
-tar -xzf libdill-2.14.tar.gz
-cd libdill-2.14
+sudo apt update
+git clone https://github.com/sustrik/libdill.git
+cd libdill
+./autogen.sh
 ./configure
 make
 sudo make install
