@@ -27,5 +27,5 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           sudo apt update
-          chmod +x ./get_brpc_1_10_0.sh
-          ./get_brpc_1_10_0.sh
+          chmod +x ./cpp//brpc/get_brpc_1_10_0.sh
+          ./cpp//brpc/get_brpc_1_10_0.sh
