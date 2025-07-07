@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build cpp_gcc
+name: build get_etlcpp_linux
 
 on:
   push:
-    branches: [ "cpp/gcc" ]
+    branches: [ "cpp/etlcpp" ]
   pull_request:
-    branches: [ "cpp/gcc" ]
+    branches: [ "cpp/etlcpp" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
