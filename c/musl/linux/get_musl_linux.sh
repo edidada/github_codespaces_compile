@@ -1,12 +1,12 @@
 #! /bin/bash
 cd "$(dirname "$0")"
 sudo apt update
-git clone https://github.com/tboox/tbox.git
-cd tbox
-git checkout v1.7.7
-./configure
-make -j4
+wget http://musl.libc.org/releases/musl-latest.tar.gz
+tar -xzf musl-latest.tar.gz
+cd musl-1.2.5/
+./configure --prefix=/usr/local/musl
+make
 sudo make install
-find /usr/local/include/ -name "tbox.h"
-xmake -v
-xmake install
+echo 'export PATH=/usr/local/musl/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+find . -name "musl-gcc"
