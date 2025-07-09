@@ -27,6 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       #         sudo apt install libgcc-all-dev -y 版本超过1.66 api不兼容
       run: |
-        sudo apt update
         chmod +x ./cpp/etlcpp/linux/get_etlcpp_linux.sh
         ./cpp/etlcpp/linux/get_etlcpp_linux.sh

@@ -26,5 +26,8 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
-          chmod +x ./c/musl/get_musl_linux.sh
-          ./c/musl/get_musl_linux.sh
+          pwd
+          ls ./cpp/etlcpp/linux/
+          ls ./c
+          chmod +x ./c/musl/linux/get_musl_linux.sh
+          ./c/musl/linux/get_musl_linux.sh
