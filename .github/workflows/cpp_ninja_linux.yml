@@ -4,9 +4,9 @@ name: build ninja linux
 
 on:
   push:
-    branches: [ "cpp/ninja/linux" ]
+    branches: [ "cpp/ninja/linux2" ]
   pull_request:
-    branches: [ "cpp/ninja/linux" ]
+    branches: [ "cpp/ninja/linux2" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
