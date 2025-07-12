@@ -1,7 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 sudo apt update
-sudo apt update
 sudo apt install build-essential
 sudo apt install libgtest-dev libgmock-dev
 sudo apt install libmosquitto-dev
