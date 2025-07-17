@@ -1,13 +1,13 @@
 #! /bin/bash
 cd "$(dirname "$0")"
 sudo apt update
-wget http://musl.libc.org/releases/musl-latest.tar.gz
-tar -xzf musl-latest.tar.gz
-ls -la
-cd musl-1.2.5/
-./configure --prefix=/usr/local/musl
-make
-sudo make install
-echo 'export PATH=/usr/local/musl/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-find . -name "musl-gcc"
+echo "ubuntu version"
+lsb_release -a
+hostnamectl
+sudo apt install xmake python3-dev python3-venv python3-pip unzip p7zip -y
+git clone https://github.com/edidada/tiny-lsm.git
+cd tiny-lsm
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+mkdir build
+xmake -y
+xmake project -k cmake -y
