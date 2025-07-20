@@ -25,7 +25,8 @@ cat > "$ACE_ROOT/ace/config.h" << 'EOF'
 # include "ace/config-win32.h"
 #endif
 EOF
-vim config.h
+echo "config.h"
+cat config.h
 mkdir -p build
 cmake -S . -B build
 cmake --build build -j6
