@@ -26,7 +26,7 @@ cat > "$ACE_ROOT/ace/config.h" << 'EOF'
 #endif
 EOF
 echo "config.h"
-cat config.h
+cat $ACE_ROOT/ace/config.h
 mkdir -p build
 cmake -S . -B build
 cmake --build build -j6
