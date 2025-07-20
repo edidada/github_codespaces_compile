@@ -8,7 +8,9 @@ git clone https://github.com/DOCGroup/ACE_TAO.git
 cd ACE_TAO/ACE
 git checkout 675c2f88cf84591e0dcf995f6d0dddd2fd807df0
 git clone https://github.com/DOCGroup/MPC.git
+cd MPC
 git checkout b085809b65705fe56d66bd094b0f73f1002f02d7
+cd ../
 export ACE_ROOT=$(pwd)
 echo "=> ACE_ROOT: $ACE_ROOT"
 cd "$ACE_ROOT/ace"
