@@ -7,3 +7,5 @@ wget https://github.com/bazelbuild/bazelisk/releases/download/v1.26.0/bazelisk-l
 cp bazelisk-linux-amd64 bazelisk
 chmod +x bazelisk
  ./bazelisk build //:combine_distfiles
+chmod +x compile.sh
+./compile.sh
