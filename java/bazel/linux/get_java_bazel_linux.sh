@@ -1,4 +1,9 @@
 #!/bin/bash
+sudo apt update
+sudo apt install openjdk-21-jdk -y
+echo "java version"
+java --version
+javac --version
 cd "$(dirname "$0")"
 wget https://github.com/bazelbuild/bazel/releases/download/8.3.0/bazel-8.3.0-dist.zip
 unzip bazel-8.3.0-dist.zip -d ./bazel-8.3.0-dist
