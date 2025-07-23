@@ -13,6 +13,7 @@ sudo ln -s /usr/lib/jvm/java-21-openjdk-amd64/bin/javac /etc/alternatives/javac
 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac 1
 sudo update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
 echo "java version"
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 java --version
 javac --version
 cd "$(dirname "$0")"
