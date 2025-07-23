@@ -26,3 +26,4 @@ chmod +x bazelisk
  ./bazelisk build //:combine_distfiles
 chmod +x compile.sh
 ./compile.sh
+output/bazel version
