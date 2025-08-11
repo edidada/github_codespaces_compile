@@ -15,3 +15,4 @@ sudo apt install ccache clang lldb nasm yasm doxygen python3-pygments python3-ya
 mkdir build
 cd build
 cmake ../
+ninja -j12
