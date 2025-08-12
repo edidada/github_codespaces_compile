@@ -16,3 +16,4 @@ mkdir build
 cd build
 cmake ../
 ninja -j12
+ls -la programs/
