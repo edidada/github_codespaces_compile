@@ -9,8 +9,11 @@ stages:
       - step: shell@agent
         name: run linux shell
         displayName: linux shell
+        # 支持6、7、8、9、10、11六个版本
+        jdkVersion: 11
         # 构建命令
         script: |
+          sudo apt update
           chmod +x ./java/langchain4j/linux/get_java_langchain4j_linux.sh 
           ./java/langchain4j/linux/get_java_langchain4j_linux.sh
 triggers:

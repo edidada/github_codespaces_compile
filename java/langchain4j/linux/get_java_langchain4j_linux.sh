@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo apt update
 cd "$(dirname "$0")"
 git clone https://github.com/langchain4j/langchain4j.git
 cd langchain4j
