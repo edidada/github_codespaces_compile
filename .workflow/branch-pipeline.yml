@@ -1,6 +1,6 @@
 version: '1.0'
 name: branch-pipeline
-displayName: shell Pipeline
+displayName: BranchPipeline
 stages:
   - stage: 
     name: compile
