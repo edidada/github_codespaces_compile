@@ -7,7 +7,7 @@ stages:
     displayName: 编译
     steps:
       - step: shell@agent
-        name: run linux shell
+        name: run_linux_shell
         displayName: linux shell
         # 支持6、7、8、9、10、11六个版本
         jdkVersion: 11
