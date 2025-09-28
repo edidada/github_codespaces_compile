@@ -26,5 +26,5 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
-          chmod +x ./cpp/squid/linux/get_iceberg_cpp_linux.sh
-          ./cpp/squid/linux/get_iceberg_cpp_linux.sh
+          chmod +x ./cpp/iceberg_cpp/linux/get_iceberg_cpp_linux.sh
+          ./cpp/iceberg_cpp/linux/get_iceberg_cpp_linux.sh
