@@ -11,4 +11,4 @@ cd 3fs
 git submodule update --init --recursive
 ./patches/apply.sh
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-cmake --build build -j 8
+cmake --build build -j 5 --verbose
