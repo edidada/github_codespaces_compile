@@ -21,6 +21,6 @@ export FDB_ROOT=$PWD
 export PATH="$FDB_ROOT/bin:$PATH"
 export LD_LIBRARY_PATH="$FDB_ROOT/lib:$LD_LIBRARY_PATH"
 export CMAKE_PREFIX_PATH="$FDB_ROOT:$CMAKE_PREFIX_PATH"
-cd ../..
+cd ../../..
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DFDB_ROOT=$FDB_ROOT
 cmake --build build -j 12
