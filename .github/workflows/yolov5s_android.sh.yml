@@ -4,9 +4,9 @@ name: build boost
 
 on:
   push:
-    branches: [ "cpp/boost" ]
+    branches: [ "cpp/yolov5s/android" ]
   pull_request:
-    branches: [ "cpp/boost" ]
+    branches: [ "cpp/yolov5s/android" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_boost.sh
-        ./get_boost.sh
+        chmod +x ./get_yolov5s_android.sh
+        ./get_yolov5s_android.sh

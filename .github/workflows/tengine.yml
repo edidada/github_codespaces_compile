@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build boost
+name: build tengine
 
 on:
   push:
-    branches: [ "cpp/boost" ]
+    branches: [ "c/tengine" ]
   pull_request:
-    branches: [ "cpp/boost" ]
+    branches: [ "c/tengine" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -22,10 +22,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: get_boost
+    - name: get_tengine
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_boost.sh
-        ./get_boost.sh
+        chmod +x ./get_tengine.sh
+        ./get_tengine.sh
