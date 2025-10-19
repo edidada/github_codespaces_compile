@@ -33,7 +33,7 @@ tar -zxvf fuse-3.16.2.tar.gz
 cd fuse-3.16.2; mkdir build; cd build
 meson setup ..
 ninja
-ninja install
+sudo ninja install
 cd ${BUILD_DIR}/3fs
 echo "Building pwd"
 pwd
