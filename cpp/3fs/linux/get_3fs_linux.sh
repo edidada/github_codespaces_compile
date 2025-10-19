@@ -1,13 +1,16 @@
 #! /bin/bash
+cd "$(dirname "$0")"
 TOTAL_RAM=$(free -h | awk '/^Mem:/ {print $2}')
 echo "local sys (RAM) is: $TOTAL_RAM"
 sudo apt update
-sudo apt install libboost-all-dev cmake libuv1-dev liblz4-dev liblzma-dev libdouble-conversion-dev libdwarf-dev libunwind-dev libaio-dev libgflags-dev libgoogle-glog-dev libgtest-dev libgmock-dev clang-format-14 clang-14 clang-tidy-14 lld-14 libgoogle-perftools-dev google-perftools libssl-dev gcc-12 g++-12 libboost-all-dev build-essential -y
+sudo apt install cargo wget meson cmake libuv1-dev liblz4-dev liblzma-dev libdouble-conversion-dev libdwarf-dev libunwind-dev libaio-dev libgflags-dev libgoogle-glog-dev libgtest-dev libgmock-dev clang-format-14 clang-14 clang-tidy-14 lld-14 libgoogle-perftools-dev google-perftools libssl-dev gcc-12 g++-12 libboost-all-dev build-essential -y
 ls /usr/include/boost
 ls /usr/lib/x86_64-linux-gnu | grep boost
 export BOOST_ROOT=/usr/local
 export Boost_INCLUDE_DIR=/usr/include/boost
 export Boost_LIBRARY_DIR=/usr/lib/x86_64-linux-gnu
+export BUILD_DIR=$HOME
+cd ${BUILD_DIR}
 git clone https://github.com/deepseek-ai/3fs
 cd 3fs
 git submodule update --init --recursive
@@ -21,7 +24,17 @@ export FDB_ROOT=$PWD
 export PATH="$FDB_ROOT/bin:$PATH"
 export LD_LIBRARY_PATH="$FDB_ROOT/lib:$LD_LIBRARY_PATH"
 export CMAKE_PREFIX_PATH="$FDB_ROOT:$CMAKE_PREFIX_PATH"
-cd ../../3fs
+cd ${BUILD_DIR}
+wget https://github.com/apple/foundationdb/releases/download/7.1.67/foundationdb-server_7.1.67-1_amd64.deb  https://github.com/apple/foundationdb/releases/download/7.1.67/foundationdb-clients_7.1.67-1_amd64.deb
+dpkg -i foundationdb-server_7.1.67-1_amd64.deb foundationdb-clients_7.1.67-1_amd64.deb
+cd ${BUILD_DIR}
+wget https://github.com/libfuse/libfuse/releases/download/fuse-3.16.2/fuse-3.16.2.tar.gz
+tar -zxvf fuse-3.16.2.tar.gz
+cd fuse-3.16.2; mkdir build; cd build
+meson setup ..
+ninja
+ninja install
+cd ${BUILD_DIR}/3fs
 echo "Building pwd"
 pwd
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DFDB_ROOT=$FDB_ROOT
