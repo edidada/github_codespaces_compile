@@ -3,6 +3,7 @@ cd "$(dirname "$0")"
 TOTAL_RAM=$(free -h | awk '/^Mem:/ {print $2}')
 echo "local sys (RAM) is: $TOTAL_RAM"
 sudo apt update
+sudo apt install meson -y
 export BUILD_DIR=$HOME
 cd ${BUILD_DIR}
 wget https://github.com/apple/foundationdb/releases/download/7.1.67/foundationdb-server_7.1.67-1_amd64.deb  https://github.com/apple/foundationdb/releases/download/7.1.67/foundationdb-clients_7.1.67-1_amd64.deb
