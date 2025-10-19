@@ -55,6 +55,8 @@ jobs:
       # make images 命令会构建完整的 JDK 映像
       - name: Compile OpenJDK (make images)
         run: |
+          sudo apt-get update
+          sudo apt-get install -y libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev
           cd openjdk-source
           # 使用 make -j$(nproc) 可以并行编译，加快速度
           make images -j$(nproc)
