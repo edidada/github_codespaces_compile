@@ -1,0 +1,83 @@
+# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+name: Build OpenJDK 25 from Source
+
+on:
+  push:
+    branches: [ "java/openjdk25" ]
+  pull_request:
+    branches: [ "java/openjdk25" ]
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build_jdk:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 下载 OpenJDK 25 源代码
+      # 使用 openjdk/jdk25u 仓库，它是 OpenJDK 25 的更新分支。
+      - name: Checkout OpenJDK 25 Source Code
+        uses: actions/checkout@v4
+        with:
+          repository: openjdk/jdk25u
+          path: openjdk-source # 将代码下载到 openjdk-source 目录
+
+      # 2. 安装构建依赖
+      # 编译 OpenJDK 需要 C/C++ 编译器、必要的库文件等。
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          # 安装 build-essential (GCC, G++ 等), 以及其他常用依赖
+          sudo apt-get install -y build-essential libx11-dev libxt-dev libxtst-dev \
+                                  libcups2-dev libfontconfig1-dev libasound2-dev libfreetype-dev \
+                                  autoconf zip unzip
+
+      # 3. 设置 Bootstrap JDK (引导 JDK)
+      # 编译 OpenJDK 25 需要使用一个已经编译好的 JDK 24 或 21 作为引导版本。
+      - name: Set up Bootstrap JDK 24 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24' # 使用 JDK 24 作为引导版本
+          distribution: 'temurin' # Eclipse Temurin 是一个可靠的 OpenJDK 发行版
+          # 此步骤会自动设置 JAVA_HOME 环境变量
+
+      # 4. 配置构建环境
+      - name: Configure OpenJDK Build
+        run: |
+          # 运行 configure 脚本，并指定上一步设置的 Bootstrap JDK 路径
+          cd openjdk-source
+          bash configure --with-boot-jdk=$JAVA_HOME
+        env:
+          # JAVA_HOME 由 actions/setup-java 自动注入
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+
+      # 5. 编译 OpenJDK
+      # make images 命令会构建完整的 JDK 映像
+      - name: Compile OpenJDK (make images)
+        run: |
+          cd openjdk-source
+          # 使用 make -j$(nproc) 可以并行编译，加快速度
+          make images -j$(nproc)
+
+      # 6. 验证编译结果 (可选)
+      - name: Verify Compiled JDK 25
+        run: |
+          # 编译结果通常位于 build/linux-x86_64-normal-server-release/images/jdk 目录下
+          cd openjdk-source
+          ./build/linux-x86_64-normal-server-release/images/jdk/bin/java -version
+
+      # 7. 上传编译后的 JDK 压缩包 (可选)
+      - name: Upload Compiled JDK 25
+        uses: actions/upload-artifact@v4
+        with:
+          name: openjdk-25-custom-build-linux-x64
+          path: openjdk-source/build/linux-x86_64-normal-server-release/images/jdk
+
+      - name: get_openjdk25
+        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+        #         sudo apt install libopenjdk25-all-dev -y 版本超过1.66 api不兼容
+        run: |
+          sudo apt update
+          chmod +x ./java/openjdk25/linux/download_openjdk25.sh
+          ./java/openjdk25/linux/download_openjdk25.sh
