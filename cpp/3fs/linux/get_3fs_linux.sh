@@ -39,3 +39,4 @@ echo "Building pwd"
 pwd
 cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++-14 -DCMAKE_C_COMPILER=clang-14 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DFDB_ROOT=$FDB_ROOT
 cmake --build build -j 5
+ls -ls ${BUILD_DIR}/3fs/build/bin
