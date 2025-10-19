@@ -26,7 +26,7 @@ export LD_LIBRARY_PATH="$FDB_ROOT/lib:$LD_LIBRARY_PATH"
 export CMAKE_PREFIX_PATH="$FDB_ROOT:$CMAKE_PREFIX_PATH"
 cd ${BUILD_DIR}
 wget https://github.com/apple/foundationdb/releases/download/7.1.67/foundationdb-server_7.1.67-1_amd64.deb  https://github.com/apple/foundationdb/releases/download/7.1.67/foundationdb-clients_7.1.67-1_amd64.deb
-dpkg -i foundationdb-server_7.1.67-1_amd64.deb foundationdb-clients_7.1.67-1_amd64.deb
+sudo dpkg -i foundationdb-server_7.1.67-1_amd64.deb foundationdb-clients_7.1.67-1_amd64.deb
 cd ${BUILD_DIR}
 wget https://github.com/libfuse/libfuse/releases/download/fuse-3.16.2/fuse-3.16.2.tar.gz
 tar -zxvf fuse-3.16.2.tar.gz
