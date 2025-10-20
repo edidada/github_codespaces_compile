@@ -1,20 +1,35 @@
 #! /bin/bash
-# 创建安装目录
+# 添加 OpenJDK 7 PPA
+sudo add-apt-repository ppa:openjdk-r/ppa -y
+sudo apt-get update
+# 安装 OpenJDK 7
+sudo apt-get install -y openjdk-7-jdk
+# 设置环境变量
+echo "JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64" >> $GITHUB_ENV
+echo "/usr/lib/jvm/java-7-openjdk-amd64/bin" >> $GITHUB_PATH
+java -version
 mkdir -p ~/jdk
-
-# 下载 tar.gz 文件（wget 会自动跟随重定向，但可能需处理 cookie/许可）
-wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-     https://download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz \
+# 第一步：获取 Cookie 和 AuthParam（模拟浏览器访问许可页面）
+wget --no-check-certificate \
+     --save-cookies cookies.txt \
+     --keep-session-cookies \
+     --no-cookies \
+     --header="User-Agent: Mozilla/5.0" \
+     "https://edelivery.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz" \
+     -O /dev/null
+# 第二步：使用保存的 Cookie 下载真实文件
+wget --load-cookies cookies.txt \
+     --no-check-certificate \
+     --header="User-Agent: Mozilla/5.0" \
+     "https://download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz" \
      -O jdk-7u80-linux-x64.tar.gz
-
-# 验证下载（可选，检查文件大小）
+# 验证下载
 ls -lh jdk-7u80-linux-x64.tar.gz
-
-# 解压到指定目录
+[ -s jdk-7u80-linux-x64.tar.gz ] || (echo "Download failed!" && exit 1)
+# 解压
 tar -xzf jdk-7u80-linux-x64.tar.gz -C ~/jdk --strip-components=1
-
-# 设置 JAVA_HOME 和 PATH（可选，用于后续步骤）
+# 清理
+rm -f cookies.txt jdk-7u80-linux-x64.tar.gz
+# 设置环境变量
 echo "JAVA_HOME=~/jdk" >> $GITHUB_ENV
 echo "$JAVA_HOME/bin" >> $GITHUB_PATH
-~/jdk/bin/java -version
-# 输出应显示 openjdk version "1.7.0_80" 或类似
