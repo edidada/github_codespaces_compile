@@ -3,33 +3,17 @@
 sudo apt update && sudo apt install -y git build-essential autoconf cmake
 
 # X11图形库依赖
-sudo apt install -y libx11-dev libxext-dev libxrender-dev \
-     libxtst-dev libxt-dev libxrandr-dev
-
-# 其他运行时依赖
-sudo apt install -y libcups2-dev libfontconfig1-dev \
-     libasound2-dev libfreetype6-dev libzip-dev
+sudo apt install -y libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libxrandr-dev libcups2-dev libfontconfig1-dev libasound2-dev libfreetype6-dev libzip-dev
 wget https://codeload.github.com/openjdk/jdk21/zip/refs/heads/master -O jdk21-master.zip
 unzip jdk21-master.zip
 wget https://download.java.net/openjdk/jdk20/ri/openjdk-20+36_linux-x64_bin.tar.gz
-tar -zxvf openjdk-20+36_linux-x64_bin.tar.gz -C /opt/
+tar -zxvf openjdk-20+36_linux-x64_bin.tar.gz -C /workspaces/github_codespaces_compile/
 cd jdk21-master
-export JAVA_HOME=/opt/jdk-20
-
-# 修复Autoconf问题（关键步骤）
-autoreconf -if
-bash make/autoconf/autogen.sh
+export JAVA_HOME=/workspaces/github_codespaces_compile/jdk-20
 
 # 明确指定构建系统类型（修复config.sub错误）
 BUILD_SYSTEM=$(build-aux/config.guess)
-bash configure \
-  --with-num-cores=12 \                # 根据CPU核心数调整
-  --with-memory-size=20480 \           # 内存分配（单位MB）
-  --with-boot-jdk=/opt/jdk-20 \        # 指向JDK20路径
-  --with-target-bits=64 \              # 64位系统
-  --with-jvm-variants=server \         # 服务器版JVM
-  --with-debug-level=slowdebug \       # 调试模式
-  --disable-warnings-as-errors         # 忽略警告错误
+bash configure --with-num-cores=12 --with-memory-size=20480 --with-boot-jdk=/workspaces/github_codespaces_compile/jdk-20 --with-target-bits=64 --with-jvm-variants=server --with-debug-level=slowdebug -disable-warnings-as-errors  --with-toolchain-type=gcc
 make CONF=linux-x86_64-server-slowdebug
 find build/ -name "java" -type f
 # 典型路径：build/linux-x86_64-server-slowdebug/jdk/bin/java
