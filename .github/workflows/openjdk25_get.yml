@@ -27,6 +27,7 @@ jobs:
       - name: Install Build Dependencies
         run: |
           sudo apt-get update
+          sudo apt-get install -y libx11-dev libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev
           # 安装 build-essential (GCC, G++ 等), 以及其他常用依赖
           sudo apt-get install -y build-essential libx11-dev libxtst-dev \
                                   libcups2-dev libfontconfig1-dev libasound2-dev libfreetype-dev \
@@ -55,8 +56,6 @@ jobs:
       # make images 命令会构建完整的 JDK 映像
       - name: Compile OpenJDK (make images)
         run: |
-          sudo apt-get update
-          sudo apt-get install -y  libxext-dev libxrender-dev libxrandr-dev libxtst-dev libxt-dev
           cd openjdk-source
           # 使用 make -j$(nproc) 可以并行编译，加快速度
           make images -j$(nproc)
