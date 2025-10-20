@@ -58,7 +58,7 @@ jobs:
         run: |
           cd openjdk-source
           # 使用 make -j$(nproc) 可以并行编译，加快速度
-          make images -j$(nproc)
+          make images JOBS=$(nproc)
 
       # 6. 验证编译结果 (可选)
       - name: Verify Compiled JDK 25
