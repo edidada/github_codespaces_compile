@@ -92,7 +92,6 @@ bash configure \
     --with-debug-level=release \
     --disable-warnings-as-errors \
     --with-toolchain-type=gcc \
-    --with-gtest=/usr \
     --with-extra-cflags="-fno-semantic-interposition" \
     --with-extra-cxxflags="-fno-semantic-interposition" \
     2>&1 | tee configure.log
