@@ -9,6 +9,10 @@ JDK_VERSION="jdk-21"  # 可以修改为你想编译的版本，如jdk-17, jdk-20
 BUILD_DIR="$HOME/jvm_build"
 OPENJDK_SOURCE_URL="https://github.com/openjdk/$JDK_VERSION"
 
+echo $JDK_VERSION
+echo $BUILD_DIR
+echo $OPENJDK_SOURCE_URL
+
 # 安装依赖
 echo "安装编译依赖..."
 sudo apt update
