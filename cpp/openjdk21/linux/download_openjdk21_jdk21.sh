@@ -1,7 +1,8 @@
 #!/bin/bash
 # 基础编译工具
 sudo apt update && sudo apt install -y git build-essential autoconf cmake
-
+echo "build pwd"
+pwd
 # X11图形库依赖
 sudo apt install -y libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libxrandr-dev libcups2-dev libfontconfig1-dev libasound2-dev libfreetype6-dev libzip-dev
 wget https://codeload.github.com/openjdk/jdk21/zip/refs/heads/master -O jdk21-master.zip
