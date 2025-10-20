@@ -14,8 +14,14 @@ unzip jdk21-master.zip
 wget https://download.java.net/openjdk/jdk20/ri/openjdk-20+36_linux-x64_bin.tar.gz
 tar -zxvf openjdk-20+36_linux-x64_bin.tar.gz -C /opt/
 cd jdk21-master
-# 生成configure脚本（修复config.sub缺失问题）
-bash autogen.sh
+export JAVA_HOME=/opt/jdk-20
+
+# 修复Autoconf问题（关键步骤）
+autoreconf -if
+bash make/autoconf/autogen.sh
+
+# 明确指定构建系统类型（修复config.sub错误）
+BUILD_SYSTEM=$(build-aux/config.guess)
 bash configure \
   --with-num-cores=12 \                # 根据CPU核心数调整
   --with-memory-size=20480 \           # 内存分配（单位MB）
