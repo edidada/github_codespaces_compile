@@ -4,9 +4,9 @@ name: download openjdk21
 
 on:
   push:
-    branches: [ "java/openjdk21" ]
+    branches: [ "cpp/openjdk21" ]
   pull_request:
-    branches: [ "java/openjdk21" ]
+    branches: [ "cpp/openjdk21" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
