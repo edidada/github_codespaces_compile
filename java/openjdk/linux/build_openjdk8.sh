@@ -14,8 +14,6 @@ echo "📦 安装依赖..."
 sudo apt-get update -qq
 sudo apt-get install -y software-properties-common
 
-# 添加 WebKitGTK PPA
-sudo add-apt-repository ppa:webkit-team/webkitgtk -y 2>/dev/null || true
 sudo apt-get update -qq
 
 sudo apt-get install -y \
@@ -33,8 +31,7 @@ sudo apt-get install -y \
     libwebkit2gtk-4.0-dev libjavascriptcoregtk-4.0-dev \
     libgdk-pixbuf2.0-dev libpulse-dev \
     fontconfig freetype2-demos \
-    binutils-gold libelf-dev \
-    openjdk-7-jdk
+    binutils-gold libelf-dev
 
 echo "✅ 依赖安装完成"
 
