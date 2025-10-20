@@ -33,21 +33,11 @@ sudo apt-get install -y \
     fontconfig freetype2-demos \
     binutils-gold libelf-dev
 
-echo "✅ 依赖安装完成"
+echo "依赖安装完成"
+echo "设置boost jdk7"
 
-# ================================
-# 2. 验证引导 JDK 7
-# ================================
-if [ -n "$JAVA_HOME" ] && [ -f "$JAVA_HOME/bin/java" ]; then
-    export BOOT_JDK="$JAVA_HOME"
-    echo "✅ 使用已有 JDK 7: $JAVA_HOME"
-else
-    # 使用系统 JDK 7
-    export BOOT_JDK="/usr/lib/jvm/java-7-openjdk-amd64"
-    export JAVA_HOME="$BOOT_JDK"
-    export PATH="$JAVA_HOME/bin:$PATH"
-    echo "✅ 使用系统 JDK 7: $BOOT_JDK"
-fi
+export JAVA_HOME="$HOME/jdk/jdk1.7.0_80"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 java -version
 javac -version
@@ -95,7 +85,7 @@ bash configure \
     --disable-zip-debug-info \
     2>&1 | tee configure.log
 
-echo "✅ 配置成功"
+echo "配置成功"
 
 # ================================
 # 6. 编译 JDK 8
@@ -117,7 +107,7 @@ BUILD_DIR="build/linux-x86_64-normal-server-fastdebug"
 JDK_BIN="$BUILD_DIR/jdk/bin/java"
 
 if [ -f "$JDK_BIN" ]; then
-    echo "✅ 编译成功！"
+    echo "编译成功！"
     $JDK_BIN -version
 
     # 打包
