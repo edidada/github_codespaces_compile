@@ -73,8 +73,6 @@ echo "⚙️ 配置编译..."
 bash configure \
     --with-boot-jdk="$BOOT_JDK" \
     --with-cups-include=/usr/include \
-    --with-fontconfig-include=/usr/include/fontconfig \
-    --with-fontconfig-lib=/usr/lib/x86_64-linux-gnu \
     --with-freetype-include=/usr/include/freetype2 \
     --with-freetype-lib=/usr/lib/x86_64-linux-gnu \
     --enable-debug \
@@ -82,7 +80,6 @@ bash configure \
     --with-target-bits=64 \
     --disable-precompiled-headers \
     --with-jvm-variants=server \
-    --disable-hotspot-builtin-bc \
     --disable-zip-debug-info \
     2>&1 | tee configure.log
 
