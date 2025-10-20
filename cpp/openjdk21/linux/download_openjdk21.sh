@@ -30,8 +30,9 @@ cd $BUILD_DIR
 
 # 获取源代码
 echo "克隆OpenJDK源代码..."
-git clone $OPENJDK_SOURCE_URL
-cd $JDK_VERSION
+git clone https://github.com/openjdk/jdk.git
+cd jdk
+git clone jdk-21+35
 
 # 配置构建环境
 echo "配置构建环境..."
