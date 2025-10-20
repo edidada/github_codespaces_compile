@@ -76,7 +76,6 @@ bash configure \
     --with-freetype-include=/usr/include/freetype2 \
     --with-freetype-lib=/usr/lib/x86_64-linux-gnu \
     --enable-debug \
-    --with-debug-level=fastdebug \
     --with-target-bits=64 \
     --disable-precompiled-headers \
     --with-jvm-variants=server \
