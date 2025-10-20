@@ -79,9 +79,6 @@ pwd
 # ================================
 echo "⚙️ 配置编译环境..."
 
-# 检测系统架构
-BUILD_SYSTEM=$(./configure --help | grep "build" | head -1 || echo "linux-x86_64")
-
 # 清理旧配置
 make clean CONF=linux-x86_64-server-release 2>/dev/null || true
 
