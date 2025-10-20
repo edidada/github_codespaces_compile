@@ -65,19 +65,9 @@ jobs:
         run: |
           # 编译结果通常位于 build/linux-x86_64-normal-server-release/images/jdk 目录下
           cd openjdk-source
-          ./build/linux-x86_64-normal-server-release/images/jdk/bin/java -version
-
-      # 7. 上传编译后的 JDK 压缩包 (可选)
-      - name: Upload Compiled JDK 25
-        uses: actions/upload-artifact@v4
-        with:
-          name: openjdk-25-custom-build-linux-x64
-          path: openjdk-source/build/linux-x86_64-normal-server-release/images/jdk
+          find build/ -name "java" -type f
 
       - name: get_openjdk25
-        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-        #         sudo apt install libopenjdk25-all-dev -y 版本超过1.66 api不兼容
         run: |
           sudo apt update
           chmod +x ./java/openjdk25/linux/download_openjdk25.sh
