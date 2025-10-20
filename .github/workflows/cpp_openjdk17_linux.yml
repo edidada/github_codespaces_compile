@@ -28,5 +28,5 @@ jobs:
       #         sudo apt install libopenjdk17-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./cpp/openjdk17/linux/build_openjdk17_jdk21.sh
-        ./cpp/openjdk17/linux/build_openjdk17_jdk21.sh
+        chmod +x ./cpp/openjdk17/linux/build_openjdk17.sh
+        ./cpp/openjdk17/linux/build_openjdk17.sh

@@ -92,8 +92,6 @@ bash configure \
     --with-debug-level=release \
     --disable-warnings-as-errors \
     --with-toolchain-type=gcc \
-    --enable-jfr \
-    --with-cacerts-prepended=/usr/share/ca-certificates \
     --with-gtest=/usr \
     --with-extra-cflags="-fno-semantic-interposition" \
     --with-extra-cxxflags="-fno-semantic-interposition" \
