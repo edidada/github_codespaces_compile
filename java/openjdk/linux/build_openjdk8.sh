@@ -60,7 +60,8 @@ ls -lh jdk8u202-b08.tar.gz
 # ================================
 echo "📂 解压源码..."
 tar -xzf jdk8u202-b08.tar.gz
-mv jdk8u202-b08 jdk8u
+ls -la
+mv jdk8u-jdk8u202-b08 jdk8u
 
 cd jdk8u
 
