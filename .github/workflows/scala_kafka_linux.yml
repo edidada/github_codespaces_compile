@@ -4,9 +4,9 @@ name: build kafka
 
 on:
   push:
-    branches: [ "kafka" ]
+    branches: [ "scala/kafka/linux" ]
   pull_request:
-    branches: [ "kafka" ]
+    branches: [ "scala/kafka/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -33,5 +33,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_kafka.sh
-        ./get_kafka.sh
+        chmod +x ./scala/kafka/linux/get_kafka3_4_0.sh
+        ./scala/kafka/linux/get_kafka3_4_0.sh
