@@ -25,6 +25,30 @@ sudo apt-get install -y \
     freeglut3-dev libtbb-dev libfreeimage-dev \
     doxygen graphviz
 
+# 检查 TBB 是否安装成功
+echo "[INFO] 检查 TBB 库..."
+if ! pkg-config --exists tbb; then
+    echo "[WARNING] TBB 未通过 pkg-config 找到，尝试手动设置路径"
+    # 查找 TBB 库文件
+    TBB_LIB_PATH=$(find /usr/lib -name "libtbb.so*" -type f 2>/dev/null | head -1 | xargs dirname 2>/dev/null || echo "")
+    if [ -n "$TBB_LIB_PATH" ]; then
+        echo "[INFO] 找到 TBB 库路径: $TBB_LIB_PATH"
+    else
+        echo "[ERROR] 未找到 TBB 库，尝试从源码编译 TBB"
+
+        # 从源码编译 TBB
+        cd /tmp
+        git clone https://github.com/oneapi-src/oneTBB.git
+        cd oneTBB
+        mkdir build && cd build
+        cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DTBB_TEST=OFF ..
+        make -j$NUM_JOBS
+        sudo make install
+        sudo ldconfig
+        cd ../..
+    fi
+fi
+
 # 获取源码 (方式1: 从GitHub克隆)
 echo "[INFO] 克隆 OCCT 源码..."
 if [ ! -d "$SOURCE_DIR" ]; then
