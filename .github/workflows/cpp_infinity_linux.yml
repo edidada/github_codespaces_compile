@@ -28,5 +28,5 @@ jobs:
       #         sudo apt install libinfinity-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./get_infinity.sh
-        ./get_infinity.sh
+        chmod +x ./cpp/infinity/linux/get_infinity.sh
+        ./cpp/infinity/linux/get_infinity.sh
