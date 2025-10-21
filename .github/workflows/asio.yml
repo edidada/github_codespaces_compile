@@ -1,6 +1,5 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-<<<<<<<< HEAD:.github/workflows/asio.yml
 name: build asio
 
 on:
@@ -8,15 +7,6 @@ on:
     branches: [ "cpp/asio" ]
   pull_request:
     branches: [ "cpp/asio" ]
-========
-name: build rocketmq
-
-on:
-  push:
-    branches: [ "java/rocketmq" ]
-  pull_request:
-    branches: [ "java/rocketmq" ]
->>>>>>>> heads/edidada/java/rocketmq:.github/workflows/rocketmq.yml
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -30,7 +20,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
@@ -38,20 +28,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-<<<<<<<< HEAD:.github/workflows/asio.yml
-    - name: get_asio
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: |
-        sudo apt update
-        chmod +x ./cpp/asio/get_asio.sh
-        ./cpp/asio/get_asio.sh
-========
-      - name: get_rocketmq
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      - name: get_asio
         run: |
           sudo apt update
-          chmod +x ./get_rocketmq.sh
-          ./get_rocketmq.sh
->>>>>>>> heads/edidada/java/rocketmq:.github/workflows/rocketmq.yml
+          chmod +x ./cpp/asio/get_asio.sh
+          ./cpp/asio/get_asio.sh
