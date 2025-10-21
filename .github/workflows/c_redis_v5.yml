@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./c/get_redis_v5.sh
-        ./c/get_redis_v5.sh
+        chmod +x ./c/redis/linux/get_redis_v5.sh
+        ./c/redis/linux/get_redis_v5.sh
