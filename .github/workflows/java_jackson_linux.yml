@@ -33,5 +33,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_jackson.sh
-        ./get_jackson.sh
+        chmod +x ./java/jackson/linux/get_jackson.sh
+        ./java/jackson/linux/get_jackson.sh
