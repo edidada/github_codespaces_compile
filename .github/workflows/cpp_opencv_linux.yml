@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_opencv.sh
-        ./get_opencv.sh
+        chmod +x ./cpp/opencv/linux/get_opencv.sh
+        ./cpp/opencv/linux/get_opencv.sh
