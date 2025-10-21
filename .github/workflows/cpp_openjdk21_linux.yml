@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: download openjdk21
+name: download openjdk21 ubuntu-22
 
 on:
   push:
-    branches: [ "java/openjdk21" ]
+    branches: [ "cpp/openjdk21" ]
   pull_request:
-    branches: [ "java/openjdk21" ]
+    branches: [ "cpp/openjdk21" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
