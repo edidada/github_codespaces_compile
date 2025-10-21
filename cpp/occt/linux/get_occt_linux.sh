@@ -26,28 +26,30 @@ sudo apt-get install -y \
     libtbb-dev libtbb2 \
     doxygen graphviz
 
-# 检查 TBB 是否安装成功
-echo "[INFO] 检查 TBB 库..."
-if ! pkg-config --exists tbb; then
-    echo "[WARNING] TBB 未通过 pkg-config 找到，尝试手动设置路径"
-    # 查找 TBB 库文件
-    TBB_LIB_PATH=$(find /usr/lib -name "libtbb.so*" -type f 2>/dev/null | head -1 | xargs dirname 2>/dev/null || echo "")
-    if [ -n "$TBB_LIB_PATH" ]; then
-        echo "[INFO] 找到 TBB 库路径: $TBB_LIB_PATH"
-    else
-        echo "[ERROR] 未找到 TBB 库，尝试从源码编译 TBB"
 
-        # 从源码编译 TBB
-        cd /tmp
-        git clone https://github.com/oneapi-src/oneTBB.git
-        cd oneTBB
-        mkdir build && cd build
-        cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DTBB_TEST=OFF ..
-        make -j$NUM_JOBS
-        sudo make install
-        sudo ldconfig
-        cd ../..
-    fi
+# 查找 TBB 路径
+TBB_INCLUDE_DIR=$(find /usr -name "tbb.h" 2>/dev/null | head -1 | xargs dirname)
+TBB_LIBRARY_DIR=$(find /usr -name "libtbb.so" 2>/dev/null | head -1 | xargs dirname)
+
+echo "TBB 头文件目录: $TBB_INCLUDE_DIR"
+echo "TBB 库文件目录: $TBB_LIBRARY_DIR"
+
+# 如果系统 TBB 不可用，从源码编译
+if [ -z "$TBB_INCLUDE_DIR" ] || [ -z "$TBB_LIBRARY_DIR" ]; then
+    echo "系统 TBB 不可用，从源码编译..."
+
+    cd /tmp
+    rm -rf oneTBB
+    git clone https://github.com/oneapi-src/oneTBB.git
+    cd oneTBB
+    mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DTBB_TEST=OFF ..
+    make -j$(nproc)
+    sudo make install
+    sudo ldconfig
+
+    TBB_INCLUDE_DIR="/usr/local/include"
+    TBB_LIBRARY_DIR="/usr/local/lib"
 fi
 
 # 获取源码 (方式1: 从GitHub克隆)
