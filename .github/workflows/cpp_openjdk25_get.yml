@@ -71,6 +71,7 @@ jobs:
       - name: get_openjdk25
         run: |
           sudo apt update
+          echo "echo pwd"
           pwd
           ls
 #          chmod +x ./cpp/openjdk25/linux/download_openjdk25.sh
