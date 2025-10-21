@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_grpc1_28_1_linux.sh
-        ./get_grpc1_28_1_linux.sh
+        chmod +x ./cpp/get_grpc1_28_1/linux/get_grpc1_28_1_linux.sh
+        ./cpp/get_grpc1_28_1/linux/get_grpc1_28_1_linux.sh
