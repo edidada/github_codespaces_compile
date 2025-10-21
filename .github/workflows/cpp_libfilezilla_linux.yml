@@ -1,0 +1,47 @@
+# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+name: build libfilezilla linux
+
+on:
+  push:
+    branches: [ "cpp/libfilezilla/linux" ]
+  pull_request:
+    branches: [ "cpp/libfilezilla/linux" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: wget libfilezilla
+        run: |
+          wget -O libfilezilla-0.50.0.tar.xz https://dl3.cdn.filezilla-project.org/libfilezilla/libfilezilla-0.50.0.tar.xz?h=Lafu1Ycp6g8ABpHqaShf2w&x=1750312053
+
+      - name: get_libfilezilla_linux
+        run: |
+          chmod +x ./cpp/libfilezilla/get_libfilezilla_linux.sh
+          ./cpp/libfilezilla/get_libfilezilla_linux.sh
+
+      - name: get_libfilezilla_linux2
+        run: |
+          sudo apt update
+          sudo apt install libgnutls28-dev nettle-dev -y
+          echo "which libfilezilla"
+          ls -la libfilezilla-0.50.0.tar.xz
+          ls -la files/libfilezilla-0.50.0.tar.xz
+          tar -xvf files/libfilezilla-0.50.0.tar.xz
+          cd libfilezilla-0.50.0/
+          ./configure --prefix=/usr/local
+          make -j$(nproc)
+          sudo make install
+          export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+          echo "libfilezilla"
+          pkg-config --modversion libfilezilla
