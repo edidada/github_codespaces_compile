@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_protobuf_cpp3_19_4.sh
-        ./get_protobuf_cpp3_19_4.sh
+        chmod +x ./cpp/protobuf_cpp3_19_4/linux/get_protobuf_cpp3_19_4.sh
+        ./cpp/protobuf_cpp3_19_4/linux/get_protobuf_cpp3_19_4.sh
