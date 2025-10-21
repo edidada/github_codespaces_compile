@@ -22,7 +22,8 @@ sudo apt-get install -y \
     libfreetype6-dev libx11-dev libxext-dev \
     libglu1-mesa-dev libgl1-mesa-dev \
     tcl8.6-dev tk8.6-dev libftgl-dev \
-    freeglut3-dev libtbb-dev libfreeimage-dev \
+    freeglut3-dev libfreeimage-dev \
+    libtbb-dev libtbb2 \
     doxygen graphviz
 
 # 检查 TBB 是否安装成功
