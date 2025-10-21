@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_cppserve_linux.sh
-        ./get_cppserve_linux.sh
+        chmod +x ./cpp/cppserve/linux/get_cppserve_linux.sh
+        ./cpp/cppserve/linux/get_cppserve_linux.sh
