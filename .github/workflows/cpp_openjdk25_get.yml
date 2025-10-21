@@ -66,9 +66,12 @@ jobs:
           # 编译结果通常位于 build/linux-x86_64-normal-server-release/images/jdk 目录下
           cd openjdk-source
           find build/ -name "java" -type f
+          ./build/linux-x86_64-server-release/jdk/bin/java --version
 
       - name: get_openjdk25
         run: |
           sudo apt update
-          chmod +x ./java/openjdk25/linux/download_openjdk25.sh
-          ./java/openjdk25/linux/download_openjdk25.sh
+          pwd
+          ls
+#          chmod +x ./cpp/openjdk25/linux/download_openjdk25.sh
+#          ./cpp/openjdk25/linux/download_openjdk25.sh
