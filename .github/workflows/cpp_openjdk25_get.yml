@@ -4,9 +4,9 @@ name: Build OpenJDK 25 from Source
 
 on:
   push:
-    branches: [ "java/openjdk25" ]
+    branches: [ "cpp/openjdk25" ]
   pull_request:
-    branches: [ "java/openjdk25" ]
+    branches: [ "cpp/openjdk25" ]
   workflow_dispatch: # 允许手动触发
 
 jobs:
