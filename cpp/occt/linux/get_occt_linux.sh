@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 set -e # 遇到错误则退出脚本
 
 # 配置参数 (可根据需要修改)
-OCCT_VERSION="V7_7_0" # 建议使用最新稳定版或特定版本
+OCCT_VERSION="7_7_0" # 建议使用最新稳定版或特定版本
 INSTALL_PREFIX="/usr/local/occt" # 安装目录
 BUILD_TYPE="Release" # 编译类型: Release, Debug, RelWithDebInfo
 BUILD_DIR="./occt-build" # 构建临时目录
