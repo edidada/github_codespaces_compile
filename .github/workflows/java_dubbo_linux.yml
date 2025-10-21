@@ -33,5 +33,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_dubbo.sh
-        ./get_dubbo.sh
+        chmod +x ./java/dubbo/linux/get_dubbo.sh
+        ./java/dubbo/linux/get_dubbo.sh
