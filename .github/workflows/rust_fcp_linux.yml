@@ -30,5 +30,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_fcp.sh
-        ./get_fcp.sh
+        chmod +x ./rust/fcp/linux/get_rust_fcp.sh
+        ./rust/fcp/linux/get_rust_fcp.sh
