@@ -72,7 +72,7 @@ jobs:
         run: |
           sudo apt update
           echo "echo pwd"
-          pwd
           ls
+          pwd
 #          chmod +x ./cpp/openjdk25/linux/download_openjdk25.sh
 #          ./cpp/openjdk25/linux/download_openjdk25.sh
