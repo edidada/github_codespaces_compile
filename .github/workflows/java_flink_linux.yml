@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_flink.sh
-        ./get_flink.sh
+        chmod +x ./java/flink/linux/get_flink.sh
+        ./java/flink/linux/get_flink.sh
