@@ -26,32 +26,6 @@ sudo apt-get install -y \
     libtbb-dev libtbb2 \
     doxygen graphviz
 
-
-# 查找 TBB 路径
-TBB_INCLUDE_DIR=$(find /usr -name "tbb.h" 2>/dev/null | head -1 | xargs dirname)
-3RDPARTY_TBB_LIBRARY_DIR=$(find /usr -name "libtbb.so" 2>/dev/null | head -1 | xargs dirname)
-
-echo "TBB 头文件目录: $TBB_INCLUDE_DIR"
-echo "TBB 库文件目录: $3RDPARTY_TBB_LIBRARY_DIR"
-
-# 如果系统 TBB 不可用，从源码编译
-if [ -z "$TBB_INCLUDE_DIR" ] || [ -z "$3RDPARTY_TBB_LIBRARY_DIR" ]; then
-    echo "系统 TBB 不可用，从源码编译..."
-
-    cd /tmp
-    rm -rf oneTBB
-    git clone https://github.com/oneapi-src/oneTBB.git
-    cd oneTBB
-    mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DTBB_TEST=OFF ..
-    make -j$(nproc)
-    sudo make install
-    sudo ldconfig
-
-    TBB_INCLUDE_DIR="/usr/local/include"
-    3RDPARTY_TBB_LIBRARY_DIR="/usr/local/lib"
-fi
-
 # 获取源码 (方式1: 从GitHub克隆)
 echo "[INFO] 克隆 OCCT 源码..."
 if [ ! -d "$SOURCE_DIR" ]; then
