@@ -28,5 +28,5 @@ jobs:
       #         sudo apt install libminigit-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./get_minigit.sh
-        ./get_minigit.sh
+        chmod +x ./c/minigit/linux/get_minigit.sh
+        ./c/minigit/linux/get_minigit.sh
