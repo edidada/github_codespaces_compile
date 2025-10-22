@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_openh264_2_4_1_linux.sh
-        ./get_openh264_2_4_1_linux.sh
+        chmod +x ./cpp/openh264_2_4_1/linux/get_openh264_2_4_1_linux.sh
+        ./cpp/openh264_2_4_1/linux/get_openh264_2_4_1_linux.sh
