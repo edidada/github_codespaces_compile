@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Script to download, extract, and install oneTBB v2022.2.0 on Ubuntu 24.04
-# Assumes Ubuntu 24.04 with basic tools installed. Run as non-root user.
-# Prerequisites: sudo access, internet connection, ~200MB free space.
+# Configured for Debug build as specified
 
 set -e  # Exit on any error
 
@@ -12,7 +11,7 @@ TBB_URL="https://github.com/uxlfoundation/oneTBB/releases/download/v${TBB_VERSIO
 TBB_DIR="oneapi-tbb-${TBB_VERSION}-lin"
 INSTALL_PREFIX="/usr/local"  # Change if desired, e.g., "$HOME/.local"
 
-echo "Starting oneTBB ${TBB_VERSION} installation on Ubuntu 24.04..."
+echo "Starting oneTBB ${TBB_VERSION} installation (Debug build) on Ubuntu 24.04..."
 
 # Step 1: Update package list and install prerequisites
 echo "Updating system and installing prerequisites..."
@@ -29,18 +28,18 @@ tar -xzf oneapi-tbb-${TBB_VERSION}-lin.tgz
 cd "${TBB_DIR}"
 
 # Step 4: Create build directory and configure with CMake
-echo "Configuring build with CMake..."
+echo "Configuring build with CMake (Debug mode)..."
 mkdir build
 cd build
 cmake .. \
     -DCMAKE_INSTALL_PREFIX="${INSTALL_PREFIX}" \
-    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_BUILD_TYPE=Debug \
     -DTBB_TEST=OFF \
     -DTBB_STRICT=OFF \
-    -DCMAKE_CXX_COMPILER=g++  # Use g++ for Ubuntu default
+    -DCMAKE_CXX_COMPILER=g++
 
-# Step 5: Compile (use -j$(nproc) for parallel build if desired)
-echo "Compiling oneTBB..."
+# Step 5: Compile
+echo "Compiling oneTBB (Debug build)..."
 make -j$(nproc)
 
 # Step 6: Install
@@ -55,7 +54,7 @@ rm -rf "${TBB_DIR}" oneapi-tbb-${TBB_VERSION}-lin.tgz
 echo "Updating library cache..."
 sudo ldconfig
 
-# Optional: Set environment variables (add to ~/.bashrc for persistence)
+# Step 9: Set environment variables
 echo "Adding environment variables to ~/.bashrc..."
 cat >> ~/.bashrc << EOF
 
@@ -69,6 +68,6 @@ EOF
 
 source ~/.bashrc
 
-echo "Installation complete! oneTBB is installed to ${INSTALL_PREFIX}."
+echo "Installation complete! oneTBB (Debug build) is installed to ${INSTALL_PREFIX}."
 echo "Run 'source ~/.bashrc' in new terminals or restart your shell."
 echo "Verify with: pkg-config --modversion tbb"
