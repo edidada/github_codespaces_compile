@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build spark
+name: build spark linux 3_4_0
 
 on:
   push:
-    branches: [ "spark" ]
+    branches: [ "scala/spark/linux/3_4_0" ]
   pull_request:
-    branches: [ "spark" ]
+    branches: [ "scala/spark/linux/3_4_0" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -33,5 +33,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_spark.sh
-        ./get_spark.sh
+        chmod +x ./scala/spark/linux/3_4_0/get_spark.sh
+        ./scala/spark/linux/3_4_0/get_spark.sh
