@@ -25,5 +25,5 @@ jobs:
     - name: get_vmvcc
       run: |
         sudo apt update
-        chmod +x ./get_vmvcc.sh
-        ./get_vmvcc.sh
+        chmod +x ./go/vmvcc/linux/get_vmvcc.sh
+        ./go/vmvcc/linux/get_vmvcc.sh
