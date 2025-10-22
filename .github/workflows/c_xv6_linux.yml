@@ -4,9 +4,9 @@ name: build xv6
 
 on:
   push:
-    branches: [ "xv6" ]
+    branches: [ "c/xv6/linux" ]
   pull_request:
-    branches: [ "xv6" ]
+    branches: [ "c/xv6/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_xv6.sh
-        ./get_xv6.sh
+        chmod +x ./c/xv6/linux/get_xv6.sh
+        ./c/xv6/linux/get_xv6.sh
