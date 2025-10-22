@@ -4,9 +4,9 @@ name: build spark linux 3_4_0
 
 on:
   push:
-    branches: [ "scala/spark/linux/3_4_0" ]
+    branches: [ "scala/spark/linux_bak/3_4_0" ]
   pull_request:
-    branches: [ "scala/spark/linux/3_4_0" ]
+    branches: [ "scala/spark/linux_bak/3_4_0" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
