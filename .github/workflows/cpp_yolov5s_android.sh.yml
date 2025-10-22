@@ -1,6 +1,6 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build boost
+name: build yolov5s android
 
 on:
   push:
@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_yolov5s_android.sh
-        ./get_yolov5s_android.sh
+        chmod +x ./cpp/yolov5s/android/get_yolov5s_android.sh
+        ./cpp/yolov5s/android/get_yolov5s_android.sh
