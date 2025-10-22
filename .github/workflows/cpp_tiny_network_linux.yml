@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_tiny_network.sh
-        ./get_tiny_network.sh
+        chmod +x ./cpp/tiny_network/linux/get_tiny_network.sh
+        ./cpp/tiny_network/linux/get_tiny_network.sh
