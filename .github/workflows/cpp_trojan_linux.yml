@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_trojan.sh
-        ./get_trojan.sh
+        chmod +x ./cpp/trojan/linux/get_trojan.sh
+        ./cpp/trojan/linux/get_trojan.sh
