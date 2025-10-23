@@ -4,6 +4,6 @@ sudo apt-get update
 sudo apt install -y initscripts libc-bin libgd2-xpm-dev libgeoip-dev libxslt1-dev libpcre++0 libpcre++-dev liblua5.1-0-dev libssl-dev lua5.1 openssl passwd libperl-dev libxml2 libxml2-dev libxslt1-dev libxslt-dev
 git clone -b tengine-3.1.0 https://github.com/alibaba/tengine.git
 cd tengine
-./configure --with-ipv6 --with-http_v2_module
+./configure --with-http_v2_module
 make -j$(nproc)
 sudo make install
