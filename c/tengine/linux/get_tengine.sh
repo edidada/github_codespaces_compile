@@ -10,5 +10,5 @@ export XSLT_CFLAGS="-I/usr/include/libxslt"
 export XSLT_LIBS="-lxslt"
 git clone -b tengine-2.2.2 https://github.com/alibaba/tengine.git
 cd tengine
-./configure --enable-mods-static=all --with-ipv6 --with-http_v2_module
+./configure --enable-mods-static=all --with-ipv6 --with-http_v2_module --without-http_xslt_module
 sudo make install
