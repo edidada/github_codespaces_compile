@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 wget --no-check-certificate https://github.com/FFmpeg/FFmpeg/archive/refs/tags/n8.0.tar.gz -O n8.0.tar.gz
 tar -zxvf n8.0.tar.gz
-cd FFmpeg*
+cd FFmpeg-n8.0
 mkdir -p ffmpeg-samples
 ./configure --help
 sudo apt install libxvidcore-dev libx264-dev libx265-dev libwebp-dev libvpx-dev libvorbis-dev libopus-dev libmp3lame-dev libass-dev libfdk-aac-dev -y
