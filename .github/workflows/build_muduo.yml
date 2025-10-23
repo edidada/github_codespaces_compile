@@ -1,6 +1,6 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build muduo
+name: build muduo ubuntu-latest
 
 on:
   push:
@@ -28,5 +28,5 @@ jobs:
       #         sudo apt install libboost-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./get_muduo.sh
-        ./get_muduo.sh
+        chmod +x ./cpp/muduo/linux/get_muduo.sh
+        ./cpp/muduo/linux/get_muduo.sh
