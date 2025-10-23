@@ -23,10 +23,10 @@ stages:          # List of stages for jobs, and their order of execution
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
+  image: ruby:3.1-bullseye  # 明确使用 Debian bullseye 基础
   script:
     - echo "Compiling the code..."
     - echo "Compile complete."
-    - sudo apt update
     - chmod +x ./rust/bustubx/linux/get_bustubx.sh
     - ./rust/bustubx/linux/get_bustubx.sh
 
