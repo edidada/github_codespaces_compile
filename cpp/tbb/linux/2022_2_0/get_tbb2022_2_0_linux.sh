@@ -3,12 +3,10 @@
 # Script to download, extract, and install oneTBB v2022.2.0 on Ubuntu 24.04
 # Configured for Debug build as specified
 
-set -e  # Exit on any error
-
 # Variables
 TBB_VERSION="2022.2.0"
-TBB_URL="https://github.com/uxlfoundation/oneTBB/releases/download/v${TBB_VERSION}/oneapi-tbb-${TBB_VERSION}-lin.tgz"
-TBB_DIR="oneapi-tbb-${TBB_VERSION}-lin"
+TBB_SRC_URL="https://github.com/oneapi-src/oneTBB/archive/refs/tags/v${TBB_VERSION}.tar.gz"
+TBB_DIR="oneTBB-${TBB_VERSION}"
 INSTALL_PREFIX="/usr/local"  # Change if desired, e.g., "$HOME/.local"
 
 echo "Starting oneTBB ${TBB_VERSION} installation (Debug build) on Ubuntu 24.04..."
@@ -16,11 +14,11 @@ echo "Starting oneTBB ${TBB_VERSION} installation (Debug build) on Ubuntu 24.04.
 # Step 1: Update package list and install prerequisites
 echo "Updating system and installing prerequisites..."
 sudo apt update
-sudo apt install -y wget build-essential cmake pkg-config libicu-dev
+sudo apt install -y wget build-essential cmake pkg-config libicu-dev bazel-bootstrap
 
 # Step 2: Download the tarball
 echo "Downloading oneTBB tarball..."
-wget -O oneapi-tbb-${TBB_VERSION}-lin.tgz "${TBB_URL}"
+wget -O oneapi-tbb-${TBB_VERSION}-lin.tgz "${TBB_SRC_URL}"
 
 # Step 3: Extract the tarball
 echo "Extracting tarball..."
