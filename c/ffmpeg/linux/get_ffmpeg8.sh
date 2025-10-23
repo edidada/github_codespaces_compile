@@ -1,7 +1,7 @@
 #! /bin/bash
 cd "$(dirname "$0")"
-wget --no-check-certificate https://github.com/FFmpeg/FFmpeg/archive/refs/tags/n8.0.0.tar.gz -O n8.0.0.tar.gz
-tar -zxvf n8.0.0.tar.gz
+wget --no-check-certificate https://github.com/FFmpeg/FFmpeg/archive/refs/tags/n8.0.tar.gz -O n8.0.tar.gz
+tar -zxvf n8.0.tar.gz
 cd FFmpeg*
 mkdir -p ffmpeg-samples
 ./configure --help
