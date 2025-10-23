@@ -29,3 +29,8 @@ jobs:
         sudo apt update
         chmod +x ./c/tengine/linux/get_tengine.sh
         ./c/tengine/linux/get_tengine.sh
+
+    - name: get_tengine_3_1_0
+      run: |
+        chmod +x ./c/tengine/linux/get_tengine_3_1_0.sh
+        ./c/tengine/linux/get_tengine_3_1_0.sh
