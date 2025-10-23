@@ -21,6 +21,16 @@ stages:          # List of stages for jobs, and their order of execution
   - test
 #  - deploy
 
+setup_rust:
+  stage: setup
+  image: rust:bullseye
+  script:
+    - echo "Setting up Rust environment..."
+    - cargo --version
+  cache:
+    paths:
+      - $HOME/.cargo/
+
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   image: ruby:3.1-bullseye  # 明确使用 Debian bullseye 基础
