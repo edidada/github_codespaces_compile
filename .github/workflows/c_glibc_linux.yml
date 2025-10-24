@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_glibc.sh
-        ./get_glibc.sh
+        chmod +x ./c/glibc/linux/get_glibc.sh
+        ./c/glibc/linux/get_glibc.sh
