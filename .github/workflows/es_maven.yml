@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: build elasticsearch
+name: build elasticsearch ubuntu-latest
 
 on:
   push:
@@ -30,5 +30,5 @@ jobs:
       - name: get_elasticsearch
         run:  |
           sudo apt update
-          chmod +x ./get_elasticsearch.sh
-          ./get_elasticsearch.sh
+          chmod +x ./java/elasticsearch/linux/get_elasticsearch.sh
+          ./java/elasticsearch/linux/get_elasticsearch.sh
