@@ -11,6 +11,9 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
+  LOGGING_LIMIT: 16777216
+  CI_DEBUG: true
+  GRADLE_OPTS: -Dorg.gradle.logging.level=quiet
 
 jobs:
   build:
@@ -26,6 +29,10 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
+          echo "print /etc/gitlab-runner/config.toml"
+          cat /etc/gitlab-runner/config.toml
+          echo "print ~/.gitlab-runner/config.toml"
+          cat ~/.gitlab-runner/config.toml
           sudo apt update
           chmod +x ./java/idea_community/linux/java_idea_community_linux.sh
           ./java/idea_community/linux/java_idea_community_linux.sh
