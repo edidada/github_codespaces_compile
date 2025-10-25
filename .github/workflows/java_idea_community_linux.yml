@@ -11,6 +11,9 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
+  LOGGING_LIMIT: 16777216
+  CI_DEBUG: true
+  GRADLE_OPTS: -Dorg.gradle.logging.level=quiet
 
 jobs:
   build:
