@@ -31,6 +31,8 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "Compile complete."
     - sudo apt update
     - sudo apt install -y git cmake cargo
+    - chmod +x ./java/idea_community/linux/java_idea_community_linux.sh
+    - ./java/idea_community/linux/java_idea_community_linux.sh
     - chmod +x ./rust/bustubx/linux/get_bustubx.sh
     - ./rust/bustubx/linux/get_bustubx.sh
   variables:
