@@ -30,7 +30,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - apt install -y sudo
     - echo "Compile complete."
     - sudo apt update
-    - sudo apt install -y git cmake cargo
+    - sudo apt install -y git cmake cargo wget curl
     - chmod +x ./java/idea_community/linux/java_idea_community_linux.sh
     - ./java/idea_community/linux/java_idea_community_linux.sh
     - chmod +x ./rust/bustubx/linux/get_bustubx.sh
