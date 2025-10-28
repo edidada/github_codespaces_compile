@@ -2,5 +2,6 @@
 cd "$(dirname "$0")"
 git clone https://github.com/google/re2.git
 cd re2
+git checkout 2024-05-01
 make -j$(nproc)
 sudo make install
