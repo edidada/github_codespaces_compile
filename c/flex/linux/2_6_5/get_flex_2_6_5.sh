@@ -1,7 +1,7 @@
 #! /bin/bash
 sudo apt-get update
 cd "$(dirname "$0")"
-sudo apt install -y build-essential autoconf automake libtool m4 bison flex texinfo
+sudo apt install -y build-essential autoconf automake libtool m4 bison flex texinfo help2man
 git clone https://github.com/westes/flex.git
 cd flex
 git checkout v2.6.4
