@@ -9,3 +9,8 @@ mkdir build && cd build
 cmake ../
 make -j$(nproc)
 sudo make install
+cd ../ && rm -rf build
+mkdir build && cd build
+cmake .. -DEVENT__DISABLE_OPENSSL=ON
+make -j$(nproc)
+sudo make install
