@@ -7,4 +7,4 @@ git checkout release_0_9_27
 ./configure
 make
 make test
-make install
+sudo make install
