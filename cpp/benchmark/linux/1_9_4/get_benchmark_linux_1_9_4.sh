@@ -20,5 +20,5 @@ cd ../
 wget https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64
 chmod +x bazelisk-linux-amd64
 sudo mv bazelisk-linux-amd64 /usr/local/bin/bazelisk
-bazelisk build
+bazelisk build //...:all
 bazelisk help build
