@@ -12,7 +12,7 @@ cd benchmark
 git checkout v1.9.4
 echo "cmake build"
 mkdir build && cd build
-cmake ../
+cmake ../ -DBENCHMARK_ENABLE_GTEST_TESTS=OFF
 make
 sudo make install
 echo "bazel build"
