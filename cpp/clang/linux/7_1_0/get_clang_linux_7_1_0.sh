@@ -10,7 +10,7 @@ cargo --version
 git clone https://gitcode.com/pollyduan/llvm-project.git
 cd llvm-project
 git checkout llvmorg-7.1.0
-midir build && cd build
+mkdir build && cd build
 cmake ../llvm \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS="clang" \
