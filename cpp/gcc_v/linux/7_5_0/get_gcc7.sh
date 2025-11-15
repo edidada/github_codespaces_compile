@@ -1,36 +1,34 @@
-#! /bin/bash
-echo "=== 使用源码编译的 GCC 7.5.0 编译项目 ==="
+#!/bin/bash
+cd "$(dirname "$0")"
+sudo apt update
+set -e
 
-# 启用新编译器
+echo "=== Ubuntu 22.04 快速源码编译 GCC 7 ==="
+
+# 安装最小依赖
+sudo apt update
+sudo apt install -y build-essential wget make
+sudo apt install -y libgmp-dev libmpfr-dev libmpc-dev
+
+# 创建工作目录
+mkdir -p gcc-build && cd gcc-build
+
+# 下载源码
+wget https://ftp.gnu.org/gnu/gcc/gcc-7.5.0/gcc-7.5.0.tar.gz
+tar -zxvf gcc-7.5.0.tar.gz
+cd gcc-7.5.0
+
+# 下载依赖
+./contrib/download_prerequisites
+
+# 配置和编译
+mkdir build && cd build
+../configure --prefix=/usr/local/gcc-7.5.0 --enable-languages=c,c++ --disable-multilib
+make -j$(nproc)
+sudo make install
+
+# 设置环境
+echo 'export PATH=/usr/local/gcc-7.5.0/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
-# 验证编译器
-echo "当前 GCC 版本:"
-gcc --version
-echo "当前 G++ 版本:"
-g++ --version
-
-# 设置项目目录
-PROJECT_DIR="/tmp/tmp.kELYPgeEOp/playscript-cpp"
-BUILD_DIR="$PROJECT_DIR/cmake-build-debug-gcc7"
-
-# 创建构建目录
-mkdir -p "$BUILD_DIR"
-cd "$BUILD_DIR"
-
-# 使用 CMake 配置项目
-cmake "$PROJECT_DIR" \
-  -DCMAKE_BUILD_TYPE=Debug \
-  -DCMAKE_C_COMPILER=/usr/local/gcc-7.5.0/bin/gcc \
-  -DCMAKE_CXX_COMPILER=/usr/local/gcc-7.5.0/bin/g++ \
-  -DCMAKE_CXX_STANDARD=11 \
-  -DCMAKE_CXX_STANDARD_REQUIRED=ON \
-  -DCMAKE_CXX_FLAGS="-std=c++11" \
-  -DLLVM_DIR=/usr/lib/llvm-7/lib/cmake/llvm \
-  -DLLVM_USE_STATIC_LIBS=OFF
-
-# 编译项目
-echo "=== 开始编译项目 ==="
-make -j$(nproc)
-
-echo "✅ 项目编译完成"
+echo "✅ GCC 7.5.0 编译安装完成"
