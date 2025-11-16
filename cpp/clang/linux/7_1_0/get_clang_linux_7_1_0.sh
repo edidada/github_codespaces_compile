@@ -16,4 +16,5 @@ cmake ../llvm \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_ENABLE_PROJECTS="clang" \
   -DCMAKE_INSTALL_PREFIX=/usr/local/llvm-7.1.0
-make -j5
+#make -j5
+ninja
