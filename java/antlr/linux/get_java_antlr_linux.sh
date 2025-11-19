@@ -10,6 +10,7 @@ cd ../
 mvn package
 ls runtime/Java/target -la
 cd runtime/Cpp
+sudo apt install -y libutfcpp-dev uuid-dev
 mkdir build && cd build
 cmake -DANTLR_BUILD_CPP_TESTS=OFF ..
 make
