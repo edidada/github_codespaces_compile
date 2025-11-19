@@ -1,4 +1,10 @@
 #!/bin/bash
+echo "ubuntu version"
+lsb_release -a
+hostnamectl
+echo "rustc version"
+rustc --version
+cargo --version
 set -e # Exit on error
 cd $(dirname "$0")
 sudo apt update
