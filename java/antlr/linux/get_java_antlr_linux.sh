@@ -15,3 +15,12 @@ cmake -DANTLR_BUILD_CPP_TESTS=OFF ..
 make
 cpack
 ls
+cd "$(dirname "$0")"
+wget -O antlr.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+wget -O cpp-runtime.zip https://www.antlr.org/download/antlr4-cpp-runtime-4.13.2-source.zip
+unzip cpp-runtime.zip -d source
+mkdir build install
+cmake source -B build -G Ninja \
+  -DCMAKE_INSTALL_PREFIX=$(realpath install) \
+  -DANTLR4_INSTALL=ON
+cmake --build build --target install
