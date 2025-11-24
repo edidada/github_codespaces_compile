@@ -25,3 +25,13 @@ cmake source -B build -G Ninja \
   -DCMAKE_INSTALL_PREFIX=$(realpath install) \
   -DANTLR4_INSTALL=ON
 cmake --build build --target install
+sudo apt install -y uuid-dev ninja-build
+wget -O antlr.jar https://www.antlr.org/download/antlr-4.9.3-complete.jar
+sudo mv antlr.jar /usr/local/lib/
+wget -O cpp-runtime.zip https://www.antlr.org/download/antlr4-cpp-runtime-4.9.3-source.zip
+unzip cpp-runtime.zip -d antlr4-cpp-runtime
+mkdir antlr4-build && cd antlr4-build
+cmake ../antlr4-cpp-runtime -G Ninja -DANTLR4_INSTALL=ON
+ninja
+sudo ninja install
+sudo ldconfig
