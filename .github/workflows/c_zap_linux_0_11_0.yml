@@ -30,9 +30,9 @@ jobs:
         echo 'export PATH="/usr/local/zig-x86_64-linux-0.15.2:$PATH"' >> ~/.bashrc
         source ~/.bashrc
 
-    - name: get_zap_0.11.0
+    - name: get_zap_0_11_0
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
-        chmod +x zip/zap/linux/0.11.0/get_zap_0.11.0.sh
-        zip/zap/linux/0.11.0/get_zap_0.11.0.sh
+        chmod +x zig/zap/linux/0_11_0/get_zap_0_11_0.sh
+        zig/zap/linux/0_11_0/get_zap_0_11_0.sh
