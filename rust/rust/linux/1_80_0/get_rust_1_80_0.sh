@@ -9,4 +9,4 @@ git checkout 1.80.0
 echo "which python"
 which python
 which python3
-python3 /home/wdidada/rust/x.py build
+python3 x.py build
