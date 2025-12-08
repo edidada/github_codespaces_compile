@@ -4,9 +4,9 @@ name: build cparser 1_22_0 linux
 
 on:
   push:
-    branches: [ "cpp/cparser/linux/1_22_0" ]
+    branches: [ "c/cparser/linux/1_22_0" ]
   pull_request:
-    branches: [ "cpp/cparser/linux/1_22_0" ]
+    branches: [ "c/cparser/linux/1_22_0" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
