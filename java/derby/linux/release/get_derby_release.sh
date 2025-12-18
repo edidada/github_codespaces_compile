@@ -3,4 +3,5 @@ cd "$(dirname "$0")"
 git clone https://github.com/apache/derby.git
 cd derby
 which ant
-ant all
+ant buildsource
+ant buildjars
