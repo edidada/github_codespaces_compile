@@ -21,6 +21,9 @@ sudo apt-get install -y \
     python3.12-dev \
     python3.12-venv \
     libpython3.12
+git clone https://github.com/postgres/postgres.git postgresql-dev
+cd postgresql-dev
+git checkout REL_18_STABLE
 mkdir build && cd build
 meson setup .. \
     -Dpython=/usr/bin/python3.12 \
