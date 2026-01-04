@@ -1,11 +1,11 @@
 #!/bin/bash
-# PostgreSQL 19 构建脚本
+# PostgreSQL 18 构建脚本
 set -e  # 如果任何命令失败则退出
 
 cd "$(dirname "$0")"
 
 echo "====================================="
-echo "开始构建 PostgreSQL 19"
+echo "开始构建 PostgreSQL 18"
 echo "====================================="
 
 # 1. 安装编译依赖
@@ -81,9 +81,9 @@ else
     exit 1
 fi
 
-# 2. 下载 PostgreSQL 19
-echo "2. 下载 PostgreSQL 19..."
-POSTGRES_VERSION="19.6"
+# 2. 下载 PostgreSQL 18
+echo "2. 下载 PostgreSQL 18..."
+POSTGRES_VERSION="18.1"
 POSTGRES_URL="https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/postgresql-${POSTGRES_VERSION}.tar.bz2"
 
 # 下载 PostgreSQL
@@ -108,7 +108,7 @@ mkdir -p build && cd build
 # 5. 设置环境变量
 echo "5. 设置构建环境..."
     ../configure \
-        --prefix=/usr/local/pgsql-19 \
+        --prefix=/usr/local/pgsql-18 \
         --with-openssl \
         --with-libxml \
         --with-libxslt \
@@ -126,11 +126,11 @@ echo "5. 设置构建环境..."
 fi
 
 # 6. 编译
-echo "6. 编译 PostgreSQL 19..."
+echo "6. 编译 PostgreSQL 18..."
 CPU_COUNT=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
 echo "使用 $CPU_COUNT 个CPU核心进行编译..."
 make -j$(($CPU_COUNT + 1))
 
 # 7. 安装
-echo "7. 安装 PostgreSQL 19..."
+echo "7. 安装 PostgreSQL 18..."
 sudo make install
