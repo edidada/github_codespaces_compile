@@ -26,8 +26,6 @@ cd postgresql-dev
 git checkout REL_18_STABLE
 mkdir build && cd build
 meson setup .. \
-    -Dpython=/usr/bin/python3.12 \
-    -Dpython.install_env=system
     --prefix=/usr/local/pgsql-18 \
     --buildtype=debugoptimized \
     -Doptimization=2 \
