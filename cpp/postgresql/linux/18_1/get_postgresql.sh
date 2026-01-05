@@ -38,7 +38,6 @@ meson setup .. \
     -Dldap=enabled \
     -Dbonjour=enabled \
     -Dgssapi=enabled \
-    -Dselinux=enabled \
     -Dsystemd=enabled \
     -Dicu=enabled \
     -Dtap_tests=enabled \
