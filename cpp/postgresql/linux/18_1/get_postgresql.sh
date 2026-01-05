@@ -20,14 +20,15 @@ sudo apt-get install -y \
     systemd \
     python3.12-dev \
     python3.12-venv \
-    libpython3.12
+    libpython3.12 \
+    libselinux1-dev \
+    selinux-utils \
+    policycoreutils
 git clone https://github.com/postgres/postgres.git postgresql-dev
 cd postgresql-dev
 git checkout REL_18_STABLE
 mkdir build && cd build
 meson setup .. \
-    -Dpython=/usr/bin/python3.12 \
-    -Dpython.install_env=system
     --prefix=/usr/local/pgsql-18 \
     --buildtype=debugoptimized \
     -Doptimization=2 \
