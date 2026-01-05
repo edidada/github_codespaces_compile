@@ -27,7 +27,10 @@ sudo apt-get install -y \
     perl \
     libipc-run-perl \
     libtest-simple-perl \
-    libtap-parser-sourcehandler-pgtap-perl
+    libtap-parser-sourcehandler-pgtap-perl \
+    gettext \
+    gettext-base \
+    libgettextpo-dev
 git clone https://github.com/postgres/postgres.git postgresql-dev
 cd postgresql-dev
 git checkout REL_18_STABLE
