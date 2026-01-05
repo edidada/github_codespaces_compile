@@ -23,7 +23,11 @@ sudo apt-get install -y \
     libpython3.12 \
     libselinux1-dev \
     selinux-utils \
-    policycoreutils
+    policycoreutils \
+    perl \
+    libipc-run-perl \
+    libtest-simple-perl \
+    libtap-parser-sourcehandler-pgtap-perl
 git clone https://github.com/postgres/postgres.git postgresql-dev
 cd postgresql-dev
 git checkout REL_18_STABLE
