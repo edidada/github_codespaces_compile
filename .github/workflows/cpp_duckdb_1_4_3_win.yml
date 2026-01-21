@@ -23,8 +23,9 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: get_duckdb_1_4_3_win
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      shell: pwsh
       run: |
-        Set-Location -Path .\cpp\duckdb\win\1_4_3
+        Set-Location -Path ".\cpp\duckdb\win\1_4_3"
+        Write-Host "Current directory: $(Get-Location)"
+        Write-Host "Executing get_duckdb_win.ps1..."
         .\get_duckdb_win.ps
