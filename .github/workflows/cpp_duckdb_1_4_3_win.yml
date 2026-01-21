@@ -28,4 +28,5 @@ jobs:
         Set-Location -Path ".\cpp\duckdb\win\1_4_3"
         Write-Host "Current directory: $(Get-Location)"
         Write-Host "Executing get_duckdb_win.ps1..."
-        .\get_duckdb_win.ps
+        dir
+        .\get_duckdb_win.ps1
