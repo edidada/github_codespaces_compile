@@ -14,4 +14,5 @@ Set-Location -Path ./build
 
 # 运行 CMake 配置
 cmake ..
+dir
 ninja
