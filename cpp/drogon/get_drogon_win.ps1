@@ -19,12 +19,7 @@ Set-Location -Path ./build
 # 运行 CMake 配置
 cmake ..
 
-# 编译并安装
-msbuild ALL_BUILD.vcxproj /p:Configuration=Release /m:4
-msbuild INSTALL.vcxproj /p:Configuration=Release
-
-# 检查 drogon_ctl 版本
-C:\Program Files\drogon\bin\drogon_ctl.exe version
+cmake --build . --config Release --parallel
 
 # 返回上一级目录
 Set-Location -Path ..
