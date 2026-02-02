@@ -2,3 +2,4 @@
 *.iml
 /kaldi/
 build
+.DS_Store
