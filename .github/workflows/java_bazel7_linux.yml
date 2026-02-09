@@ -1,12 +1,12 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build pytorch linux
+name: build bazel7 linux
 
 on:
   push:
-    branches: [ "python/pytorch/linux" ]
+    branches: [ "java/bazel7/linux" ]
   pull_request:
-    branches: [ "python/pytorch/linux" ]
+    branches: [ "java/bazel7/linux" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -22,9 +22,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: get_python_bazel_linux
+    - name: get_java_bazel7_linux
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
-        chmod +x ./python/bazel/linux/get_python_pytorch_linux.sh
-        ./python/bazel/linux/get_python_pytorch_linux.sh
+        chmod +x ./java/bazel/linux/get_java_bazel7_linux.sh
+        ./java/bazel/linux/get_java_bazel7_linux.sh
