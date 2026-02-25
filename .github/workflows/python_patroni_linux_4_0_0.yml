@@ -3,10 +3,8 @@
 name: build python_patroni_linux_4_0_0
 
 on:
-  push:
-    branches: [ "python/patroni/4_0_0/linux" ]
-  pull_request:
-    branches: [ "python/patroni/4_0_0/linux" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
