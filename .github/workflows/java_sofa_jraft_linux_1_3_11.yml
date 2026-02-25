@@ -3,10 +3,8 @@
 name: build sofa_jraft linux 1_3_11
 
 on:
-  push:
-    branches: [ "java/sofa_jraft/linux/1_3_11" ]
-  pull_request:
-    branches: [ "java/sofa_jraft/linux/1_3_11" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
