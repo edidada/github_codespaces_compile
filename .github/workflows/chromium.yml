@@ -26,4 +26,4 @@ jobs:
         run: |
           sudo apt update
           chmod +x ./cpp/chromium/linux/get_chromium.sh
-          ./get_chromium.sh
+          ./cpp/chromium/linux/get_chromium.sh
