@@ -3,10 +3,8 @@
 name: build firefox linux
 
 on:
-  push:
-    branches: [ "firefox" ]
-  pull_request:
-    branches: [ "firefox" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
