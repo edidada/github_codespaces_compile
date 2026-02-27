@@ -11,10 +11,12 @@ sudo apt install -y \
     make \
     pkg-config \
     btrfs-progs \
-    libbtrfs-dev
+    libbtrfs-dev \
+    libsystemd-dev
 git clone https://github.com/containers/podman.git
 cd podman
 git checkout v5.8.0
 go mod tidy
 go build -v ./...
-make
+go build -v -o bin/podman ./cmd/podman
+make BUILDTAGS="seccomp systemd"
