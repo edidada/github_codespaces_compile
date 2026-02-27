@@ -9,7 +9,9 @@ sudo apt install -y \
     btrfs-progs \
     gcc \
     make \
-    pkg-config
+    pkg-config \
+    btrfs-progs \
+    libbtrfs-dev
 git clone https://github.com/containers/podman.git
 cd podman
 git checkout v5.8.0
