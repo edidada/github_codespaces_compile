@@ -5,6 +5,7 @@ python3 -m pip install --user mercurial
 echo 'export PATH="'"$(python3 -m site --user-base)"'/bin:$PATH"' >> ~/.bashrc
 curl https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py -O
 echo | python3 bootstrap.py
+hg clone https://hg.mozilla.org/mozilla-unified
 cd mozilla-unified
 hg up -C central
 ./mach build
