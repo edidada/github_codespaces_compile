@@ -12,7 +12,7 @@ sudo tar -C /usr/local -xzf go1.22.12.linux-amd64.tar.gz
 # 4. 加入 PATH（建議加到 ~/.bashrc 或 ~/.zshrc）
 cat << 'EOF' >> ~/.bashrc
 
-export PATH=$PATH:/usr/local/go/bin
+export PATH=/usr/local/go/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 EOF
