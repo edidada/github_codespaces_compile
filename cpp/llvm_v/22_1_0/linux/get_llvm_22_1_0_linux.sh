@@ -6,7 +6,6 @@ sudo apt install lld -y
 if [ ! -f llvm-22.src.tar.xz ]; then
   wget -O llvm-22.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.0/llvm-project-22.1.0.src.tar.xz
 fi
-
 tar -xJvf llvm-22.src.tar.xz
 mv llvm-project-22.1.0.src llvm
 cd llvm
