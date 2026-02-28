@@ -8,7 +8,7 @@ if [ ! -f llvm-22.src.tar.xz ]; then
 fi
 
 tar -xJvf llvm-22.src.tar.xz
-mv llvm-22*.src llvm
+mv llvm-project-22.1.0.src llvm
 
 mkdir build install
 cmake llvm -B build -G Ninja \
