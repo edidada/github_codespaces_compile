@@ -9,12 +9,12 @@ fi
 
 tar -xJvf llvm-22.src.tar.xz
 mv llvm-project-22.1.0.src llvm
-
+cd llvm
 mkdir build install
 cmake llvm -B build -G Ninja \
   -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_INSTALL_PREFIX=$(realpath install) \
-  -DLLVM_ENABLE_PROJECTS="clang;lld" \
+  -DLLVM_ENABLE_PROJECTS="clang" \
   -DLLVM_TARGETS_TO_BUILD="X86" \
   -DLLVM_BUILD_LLVM_DYLIB=ON \
   -DLLVM_LINK_LLVM_DYLIB=ON \
