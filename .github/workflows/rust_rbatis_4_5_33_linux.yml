@@ -27,4 +27,4 @@ jobs:
       run: |
         sudo apt update
         chmod +x ./rust/rbatis/4_5_33/linux/get_rbatis_4_5_33_linux.sh
-        ./rust/rbatis/linux/4_5_33/get_rbatis.sh
+        ./rust/rbatis/4_5_33/linux/get_rbatis_4_5_33_linux.sh
