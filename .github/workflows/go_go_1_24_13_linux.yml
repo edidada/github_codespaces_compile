@@ -3,10 +3,8 @@
 name: build go 1_24_13 linux
 
 on:
-  push:
-    branches: [ "go/go/1_24_13/linux" ]
-  pull_request:
-    branches: [ "go/go/1_24_13/linux" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
