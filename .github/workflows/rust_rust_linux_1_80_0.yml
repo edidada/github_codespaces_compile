@@ -3,10 +3,8 @@
 name: build rust linux 1_80_0
 
 on:
-  push:
-    branches: [ "rust/rust/linux/1_80_0" ]
-  pull_request:
-    branches: [ "rust/rust/linux/1_80_0" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
