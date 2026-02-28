@@ -12,6 +12,7 @@ mv llvm-project-22.1.0.src llvm
 cd llvm
 mkdir build install
 cmake llvm -B build -G Ninja \
+  -DLLVM_APPEND_VC_REV=OFF
   -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_INSTALL_PREFIX=$(realpath install) \
   -DLLVM_ENABLE_PROJECTS="clang" \
