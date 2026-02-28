@@ -3,10 +3,8 @@
 name: build rbatis ubuntu-latest 4_5_33
 
 on:
-  push:
-    branches: [ "rust/rbatis/linux/4_5_33" ]
-  pull_request:
-    branches: [ "rust/rbatis/linux/4_5_33" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
