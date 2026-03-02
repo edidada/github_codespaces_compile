@@ -3,10 +3,8 @@
 name: build mio linux 1_1_1
 
 on:
-  push:
-    branches: [ "rust/mio/linux/1_1_1" ]
-  pull_request:
-    branches: [ "rust/mio/linux/1_1_1" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
