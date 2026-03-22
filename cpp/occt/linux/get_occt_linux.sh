@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 set -e # 遇到错误则退出脚本
 
 # 配置参数 (可根据需要修改)
-OCCT_VERSION="7.7.0" # 建议使用最新稳定版或特定版本
+OCCT_VERSION="V7_8_1" # 建议使用最新稳定版或特定版本
 INSTALL_PREFIX="/usr/local/occt" # 安装目录
 BUILD_TYPE="Release" # 编译类型: Release, Debug, RelWithDebInfo
 BUILD_DIR="./occt-build" # 构建临时目录
@@ -22,37 +22,38 @@ sudo apt-get install -y \
     libfreetype6-dev libx11-dev libxext-dev \
     libglu1-mesa-dev libgl1-mesa-dev \
     tcl8.6-dev tk8.6-dev libftgl-dev \
-    freeglut3-dev libtbb-dev libfreeimage-dev \
+    freeglut3-dev libfreeimage-dev \
+    libtbb-dev libtbb2 \
     doxygen graphviz
 
 # 获取源码 (方式1: 从GitHub克隆)
 echo "[INFO] 克隆 OCCT 源码..."
 if [ ! -d "$SOURCE_DIR" ]; then
     git clone https://github.com/Open-Cascade-SAS/OCCT.git $SOURCE_DIR
+    echo $SOURCE_DIR
+    pwd
     cd $SOURCE_DIR
-    git checkout V$OCCT_VERSION # 切换到特定版本标签 (如果需要)
+    git checkout $OCCT_VERSION # 切换到特定版本标签 (如果需要)
     cd ..
 else
     echo "[INFO] 源码目录已存在，跳过克隆"
 fi
 
-# 或者 (方式2: 如果已有源码包，解压到当前目录)
-# SOURCE_DIR="./OCCT-$OCCT_VERSION"
-
 # 创建构建目录
 echo "[INFO] 创建构建目录..."
+pwd
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
 # CMake 配置
 echo "[INFO] 配置 CMake..."
-cmake $SOURCE_DIR \
+cmake ../$SOURCE_DIR \
     -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX \
     -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
     -DBUILD_LIBRARY_TYPE="Shared" \
     -DBUILD_CPP_STANDARD="C++11" \
     -DUSE_FREETYPE=ON \
-    -DUSE_TBB=ON \
+    -DUSE_TBB=OFF \
     -DUSE_FREEIMAGE=ON \
     -DUSE_TK=ON \
     -DBUILD_MODULE_Draw=ON \
