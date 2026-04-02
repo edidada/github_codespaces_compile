@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_msquic.sh
-        ./get_msquic.sh
+        chmod +x ./cpp/msquic/linux/2_1_12/get_msquic_2_1_12.sh
+        ./cpp/msquic/linux/2_1_12/get_msquic_2_1_12.sh
