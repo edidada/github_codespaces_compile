@@ -1,0 +1,10 @@
+PROJECT_NAME           = "brpc"
+INPUT                  = src
+RECURSIVE              = YES
+OUTPUT_DIRECTORY       = docs
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_XML           = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
