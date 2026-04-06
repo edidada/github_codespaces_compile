@@ -1,7 +1,6 @@
 #! /bin/bash
+cd "$(dirname "$0")"
 sudo apt update
-sudo apt install libevent-dev -y
-dpkg -L libevent-dev | grep LibeventConfig.cmake
 git clone https://github.com/libevent/libevent.git
 cd libevent
 git checkout release-2.1.12-stable

@@ -3,10 +3,8 @@
 name: java/idea_community/linux
 
 on:
-  push:
-    branches: [ "java/idea_community/linux" ]
-  pull_request:
-    branches: [ "java/idea_community/linux" ]
+  schedule:
+    - cron: '0 0 28 * *'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
