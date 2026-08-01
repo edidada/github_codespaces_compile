@@ -1,0 +1,23 @@
+name: build logcabin ubuntu-latest 1_1_0
+
+on:
+  push:
+    branches: [ "c/logcabin/linux/1_1_0" ]
+  pull_request:
+    branches: [ "c/logcabin/linux/1_1_0" ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: build_logcabin
+      run: |
+        sudo apt update
+        chmod +x ./c/logcabin/linux/1_1_0/get_logcabin.sh
+        ./c/logcabin/linux/1_1_0/get_logcabin.sh
