@@ -31,6 +31,25 @@ if [ -f /usr/local/bin/swift ]; then
   sudo mv /usr/local/bin/swift /usr/local/bin/swift.bak
   echo "Temporarily masked /usr/local/bin/swift to skip thrift swift bindings"
 fi
+# 预下载 thrift-0.23.0.tar.gz 到 thirdparty/src，避免 Apache archive 服务器连接慢导致卡住
+THIRDPARTY_SRC=${BUILD_DIR}/starrocks/thirdparty/src
+mkdir -p ${THIRDPARTY_SRC}
+THRIFT_TARBALL=thrift-0.23.0.tar.gz
+if [ ! -f ${THIRDPARTY_SRC}/${THRIFT_TARBALL} ]; then
+  echo "Pre-downloading ${THRIFT_TARBALL} ..."
+  # 优先使用 Apache archive，失败则回退到 dlcdn.apache.org 镜像
+  wget -t 3 -T 30 -q --show-progress -O ${THIRDPARTY_SRC}/${THRIFT_TARBALL} \
+    https://archive.apache.org/dist/thrift/0.23.0/${THRIFT_TARBALL} \
+    || wget -t 3 -T 30 -q --show-progress -O ${THIRDPARTY_SRC}/${THRIFT_TARBALL} \
+    https://dlcdn.apache.org/thrift/0.23.0/${THRIFT_TARBALL} \
+    || wget -t 3 -T 60 -O ${THIRDPARTY_SRC}/${THRIFT_TARBALL} \
+    https://archive.apache.org/dist/thrift/0.23.0/${THRIFT_TARBALL}
+  if [ ! -s ${THIRDPARTY_SRC}/${THRIFT_TARBALL} ]; then
+    echo "Failed to download ${THRIFT_TARBALL}"
+    exit 1
+  fi
+  echo "Pre-downloaded ${THRIFT_TARBALL} successfully"
+fi
 # 使用官方 build.sh 进行编译（默认构建 BE 和 FE）
 bash build.sh
 BUILD_EXIT_CODE=$?
