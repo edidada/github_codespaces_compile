@@ -7,7 +7,7 @@ echo "ubuntu version"
 lsb_release -a
 hostnamectl
 # 安装 StarRocks 编译所需的系统依赖
-sudo apt install -y build-essential cmake automake autoconf libtool bison binutils-dev libiberty-dev libssl-dev libcurl4-openssl-dev libldap2-dev libltdl-dev libunwind-dev \
+sudo apt install -y build-essential cmake automake autoconf libtool bison byacc flex binutils-dev libiberty-dev libssl-dev libcurl4-openssl-dev libldap2-dev libltdl-dev libunwind-dev \
     python3 python3-pip openjdk-17-jdk maven ninja-build ccache pkg-config zip unzip tar git wget
 # 设置 Java 环境
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -27,8 +27,14 @@ git checkout 3.5.20
 git submodule update --init --recursive
 # 使用官方 build.sh 进行编译（默认构建 BE 和 FE）
 bash build.sh
+BUILD_EXIT_CODE=$?
+if [ ${BUILD_EXIT_CODE} -ne 0 ]; then
+  echo "StarRocks 3.5.20 build FAILED with exit code ${BUILD_EXIT_CODE}"
+  exit ${BUILD_EXIT_CODE}
+fi
 # 列出构建产物
-ls -la output/
+echo "==== build output ===="
+ls -la output/ 2>/dev/null || echo "output/ directory not found"
 ls -la output/be/lib/ 2>/dev/null || true
 ls -la output/fe/ 2>/dev/null || true
 echo "StarRocks 3.5.20 build finished."
