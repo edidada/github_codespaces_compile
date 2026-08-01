@@ -7,7 +7,7 @@ echo "ubuntu version"
 lsb_release -a
 hostnamectl
 # 安装 StarRocks 编译所需的系统依赖
-sudo apt install -y build-essential cmake automake autoconf libtool bison byacc flex binutils-dev libiberty-dev libssl-dev libcurl4-openssl-dev libldap2-dev libltdl-dev libunwind-dev \
+sudo apt install -y build-essential cmake automake autoconf libtool bison byacc flex binutils-dev libiberty-dev libssl-dev libcurl4-openssl-dev libldap2-dev libltdl-dev \
     python3 python3-pip openjdk-17-jdk maven ninja-build ccache pkg-config zip unzip tar git wget
 # 设置 Java 环境
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
