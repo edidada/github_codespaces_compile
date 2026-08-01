@@ -25,6 +25,12 @@ fi
 cd starrocks
 git checkout 3.5.20
 git submodule update --init --recursive
+# 隐藏 runner 预装的 swift，避免 thrift-0.23.0 configure 检测到 swift 后
+# 在 make install 阶段执行无效的 'swift install' 子命令导致构建失败
+if [ -f /usr/local/bin/swift ]; then
+  sudo mv /usr/local/bin/swift /usr/local/bin/swift.bak
+  echo "Temporarily masked /usr/local/bin/swift to skip thrift swift bindings"
+fi
 # 使用官方 build.sh 进行编译（默认构建 BE 和 FE）
 bash build.sh
 BUILD_EXIT_CODE=$?
