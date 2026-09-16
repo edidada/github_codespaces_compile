@@ -1,8 +1,8 @@
 #! /bin/bash
 sudo apt update && sudo apt install git wget unzip software-properties-common
-wget https://cmake.org/files/v3.28/cmake-3.28.1-linux-x86_64.tar.gz
-tar zxvf cmake-3.28.1-linux-x86_64.tar.gz
-sudo cp -rf cmake-3.28.1-linux-x86_64/bin/* /usr/local/bin && sudo cp -rf cmake-3.28.1-linux-x86_64/share/* /usr/local/share && rm -rf cmake-3.28.1-linux-x86_64
+wget https://cmake.org/files/v4.0/cmake-4.0.3-linux-x86_64.tar.gz
+tar zxvf cmake-4.0.3-linux-x86_64.tar.gz
+sudo cp -rf cmake-4.0.3-linux-x86_64/bin/* /usr/local/bin && sudo cp -rf cmake-4.0.3-linux-x86_64/share/* /usr/local/share && rm -rf cmake-4.0.3-linux-x86_64
 wget https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip
 unzip ninja-linux.zip && sudo cp ninja /usr/local/bin && rm ninja
 echo 'deb https://apt.llvm.org/jammy/ llvm-toolchain-jammy-17 main' | sudo tee /etc/apt/sources.list.d/llvm17.list
