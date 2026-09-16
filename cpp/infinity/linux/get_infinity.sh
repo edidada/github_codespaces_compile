@@ -11,11 +11,14 @@ sudo add-apt-repository -P ppa:ubuntu-toolchain-r/test
 sudo add-apt-repository -P ppa:mhier/libboost-latest
 sudo apt update && sudo apt install g++-13 clang-20 clang-tools-20 flex libboost1.81-dev liblz4-dev libevent-dev liburing-dev libthrift-dev libabsl-dev
 ln -s /usr/lib/llvm-20/bin/clang-scan-deps /usr/bin/clang-scan-deps
+git clone --depth 1 https://github.com/microsoft/vcpkg.git
+./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 git clone https://github.com/infiniflow/infinity.git
 git config --global --add safe.directory infinity
 cd infinity && mkdir build && cd build
 export CC=/usr/bin/clang-20
 export CXX=/usr/bin/clang++-20
-cmake -G Ninja ..
+../../vcpkg/vcpkg install --triplet x64-linux
+cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=../../vcpkg/scripts/buildsystems/vcpkg.cmake ..
 ninja -j 12
 ./src/infinity
