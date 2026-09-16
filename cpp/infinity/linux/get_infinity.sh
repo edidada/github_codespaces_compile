@@ -9,7 +9,7 @@ echo 'deb https://apt.llvm.org/jammy/ llvm-toolchain-jammy-20 main' | sudo tee /
 wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
 sudo add-apt-repository -P ppa:ubuntu-toolchain-r/test
 sudo add-apt-repository -P ppa:mhier/libboost-latest
-sudo apt update && sudo apt install g++-13 clang-20 clang-tools-20 flex libboost1.81-dev liblz4-dev libevent-dev liburing-dev libthrift-dev
+sudo apt update && sudo apt install g++-13 clang-20 clang-tools-20 flex libboost1.81-dev liblz4-dev libevent-dev liburing-dev libthrift-dev libabsl-dev
 ln -s /usr/lib/llvm-20/bin/clang-scan-deps /usr/bin/clang-scan-deps
 git clone https://github.com/infiniflow/infinity.git
 git config --global --add safe.directory infinity
