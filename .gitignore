@@ -2,3 +2,5 @@
 *.iml
 kaldi
 build
+.codebuddy/
+.gradle/
