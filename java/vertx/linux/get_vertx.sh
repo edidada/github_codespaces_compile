@@ -4,6 +4,7 @@ git clone -b v2.1.4 https://github.com/eclipse-vertx/vert.x.git
 cd vert.x
 sed -i 's#http#https#g' gradle/wrapper/gradle-wrapper.properties
 find . -type f \( -name '*.gradle' -o -name 'pom.xml' \) -exec sed -i 's#http://#https://#g' {} +
+sed -i 's#http://#https://#g' build.gradle settings.gradle 2>/dev/null || true
 for attempt in 1 2 3; do
   ./gradlew build -x test -x integrationTest && exit 0
   rm -rf "$HOME/.gradle/wrapper/dists/gradle-1.7-bin"
