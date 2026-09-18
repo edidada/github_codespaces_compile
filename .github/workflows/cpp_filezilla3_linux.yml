@@ -26,15 +26,15 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
-          chmod +x ./cpp/filezilla3/get_filezilla3_linux1.sh
-          ./cpp/filezilla3/get_filezilla3_linux1.sh
+          chmod +x ./cpp/filezilla3_v/linux/latest/get_filezilla3_linux1.sh
+          ./cpp/filezilla3_v/linux/latest/get_filezilla3_linux1.sh
 
       - name: get_filezilla3_2
         run: |
-          chmod +x ./cpp/filezilla3/get_filezilla3_linux2.sh
-          ./cpp/filezilla3/get_filezilla3_linux2.sh
+          chmod +x ./cpp/filezilla3_v/linux/latest/get_filezilla3_linux2.sh
+          ./cpp/filezilla3_v/linux/latest/get_filezilla3_linux2.sh
 
       - name: get_filezilla3_3
         run: |
-          chmod +x ./cpp/filezilla3/get_filezilla3_linux3.sh
-          ./cpp/filezilla3/get_filezilla3_linux3.sh
+          chmod +x ./cpp/filezilla3_v/linux/latest/get_filezilla3_linux3.sh
+          ./cpp/filezilla3_v/linux/latest/get_filezilla3_linux3.sh
