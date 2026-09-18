@@ -7,5 +7,6 @@ sudo apt install build-essential clang cmake git libgl1 libx11-dev libxkbfile-de
 sudo apt install libalsa-dev -y
 git clone https://github.com/zed-industries/zed.git
 cd zed
+export CXXFLAGS="${CXXFLAGS:-} -fpermissive"
 script/linux
 cargo run --release
