@@ -25,5 +25,5 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           sudo apt update
-          chmod +x ./go/podman/5_8_0/linux/get_podman_linux_5_8_0.sh
-          ./go/podman/5_8_0/linux/get_podman_linux_5_8_0.sh
+          chmod +x ./go/podman/linux/5_8_0/get_podman_linux_5_8_0.sh
+          ./go/podman/linux/5_8_0/get_podman_linux_5_8_0.sh
