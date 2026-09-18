@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./java/nacos/linux/get_nacos2_4_3.sh
-        ./java/nacos/linux/get_nacos2_4_3.sh
+        chmod +x ./java/nacos_v/linux/2_4_3/get_nacos2_4_3.sh
+        ./java/nacos_v/linux/2_4_3/get_nacos2_4_3.sh
