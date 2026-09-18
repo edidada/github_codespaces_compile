@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./c/tengine_v/linux/latest/get_tengine.sh
-        ./c/tengine_v/linux/latest/get_tengine.sh
+        chmod +x ./c/tengine_v/linux/latest/c/tengine_v/linux/latest/get_tengine.sh
+        ./c/tengine_v/linux/latest/c/tengine_v/linux/latest/get_tengine.sh
