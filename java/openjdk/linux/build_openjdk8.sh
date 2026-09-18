@@ -38,6 +38,7 @@ echo "设置boost jdk7"
 
 export JAVA_HOME="$HOME/jdk/jdk1.7.0_80"
 export PATH="$JAVA_HOME/bin:$PATH"
+export BOOT_JDK="$JAVA_HOME"
 
 java -version
 javac -version
