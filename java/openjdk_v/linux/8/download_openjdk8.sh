@@ -20,6 +20,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 echo $PATH
 echo "$JAVA_HOME/bin" >> $GITHUB_PATH
 java -version
-cd "$(dirname "$0")"
-chmod +x build_openjdk8.sh
-./build_openjdk8.sh
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+BUILD_SCRIPT="$SCRIPT_DIR/../../../openjdk/linux/build_openjdk8.sh"
+chmod +x "$BUILD_SCRIPT"
+exec "$BUILD_SCRIPT"
