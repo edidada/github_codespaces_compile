@@ -27,5 +27,5 @@ jobs:
 
       - name: get_libfilezilla_mac
         run: |
-          chmod +x ./cpp/libfilezilla/get_libfilezilla_mac.sh
-          ./cpp/libfilezilla/get_libfilezilla_mac.sh
+          chmod +x ./cpp/libfilezilla/macos/latest/get_libfilezilla_mac.sh
+          ./cpp/libfilezilla/macos/latest/get_libfilezilla_mac.sh
