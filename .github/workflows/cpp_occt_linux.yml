@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./cpp/occt/linux/get_occt_linux.sh
-        ./cpp/occt/linux/get_occt_linux.sh
+        chmod +x ./cpp/occt_v/linux/latest/get_occt_linux.sh
+        ./cpp/occt_v/linux/latest/get_occt_linux.sh
