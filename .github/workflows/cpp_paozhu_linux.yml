@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./cpp/paozhu/linux/get_paozhu_linux.sh
-        ./cpp/paozhu/linux/get_paozhu_linux.sh
+        chmod +x ./cpp/paozhu_v/linux/latest/get_paozhu_linux.sh
+        ./cpp/paozhu_v/linux/latest/get_paozhu_linux.sh
