@@ -28,5 +28,5 @@ jobs:
       #         sudo apt install libconan1-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./cpp/conan1/get_conan1.sh
-        ./cpp/conan1/get_conan1.sh
+        chmod +x ./cpp/conan/linux/1/get_conan1.sh
+        ./cpp/conan/linux/1/get_conan1.sh
