@@ -95,7 +95,7 @@ fi
 # 3. 解压
 echo "3. 解压 PostgreSQL..."
 if [[ ! -d "postgresql-${POSTGRES_VERSION}" ]]; then
-    tar -xjf "postgresql-${POSTPOSTGRES_VERSION}.tar.bz2"
+    tar -xjf "postgresql-${POSTGRES_VERSION}.tar.bz2"
 fi
 
 cd "postgresql-${POSTGRES_VERSION}"
@@ -118,12 +118,10 @@ echo "5. 设置构建环境..."
         --with-icu \
         --with-zstd \
         --enable-debug \
-        --enable-dtrace \
         --with-uuid=e2fs \
         CC="gcc" \
         CXX="g++" \
         CFLAGS="-O2 -Wall -Wmissing-prototypes -Wpointer-arith -Wdeclaration-after-statement -Werror=vla -Wendif-labels -Wmissing-format-attribute -Wformat-security -fno-strict-aliasing -fwrapv"
-fi
 
 # 6. 编译
 echo "6. 编译 PostgreSQL 18..."
