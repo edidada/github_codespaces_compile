@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./rust/get_zed.sh
-        ./rust/get_zed.sh
+        chmod +x ./rust/zed_v/linux/latest/get_zed.sh
+        ./rust/zed_v/linux/latest/get_zed.sh

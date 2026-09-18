@@ -26,5 +26,5 @@ jobs:
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
-        chmod +x ./cpp/xlnt/mac/get_xlnt_mac.sh
-        ./cpp/xlnt/mac/get_xlnt_mac.sh
+        chmod +x ./cpp/xlnt_v/macos/latest/get_xlnt_mac.sh
+        ./cpp/xlnt_v/macos/latest/get_xlnt_mac.sh

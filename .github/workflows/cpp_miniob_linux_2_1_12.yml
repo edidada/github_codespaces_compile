@@ -29,4 +29,4 @@ jobs:
         sudo apt update
         chmod +x ./cpp/miniob/linux/2_1_12/get_miniob_2_1_12.sh
         ./cpp/miniob/linux/2_1_12/get_miniob_2_1_12.sh
-        ./get_miniob.sh
+        ./cpp/miniob/linux/latest/get_miniob.sh

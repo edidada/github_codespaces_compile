@@ -28,5 +28,5 @@ jobs:
       #         sudo apt install libboost-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./cpp/boost/get_boost.sh
-        ./cpp/boost/get_boost.sh
+        chmod +x ./cpp/boost_v/linux/latest/get_boost.sh
+        ./cpp/boost_v/linux/latest/get_boost.sh
