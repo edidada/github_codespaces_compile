@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+sudo apt-get update
 wget https://ftpmirror.gnu.org/octave/octave-11.1.0.tar.gz
 tar -xzf octave-11.1.0.tar.gz
 cd octave-11.1.0
@@ -10,7 +12,7 @@ sudo apt install -y \
   bison flex libtool autoconf automake \
   gnuplot libhdf5-dev libfftw3-dev
 mkdir build && cd build
-../configure
+BLAS_LIBS='-lopenblas' LAPACK_LIBS='-llapack' ../configure
 make -j$(nproc)
 make check
 sudo make install
