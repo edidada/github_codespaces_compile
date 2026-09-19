@@ -88,7 +88,7 @@ $buildCommandOverrides = @{
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
     'apache:logging-log4cxx' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
-    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.6-cli bash -euc ''docker-php-ext-install sockets zlib; php /tmp/phpunit.phar -c phpunit.xml'''
+    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.6-cli bash -euc ''docker-php-ext-install sockets; php /tmp/phpunit.phar -c phpunit.xml'''
     'apache:logging-log4net' = 'dotnet build ./src/log4net.sln && dotnet test ./src/log4net.sln --no-build'
     'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
     'apache:serf' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev libssl-dev zlib1g-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
