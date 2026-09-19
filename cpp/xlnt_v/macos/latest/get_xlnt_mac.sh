@@ -1,9 +1,6 @@
-#! /bin/bash
-git clone https://github.com/tfussell/xlnt.git xlnt --recurse-submodules
+#!/usr/bin/env bash
+set -euo pipefail
+git clone --depth 1 --branch v1.5.0 --recurse-submodules https://github.com/tfussell/xlnt.git xlnt
 cd xlnt
-git checkout v1.5.0
-mkdir build && cd build
-cmake -D STATIC=ON -G Xcode ..
-cmake --build .
-#sudo make install
-#cd bin && ./xlnt.test
+cmake -S . -B build -DSTATIC=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cmake --build build --parallel
