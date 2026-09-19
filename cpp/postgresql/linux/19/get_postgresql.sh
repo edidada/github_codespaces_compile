@@ -27,7 +27,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             libicu-dev \
             libzstd-dev \
             pkg-config \
-            python3 \
+            python3 python3-dev \
+            uuid-dev \
             curl
     # RHEL/CentOS/Fedora
     elif command -v yum &> /dev/null; then
@@ -107,7 +108,7 @@ mkdir -p build && cd build
 
 # 5. 设置环境变量
 echo "5. 设置构建环境..."
-    ../configure \
+    CC=gcc CXX=g++ ../configure \
         --prefix=/usr/local/pgsql-18 \
         --with-openssl \
         --with-libxml \
@@ -118,10 +119,7 @@ echo "5. 设置构建环境..."
         --with-icu \
         --with-zstd \
         --enable-debug \
-        --with-uuid=e2fs \
-        CC="gcc" \
-        CXX="g++" \
-        CFLAGS="-O2 -Wall -Wmissing-prototypes -Wpointer-arith -Wdeclaration-after-statement -Werror=vla -Wendif-labels -Wmissing-format-attribute -Wformat-security -fno-strict-aliasing -fwrapv"
+        --with-uuid=e2fs
 
 # 6. 编译
 echo "6. 编译 PostgreSQL 18..."
