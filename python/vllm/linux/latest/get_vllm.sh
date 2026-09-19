@@ -7,7 +7,7 @@ git clone --depth 1  https://github.com/vllm-project/vllm.git vllm
 cd vllm
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel cmake ninja numpy setuptools-rust
-python -m pip install --index-url https://download.pytorch.org/whl/cpu torch
+python -m pip install --upgrade pip 'setuptools>=77,<81' wheel cmake ninja numpy packaging jinja2 setuptools-scm setuptools-rust
+python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.13.0
 VLLM_TARGET_DEVICE=cpu python -m pip install --no-build-isolation -e .
 python -c "import vllm; print(vllm.__version__)"
