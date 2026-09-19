@@ -23,13 +23,13 @@ sudo apt-get install -y \
 echo ""
 echo "[2/4] Cloning LogCabin repository v1.1.0..."
 if [ ! -d "logcabin" ]; then
-    git clone -b v1.1.0 git://github.com/logcabin/logcabin.git
+    git clone --depth 1 --branch v1.1.0 https://github.com/logcabin/logcabin.git
 fi
 cd logcabin
 
 echo ""
 echo "[3/4] Initializing git submodules..."
-git submodule update --init
+git -c url."https://github.com/".insteadOf=git://github.com/ submodule update --init --recursive
 
 echo ""
 echo "[4/4] Building LogCabin with scons..."
