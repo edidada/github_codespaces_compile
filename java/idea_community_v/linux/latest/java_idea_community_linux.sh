@@ -6,7 +6,7 @@ echo "=== 准备环境 - Ubuntu 24.04 ==="
 sudo apt update
 sudo apt install -y \
   openjdk-17-jdk \
-  openjdk-21-jdk \          # 部分模块可能需要更高版本 JDK
+  openjdk-21-jdk \
   maven \
   git \
   unzip \
@@ -21,7 +21,7 @@ sudo apt install -y \
   libgtk-3-0 \
   libgbm-dev \
   xvfb \
-  libasound2t64 \
+  libasound2 \
   libc6-i386 \
   libstdc++6:i386 \
   libx11-6:i386
