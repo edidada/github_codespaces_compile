@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
-git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH="$PWD/depot_tools:$PATH"
+gclient --version
 mkdir webrtc-checkout
 cd webrtc-checkout
 fetch --nohooks webrtc
