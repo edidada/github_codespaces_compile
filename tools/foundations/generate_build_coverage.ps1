@@ -76,9 +76,19 @@ $specifications = [System.Collections.Generic.List[object]]::new()
 $buildRootOverrides = @{
     'apache:opendal' = 'core'
 }
+$repositoryOverrides = @{
+    'apache:libcloud' = 'https://github.com/apache/libcloud.git'
+}
+$buildCommandOverrides = @{
+    'apache:incubator-pouchdb' = 'npm install && npm run build-node && npm run test-node'
+    'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
+    'apache:solr-operator' = 'make unit-tests'
+}
 $projectNotes = @{
-    'apache:opendal' = 'OpenDAL is a multi-language umbrella repository. The primary Rust workspace is under `core/`, so this target selects that build root explicitly.'
-    'apache:incubator-pouchdb' = 'This historical PouchDB codebase uses Node.js 18 because its legacy build plugins are not compatible with Node.js 22 on current GitHub-hosted runners.'
+    'apache:opendal' = 'OpenDAL is a multi-language umbrella repository. The primary Rust workspace is under `core/`; this target tests the core `opendal` library without optional storage services that require external native SDKs such as FoundationDB.'
+    'apache:incubator-pouchdb' = 'This historical PouchDB codebase uses Node.js 18 because its legacy build plugins are not compatible with Node.js 22 on current GitHub-hosted runners. Its Node distribution is built before the Node-specific test suite runs.'
+    'apache:solr-operator' = 'The repository includes Kubernetes end-to-end suites that require a live cluster. This target runs the maintained `unit-tests` target, which provisions envtest prerequisites itself.'
+    'apache:libcloud' = 'The modern Apache GitHub mirror is used instead of the historical SVN working copy so the test suite remains compatible with current Python runtimes.'
 }
 
 foreach ($project in $projects) {
@@ -141,8 +151,14 @@ foreach ($project in $projects) {
         $workflowFile = "${language}_${product}_linux_${version}.yml"
         $workflowPath = Join-Path $RunnerRepo ".github\workflows\$workflowFile"
         $overrideKey = "$Foundation`:$key"
+        if ($repositoryOverrides.ContainsKey($overrideKey)) {
+            $repository = [string]$repositoryOverrides[$overrideKey]
+        }
         $buildRoot = [string]$buildRootOverrides[$overrideKey]
         $buildRootLine = if ($buildRoot) { "export PROJECT_BUILD_ROOT=$(ConvertTo-BashLiteral $buildRoot)" } else { '' }
+        $buildCommand = [string]$buildCommandOverrides[$overrideKey]
+        $buildCommandLine = if ($buildCommand) { "export PROJECT_BUILD_COMMAND=$(ConvertTo-BashLiteral $buildCommand)" } else { '' }
+        $configurationLines = @($buildRootLine, $buildCommandLine) | Where-Object { $_ } | Join-String -Separator "`r`n"
 
         $wrapper = @"
 #!/usr/bin/env bash
@@ -151,7 +167,7 @@ export PROJECT_NAME=$(ConvertTo-BashLiteral $name)
 export PROJECT_REPOSITORY=$(ConvertTo-BashLiteral $repository)
 export PROJECT_VERSION=$(ConvertTo-BashLiteral $version)
 export PROJECT_REF=$(ConvertTo-BashLiteral ([string]$versionSpec.Ref))
-$buildRootLine
+$configurationLines
 repository_root="`$(cd "`$(dirname "`${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "`$repository_root/tools/foundations/build_project.sh"
 "@
@@ -169,7 +185,7 @@ exec "`$repository_root/tools/foundations/build_project.sh"
 The branch and path follow ``编程语言/软件名称/操作系统/版本``. A failing native build is kept visible in GitHub Actions and is repaired with project-specific prerequisites or commands rather than being reported as a pass.
 "@
         if ($projectNotes.ContainsKey($overrideKey)) {
-            $readme += "`r`n$($projectNotes[$overrideKey])`r`n"
+            $readme += "`r`n$($projectNotes[$overrideKey])"
         }
         Set-Utf8File $readmePath $readme
 

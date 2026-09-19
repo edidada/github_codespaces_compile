@@ -67,6 +67,12 @@ if [[ "$root_descriptor_found" == false ]]; then
   done
 fi
 
+if [[ -n "${PROJECT_BUILD_COMMAND:-}" ]]; then
+  echo "Running project-specific build command: $PROJECT_BUILD_COMMAND"
+  bash -euo pipefail -c "$PROJECT_BUILD_COMMAND"
+  exit 0
+fi
+
 run_maven() {
   local mvn_cmd=(mvn)
   [[ -x ./mvnw ]] && mvn_cmd=(./mvnw)
@@ -137,6 +143,8 @@ elif [[ -f pyproject.toml || -f setup.py || -f setup.cfg ]]; then
 elif compgen -G '*.sln' >/dev/null || compgen -G '*.csproj' >/dev/null; then
   dotnet test
 elif [[ -f configure || -f configure.ac || -f autogen.sh || -f buildconf ]]; then
+  sudo apt-get update
+  sudo apt-get install -y autoconf automake libtool
   [[ -x ./buildconf ]] && ./buildconf
   [[ -x ./autogen.sh ]] && ./autogen.sh
   [[ -x ./configure ]] || autoreconf -fi

@@ -16,8 +16,8 @@ Archived CNCF entries are intentionally excluded. Apache entries follow the proj
 ## Generated build coverage
 
 - Apache Linux latest targets: 380/380 projects
-- Apache Linux stable targets: 49 projects whose official Apache release maps exactly to a verified, non-prerelease Git tag
-- Total Apache Linux workflows: 429
+- Apache Linux stable targets: 50 projects whose official Apache release maps exactly to a verified, non-prerelease Git tag
+- Total Apache Linux workflows: 430
 
 Projects without a verifiable stable source tag intentionally receive only a
 `latest` target; an unrelated tag or an RC/beta tag is never labeled as the

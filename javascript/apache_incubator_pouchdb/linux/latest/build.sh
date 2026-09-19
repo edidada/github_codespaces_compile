@@ -4,6 +4,6 @@ export PROJECT_NAME='Apache PouchDB'
 export PROJECT_REPOSITORY='https://github.com/apache/pouchdb.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
-
+export PROJECT_BUILD_COMMAND='npm install && npm run build-node && npm run test-node'
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"

@@ -5509,20 +5509,20 @@
     "name": "Apache Libcloud",
     "pmc": "libcloud",
     "language": "Python",
-    "detected_language": null,
+    "detected_language": "Python",
     "category": [
       "cloud",
       "library"
     ],
     "repositories": [
-      "https://svn.apache.org/repos/asf/libcloud/trunk/"
+      "https://github.com/apache/libcloud.git"
     ],
-    "primary_repository": "https://svn.apache.org/repos/asf/libcloud/trunk/",
-    "default_branch": null,
+    "primary_repository": "https://github.com/apache/libcloud.git",
+    "default_branch": "trunk",
     "stable_release": "v3.9.1",
     "stable_release_date": "2026-04-16",
-    "stable_tag": null,
-    "archived": null,
+    "stable_tag": "v3.9.1",
+    "archived": false,
     "metadata_error": null,
     "homepage": "http://libcloud.apache.org"
   },
