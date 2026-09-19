@@ -1,4 +1,7 @@
 #! /bin/bash
+set -euo pipefail
+sudo apt-get update
+sudo apt-get install -y build-essential perl asciidoc
 cd "$(dirname "$0")"
 rm -rf nasm
 git clone -b nasm-2.12 https://github.com/netwide-assembler/nasm.git
