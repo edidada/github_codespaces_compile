@@ -1,6 +1,11 @@
 $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $true
-Set-Location $PSScriptRoot
+git config --global core.longpaths true
+git config --global core.autocrlf false
+git config --global depot-tools.allowGlobalGitConfig false
+$workRoot = Join-Path $env:RUNNER_TEMP "webrtc-$env:GITHUB_RUN_ID"
+New-Item -ItemType Directory -Force -Path $workRoot | Out-Null
+Set-Location $workRoot
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 $env:PATH = "$PWD\depot_tools;$env:PATH"
 $env:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
