@@ -15,6 +15,9 @@ git clone --branch v1.28.1 --recurse-submodules --shallow-submodules --depth 1 h
 cd grpc
 git submodule sync --recursive
 git submodule update --init --recursive
+# gRPC 1.28 pins an Abseil revision that relied on an indirect <limits>
+# include.  GCC 13 no longer provides it indirectly.
+sed -i '/#include <algorithm>/a #include <limits>' third_party/abseil-cpp/absl/synchronization/internal/graphcycles.cc
 mkdir -p cmake/build
 cd cmake/build
 cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_CXX_STANDARD=14 -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR ../../
