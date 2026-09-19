@@ -37,8 +37,15 @@ $selectedSdk = $requiredSdk
 if ($requiredSdk -notin $installedSdks) {
     git fetch origin '+refs/branch-heads/*:refs/remotes/branch-heads/*' --depth=1
     $compatibleRef = $null
+    # Some refs/branch-heads entries are temporary test branches and do not
+    # contain the Chromium toolchain file. A missing file is a normal probe
+    # result here, not a build failure.
+    $PSNativeCommandUseErrorActionPreference = $false
     foreach ($ref in (git for-each-ref '--sort=-version:refname' '--format=%(refname)' 'refs/remotes/branch-heads/*')) {
-        $toolchainText = git show "${ref}:${toolchainFile}"
+        $toolchainText = git show "${ref}:${toolchainFile}" 2>$null
+        if ($LASTEXITCODE -ne 0) {
+            continue
+        }
         foreach ($sdk in $installedSdks) {
             if ($toolchainText -match "SDK_VERSION\s*=\s*'$([regex]::Escape($sdk))'") {
                 $compatibleRef = $ref
@@ -50,6 +57,7 @@ if ($requiredSdk -notin $installedSdks) {
             break
         }
     }
+    $PSNativeCommandUseErrorActionPreference = $true
     if (-not $compatibleRef) {
         throw "No WebRTC branch-head supports an installed SDK: $($installedSdks -join ', ')"
     }
