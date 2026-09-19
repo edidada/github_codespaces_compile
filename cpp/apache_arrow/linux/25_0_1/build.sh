@@ -4,5 +4,6 @@ export PROJECT_NAME='Apache Arrow'
 export PROJECT_REPOSITORY='https://github.com/apache/arrow.git'
 export PROJECT_VERSION='25_0_1'
 export PROJECT_REF='apache-arrow-25.0.1'
+
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"

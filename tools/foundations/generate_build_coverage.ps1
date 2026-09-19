@@ -73,6 +73,13 @@ function Set-Utf8File {
 $catalogPath = Join-Path $SourceRepo "catalogs\foundations\$($Foundation -eq 'apache' ? 'apache-projects.json' : 'cncf-active-projects.json')"
 $projects = @(Get-Content $catalogPath -Raw | ConvertFrom-Json)
 $specifications = [System.Collections.Generic.List[object]]::new()
+$buildRootOverrides = @{
+    'apache:opendal' = 'core'
+}
+$projectNotes = @{
+    'apache:opendal' = 'OpenDAL is a multi-language umbrella repository. The primary Rust workspace is under `core/`, so this target selects that build root explicitly.'
+    'apache:incubator-pouchdb' = 'This historical PouchDB codebase uses Node.js 18 because its legacy build plugins are not compatible with Node.js 22 on current GitHub-hosted runners.'
+}
 
 foreach ($project in $projects) {
     if ($Foundation -eq 'apache') {
@@ -133,6 +140,9 @@ foreach ($project in $projects) {
         $readmePath = Join-Path $SourceRepo (Join-Path $relativeDirectory 'README.md')
         $workflowFile = "${language}_${product}_linux_${version}.yml"
         $workflowPath = Join-Path $RunnerRepo ".github\workflows\$workflowFile"
+        $overrideKey = "$Foundation`:$key"
+        $buildRoot = [string]$buildRootOverrides[$overrideKey]
+        $buildRootLine = if ($buildRoot) { "export PROJECT_BUILD_ROOT=$(ConvertTo-BashLiteral $buildRoot)" } else { '' }
 
         $wrapper = @"
 #!/usr/bin/env bash
@@ -141,6 +151,7 @@ export PROJECT_NAME=$(ConvertTo-BashLiteral $name)
 export PROJECT_REPOSITORY=$(ConvertTo-BashLiteral $repository)
 export PROJECT_VERSION=$(ConvertTo-BashLiteral $version)
 export PROJECT_REF=$(ConvertTo-BashLiteral ([string]$versionSpec.Ref))
+$buildRootLine
 repository_root="`$(cd "`$(dirname "`${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "`$repository_root/tools/foundations/build_project.sh"
 "@
@@ -153,11 +164,24 @@ exec "`$repository_root/tools/foundations/build_project.sh"
 - Source repository: $repository
 - Checkout ref: $(if ($versionSpec.Ref) { $versionSpec.Ref } else { 'repository default branch' })
 - Detected language: $(if ($languageValue) { $languageValue } else { 'unspecified' })
-- Build policy: clone the requested revision and run the repository's native build and test system through `tools/foundations/build_project.sh`.
+- Build policy: clone the requested revision and run the repository's native build and test system through ``tools/foundations/build_project.sh``.
 
-The branch and path follow `编程语言/软件名称/操作系统/版本`. A failing native build is kept visible in GitHub Actions and is repaired with project-specific prerequisites or commands rather than being reported as a pass.
+The branch and path follow ``编程语言/软件名称/操作系统/版本``. A failing native build is kept visible in GitHub Actions and is repaired with project-specific prerequisites or commands rather than being reported as a pass.
 "@
+        if ($projectNotes.ContainsKey($overrideKey)) {
+            $readme += "`r`n$($projectNotes[$overrideKey])`r`n"
+        }
         Set-Utf8File $readmePath $readme
+
+        $setupSteps = ''
+        if ($overrideKey -eq 'apache:incubator-pouchdb') {
+            $setupSteps = @"
+      - name: Set up compatible Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+"@
+        }
 
         $workflow = @"
 name: build $branch
@@ -179,6 +203,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
+$setupSteps
       - name: Clone matching private source branch
         env:
           GH_TOKEN: `${{ secrets.COMPILER_PAT }}

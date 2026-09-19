@@ -40,6 +40,11 @@ fi
 cd "$work_root/source"
 git rev-parse HEAD 2>/dev/null || true
 
+if [[ -n "${PROJECT_BUILD_ROOT:-}" ]]; then
+  cd "$PROJECT_BUILD_ROOT"
+  echo "Selected project-specific build root: $PWD"
+fi
+
 # Some foundation repositories are umbrellas whose actual build root is one
 # or two directories below the checkout root (for example OpenDAL's `core/`).
 # Prefer a root build descriptor, then select the shallowest descriptor using
@@ -113,6 +118,10 @@ elif [[ -f go.mod ]]; then
     go test ./...
   fi
 elif [[ -f Cargo.toml ]]; then
+  if ! command -v protoc >/dev/null; then
+    sudo apt-get update
+    sudo apt-get install -y protobuf-compiler
+  fi
   cargo test --workspace --all-targets
 elif [[ -f mix.exs ]]; then
   mix local.hex --force

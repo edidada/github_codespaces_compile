@@ -4,5 +4,6 @@ export PROJECT_NAME='Apache Click'
 export PROJECT_REPOSITORY='https://svn.apache.org/repos/asf/click/'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
+
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"

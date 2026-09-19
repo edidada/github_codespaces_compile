@@ -4,5 +4,6 @@ export PROJECT_NAME='Apache Directory LDAP API'
 export PROJECT_REPOSITORY='https://github.com/apache/directory-ldap-api.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
+
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"
