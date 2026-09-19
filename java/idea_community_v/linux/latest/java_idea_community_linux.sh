@@ -35,7 +35,6 @@ export PATH="/usr/lib/ccache:$PATH"
 echo "git clone idea_community"
 git clone https://github.com/JetBrains/intellij-community.git
 cd intellij-community
-git clone https://github.com/JetBrains/android.git
 echo "=== 开始编译 IntelliJ IDEA Community Edition ==="
-./gradlew setupCIWorkflow
-./gradlew :community:buildDist
+chmod +x bazel-build-all-community.cmd
+./bazel-build-all-community.cmd
