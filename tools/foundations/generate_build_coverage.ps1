@@ -82,7 +82,7 @@ $repositoryOverrides = @{
     'apache:teaclave' = 'https://github.com/apache/teaclave-sgx-sdk.git'
 }
 $buildCommandOverrides = @{
-    'apache:attic-buildr' = 'bundle install && bundle exec rake test'
+    'apache:attic-buildr' = 'bundle install && bundle exec rspec'
     'apache:brooklyn' = 'mvn -B -ntp -DskipITs test'
     'apache:flex' = 'ant -Dbuild.noprompt=true modules'
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
