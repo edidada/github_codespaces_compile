@@ -82,13 +82,13 @@ $repositoryOverrides = @{
     'apache:teaclave' = 'https://github.com/apache/teaclave-sgx-sdk.git'
 }
 $buildCommandOverrides = @{
-    'apache:attic-buildr' = 'command -v bundle >/dev/null || gem install bundler; bundle install && bundle exec rake test'
+    'apache:attic-buildr' = 'bundle exec rake test'
     'apache:brooklyn' = 'mvn -B -ntp -DskipITs test'
     'apache:flex' = 'ant -Dbuild.noprompt=true modules'
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
     'apache:logging-log4cxx' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
-    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.6-cli php /tmp/phpunit.phar -c phpunit.xml'
+    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.6-cli bash -euc ''docker-php-ext-install sockets; php /tmp/phpunit.phar -c phpunit.xml'''
     'apache:logging-log4net' = 'dotnet build ./src/log4net.sln && dotnet test ./src/log4net.sln --no-build'
     'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
     'apache:serf' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev libssl-dev zlib1g-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
@@ -96,8 +96,9 @@ $buildCommandOverrides = @{
     'apache:tcl-rivet' = 'sudo apt-get update && sudo apt-get install -y tcl-dev apache2-dev && autoreconf -fi && ./configure --with-tcl=/usr/lib/tcl8.6 && make && make check'
     'apache:training' = './mvnw -B -ntp -DskipITs verify'
     'apache:vcl' = 'find web -type f -name "*.php" -print0 | xargs -0 -n1 php -l && perl -c managementnode/bin/install_perl_libs.pl'
-    'apache:xmlgraphics-batik' = './mvnw -B -ntp -DskipITs -pl "!batik-test-old" test'
-    'apache:couchdb' = 'sudo apt-get update && sudo apt-get install -y erlang elixir help2man libicu-dev libmozjs-115-dev python3 python3-venv && ./configure --disable-docs --disable-fauxton && make eunit'
+    'apache:xmlgraphics-batik' = 'mvn -B -ntp -DskipITs -pl "!batik-test-old" test'
+    'apache:couchdb' = 'sudo apt-get update && sudo apt-get install -y erlang elixir help2man libicu-dev libmozjs-115-dev python3 python3-venv && ./configure --spidermonkey-version 115 --disable-docs --disable-fauxton && make eunit'
+    'apache:yetus' = 'mvn -B -ntp -DskipITs verify'
 }
 $projectNotes = @{
     'apache:opendal' = 'OpenDAL is a multi-language umbrella repository. The primary Rust workspace is under `core/`; this target tests the core `opendal` library without optional storage services that require external native SDKs such as FoundationDB.'
@@ -242,6 +243,22 @@ The branch and path follow ``编程语言/软件名称/操作系统/版本``. A 
             $setupSteps = @"
       - name: Set up SBT
         uses: sbt/setup-sbt@v1
+"@
+        } elseif ($overrideKey -eq 'apache:attic-buildr') {
+            $setupSteps = @"
+      - name: Set up compatible Ruby and Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          bundler-cache: true
+"@
+        } elseif ($overrideKey -eq 'apache:brooklyn') {
+            $setupSteps = @"
+      - name: Set up compatible Java toolchain
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '8'
 "@
         }
 
