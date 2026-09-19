@@ -17,6 +17,6 @@ git submodule sync --recursive
 git submodule update --init --recursive
 mkdir -p cmake/build
 cd cmake/build
-cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR ../../
+cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_CXX_STANDARD=14 -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR ../../
 make -j
 make install
