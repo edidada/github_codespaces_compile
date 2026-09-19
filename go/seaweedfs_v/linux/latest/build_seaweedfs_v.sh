@@ -2,4 +2,5 @@
 set -euo pipefail
 git clone --depth 1 https://github.com/seaweedfs/seaweedfs.git project
 cd project
-go build ./weed
+mkdir -p build
+go build -o build/weed ./weed
