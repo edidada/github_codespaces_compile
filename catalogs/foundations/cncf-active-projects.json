@@ -5,7 +5,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/argoproj/argo-cd",
-    "homepage": "https://argoproj.github.io/"
+    "homepage": "https://argoproj.github.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v3.5.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Buildpacks",
@@ -13,7 +18,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/buildpacks/pack",
-    "homepage": "https://buildpacks.io/"
+    "homepage": "https://buildpacks.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.40.9",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "cert-manager",
@@ -21,7 +31,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/cert-manager/cert-manager",
-    "homepage": "https://cert-manager.io/"
+    "homepage": "https://cert-manager.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.21.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cilium",
@@ -29,7 +44,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/cilium/cilium",
-    "homepage": "https://cilium.io/"
+    "homepage": "https://cilium.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.20.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CloudEvents",
@@ -37,7 +57,12 @@
     "category": "App Definition and Development",
     "subcategory": "Streaming & Messaging",
     "repository": "https://github.com/cloudevents/spec",
-    "homepage": "https://cloudevents.io/"
+    "homepage": "https://cloudevents.io/",
+    "language": "Python",
+    "default_branch": "main",
+    "stable_tag": "ce@v1.0.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "containerd",
@@ -45,7 +70,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/containerd/containerd",
-    "homepage": "https://containerd.io/"
+    "homepage": "https://containerd.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.4.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CoreDNS",
@@ -53,7 +83,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Coordination & Service Discovery",
     "repository": "https://github.com/coredns/coredns",
-    "homepage": "https://coredns.io/"
+    "homepage": "https://coredns.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.14.7",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CRI-O",
@@ -61,7 +96,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/cri-o/cri-o",
-    "homepage": "https://cri-o.io/"
+    "homepage": "https://cri-o.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.37.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Crossplane",
@@ -69,7 +109,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/crossplane/crossplane",
-    "homepage": "https://crossplane.io/"
+    "homepage": "https://crossplane.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.4.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CubeFS",
@@ -77,7 +122,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/cubeFS/cubefs",
-    "homepage": "https://cubefs.io/"
+    "homepage": "https://cubefs.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v3.6.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Dapr",
@@ -85,7 +135,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/dapr/dapr",
-    "homepage": "https://dapr.io"
+    "homepage": "https://dapr.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.18.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Dragonfly",
@@ -93,7 +148,12 @@
     "category": "Provisioning",
     "subcategory": "Container Registry",
     "repository": "https://github.com/dragonflyoss/dragonfly",
-    "homepage": "https://d7y.io/"
+    "homepage": "https://d7y.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.5.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Envoy",
@@ -101,7 +161,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Proxy",
     "repository": "https://github.com/envoyproxy/envoy",
-    "homepage": "https://www.envoyproxy.io"
+    "homepage": "https://www.envoyproxy.io",
+    "language": "C++",
+    "default_branch": "main",
+    "stable_tag": "v1.39.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "etcd",
@@ -109,7 +174,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Coordination & Service Discovery",
     "repository": "https://github.com/etcd-io/etcd",
-    "homepage": "https://etcd.io/"
+    "homepage": "https://etcd.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v3.7.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Falco",
@@ -117,7 +187,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/falcosecurity/falco",
-    "homepage": "https://falco.org/"
+    "homepage": "https://falco.org/",
+    "language": "C++",
+    "default_branch": "master",
+    "stable_tag": "0.44.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Fluentd",
@@ -125,7 +200,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/fluent/fluentd",
-    "homepage": "https://www.fluentd.org/"
+    "homepage": "https://www.fluentd.org/",
+    "language": "Ruby",
+    "default_branch": "master",
+    "stable_tag": "v1.19.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Flux",
@@ -133,7 +213,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/fluxcd/flux2",
-    "homepage": "https://fluxcd.io/"
+    "homepage": "https://fluxcd.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.9.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Harbor",
@@ -141,7 +226,12 @@
     "category": "Provisioning",
     "subcategory": "Container Registry",
     "repository": "https://github.com/goharbor/harbor",
-    "homepage": "https://goharbor.io/"
+    "homepage": "https://goharbor.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.15.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Helm",
@@ -149,7 +239,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/helm/helm",
-    "homepage": "https://helm.sh/"
+    "homepage": "https://helm.sh/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v4.3.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "in-toto",
@@ -157,7 +252,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/in-toto/in-toto",
-    "homepage": "https://in-toto.io"
+    "homepage": "https://in-toto.io",
+    "language": "Python",
+    "default_branch": "develop",
+    "stable_tag": "v3.1.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Istio",
@@ -165,7 +265,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Mesh",
     "repository": "https://github.com/istio/istio",
-    "homepage": "https://istio.io/"
+    "homepage": "https://istio.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "1.31.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Jaeger",
@@ -173,7 +278,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/jaegertracing/jaeger",
-    "homepage": "https://www.jaegertracing.io/"
+    "homepage": "https://www.jaegertracing.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.21.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Karmada",
@@ -181,7 +291,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/karmada-io/karmada",
-    "homepage": "https://karmada.io/"
+    "homepage": "https://karmada.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.19.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KEDA",
@@ -189,7 +304,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kedacore/keda",
-    "homepage": "https://keda.sh/"
+    "homepage": "https://keda.sh/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.20.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Knative",
@@ -197,7 +317,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/knative/serving",
-    "homepage": "https://knative.dev"
+    "homepage": "https://knative.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "knative-v1.23.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeEdge",
@@ -205,7 +330,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kubeedge/kubeedge",
-    "homepage": "https://kubeedge.io/en/"
+    "homepage": "https://kubeedge.io/en/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.23.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kubeflow",
@@ -213,7 +343,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kubeflow/kubeflow",
-    "homepage": "https://kubeflow.org"
+    "homepage": "https://kubeflow.org",
+    "language": null,
+    "default_branch": "master",
+    "stable_tag": "redirect",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kubernetes",
@@ -221,7 +356,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kubernetes/kubernetes",
-    "homepage": "https://kubernetes.io/"
+    "homepage": "https://kubernetes.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.37.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kyverno",
@@ -229,7 +369,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/kyverno/kyverno",
-    "homepage": "https://kyverno.io/"
+    "homepage": "https://kyverno.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.19.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Linkerd",
@@ -237,7 +382,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Mesh",
     "repository": "https://github.com/linkerd/linkerd2",
-    "homepage": "https://linkerd.io/"
+    "homepage": "https://linkerd.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "edge-26.9.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Open Policy Agent (OPA)",
@@ -245,7 +395,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/open-policy-agent/opa",
-    "homepage": "https://www.openpolicyagent.org/"
+    "homepage": "https://www.openpolicyagent.org/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.20.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenTelemetry",
@@ -253,7 +408,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/open-telemetry/community",
-    "homepage": "https://opentelemetry.io/"
+    "homepage": "https://opentelemetry.io/",
+    "language": "Python",
+    "default_branch": "main",
+    "stable_tag": null,
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Prometheus",
@@ -261,7 +421,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/prometheus/prometheus",
-    "homepage": "https://prometheus.io/"
+    "homepage": "https://prometheus.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v3.14.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Rook",
@@ -269,7 +434,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/rook/rook",
-    "homepage": "https://rook.io/"
+    "homepage": "https://rook.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.20.7",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SPIFFE",
@@ -277,7 +447,12 @@
     "category": "Provisioning",
     "subcategory": "Key Management",
     "repository": "https://github.com/spiffe/spiffe",
-    "homepage": "https://spiffe.io/"
+    "homepage": "https://spiffe.io/",
+    "language": "Shell",
+    "default_branch": "main",
+    "stable_tag": null,
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SPIRE",
@@ -285,7 +460,12 @@
     "category": "Provisioning",
     "subcategory": "Key Management",
     "repository": "https://github.com/spiffe/spire",
-    "homepage": "https://spiffe.io/spire/"
+    "homepage": "https://spiffe.io/spire/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.15.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "The Update Framework (TUF)",
@@ -293,7 +473,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/theupdateframework/python-tuf",
-    "homepage": "https://theupdateframework.github.io/"
+    "homepage": "https://theupdateframework.github.io/",
+    "language": "Python",
+    "default_branch": "develop",
+    "stable_tag": "v7.0.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "TiKV",
@@ -301,7 +486,12 @@
     "category": "App Definition and Development",
     "subcategory": "Database",
     "repository": "https://github.com/tikv/tikv",
-    "homepage": "https://tikv.org"
+    "homepage": "https://tikv.org",
+    "language": "Rust",
+    "default_branch": "master",
+    "stable_tag": "v7.5.8",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Vitess",
@@ -309,7 +499,12 @@
     "category": "App Definition and Development",
     "subcategory": "Database",
     "repository": "https://github.com/vitessio/vitess",
-    "homepage": "https://vitess.io/"
+    "homepage": "https://vitess.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v24.0.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Artifact Hub",
@@ -317,7 +512,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/artifacthub/hub",
-    "homepage": "https://artifacthub.io"
+    "homepage": "https://artifacthub.io",
+    "language": "TypeScript",
+    "default_branch": "master",
+    "stable_tag": "v1.23.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Backstage",
@@ -325,7 +525,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/backstage/backstage",
-    "homepage": "https://backstage.io/"
+    "homepage": "https://backstage.io/",
+    "language": "TypeScript",
+    "default_branch": "master",
+    "stable_tag": "v1.55.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Chaos Mesh",
@@ -333,7 +538,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Chaos Engineering",
     "repository": "https://github.com/chaos-mesh/chaos-mesh",
-    "homepage": "https://chaos-mesh.org/"
+    "homepage": "https://chaos-mesh.org/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v2.8.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cloud Custodian",
@@ -341,7 +551,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/cloud-custodian/cloud-custodian",
-    "homepage": "https://cloudcustodian.io/"
+    "homepage": "https://cloudcustodian.io/",
+    "language": "Python",
+    "default_branch": "main",
+    "stable_tag": "0.9.52.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Confidential Containers",
@@ -349,7 +564,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/confidential-containers/confidential-containers",
-    "homepage": "https://confidentialcontainers.org/"
+    "homepage": "https://confidentialcontainers.org/",
+    "language": "D2",
+    "default_branch": "main",
+    "stable_tag": "v0.22.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Container Network Interface (CNI)",
@@ -357,7 +577,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/containernetworking/cni",
-    "homepage": "https://www.cni.dev/"
+    "homepage": "https://www.cni.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.3.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Contour",
@@ -365,7 +590,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Proxy",
     "repository": "https://github.com/projectcontour/contour",
-    "homepage": "https://projectcontour.io"
+    "homepage": "https://projectcontour.io",
+    "language": "HTML",
+    "default_branch": "main",
+    "stable_tag": "v1.33.7",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cortex",
@@ -373,7 +603,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/cortexproject/cortex",
-    "homepage": "https://cortexmetrics.io/"
+    "homepage": "https://cortexmetrics.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.21.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Emissary-Ingress",
@@ -381,7 +616,12 @@
     "category": "Orchestration & Management",
     "subcategory": "API Gateway",
     "repository": "https://github.com/emissary-ingress/emissary",
-    "homepage": "https://emissary-ingress.dev/"
+    "homepage": "https://emissary-ingress.dev/",
+    "language": "Python",
+    "default_branch": "main",
+    "stable_tag": "v4.1.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Flatcar Container Linux",
@@ -389,7 +629,12 @@
     "category": "Platform",
     "subcategory": "Certified Kubernetes - Distribution",
     "repository": "https://github.com/flatcar/Flatcar",
-    "homepage": "https://www.flatcar.org/"
+    "homepage": "https://www.flatcar.org/",
+    "language": null,
+    "default_branch": "main",
+    "stable_tag": null,
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Fluid",
@@ -397,7 +642,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/fluid-cloudnative/fluid",
-    "homepage": "https://fluid-cloudnative.github.io/"
+    "homepage": "https://fluid-cloudnative.github.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.0.8",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "gRPC",
@@ -405,7 +655,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Remote Procedure Call",
     "repository": "https://github.com/grpc/grpc",
-    "homepage": "https://grpc.io"
+    "homepage": "https://grpc.io",
+    "language": "C++",
+    "default_branch": "master",
+    "stable_tag": "v1.84.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "HAMi",
@@ -413,7 +668,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/Project-HAMi/HAMi",
-    "homepage": "https://project-hami.github.io/HAMi/"
+    "homepage": "https://project-hami.github.io/HAMi/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v2.10.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "k8gb",
@@ -421,7 +681,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Coordination & Service Discovery",
     "repository": "https://github.com/k8gb-io/k8gb",
-    "homepage": "https://www.k8gb.io"
+    "homepage": "https://www.k8gb.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.0.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Keycloak",
@@ -429,7 +694,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/keycloak/keycloak",
-    "homepage": "https://www.keycloak.org/"
+    "homepage": "https://www.keycloak.org/",
+    "language": "Java",
+    "default_branch": "main",
+    "stable_tag": "26.7.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KServe",
@@ -437,7 +707,12 @@
     "category": "Inference",
     "subcategory": "Framework",
     "repository": "https://github.com/kserve/kserve",
-    "homepage": "https://kserve.github.io/website/"
+    "homepage": "https://kserve.github.io/website/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v0.20.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kubescape",
@@ -445,7 +720,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/kubescape/kubescape",
-    "homepage": "https://kubescape.io/"
+    "homepage": "https://kubescape.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v4.0.14",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeVela",
@@ -453,7 +733,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/kubevela/kubevela",
-    "homepage": "https://kubevela.io"
+    "homepage": "https://kubevela.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.11.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeVirt",
@@ -461,7 +746,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/kubevirt/kubevirt",
-    "homepage": "https://kubevirt.io/"
+    "homepage": "https://kubevirt.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.9.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Lima",
@@ -469,7 +759,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/lima-vm/lima",
-    "homepage": "https://github.com/lima-vm/lima"
+    "homepage": "https://github.com/lima-vm/lima",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v2.2.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Litmus",
@@ -477,7 +772,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Chaos Engineering",
     "repository": "https://github.com/litmuschaos/litmus",
-    "homepage": "https://litmuschaos.io/"
+    "homepage": "https://litmuschaos.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "3.32.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Longhorn",
@@ -485,7 +785,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/longhorn/longhorn",
-    "homepage": "https://longhorn.io/"
+    "homepage": "https://longhorn.io/",
+    "language": "Shell",
+    "default_branch": "master",
+    "stable_tag": "v1.12.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Meshery",
@@ -493,7 +798,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/meshery/meshery",
-    "homepage": "https://meshery.io"
+    "homepage": "https://meshery.io",
+    "language": "TypeScript",
+    "default_branch": "master",
+    "stable_tag": "v1.0.70",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "metal3-io",
@@ -501,7 +811,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/metal3-io/baremetal-operator",
-    "homepage": "https://metal3.io/"
+    "homepage": "https://metal3.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.14.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Microcks",
@@ -509,7 +824,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/microcks/microcks",
-    "homepage": "https://microcks.io"
+    "homepage": "https://microcks.io",
+    "language": "Java",
+    "default_branch": "master",
+    "stable_tag": "1.15.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "NATS",
@@ -517,7 +837,12 @@
     "category": "App Definition and Development",
     "subcategory": "Streaming & Messaging",
     "repository": "https://github.com/nats-io/nats-server",
-    "homepage": "https://nats.io/"
+    "homepage": "https://nats.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.15.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Notary Project",
@@ -525,7 +850,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/notaryproject/notation",
-    "homepage": "https://notaryproject.dev/"
+    "homepage": "https://notaryproject.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.3.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenCost",
@@ -533,7 +863,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Continuous Optimization",
     "repository": "https://github.com/opencost/opencost",
-    "homepage": "https://www.opencost.io/"
+    "homepage": "https://www.opencost.io/",
+    "language": "Go",
+    "default_branch": "develop",
+    "stable_tag": "v1.121.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenFeature",
@@ -541,7 +876,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Feature Flagging",
     "repository": "https://github.com/open-feature/spec",
-    "homepage": "https://openfeature.dev/"
+    "homepage": "https://openfeature.dev/",
+    "language": "Python",
+    "default_branch": "main",
+    "stable_tag": "v0.9.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenFGA",
@@ -549,7 +889,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/openfga/openfga",
-    "homepage": "https://openfga.dev"
+    "homepage": "https://openfga.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.20.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenKruise",
@@ -557,7 +902,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/openkruise/kruise",
-    "homepage": "https://openkruise.io/"
+    "homepage": "https://openkruise.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.8.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenYurt",
@@ -565,7 +915,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/openyurtio/openyurt",
-    "homepage": "https://openyurt.io/"
+    "homepage": "https://openyurt.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.7.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Operator Framework",
@@ -573,7 +928,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/operator-framework/operator-sdk",
-    "homepage": "https://operatorframework.io/"
+    "homepage": "https://operatorframework.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.42.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Strimzi",
@@ -581,7 +941,12 @@
     "category": "App Definition and Development",
     "subcategory": "Streaming & Messaging",
     "repository": "https://github.com/strimzi/strimzi-kafka-operator",
-    "homepage": "https://strimzi.io/"
+    "homepage": "https://strimzi.io/",
+    "language": "Java",
+    "default_branch": "main",
+    "stable_tag": "1.2.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Tekton",
@@ -589,7 +954,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/tektoncd/pipeline",
-    "homepage": "https://tekton.dev"
+    "homepage": "https://tekton.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.16.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Thanos",
@@ -597,7 +967,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/thanos-io/thanos",
-    "homepage": "https://thanos.io/"
+    "homepage": "https://thanos.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.42.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Volcano",
@@ -605,7 +980,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/volcano-sh/volcano",
-    "homepage": "https://volcano.sh/"
+    "homepage": "https://volcano.sh/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.15.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "wasmCloud",
@@ -613,7 +993,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/wasmCloud/wasmCloud",
-    "homepage": "https://wasmcloud.com"
+    "homepage": "https://wasmcloud.com",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v2.9.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Aeraki Mesh",
@@ -621,7 +1006,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Mesh",
     "repository": "https://github.com/aeraki-mesh/aeraki",
-    "homepage": "https://www.aeraki.net/"
+    "homepage": "https://www.aeraki.net/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "1.4.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Agones",
@@ -629,7 +1019,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/agones-dev/agones",
-    "homepage": "https://agones.dev/site/"
+    "homepage": "https://agones.dev/site/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.60.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Akri",
@@ -637,7 +1032,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/project-akri/akri",
-    "homepage": "https://docs.akri.sh"
+    "homepage": "https://docs.akri.sh",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v0.14.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Antrea",
@@ -645,7 +1045,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/antrea-io/antrea",
-    "homepage": "https://antrea.io/"
+    "homepage": "https://antrea.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.7.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Apicurio Registry",
@@ -653,7 +1058,12 @@
     "category": "App Definition and Development",
     "subcategory": "Streaming & Messaging",
     "repository": "https://github.com/Apicurio/apicurio-registry",
-    "homepage": "https://www.apicur.io"
+    "homepage": "https://www.apicur.io",
+    "language": "Java",
+    "default_branch": "main",
+    "stable_tag": "3.3.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Armada",
@@ -661,7 +1071,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/armadaproject/armada",
-    "homepage": "https://armadaproject.io/"
+    "homepage": "https://armadaproject.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v0.22.8",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Athenz",
@@ -669,7 +1084,12 @@
     "category": "Provisioning",
     "subcategory": "Key Management",
     "repository": "https://github.com/AthenZ/athenz",
-    "homepage": "https://www.athenz.io"
+    "homepage": "https://www.athenz.io",
+    "language": "Java",
+    "default_branch": "master",
+    "stable_tag": "v1.12.48",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Atlantis",
@@ -677,7 +1097,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/runatlantis/atlantis",
-    "homepage": "https://www.runatlantis.io/"
+    "homepage": "https://www.runatlantis.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.47.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Bank-Vaults",
@@ -685,7 +1110,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/bank-vaults/bank-vaults",
-    "homepage": "https://bank-vaults.dev/"
+    "homepage": "https://bank-vaults.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.33.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "BFE",
@@ -693,7 +1123,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Proxy",
     "repository": "https://github.com/bfenetworks/bfe",
-    "homepage": "https://www.bfe-networks.net"
+    "homepage": "https://www.bfe-networks.net",
+    "language": "Go",
+    "default_branch": "develop",
+    "stable_tag": "v1.8.7",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "bootc",
@@ -701,7 +1136,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/bootc-dev/bootc",
-    "homepage": "https://bootc-dev.github.io"
+    "homepage": "https://bootc-dev.github.io",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v1.16.13",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "bpfman",
@@ -709,7 +1149,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/bpfman/bpfman",
-    "homepage": "https://bpfman.io/"
+    "homepage": "https://bpfman.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.6.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cadence Workflow",
@@ -717,7 +1162,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/cadence-workflow/cadence",
-    "homepage": "https://cadenceworkflow.io/"
+    "homepage": "https://cadenceworkflow.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.4.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Capsule",
@@ -725,7 +1175,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/projectcapsule/capsule",
-    "homepage": "https://capsule.clastix.io"
+    "homepage": "https://capsule.clastix.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.14.6",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Carina",
@@ -733,7 +1188,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/carina-io/carina",
-    "homepage": "https://carina-io.github.io/"
+    "homepage": "https://carina-io.github.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.14.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cartography",
@@ -741,7 +1201,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/cartography-cncf/cartography",
-    "homepage": "https://cartography.dev"
+    "homepage": "https://cartography.dev",
+    "language": "Python",
+    "default_branch": "master",
+    "stable_tag": "0.141.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Carvel",
@@ -749,7 +1214,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/carvel-dev/ytt",
-    "homepage": "https://carvel.dev"
+    "homepage": "https://carvel.dev",
+    "language": "Go",
+    "default_branch": "develop",
+    "stable_tag": "v0.55.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CDK for Kubernetes (CDK8s)",
@@ -757,7 +1227,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/cdk8s-team/cdk8s",
-    "homepage": "https://cdk8s.io/"
+    "homepage": "https://cdk8s.io/",
+    "language": "JavaScript",
+    "default_branch": "master",
+    "stable_tag": "redirect",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cedar",
@@ -765,7 +1240,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/cedar-policy/cedar",
-    "homepage": "https://cedarpolicy.com"
+    "homepage": "https://cedarpolicy.com",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "cedar-policy-cli-v4.13.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Chaosblade",
@@ -773,7 +1253,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Chaos Engineering",
     "repository": "https://github.com/chaosblade-io/chaosblade",
-    "homepage": "https://chaosblade.io/"
+    "homepage": "https://chaosblade.io/",
+    "language": "Python",
+    "default_branch": "master",
+    "stable_tag": "blade-ai-v0.7.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CloudNativePG",
@@ -781,7 +1266,12 @@
     "category": "App Definition and Development",
     "subcategory": "Database",
     "repository": "https://github.com/cloudnative-pg/cloudnative-pg",
-    "homepage": "https://www.cloudnative-pg.io/"
+    "homepage": "https://www.cloudnative-pg.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.30.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Clusternet",
@@ -789,7 +1279,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/clusternet/clusternet",
-    "homepage": "https://clusternet.io"
+    "homepage": "https://clusternet.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.0.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Clusterpedia",
@@ -797,15 +1292,25 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/clusterpedia-io/clusterpedia",
-    "homepage": "https://clusterpedia.io"
+    "homepage": "https://clusterpedia.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.9.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "CoHDI",
     "maturity": "sandbox",
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
-    "repository": "https://github.com/CoHDI",
-    "homepage": "https://github.com/CoHDI"
+    "repository": "https://github.com/CoHDI/composable-resource-operator",
+    "homepage": "https://github.com/CoHDI",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.2.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "composefs",
@@ -813,7 +1318,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/containers/composefs",
-    "homepage": "https://github.com/containers/composefs"
+    "homepage": "https://github.com/containers/composefs",
+    "language": "C",
+    "default_branch": "main",
+    "stable_tag": "v1.0.8",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Connect RPC",
@@ -821,7 +1331,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Remote Procedure Call",
     "repository": "https://github.com/connectrpc/connect-go",
-    "homepage": "https://connectrpc.com/"
+    "homepage": "https://connectrpc.com/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.21.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "container2wasm",
@@ -829,7 +1344,12 @@
     "category": "Wasm",
     "subcategory": "Orchestration & Management",
     "repository": "https://github.com/container2wasm/container2wasm",
-    "homepage": "https://github.com/container2wasm/container2wasm"
+    "homepage": "https://github.com/container2wasm/container2wasm",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.8.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "ContainerSSH",
@@ -837,7 +1357,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/containerssh/containerssh",
-    "homepage": "https://containerssh.io"
+    "homepage": "https://containerssh.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.6.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Copa",
@@ -845,7 +1370,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/project-copacetic/copacetic",
-    "homepage": "https://project-copacetic.github.io/copacetic/"
+    "homepage": "https://project-copacetic.github.io/copacetic/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.15.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Cozystack",
@@ -853,7 +1383,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/cozystack/cozystack",
-    "homepage": "https://cozystack.io"
+    "homepage": "https://cozystack.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.6.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Curvine",
@@ -861,7 +1396,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/CurvineIO/curvine",
-    "homepage": "https://curvineio.github.io/"
+    "homepage": "https://curvineio.github.io/",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v0.5.2-alpha",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Dalec",
@@ -869,7 +1409,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/project-dalec/dalec",
-    "homepage": "https://project-dalec.github.io/dalec/"
+    "homepage": "https://project-dalec.github.io/dalec/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.22.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Devfile",
@@ -877,7 +1422,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/devfile/api",
-    "homepage": "https://devfile.io"
+    "homepage": "https://devfile.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.3.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "DevSpace",
@@ -885,7 +1435,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/devspace-sh/devspace",
-    "homepage": "https://devspace.sh"
+    "homepage": "https://devspace.sh",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v6.3.21",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Dex",
@@ -893,7 +1448,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/dexidp/dex",
-    "homepage": "https://dexidp.io/"
+    "homepage": "https://dexidp.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v2.45.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Distribution",
@@ -901,7 +1461,12 @@
     "category": "Provisioning",
     "subcategory": "Container Registry",
     "repository": "https://github.com/distribution/distribution",
-    "homepage": "https://github.com/distribution/distribution"
+    "homepage": "https://github.com/distribution/distribution",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v3.1.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Drasi",
@@ -909,7 +1474,12 @@
     "category": "App Definition and Development",
     "subcategory": "Streaming & Messaging",
     "repository": "https://github.com/drasi-project/drasi-platform",
-    "homepage": "https://drasi.io"
+    "homepage": "https://drasi.io",
+    "language": "C#",
+    "default_branch": "main",
+    "stable_tag": "v0.1.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Easegress",
@@ -917,7 +1487,12 @@
     "category": "Orchestration & Management",
     "subcategory": "API Gateway",
     "repository": "https://github.com/easegress-io/easegress",
-    "homepage": "https://megaease.cn/easegress/"
+    "homepage": "https://megaease.cn/easegress/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.11.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Eraser",
@@ -925,7 +1500,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/eraser-dev/eraser",
-    "homepage": "https://eraser-dev.github.io/eraser/"
+    "homepage": "https://eraser-dev.github.io/eraser/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.4.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "external-secrets",
@@ -933,7 +1513,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/external-secrets/external-secrets",
-    "homepage": "https://external-secrets.io/"
+    "homepage": "https://external-secrets.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.11.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Headlamp",
@@ -941,7 +1526,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/kubernetes-sigs/headlamp",
-    "homepage": "https://headlamp.dev"
+    "homepage": "https://headlamp.dev",
+    "language": "TypeScript",
+    "default_branch": "main",
+    "stable_tag": "v0.45.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Higress",
@@ -949,7 +1539,12 @@
     "category": "Orchestration & Management",
     "subcategory": "API Gateway",
     "repository": "https://github.com/higress-group/higress",
-    "homepage": "https://higress.io"
+    "homepage": "https://higress.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.2.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "HolmesGPT",
@@ -957,7 +1552,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/HolmesGPT/holmesgpt",
-    "homepage": "https://holmesgpt.dev"
+    "homepage": "https://holmesgpt.dev",
+    "language": "Python",
+    "default_branch": "master",
+    "stable_tag": "0.42.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "HwameiStor",
@@ -965,7 +1565,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/hwameistor/hwameistor",
-    "homepage": "https://hwameistor.io/"
+    "homepage": "https://hwameistor.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.1.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Hyperlight",
@@ -973,7 +1578,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/hyperlight-dev/hyperlight",
-    "homepage": "https://github.com/hyperlight-dev/hyperlight"
+    "homepage": "https://github.com/hyperlight-dev/hyperlight",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v0.17.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Inclavare Containers",
@@ -981,7 +1591,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/inclavare-containers/inclavare-containers",
-    "homepage": "https://github.com/inclavare-containers/"
+    "homepage": "https://github.com/inclavare-containers/",
+    "language": "C",
+    "default_branch": "master",
+    "stable_tag": "v0.6.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Inspektor Gadget",
@@ -989,7 +1604,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/inspektor-gadget/inspektor-gadget",
-    "homepage": "https://inspektor-gadget.io/"
+    "homepage": "https://inspektor-gadget.io/",
+    "language": "C",
+    "default_branch": "main",
+    "stable_tag": "v0.56.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Interlink",
@@ -997,7 +1617,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/interlink-hq/interLink",
-    "homepage": "https://interlink-project.dev"
+    "homepage": "https://interlink-project.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "0.6.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "k0s",
@@ -1005,7 +1630,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/k0sproject/k0s",
-    "homepage": "https://k0sproject.io/"
+    "homepage": "https://k0sproject.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.36.4+k0s.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "k3s",
@@ -1013,7 +1643,12 @@
     "category": "Platform",
     "subcategory": "Certified Kubernetes - Distribution",
     "repository": "https://github.com/k3s-io/k3s",
-    "homepage": "https://k3s.io"
+    "homepage": "https://k3s.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.37.0+k3s1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "K8sGPT",
@@ -1021,7 +1656,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/k8sgpt-ai/k8sgpt",
-    "homepage": "https://www.k8sgpt.ai"
+    "homepage": "https://www.k8sgpt.ai",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.4.39",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "K8up",
@@ -1029,7 +1669,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/k8up-io/k8up",
-    "homepage": "https://k8up.io/"
+    "homepage": "https://k8up.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "k8up-4.10.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "kagent",
@@ -1037,7 +1682,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kagent-dev/kagent",
-    "homepage": "https://kagent.dev/"
+    "homepage": "https://kagent.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.0.0-alpha1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KAI Scheduler",
@@ -1045,7 +1695,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kai-scheduler/KAI-Scheduler",
-    "homepage": "https://github.com/kai-scheduler/KAI-Scheduler"
+    "homepage": "https://github.com/kai-scheduler/KAI-Scheduler",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.17.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kairos",
@@ -1053,7 +1708,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kairos-io/kairos",
-    "homepage": "https://kairos.io"
+    "homepage": "https://kairos.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v4.3.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KAITO",
@@ -1061,7 +1721,12 @@
     "category": "Inference",
     "subcategory": "Framework",
     "repository": "https://github.com/kaito-project/kaito",
-    "homepage": "https://kaito-project.netlify.app/"
+    "homepage": "https://kaito-project.netlify.app/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.12.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kanister",
@@ -1069,7 +1734,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/kanisterio/kanister",
-    "homepage": "https://kanister.io"
+    "homepage": "https://kanister.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "0.119.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "kbind",
@@ -1077,7 +1747,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kbind-dev/kbind",
-    "homepage": "https://kbind.dev/"
+    "homepage": "https://kbind.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.8.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KCL",
@@ -1085,7 +1760,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kcl-lang/kcl",
-    "homepage": "https://kcl-lang.io/"
+    "homepage": "https://kcl-lang.io/",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v0.11.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "kcp",
@@ -1093,7 +1773,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kcp-dev/kcp",
-    "homepage": "https://kcp.io"
+    "homepage": "https://kcp.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.33.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kepler",
@@ -1101,7 +1786,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/sustainable-computing-io/kepler",
-    "homepage": "https://sustainable-computing.io/"
+    "homepage": "https://sustainable-computing.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.11.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Keylime",
@@ -1109,7 +1799,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/keylime/keylime",
-    "homepage": "https://keylime.dev/"
+    "homepage": "https://keylime.dev/",
+    "language": "Python",
+    "default_branch": "master",
+    "stable_tag": "v7.14.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kgateway",
@@ -1117,7 +1812,12 @@
     "category": "Orchestration & Management",
     "subcategory": "API Gateway",
     "repository": "https://github.com/kgateway-dev/kgateway",
-    "homepage": "https://kgateway.dev/"
+    "homepage": "https://kgateway.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.4.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KitOps",
@@ -1125,7 +1825,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kitops-ml/kitops",
-    "homepage": "https://kitops.org/"
+    "homepage": "https://kitops.org/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.15.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kmesh",
@@ -1133,7 +1838,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Mesh",
     "repository": "https://github.com/kmesh-net/kmesh",
-    "homepage": "https://kmesh.net"
+    "homepage": "https://kmesh.net",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.2.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "ko",
@@ -1141,7 +1851,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/ko-build/ko",
-    "homepage": "https://ko.build/"
+    "homepage": "https://ko.build/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.19.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Konveyor",
@@ -1149,7 +1864,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/konveyor/operator",
-    "homepage": "https://www.konveyor.io/"
+    "homepage": "https://www.konveyor.io/",
+    "language": "Jinja",
+    "default_branch": "main",
+    "stable_tag": "v0.11.0-alpha.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Koordinator",
@@ -1157,7 +1877,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/koordinator-sh/koordinator",
-    "homepage": "https://koordinator.sh"
+    "homepage": "https://koordinator.sh",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.8.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "kpt",
@@ -1165,7 +1890,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kptdev/kpt",
-    "homepage": "https://kpt.dev"
+    "homepage": "https://kpt.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.0.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Krkn",
@@ -1173,7 +1903,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Chaos Engineering",
     "repository": "https://github.com/krkn-chaos/krkn",
-    "homepage": "https://krkn-chaos.github.io/krkn"
+    "homepage": "https://krkn-chaos.github.io/krkn",
+    "language": "Python",
+    "default_branch": "main",
+    "stable_tag": "v5.2.9",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kuadrant",
@@ -1181,7 +1916,12 @@
     "category": "Orchestration & Management",
     "subcategory": "API Gateway",
     "repository": "https://github.com/kuadrant/kuadrant-operator",
-    "homepage": "https://kuadrant.io"
+    "homepage": "https://kuadrant.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.5.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kuasar",
@@ -1189,7 +1929,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/kuasar-io/kuasar",
-    "homepage": "https://kuasar.io/"
+    "homepage": "https://kuasar.io/",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v1.1.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kube-burner",
@@ -1197,7 +1942,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/kube-burner/kube-burner",
-    "homepage": "https://kube-burner.github.io/kube-burner/"
+    "homepage": "https://kube-burner.github.io/kube-burner/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.8.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kube-OVN",
@@ -1205,7 +1955,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/kubeovn/kube-ovn",
-    "homepage": "https://kube-ovn.io"
+    "homepage": "https://kube-ovn.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.16.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "kube-rs",
@@ -1213,7 +1968,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kube-rs/kube",
-    "homepage": "https://kube.rs"
+    "homepage": "https://kube.rs",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "4.2.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "kube-vip",
@@ -1221,7 +1981,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/kube-vip/kube-vip",
-    "homepage": "https://kube-vip.io"
+    "homepage": "https://kube-vip.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.2.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kubean",
@@ -1229,7 +1994,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/kubean-io/kubean",
-    "homepage": "https://kubean-io.github.io/kubean/"
+    "homepage": "https://kubean-io.github.io/kubean/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.38.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeArmor",
@@ -1237,7 +2007,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/kubearmor/kubearmor",
-    "homepage": "https://kubearmor.io/"
+    "homepage": "https://kubearmor.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.7.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeClipper",
@@ -1245,7 +2020,12 @@
     "category": "Platform",
     "subcategory": "Certified Kubernetes - Installer",
     "repository": "https://github.com/kubeclipper/kubeclipper",
-    "homepage": "https://www.kubeclipper.io/"
+    "homepage": "https://www.kubeclipper.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.7.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeElasti",
@@ -1253,7 +2033,12 @@
     "category": "Serverless",
     "subcategory": "Installable Platform",
     "repository": "https://github.com/KubeElasti/KubeElasti",
-    "homepage": "https://kubeelasti.dev"
+    "homepage": "https://kubeelasti.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.1.30",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeFleet",
@@ -1261,7 +2046,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kubefleet-dev/kubefleet",
-    "homepage": "https://kubefleet.dev/"
+    "homepage": "https://kubefleet.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.3.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kuberhealthy",
@@ -1269,7 +2059,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/kuberhealthy/kuberhealthy",
-    "homepage": "https://github.com/kuberhealthy/kuberhealthy"
+    "homepage": "https://github.com/kuberhealthy/kuberhealthy",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v3.0.16",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeSlice",
@@ -1277,7 +2072,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kubeslice/kubeslice",
-    "homepage": "https://kubeslice.io"
+    "homepage": "https://kubeslice.io",
+    "language": "Mustache",
+    "default_branch": "master",
+    "stable_tag": "kubeslice-worker-1.5.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KubeStellar",
@@ -1285,7 +2085,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kubestellar/kubestellar",
-    "homepage": "https://kubestellar.io"
+    "homepage": "https://kubestellar.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.30.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kubewarden",
@@ -1293,7 +2098,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/kubewarden/kubewarden-controller",
-    "homepage": "https://www.kubewarden.io"
+    "homepage": "https://www.kubewarden.io",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v1.37.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KUDO",
@@ -1301,7 +2111,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/kudobuilder/kudo",
-    "homepage": "https://kudo.dev/"
+    "homepage": "https://kudo.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.19.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kuma",
@@ -1309,7 +2124,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Mesh",
     "repository": "https://github.com/kumahq/kuma",
-    "homepage": "https://kuma.io"
+    "homepage": "https://kuma.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v2.14.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Kured",
@@ -1317,7 +2137,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/kubereboot/kured",
-    "homepage": "https://kured.dev"
+    "homepage": "https://kured.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "1.23.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "KusionStack",
@@ -1325,7 +2150,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/KusionStack/kusion",
-    "homepage": "https://kusionstack.io/"
+    "homepage": "https://kusionstack.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.15.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "llm-d",
@@ -1333,7 +2163,12 @@
     "category": "Inference",
     "subcategory": "Framework",
     "repository": "https://github.com/llm-d/llm-d",
-    "homepage": "https://llm-d.ai/"
+    "homepage": "https://llm-d.ai/",
+    "language": "Shell",
+    "default_branch": "main",
+    "stable_tag": "v0.9.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Logging Operator (Kube Logging)",
@@ -1341,7 +2176,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/kube-logging/logging-operator",
-    "homepage": "https://kube-logging.dev/"
+    "homepage": "https://kube-logging.dev/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "6.9.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "LoxiLB",
@@ -1349,7 +2189,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Proxy",
     "repository": "https://github.com/loxilb-io/loxilb",
-    "homepage": "https://loxilb.io"
+    "homepage": "https://loxilb.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.9.8.8",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "MetalLB",
@@ -1357,7 +2202,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Proxy",
     "repository": "https://github.com/metallb/metallb",
-    "homepage": "https://metallb.universe.tf"
+    "homepage": "https://metallb.universe.tf",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "metallb-chart-0.16.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "ModelPack",
@@ -1365,7 +2215,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/modelpack/model-spec",
-    "homepage": "https://github.com/modelpack/model-spec"
+    "homepage": "https://github.com/modelpack/model-spec",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.0.7",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Network Service Mesh",
@@ -1373,7 +2228,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/networkservicemesh/api",
-    "homepage": "https://networkservicemesh.io/"
+    "homepage": "https://networkservicemesh.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.19.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "NMstate",
@@ -1381,7 +2241,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/nmstate/nmstate",
-    "homepage": "https://nmstate.io/"
+    "homepage": "https://nmstate.io/",
+    "language": "Rust",
+    "default_branch": "base",
+    "stable_tag": "v2.2.62",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OAuth2 Proxy",
@@ -1389,7 +2254,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/oauth2-proxy/oauth2-proxy",
-    "homepage": "https://oauth2-proxy.github.io/oauth2-proxy/"
+    "homepage": "https://oauth2-proxy.github.io/oauth2-proxy/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v7.15.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Open Cluster Management",
@@ -1397,7 +2267,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/open-cluster-management-io/ocm",
-    "homepage": "https://open-cluster-management.io/"
+    "homepage": "https://open-cluster-management.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.3.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Open Policy Containers",
@@ -1405,7 +2280,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/opcr-io/policy",
-    "homepage": "https://openpolicycontainers.com"
+    "homepage": "https://openpolicycontainers.com",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.4.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Open Workflow Specification",
@@ -1413,7 +2293,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/open-workflow-specification/specification",
-    "homepage": "https://open-workflow-specification.org"
+    "homepage": "https://open-workflow-specification.org",
+    "language": "Gherkin",
+    "default_branch": "main",
+    "stable_tag": "v1.0.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenChoreo",
@@ -1421,7 +2306,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/openchoreo/openchoreo",
-    "homepage": "https://openchoreo.dev"
+    "homepage": "https://openchoreo.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.2.6",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenEBS",
@@ -1429,7 +2319,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/openebs/openebs",
-    "homepage": "https://www.openebs.io/"
+    "homepage": "https://www.openebs.io/",
+    "language": null,
+    "default_branch": "develop",
+    "stable_tag": "v4.6.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenEverest",
@@ -1437,7 +2332,12 @@
     "category": "App Definition and Development",
     "subcategory": "Database",
     "repository": "https://github.com/openeverest/openeverest",
-    "homepage": "https://openeverest.io/"
+    "homepage": "https://openeverest.io/",
+    "language": "TypeScript",
+    "default_branch": "main",
+    "stable_tag": "v1.16.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenFunction",
@@ -1445,7 +2345,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/OpenFunction/OpenFunction",
-    "homepage": "https://openfunction.dev"
+    "homepage": "https://openfunction.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.2.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "openGemini",
@@ -1453,7 +2358,12 @@
     "category": "App Definition and Development",
     "subcategory": "Database",
     "repository": "https://github.com/openGemini/openGemini",
-    "homepage": "https://www.opengemini.org"
+    "homepage": "https://www.opengemini.org",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.5.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenGitOps",
@@ -1461,7 +2371,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/open-gitops/project",
-    "homepage": "https://opengitops.dev/"
+    "homepage": "https://opengitops.dev/",
+    "language": null,
+    "default_branch": "main",
+    "stable_tag": null,
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OpenTofu",
@@ -1469,7 +2384,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/opentofu/opentofu",
-    "homepage": "https://opentofu.org/"
+    "homepage": "https://opentofu.org/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.12.6",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "ORAS",
@@ -1477,7 +2397,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/oras-project/oras",
-    "homepage": "https://oras.land/"
+    "homepage": "https://oras.land/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.3.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OSCAL-COMPASS",
@@ -1485,7 +2410,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/oscal-compass/compliance-trestle",
-    "homepage": "https://oscal-compass.dev/"
+    "homepage": "https://oscal-compass.dev/",
+    "language": "Python",
+    "default_branch": "develop",
+    "stable_tag": "v5.1.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "OVN-Kubernetes",
@@ -1493,7 +2423,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/ovn-kubernetes/ovn-kubernetes",
-    "homepage": "https://ovn-kubernetes.io/"
+    "homepage": "https://ovn-kubernetes.io/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v1.4.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Oxia",
@@ -1501,7 +2436,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Coordination & Service Discovery",
     "repository": "https://github.com/oxia-db/oxia",
-    "homepage": "https://oxia-db.github.io"
+    "homepage": "https://oxia-db.github.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.16.10",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Paralus",
@@ -1509,7 +2449,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/paralus/paralus",
-    "homepage": "https://www.paralus.io/"
+    "homepage": "https://www.paralus.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.3.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Parsec",
@@ -1517,7 +2462,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/parallaxsecond/parsec",
-    "homepage": "https://parsec.community/"
+    "homepage": "https://parsec.community/",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "1.5.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Perses",
@@ -1525,7 +2475,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/perses/perses",
-    "homepage": "https://perses.dev"
+    "homepage": "https://perses.dev",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.54.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "PipeCD",
@@ -1533,7 +2488,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/pipe-cd/pipecd",
-    "homepage": "https://pipecd.dev/"
+    "homepage": "https://pipecd.dev/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "v0.58.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Piraeus Datastore",
@@ -1541,7 +2501,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/piraeusdatastore/piraeus-operator",
-    "homepage": "https://piraeus.io/"
+    "homepage": "https://piraeus.io/",
+    "language": "Go",
+    "default_branch": "v2",
+    "stable_tag": "v2.12.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Pixie",
@@ -1549,7 +2514,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/pixie-io/pixie",
-    "homepage": "https://px.dev/"
+    "homepage": "https://px.dev/",
+    "language": "C++",
+    "default_branch": "main",
+    "stable_tag": "release/cloud/v0.1.9",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Podman Container Tools",
@@ -1557,7 +2527,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/podman-container-tools/podman",
-    "homepage": "https://podman.io/"
+    "homepage": "https://podman.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v6.1.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Podman Desktop",
@@ -1565,7 +2540,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/podman-desktop/podman-desktop",
-    "homepage": "https://podman-desktop.io/"
+    "homepage": "https://podman-desktop.io/",
+    "language": "TypeScript",
+    "default_branch": "main",
+    "stable_tag": "v1.29.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Porter",
@@ -1573,7 +2553,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/getporter/porter",
-    "homepage": "https://porter.sh/"
+    "homepage": "https://porter.sh/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.6.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Radius",
@@ -1581,7 +2566,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/radius-project/radius",
-    "homepage": "https://radapp.io/"
+    "homepage": "https://radapp.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.60.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Ratify",
@@ -1589,7 +2579,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/ratify-project/ratify",
-    "homepage": "https://ratify.dev/"
+    "homepage": "https://ratify.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.4.6",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Runme Notebooks",
@@ -1597,7 +2592,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/runmedev/runme",
-    "homepage": "https://runme.dev/"
+    "homepage": "https://runme.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v3.17.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SchemaHero",
@@ -1605,7 +2605,12 @@
     "category": "App Definition and Development",
     "subcategory": "Database",
     "repository": "https://github.com/schemahero/schemahero",
-    "homepage": "https://schemahero.io"
+    "homepage": "https://schemahero.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.26.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Score",
@@ -1613,7 +2618,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/score-spec/spec",
-    "homepage": "https://score.dev/"
+    "homepage": "https://score.dev/",
+    "language": "Makefile",
+    "default_branch": "main",
+    "stable_tag": "0.4.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Sermant",
@@ -1621,7 +2631,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Service Mesh",
     "repository": "https://github.com/sermant-io/Sermant",
-    "homepage": "https://sermant.io/"
+    "homepage": "https://sermant.io/",
+    "language": "Java",
+    "default_branch": "develop",
+    "stable_tag": "v2.3.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Serverless Devs",
@@ -1629,7 +2644,12 @@
     "category": "Orchestration & Management",
     "subcategory": "Scheduling & Orchestration",
     "repository": "https://github.com/serverless-devs/serverless-devs",
-    "homepage": "https://www.serverless-devs.com/"
+    "homepage": "https://www.serverless-devs.com/",
+    "language": "TypeScript",
+    "default_branch": "master",
+    "stable_tag": "v3.1.10",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Shipwright",
@@ -1637,7 +2657,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/shipwright-io/build",
-    "homepage": "https://shipwright.io"
+    "homepage": "https://shipwright.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.21.4",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SlimFaaS",
@@ -1645,7 +2670,12 @@
     "category": "Serverless",
     "subcategory": "Installable Platform",
     "repository": "https://github.com/SlimPlanet/SlimFaas",
-    "homepage": "https://github.com/SlimPlanet/SlimFaas"
+    "homepage": "https://github.com/SlimPlanet/SlimFaas",
+    "language": "C#",
+    "default_branch": "main",
+    "stable_tag": "0.84.9",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SlimToolkit",
@@ -1653,7 +2683,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/slimtoolkit/slim",
-    "homepage": "https://slimtoolkit.org/"
+    "homepage": "https://slimtoolkit.org/",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": "1.40.11",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SOPS",
@@ -1661,7 +2696,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/getsops/sops",
-    "homepage": "https://github.com/getsops"
+    "homepage": "https://github.com/getsops",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v3.13.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Spiderpool",
@@ -1669,7 +2709,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/spidernet-io/spiderpool",
-    "homepage": "https://spidernet-io.github.io/spiderpool/"
+    "homepage": "https://spidernet-io.github.io/spiderpool/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.2.3",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Spin",
@@ -1677,7 +2722,12 @@
     "category": "Wasm",
     "subcategory": "Application Frameworks",
     "repository": "https://github.com/spinframework/spin",
-    "homepage": "https://spinframework.dev"
+    "homepage": "https://spinframework.dev",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v4.1.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "SpinKube",
@@ -1685,7 +2735,12 @@
     "category": "Wasm",
     "subcategory": "Orchestration & Management",
     "repository": "https://github.com/spinframework/spin-operator",
-    "homepage": "https://www.spinkube.dev/"
+    "homepage": "https://www.spinkube.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.6.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Stacker",
@@ -1693,7 +2748,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/project-stacker/stacker",
-    "homepage": "https://stackerbuild.io"
+    "homepage": "https://stackerbuild.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.2.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Submariner",
@@ -1701,7 +2761,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Network",
     "repository": "https://github.com/submariner-io/submariner",
-    "homepage": "https://submariner.io"
+    "homepage": "https://submariner.io",
+    "language": "Go",
+    "default_branch": "devel",
+    "stable_tag": "v0.24.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Telepresence",
@@ -1709,7 +2774,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/telepresenceio/telepresence",
-    "homepage": "https://www.telepresence.io/"
+    "homepage": "https://www.telepresence.io/",
+    "language": "Go",
+    "default_branch": "release/v2",
+    "stable_tag": "v2.31.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Tinkerbell",
@@ -1717,7 +2787,12 @@
     "category": "Provisioning",
     "subcategory": "Automation & Configuration",
     "repository": "https://github.com/tinkerbell/tinkerbell",
-    "homepage": "https://tinkerbell.org/"
+    "homepage": "https://tinkerbell.org/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.25.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Tokenetes",
@@ -1725,7 +2800,12 @@
     "category": "Provisioning",
     "subcategory": "Security & Compliance",
     "repository": "https://github.com/tokenetes/tokenetes",
-    "homepage": "https://tokenetes.io/"
+    "homepage": "https://tokenetes.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.0.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Tremor",
@@ -1733,7 +2813,12 @@
     "category": "App Definition and Development",
     "subcategory": "Streaming & Messaging",
     "repository": "https://github.com/tremor-rs/tremor-runtime",
-    "homepage": "https://www.tremor.rs/"
+    "homepage": "https://www.tremor.rs/",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v0.13.0-rc.33",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Trickster",
@@ -1741,7 +2826,12 @@
     "category": "Observability and Analysis",
     "subcategory": "Observability",
     "repository": "https://github.com/trickstercache/trickster",
-    "homepage": "https://trickstercache.org"
+    "homepage": "https://trickstercache.org",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.0.5",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "urunc",
@@ -1749,7 +2839,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/urunc-dev/urunc",
-    "homepage": "https://urunc.io/"
+    "homepage": "https://urunc.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v0.8.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Velero",
@@ -1757,7 +2852,12 @@
     "category": "Runtime",
     "subcategory": "Cloud Native Storage",
     "repository": "https://github.com/velero-io/velero",
-    "homepage": "https://velero.io"
+    "homepage": "https://velero.io",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.18.2",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Virtual Kubelet",
@@ -1765,7 +2865,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/virtual-kubelet/virtual-kubelet",
-    "homepage": "https://virtual-kubelet.io/"
+    "homepage": "https://virtual-kubelet.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v1.14.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "Visual Studio Code Kubernetes Tools",
@@ -1773,7 +2878,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/vscode-kubernetes-tools/vscode-kubernetes-tools",
-    "homepage": "https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools"
+    "homepage": "https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools",
+    "language": "TypeScript",
+    "default_branch": "main",
+    "stable_tag": "1.4.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "WasmEdge Runtime",
@@ -1781,7 +2891,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/WasmEdge/WasmEdge",
-    "homepage": "https://wasmedge.org/"
+    "homepage": "https://wasmedge.org/",
+    "language": "C++",
+    "default_branch": "master",
+    "stable_tag": "0.17.1",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "werf",
@@ -1789,7 +2904,12 @@
     "category": "App Definition and Development",
     "subcategory": "Continuous Integration & Delivery",
     "repository": "https://github.com/werf/werf",
-    "homepage": "https://werf.io/"
+    "homepage": "https://werf.io/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.76.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "xRegistry",
@@ -1797,7 +2917,12 @@
     "category": "App Definition and Development",
     "subcategory": "Application Definition & Image Build",
     "repository": "https://github.com/xregistry/server",
-    "homepage": "https://xregistry.io"
+    "homepage": "https://xregistry.io",
+    "language": "Go",
+    "default_branch": "master",
+    "stable_tag": null,
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "youki",
@@ -1805,7 +2930,12 @@
     "category": "Runtime",
     "subcategory": "Container Runtime",
     "repository": "https://github.com/youki-dev/youki",
-    "homepage": "https://youki-dev.github.io/youki/"
+    "homepage": "https://youki-dev.github.io/youki/",
+    "language": "Rust",
+    "default_branch": "main",
+    "stable_tag": "v0.7.0",
+    "archived": false,
+    "metadata_error": null
   },
   {
     "name": "zot",
@@ -1813,6 +2943,11 @@
     "category": "Provisioning",
     "subcategory": "Container Registry",
     "repository": "https://github.com/project-zot/zot",
-    "homepage": "https://zotregistry.dev/"
+    "homepage": "https://zotregistry.dev/",
+    "language": "Go",
+    "default_branch": "main",
+    "stable_tag": "v2.1.21",
+    "archived": false,
+    "metadata_error": null
   }
 ]
