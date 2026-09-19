@@ -1,0 +1,6200 @@
+[
+  {
+    "key": "accumulo",
+    "name": "Apache Accumulo",
+    "pmc": "accumulo",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/accumulo.git"
+    ],
+    "stable_release": "2.1.6",
+    "stable_release_date": "2026-07-17",
+    "homepage": "https://accumulo.apache.org"
+  },
+  {
+    "key": "accumulo-fluo",
+    "name": "Apache Fluo",
+    "pmc": "accumulo",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/accumulo-fluo.git"
+    ],
+    "stable_release": "1.2.0",
+    "stable_release_date": "2018-02-26",
+    "homepage": "https://fluo.apache.org"
+  },
+  {
+    "key": "accumulo-fluo_recipes",
+    "name": "Apache Fluo Recipes",
+    "pmc": "accumulo",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/accumulo-fluo-recipes.git"
+    ],
+    "stable_release": "1.2.0",
+    "stable_release_date": "2018-03-06",
+    "homepage": "https://fluo.apache.org"
+  },
+  {
+    "key": "accumulo-fluo_yarn",
+    "name": "Apache Fluo YARN",
+    "pmc": "accumulo",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/accumulo-fluo-yarn.git"
+    ],
+    "stable_release": "1.0.0",
+    "stable_release_date": "2018-03-06",
+    "homepage": "https://fluo.apache.org"
+  },
+  {
+    "key": "activemq",
+    "name": "Apache ActiveMQ",
+    "pmc": "activemq",
+    "language": [
+      "Java",
+      "C",
+      "C++",
+      "Ruby",
+      "Perl",
+      "Python",
+      "PHP",
+      "C#"
+    ],
+    "category": [
+      "network-server",
+      "network-client"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://activemq.apache.org/"
+  },
+  {
+    "key": "age",
+    "name": "Apache AGE",
+    "pmc": "age",
+    "language": "C",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/age"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://age.apache.org/"
+  },
+  {
+    "key": "airavata",
+    "name": "Apache Airavata",
+    "pmc": "airavata",
+    "language": "Java",
+    "category": [
+      "network-server",
+      "cloud",
+      "big-data"
+    ],
+    "repositories": [
+      "https://git.apache.org/repos/asf/airavata.git"
+    ],
+    "stable_release": "0.11",
+    "stable_release_date": "2014-01-01",
+    "homepage": "http://airavata.apache.org"
+  },
+  {
+    "key": "airflow",
+    "name": "Apache Airflow",
+    "pmc": "airflow",
+    "language": [
+      "Python",
+      "JavaScript"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/airflow.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://airflow.apache.org"
+  },
+  {
+    "key": "allura",
+    "name": "Apache Allura",
+    "pmc": "allura",
+    "language": "Python",
+    "category": [
+      "content"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://allura.apache.org"
+  },
+  {
+    "key": "ambari",
+    "name": "Apache Ambari",
+    "pmc": "ambari",
+    "language": [
+      "Java",
+      "JavaScript",
+      "Python"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/ambari.git"
+    ],
+    "stable_release": "2.7.8",
+    "stable_release_date": "2024-02-01",
+    "homepage": "https://ambari.apache.org"
+  },
+  {
+    "key": "answer",
+    "name": "Apache Answer",
+    "pmc": "answer",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://answer.apache.org"
+  },
+  {
+    "key": "ant",
+    "name": "Apache Ant",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant.git"
+    ],
+    "stable_release": "1.10.18",
+    "stable_release_date": "2026-09-06",
+    "homepage": "http://ant.apache.org"
+  },
+  {
+    "key": "ant-antunit",
+    "name": "Apache AntUnit",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management",
+      "testing"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-antlibs-antunit.git"
+    ],
+    "stable_release": "1.5.0",
+    "stable_release_date": "2026-07-19",
+    "homepage": "http://ant.apache.org/antlibs/antunit/"
+  },
+  {
+    "key": "ant-compress",
+    "name": "Apache Compress Ant Library",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-antlibs-compress.git"
+    ],
+    "stable_release": "1.5",
+    "stable_release_date": "2017-06-13",
+    "homepage": "http://ant.apache.org/antlibs/compress/"
+  },
+  {
+    "key": "ant-cyclonedx",
+    "name": "Apache CycloneDX Ant Library",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-antlibs-cyclonedx.git"
+    ],
+    "stable_release": "0.1",
+    "stable_release_date": "2026-06-03",
+    "homepage": "http://ant.apache.org/antlibs/cyclonedx/"
+  },
+  {
+    "key": "ant-ivy",
+    "name": "Apache Ivy",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-ivy.git"
+    ],
+    "stable_release": "2.6.0",
+    "stable_release_date": "2026-07-15",
+    "homepage": "http://ant.apache.org/ivy/"
+  },
+  {
+    "key": "ant-ivyde",
+    "name": "Apache IvyDE",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-ivyde.git"
+    ],
+    "stable_release": "2.2.0.final",
+    "stable_release_date": "2013-11-22",
+    "homepage": "http://ant.apache.org/ivyde/"
+  },
+  {
+    "key": "ant-props",
+    "name": "Apache Props Ant Library",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-antlibs-props.git"
+    ],
+    "stable_release": "1.0.0",
+    "stable_release_date": "2026-06-27",
+    "homepage": "http://ant.apache.org/antlibs/props/"
+  },
+  {
+    "key": "ant-retired__apache_dotnet",
+    "name": "Retired: Apache .NET Ant Library",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-antlibs-dotnet.git"
+    ],
+    "stable_release": "1.1",
+    "stable_release_date": "2011-02-04",
+    "homepage": "http://ant.apache.org/antlibs/dotnet/"
+  },
+  {
+    "key": "ant-retired__apache_vss",
+    "name": "Retired: Apache VSS Ant Library",
+    "pmc": "ant",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/ant-antlibs-vss.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://ant.apache.org/antlibs/proper.html"
+  },
+  {
+    "key": "apisix",
+    "name": "Apache Apisix",
+    "pmc": "apisix",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://apisix.apache.org"
+  },
+  {
+    "key": "apr-portable_runtime",
+    "name": "Apache Portable Runtime",
+    "pmc": "apr",
+    "language": "C",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/apr/apr/trunk"
+    ],
+    "stable_release": "1.6.5",
+    "stable_release_date": "2026-08-10",
+    "homepage": "https://apr.apache.org/"
+  },
+  {
+    "key": "aries",
+    "name": "Apache Aries",
+    "pmc": "aries",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/aries/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://aries.apache.org/"
+  },
+  {
+    "key": "arrow",
+    "name": "Apache Arrow",
+    "pmc": "arrow",
+    "language": [
+      "C",
+      "C++",
+      "C#",
+      "Go",
+      "Java",
+      "JavaScript",
+      "Julia",
+      "MATLAB",
+      "Python",
+      "R",
+      "Ruby",
+      "Rust"
+    ],
+    "category": [
+      "big-data",
+      "database",
+      "data-engineering",
+      "library",
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "https://github.com/apache/arrow.git"
+    ],
+    "stable_release": "25.0.1",
+    "stable_release_date": "2026-08-10",
+    "homepage": "https://arrow.apache.org"
+  },
+  {
+    "key": "artemis",
+    "name": "Apache Artemis",
+    "pmc": "artemis",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://artemis.apache.org"
+  },
+  {
+    "key": "asterixdb",
+    "name": "Apache Asterixdb",
+    "pmc": "asterixdb",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://asterixdb.apache.org"
+  },
+  {
+    "key": "atlas",
+    "name": "Apache Atlas",
+    "pmc": "atlas",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://atlas.apache.org"
+  },
+  {
+    "key": "attic-any23",
+    "name": "Apache Any23",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/any23.git"
+    ],
+    "stable_release": "2.7",
+    "stable_release_date": "2022-03-03",
+    "homepage": "http://any23.apache.org"
+  },
+  {
+    "key": "attic-apex",
+    "name": "Apache Apex",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/apex-core.git",
+      "https://github.com/apache/apex-malhar.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://apex.apache.org"
+  },
+  {
+    "key": "attic-archiva",
+    "name": "Apache Archiva",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/archiva.git",
+      "https://github.com/apache/archiva-parent.git"
+    ],
+    "stable_release": "2.2.7",
+    "stable_release_date": "2021-12-19",
+    "homepage": "https://archiva.apache.org"
+  },
+  {
+    "key": "attic-beehive",
+    "name": "Apache Beehive",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/beehive/trunk/"
+    ],
+    "stable_release": "1.0.2",
+    "stable_release_date": "2006-12-04",
+    "homepage": "http://beehive.apache.org"
+  },
+  {
+    "key": "attic-buildr",
+    "name": "Apache Buildr",
+    "pmc": "attic",
+    "language": "Ruby",
+    "category": [
+      "retired",
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/buildr.git"
+    ],
+    "stable_release": "1.5.8",
+    "stable_release_date": "2019-07-14",
+    "homepage": "http://buildr.apache.org"
+  },
+  {
+    "key": "attic-chemistry",
+    "name": "Apache Chemistry",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "Python",
+      "PHP",
+      "C#",
+      "Objective-C"
+    ],
+    "category": [
+      "retired",
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/chemistry/"
+    ],
+    "stable_release": "0.6",
+    "stable_release_date": "2017-07-31",
+    "homepage": "http://chemistry.apache.org"
+  },
+  {
+    "key": "attic-chukwa",
+    "name": "Apache Chukwa",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "JavaScript"
+    ],
+    "category": [
+      "retired",
+      "hadoop"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/chukwa/"
+    ],
+    "stable_release": "0.5.0",
+    "stable_release_date": "2012-01-25",
+    "homepage": "http://chukwa.apache.org/"
+  },
+  {
+    "key": "attic-clerezza",
+    "name": "Apache Clerezza",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "retired",
+      "osgi",
+      "content"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf?p=clerezza.git;a=summary"
+    ],
+    "stable_release": "0.3",
+    "stable_release_date": "2013-07-10",
+    "homepage": "http://clerezza.apache.org"
+  },
+  {
+    "key": "attic-click",
+    "name": "Apache Click",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "library",
+      "network-server",
+      "network-client",
+      "xml",
+      "web-framework"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/click/"
+    ],
+    "stable_release": "2.3.0",
+    "stable_release_date": "2011-03-27",
+    "homepage": "http://click.apache.org"
+  },
+  {
+    "key": "attic-cocoon",
+    "name": "Apache Cocoon",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "XML"
+    ],
+    "category": [
+      "database",
+      "graphics",
+      "http",
+      "network-client",
+      "network-server",
+      "web-framework",
+      "xml",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/cocoon/trunk/"
+    ],
+    "stable_release": "2.3.0",
+    "stable_release_date": "2023-11-19",
+    "homepage": "http://cocoon.apache.org/"
+  },
+  {
+    "key": "attic-continuum",
+    "name": "Apache Continuum",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "build-management",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/continuum"
+    ],
+    "stable_release": "1.4.2",
+    "stable_release_date": "2014-06-13",
+    "homepage": "http://continuum.apache.org"
+  },
+  {
+    "key": "attic-crunch",
+    "name": "Apache Crunch",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "retired",
+      "big-data",
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/crunch.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://crunch.apache.org"
+  },
+  {
+    "key": "attic-deltacloud",
+    "name": "Apache Deltacloud",
+    "pmc": "attic",
+    "language": "Ruby",
+    "category": [
+      "cloud",
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/deltacloud.git"
+    ],
+    "stable_release": "1.0.3",
+    "stable_release_date": "2013-04-22",
+    "homepage": "http://deltacloud.apache.org"
+  },
+  {
+    "key": "attic-devicemap",
+    "name": "Apache DeviceMap",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "mobile",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/devicemap"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://devicemap.apache.org"
+  },
+  {
+    "key": "attic-directmemory",
+    "name": "Apache DirectMemory",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "big-data",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/directmemory/trunk/"
+    ],
+    "stable_release": "0.2",
+    "stable_release_date": "2013-09-15",
+    "homepage": "http://directmemory.apache.org"
+  },
+  {
+    "key": "attic-ecs",
+    "name": "Apache ECS",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/jakarta/ecs/"
+    ],
+    "stable_release": "1.4.2",
+    "stable_release_date": "2003-07-10",
+    "homepage": "http://jakarta.apache.org/ecs/"
+  },
+  {
+    "key": "attic-esme",
+    "name": "Apache ESME",
+    "pmc": "attic",
+    "language": "Scala",
+    "category": [
+      "content",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/esme"
+    ],
+    "stable_release": "1.2",
+    "stable_release_date": "2011-03-04",
+    "homepage": "http://esme.apache.org"
+  },
+  {
+    "key": "attic-etch",
+    "name": "Apache Etch",
+    "pmc": "attic",
+    "language": [
+      "C",
+      "C#",
+      "C++",
+      "Go",
+      "Java",
+      "JavaScript",
+      "Python"
+    ],
+    "category": [
+      "network-server",
+      "network-client",
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/etch"
+    ],
+    "stable_release": "1.4.0",
+    "stable_release_date": "2014-08-06",
+    "homepage": "http://etch.apache.org"
+  },
+  {
+    "key": "attic-excalibur",
+    "name": "Apache Excalibur",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "network-server",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/excalibur/"
+    ],
+    "stable_release": "1.1",
+    "stable_release_date": "2005-08-29",
+    "homepage": "http://excalibur.apache.org"
+  },
+  {
+    "key": "attic-falcon",
+    "name": "Apache Falcon",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "big-data",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/falcon",
+      "https://gitbox.apache.org/repos/asf?p=falcon.git"
+    ],
+    "stable_release": "0.7-incubating",
+    "stable_release_date": "2014-12-05",
+    "homepage": "http://falcon.apache.org"
+  },
+  {
+    "key": "attic-forrest",
+    "name": "Apache Forrest",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "XML"
+    ],
+    "category": [
+      "retired",
+      "build-management",
+      "database",
+      "graphics",
+      "http",
+      "network-client",
+      "network-server",
+      "web-framework",
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/forrest/trunk/"
+    ],
+    "stable_release": "0.9",
+    "stable_release_date": "2011-02-07",
+    "homepage": "http://forrest.apache.org/"
+  },
+  {
+    "key": "attic-giraph",
+    "name": "Apache Giraph",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/giraph.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://giraph.apache.org"
+  },
+  {
+    "key": "attic-gora",
+    "name": "Apache Gora",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "nosql",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/gora/trunk/"
+    ],
+    "stable_release": "0.9",
+    "stable_release_date": "2019-08-15",
+    "homepage": "http://gora.apache.org"
+  },
+  {
+    "key": "attic-griffin",
+    "name": "Apache Griffin",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/griffin.git"
+    ],
+    "stable_release": "0.6.0",
+    "stable_release_date": "2020-11-12",
+    "homepage": "http://griffin.apache.org"
+  },
+  {
+    "key": "attic-hama",
+    "name": "Apache Hama",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/hama/trunk"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://hama.apache.org"
+  },
+  {
+    "key": "attic-harmony",
+    "name": "Apache Harmony",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "C"
+    ],
+    "category": [
+      "virtual-machine",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/harmony/"
+    ],
+    "stable_release": "6.0M3",
+    "stable_release_date": "2010-09-02",
+    "homepage": "http://harmony.apache.org/"
+  },
+  {
+    "key": "attic-hivemind",
+    "name": "Apache Hivemind",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/hivemind "
+    ],
+    "stable_release": "1.1.1",
+    "stable_release_date": "2006-01-29",
+    "homepage": "http://hivemind.apache.org/"
+  },
+  {
+    "key": "attic-jakarta_cactus",
+    "name": "Apache Jakarta Cactus",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "testing",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/jakarta/cactus/"
+    ],
+    "stable_release": "1.8.0",
+    "stable_release_date": "April 11 2008",
+    "homepage": "http://jakarta.apache.org/cactus"
+  },
+  {
+    "key": "attic-jclouds",
+    "name": "Apache jclouds",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "cloud",
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/jclouds.git"
+    ],
+    "stable_release": "2.7.0",
+    "stable_release_date": "2025-01-29",
+    "homepage": "http://jclouds.apache.org"
+  },
+  {
+    "key": "attic-kibble",
+    "name": "Apache Kibble",
+    "pmc": "attic",
+    "language": "Python",
+    "category": [
+      "big-data",
+      "retired"
+    ],
+    "repositories": [
+      "https://github.com/apache/kibble-1.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://kibble.apache.org"
+  },
+  {
+    "key": "attic-lens",
+    "name": "Apache Lens",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/lens.git"
+    ],
+    "stable_release": "2.7.1",
+    "stable_release_date": "2018-02-06",
+    "homepage": "http://lens.apache.org/"
+  },
+  {
+    "key": "attic-lenya",
+    "name": "Apache Lenya",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "xml",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/lenya/trunk/"
+    ],
+    "stable_release": "2.0.4",
+    "stable_release_date": "2010-02-20",
+    "homepage": "http://lenya.apache.org"
+  },
+  {
+    "key": "attic-lucy",
+    "name": "Apache Lucy",
+    "pmc": "attic",
+    "language": [
+      "C",
+      "Perl",
+      "Ruby",
+      "Go"
+    ],
+    "category": [
+      "database",
+      "retired"
+    ],
+    "repositories": [
+      "http://git-wip-us.apache.org/repos/asf/lucy.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://lucy.apache.org/"
+  },
+  {
+    "key": "attic-marmotta",
+    "name": "Apache Marmotta",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired"
+    ],
+    "repositories": [],
+    "stable_release": "3.3.0",
+    "stable_release_date": "2014-12-05",
+    "homepage": "http://marmotta.apache.org"
+  },
+  {
+    "key": "attic-mesos",
+    "name": "Apache Mesos",
+    "pmc": "attic",
+    "language": "C++",
+    "category": [
+      "cloud",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/mesos/trunk/"
+    ],
+    "stable_release": "0.19.0",
+    "stable_release_date": "2014-06-09",
+    "homepage": "http://mesos.apache.org"
+  },
+  {
+    "key": "attic-metamodel",
+    "name": "Apache MetaModel",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "database",
+      "big-data",
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/metamodel.git"
+    ],
+    "stable_release": "4.3.1",
+    "stable_release_date": "2014-12-14",
+    "homepage": "http://metamodel.apache.org"
+  },
+  {
+    "key": "attic-mrunit",
+    "name": "Apache MRUnit",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "git:http://git-wip-us.apache.org/repos/asf/mrunit.git",
+      "git:https://git-wip-us.apache.org/repos/asf/mrunit.git"
+    ],
+    "stable_release": "1.1.0",
+    "stable_release_date": null,
+    "homepage": "http://mrunit.apache.org"
+  },
+  {
+    "key": "attic-mxnet",
+    "name": "Apache MXNet",
+    "pmc": "attic",
+    "language": "C++",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/mxnet"
+    ],
+    "stable_release": "1.7.0",
+    "stable_release_date": "2020-09-13",
+    "homepage": "https://mxnet.apache.org"
+  },
+  {
+    "key": "attic-ode",
+    "name": "Apache ODE",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "xml",
+      "network-server"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/ode"
+    ],
+    "stable_release": "tagged",
+    "stable_release_date": "2010-06-09",
+    "homepage": "http://ode.apache.org"
+  },
+  {
+    "key": "attic-olingo",
+    "name": "Apache Olingo",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "JavaScript"
+    ],
+    "category": [
+      "library",
+      "retired"
+    ],
+    "repositories": [],
+    "stable_release": "5.0.0",
+    "stable_release_date": "2023-12-18",
+    "homepage": "http://olingo.apache.org"
+  },
+  {
+    "key": "attic-oltu_-_parent",
+    "name": "Apache Oltu - Parent",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/oltu/trunk/parent",
+      "https://svn.apache.org/repos/asf/oltu/trunk/parent"
+    ],
+    "stable_release": "4",
+    "stable_release_date": "2016-06-20",
+    "homepage": "https://oltu.apache.org/"
+  },
+  {
+    "key": "attic-oodt",
+    "name": "Apache OODT",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/oodt.git"
+    ],
+    "stable_release": "0.10",
+    "stable_release_date": "2015-09-13",
+    "homepage": "http://oodt.apache.org"
+  },
+  {
+    "key": "attic-oozie",
+    "name": "Apache Oozie",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "JavaScript"
+    ],
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/oozie.git"
+    ],
+    "stable_release": "5.2.1",
+    "stable_release_date": "2021-02-26",
+    "homepage": "http://oozie.apache.org"
+  },
+  {
+    "key": "attic-open_climate_workbench",
+    "name": "Apache Open Climate Workbench",
+    "pmc": "attic",
+    "language": "Python",
+    "category": [
+      "retired",
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/climate.git"
+    ],
+    "stable_release": "1.3.0",
+    "stable_release_date": "2018-03-28",
+    "homepage": "http://climate.apache.org"
+  },
+  {
+    "key": "attic-oro",
+    "name": "Apache ORO",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "library",
+      "regexp",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/jakarta/oro/"
+    ],
+    "stable_release": "2.0.8",
+    "stable_release_date": "2003-12-28",
+    "homepage": "http://jakarta.apache.org/oro/"
+  },
+  {
+    "key": "attic-petri",
+    "name": "Apache Petri",
+    "pmc": "attic",
+    "language": null,
+    "category": [
+      "retired",
+      "education"
+    ],
+    "repositories": [
+      "https://github.com/apache/petri/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://petri.apache.org"
+  },
+  {
+    "key": "attic-pivot",
+    "name": "Apache Pivot",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/pivot/trunk/"
+    ],
+    "stable_release": "2.0.1",
+    "stable_release_date": "2012-01-16",
+    "homepage": "http://pivot.apache.org"
+  },
+  {
+    "key": "attic-polygene",
+    "name": "Apache Polygene",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "C#",
+      "Scala",
+      "Groovy",
+      "JavaScript"
+    ],
+    "category": [
+      "library",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/polygene/",
+      "https://git-wip-us.apache.org/repos/asf/polygene-java.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://polygene.apache.org/"
+  },
+  {
+    "key": "attic-portals",
+    "name": "Apache Portals",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/portals"
+    ],
+    "stable_release": "2.2.2",
+    "stable_release_date": "2011-10-10",
+    "homepage": "http://portals.apache.org"
+  },
+  {
+    "key": "attic-predictionio",
+    "name": "Apache PredictionIO",
+    "pmc": "attic",
+    "language": "Scala",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/predictionio.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://predictionio.apache.org/"
+  },
+  {
+    "key": "attic-reef",
+    "name": "Apache REEF",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "C#",
+      "C++"
+    ],
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/reef.git"
+    ],
+    "stable_release": "0.16.0",
+    "stable_release_date": "2017-08-11",
+    "homepage": "http://reef.apache.org/"
+  },
+  {
+    "key": "attic-regexp",
+    "name": "Apache Regexp",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "library",
+      "regexp",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/jakarta/regexp/"
+    ],
+    "stable_release": "1.4",
+    "stable_release_date": "2005-08-16",
+    "homepage": "http://jakarta.apache.org/regexp/"
+  },
+  {
+    "key": "attic-river",
+    "name": "Apache River",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "javaee"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/river"
+    ],
+    "stable_release": "2.2.0",
+    "stable_release_date": "2011-06-20",
+    "homepage": "http://river.apache.org"
+  },
+  {
+    "key": "attic-servicemix",
+    "name": "Apache ServiceMix",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "XML",
+      "Scala"
+    ],
+    "category": [
+      "retired",
+      "network-client",
+      "network-server",
+      "xml",
+      "osgi"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/servicemix/",
+      "https://git-wip-us.apache.org/repos/asf/servicemix.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://servicemix.apache.org"
+  },
+  {
+    "key": "attic-shale",
+    "name": "Apache Shale",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "retired"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/shale/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://shale.apache.org"
+  },
+  {
+    "key": "attic-shindig",
+    "name": "Apache Shindig",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "javaee",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/shindig"
+    ],
+    "stable_release": "2.0.0",
+    "stable_release_date": "2010-09-10",
+    "homepage": "http://shindig.apache.org"
+  },
+  {
+    "key": "attic-sqoop",
+    "name": "Apache Sqoop",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/sqoop.git"
+    ],
+    "stable_release": "1.4.5",
+    "stable_release_date": "2014-08-20",
+    "homepage": "http://sqoop.apache.org"
+  },
+  {
+    "key": "attic-stanbol",
+    "name": "Apache Stanbol",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "content"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/stanbol/trunk/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://stanbol.apache.org"
+  },
+  {
+    "key": "attic-stratos",
+    "name": "Apache Stratos",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "cloud",
+      "retired"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/stratos.git"
+    ],
+    "stable_release": "4.1.4",
+    "stable_release_date": "2014-10-22",
+    "homepage": "http://stratos.apache.org/"
+  },
+  {
+    "key": "attic-submarine",
+    "name": "Apache Submarine",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "cloud",
+      "java",
+      "python",
+      "go"
+    ],
+    "repositories": [
+      "https://github.com/apache/submarine.git"
+    ],
+    "stable_release": "0.8.0",
+    "stable_release_date": "2023-09-23",
+    "homepage": "https://submarine.apache.org"
+  },
+  {
+    "key": "attic-tajo",
+    "name": "Apache Tajo",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/tajo.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://tajo.apache.org"
+  },
+  {
+    "key": "attic-tiles",
+    "name": "Apache Tiles",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/tiles"
+    ],
+    "stable_release": "2.2.2",
+    "stable_release_date": "2010-06-28",
+    "homepage": "http://tiles.apache.org"
+  },
+  {
+    "key": "attic-traffic_control",
+    "name": "Apache Traffic Control",
+    "pmc": "attic",
+    "language": "Go",
+    "category": [
+      "content",
+      "cloud",
+      "http",
+      "network-server",
+      "retired"
+    ],
+    "repositories": [
+      "https://github.com/apache/trafficcontrol.git"
+    ],
+    "stable_release": "5.1.2",
+    "stable_release_date": "2021-05-17",
+    "homepage": "https://trafficcontrol.apache.org"
+  },
+  {
+    "key": "attic-trafodion",
+    "name": "Apache Trafodion",
+    "pmc": "attic",
+    "language": "C++",
+    "category": [
+      "retired",
+      "big-data"
+    ],
+    "repositories": [
+      "http://gitbox.apache.org/repos/asf/trafodion.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://trafodion.apache.org"
+  },
+  {
+    "key": "attic-tuscany",
+    "name": "Apache Tuscany",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/tuscany/sca-java-2.x/",
+      "git://git.apache.org/tuscany-sca-2.x.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://tuscany.apache.org"
+  },
+  {
+    "key": "attic-vxquery",
+    "name": "Apache VXQuery",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "retired",
+      "big-data",
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/vxquery.git"
+    ],
+    "stable_release": "0.6",
+    "stable_release_date": "2016-05-26",
+    "homepage": "http://vxquery.apache.org/"
+  },
+  {
+    "key": "attic-whirr",
+    "name": "Apache Whirr",
+    "pmc": "attic",
+    "language": [
+      "Java",
+      "Bash"
+    ],
+    "category": [
+      "network-server",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/whirr/"
+    ],
+    "stable_release": "0.7.0",
+    "stable_release_date": "2011-12-20",
+    "homepage": "http://whirr.apache.org"
+  },
+  {
+    "key": "attic-wink",
+    "name": "Apache Wink",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "javaee",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/viewvc/wink",
+      "git://git.apache.org/wink.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://wink.apache.org"
+  },
+  {
+    "key": "attic-wookie",
+    "name": "Apache Wookie",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/wookie/trunk"
+    ],
+    "stable_release": "1.0.0",
+    "stable_release_date": "2014-02-24",
+    "homepage": "http://wookie.apache.org"
+  },
+  {
+    "key": "attic-xindice",
+    "name": "Apache Xindice",
+    "pmc": "attic",
+    "language": "Java",
+    "category": [
+      "xml",
+      "retired"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xml/xindice/trunk/"
+    ],
+    "stable_release": "1.1b4",
+    "stable_release_date": "2004-04-09",
+    "homepage": "http://xml.apache.org/xindice/"
+  },
+  {
+    "key": "auron",
+    "name": "Apache Auron",
+    "pmc": "auron",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://auron.apache.org"
+  },
+  {
+    "key": "avro",
+    "name": "Apache Avro",
+    "pmc": "avro",
+    "language": [
+      "C",
+      "C#",
+      "C++",
+      "Java",
+      "JavaScript",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Rust"
+    ],
+    "category": [
+      "library",
+      "big-data",
+      "data-engineering",
+      "integration"
+    ],
+    "repositories": [
+      "https://github.com/apache/avro.git"
+    ],
+    "stable_release": "1.12.0",
+    "stable_release_date": "2024-08-05",
+    "homepage": "https://avro.apache.org"
+  },
+  {
+    "key": "axis-axis2",
+    "name": "Apache Axis2",
+    "pmc": "axis",
+    "language": [
+      "Java",
+      "C"
+    ],
+    "category": [
+      "xml",
+      "http",
+      "network-server",
+      "network-client"
+    ],
+    "repositories": [
+      "https://github.com/apache/axis-axis2-java-core.git"
+    ],
+    "stable_release": "2.0.1",
+    "stable_release_date": "2026-05-17",
+    "homepage": "http://axis.apache.org/axis2/java/core"
+  },
+  {
+    "key": "axis-sandesha2",
+    "name": "Apache Sandesha2",
+    "pmc": "axis",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/axis/axis2/java/sandesha/trunk"
+    ],
+    "stable_release": "1.6.1",
+    "stable_release_date": "10-12-2011",
+    "homepage": "http://axis.apache.org/axis2/java/sandesha/"
+  },
+  {
+    "key": "beam",
+    "name": "Apache Beam",
+    "pmc": "beam",
+    "language": [
+      "Java",
+      "Python"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://beam.apache.org"
+  },
+  {
+    "key": "bigtop",
+    "name": "Apache Bigtop",
+    "pmc": "bigtop",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/bigtop.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://bigtop.apache.org/"
+  },
+  {
+    "key": "bookkeeper",
+    "name": "Apache BookKeeper",
+    "pmc": "bookkeeper",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/bookkeeper.git"
+    ],
+    "stable_release": "4.3.0",
+    "stable_release_date": "2014-10-14",
+    "homepage": "http://bookkeeper.apache.org/"
+  },
+  {
+    "key": "brooklyn",
+    "name": "Apache Brooklyn",
+    "pmc": "brooklyn",
+    "language": "Java",
+    "category": [
+      "cloud"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/brooklyn.git"
+    ],
+    "stable_release": "0.11.0",
+    "stable_release_date": "2017-05-18",
+    "homepage": "http://brooklyn.apache.org"
+  },
+  {
+    "key": "brpc",
+    "name": "Apache bRPC",
+    "pmc": "brpc",
+    "language": "C++",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "git://gitbox.apache.org/repos/asf/brpc.git"
+    ],
+    "stable_release": "1.6.0",
+    "stable_release_date": "2023-08-01",
+    "homepage": "https://brpc.apache.org"
+  },
+  {
+    "key": "buildstream",
+    "name": "Apache Buildstream",
+    "pmc": "buildstream",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://buildstream.apache.org"
+  },
+  {
+    "key": "bval",
+    "name": "Apache BVal",
+    "pmc": "bval",
+    "language": "Java",
+    "category": [
+      "javaee",
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/bval/"
+    ],
+    "stable_release": "1.1.2",
+    "stable_release_date": "2016-11-03",
+    "homepage": "http://bval.apache.org/"
+  },
+  {
+    "key": "calcite",
+    "name": "Apache Calcite",
+    "pmc": "calcite",
+    "language": "Java",
+    "category": [
+      "big-data",
+      "hadoop",
+      "sql",
+      "geospatial"
+    ],
+    "repositories": [
+      "https://github.com/apache/calcite.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://calcite.apache.org"
+  },
+  {
+    "key": "camel",
+    "name": "Apache Camel",
+    "pmc": "camel",
+    "language": "Java",
+    "category": [
+      "integration",
+      "cloud",
+      "java",
+      "library"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://camel.apache.org/"
+  },
+  {
+    "key": "carbondata",
+    "name": "Apache CarbonData",
+    "pmc": "carbondata",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://carbondata.apache.org"
+  },
+  {
+    "key": "cassandra",
+    "name": "Apache Cassandra",
+    "pmc": "cassandra",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "http://git-wip-us.apache.org/repos/asf?p=cassandra.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://cassandra.apache.org"
+  },
+  {
+    "key": "causeway",
+    "name": "Apache Causeway",
+    "pmc": "causeway",
+    "language": "Java",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/causeway.git"
+    ],
+    "stable_release": "3.6.0",
+    "stable_release_date": "2026-04-09",
+    "homepage": "https://causeway.apache.org"
+  },
+  {
+    "key": "cayenne",
+    "name": "Apache Cayenne",
+    "pmc": "cayenne",
+    "language": "Java",
+    "category": [
+      "database",
+      "library",
+      "network-server",
+      "network-client",
+      "xml",
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/cayenne"
+    ],
+    "stable_release": "5.0-M3",
+    "stable_release_date": "2026-08-25",
+    "homepage": "https://cayenne.apache.org"
+  },
+  {
+    "key": "celeborn",
+    "name": "Apache Celeborn",
+    "pmc": "celeborn",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://celeborn.apache.org"
+  },
+  {
+    "key": "celix",
+    "name": "Apache Celix",
+    "pmc": "celix",
+    "language": [
+      "C",
+      "C++"
+    ],
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "https://github.com/apache/celix.git",
+      "https://github.com/apache/celix-site.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://celix.apache.org"
+  },
+  {
+    "key": "cloudstack",
+    "name": "Apache CloudStack",
+    "pmc": "cloudstack",
+    "language": [
+      "Java",
+      "Python"
+    ],
+    "category": [
+      "cloud"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/cloudstack.git"
+    ],
+    "stable_release": "4.3.2",
+    "stable_release_date": "2015-01-09",
+    "homepage": "http://cloudstack.apache.org"
+  },
+  {
+    "key": "comdev-community_development",
+    "name": "Apache Community Development",
+    "pmc": "comdev",
+    "language": null,
+    "category": null,
+    "repositories": [
+      "https://github.com/apache/comdev-site.git",
+      "https://github.com/apache/comdev-events-site.git",
+      "https://svn.apache.org/repos/asf/comdev/projects.apache.org/",
+      "https://svn.apache.org/repos/asf/comdev/reporter.apache.org/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://community.apache.org/"
+  },
+  {
+    "key": "commons-bcel",
+    "name": "Apache Commons BCEL",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-bcel"
+    ],
+    "stable_release": "6.10.0",
+    "stable_release_date": "2024-07-24",
+    "homepage": "http://commons.apache.org/bcel/"
+  },
+  {
+    "key": "commons-beanutils",
+    "name": "Apache Commons BeanUtils",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-beanutils.git"
+    ],
+    "stable_release": "2.0.0-m2",
+    "stable_release_date": "2025-05-28",
+    "homepage": "https://commons.apache.org/beanutils/"
+  },
+  {
+    "key": "commons-bsf",
+    "name": "Apache Commons BSF",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-bsf"
+    ],
+    "stable_release": "3.1",
+    "stable_release_date": "2010-06-24",
+    "homepage": "http://commons.apache.org/bsf/"
+  },
+  {
+    "key": "commons-chain__dormant_",
+    "name": "Apache Commons Chain (Dormant)",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-chain"
+    ],
+    "stable_release": "1.2",
+    "stable_release_date": "2008-06-02",
+    "homepage": "http://commons.apache.org/chain/"
+  },
+  {
+    "key": "commons-cli",
+    "name": "Apache Commons CLI",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-cli"
+    ],
+    "stable_release": "1.9.0",
+    "stable_release_date": "2024-08-15",
+    "homepage": "http://commons.apache.org/cli/"
+  },
+  {
+    "key": "commons-codec",
+    "name": "Apache Commons Codec",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-codec"
+    ],
+    "stable_release": "1.18.0",
+    "stable_release_date": "2025-01-28",
+    "homepage": "http://commons.apache.org/codec/"
+  },
+  {
+    "key": "commons-collections",
+    "name": "Apache Commons Collections",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-collections"
+    ],
+    "stable_release": "4.5.0",
+    "stable_release_date": "2025-04-23",
+    "homepage": "http://commons.apache.org/collections/"
+  },
+  {
+    "key": "commons-compress",
+    "name": "Apache Commons Compress",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-compress.git"
+    ],
+    "stable_release": "1.27.1",
+    "stable_release_date": "2024-08-20",
+    "homepage": "http://commons.apache.org/compress/"
+  },
+  {
+    "key": "commons-configuration",
+    "name": "Apache Commons Configuration",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-configuration"
+    ],
+    "stable_release": "2.12.0",
+    "stable_release_date": "2025-04-28",
+    "homepage": "http://commons.apache.org/configuration/"
+  },
+  {
+    "key": "commons-crypto",
+    "name": "Apache Commons Crypto",
+    "pmc": "commons",
+    "language": [
+      "Java",
+      "C"
+    ],
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-crypto.git"
+    ],
+    "stable_release": "1.2.0",
+    "stable_release_date": "2023-01-23",
+    "homepage": "http://commons.apache.org/crypto/"
+  },
+  {
+    "key": "commons-csv",
+    "name": "Apache Commons CSV",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-csv.git"
+    ],
+    "stable_release": "1.14.0",
+    "stable_release_date": "2025-03-19",
+    "homepage": "http://commons.apache.org/csv/"
+  },
+  {
+    "key": "commons-daemon",
+    "name": "Apache Commons Daemon",
+    "pmc": "commons",
+    "language": [
+      "Java",
+      "C"
+    ],
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-daemon"
+    ],
+    "stable_release": "1.6.1",
+    "stable_release_date": "2026-06-11",
+    "homepage": "http://commons.apache.org/daemon/"
+  },
+  {
+    "key": "commons-dbcp",
+    "name": "Apache Commons DBCP",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-dbcp"
+    ],
+    "stable_release": "2.13.0",
+    "stable_release_date": "2024-12-02",
+    "homepage": "http://commons.apache.org/dbcp/"
+  },
+  {
+    "key": "commons-dbutils",
+    "name": "Apache Commons DbUtils",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-dbutils"
+    ],
+    "stable_release": "1.8.0",
+    "stable_release_date": "2023-08-08",
+    "homepage": "http://commons.apache.org/dbutils/"
+  },
+  {
+    "key": "commons-digester",
+    "name": "Apache Commons Digester",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-digester"
+    ],
+    "stable_release": "3.2",
+    "stable_release_date": "2011-12-13",
+    "homepage": "http://commons.apache.org/digester/"
+  },
+  {
+    "key": "commons-email",
+    "name": "Apache Commons Email",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-email"
+    ],
+    "stable_release": "1.5",
+    "stable_release_date": "2017-08-01",
+    "homepage": "http://commons.apache.org/email/"
+  },
+  {
+    "key": "commons-exec",
+    "name": "Apache Commons Exec",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-exec"
+    ],
+    "stable_release": "1.5.0",
+    "stable_release_date": "2025-05-23",
+    "homepage": "http://commons.apache.org/exec/"
+  },
+  {
+    "key": "commons-fileupload",
+    "name": "Apache Commons FileUpload",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-fileupload"
+    ],
+    "stable_release": "2.0.0-M4",
+    "stable_release_date": "2025-06-16",
+    "homepage": "http://commons.apache.org/fileupload/"
+  },
+  {
+    "key": "commons-functor__dormant_",
+    "name": "Apache Commons Functor (Dormant)",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-functor"
+    ],
+    "stable_release": "1.0",
+    "stable_release_date": "2011-??-??",
+    "homepage": "http://commons.apache.org/functor/"
+  },
+  {
+    "key": "commons-geometry",
+    "name": "Apache Commons Geometry",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf?p=commons-geometry.git"
+    ],
+    "stable_release": "1.0",
+    "stable_release_date": "2021-08-21",
+    "homepage": "http://commons.apache.org/geometry/"
+  },
+  {
+    "key": "commons-imaging",
+    "name": "Apache Commons Imaging",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-imaging"
+    ],
+    "stable_release": "1.0.0-alpha6",
+    "stable_release_date": "2025-04-30",
+    "homepage": "http://commons.apache.org/imaging/"
+  },
+  {
+    "key": "commons-io",
+    "name": "Apache Commons IO",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-io"
+    ],
+    "stable_release": "2.20.0",
+    "stable_release_date": "2025-07-18",
+    "homepage": "http://commons.apache.org/io/"
+  },
+  {
+    "key": "commons-jci",
+    "name": "Apache Commons JCI",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-jci"
+    ],
+    "stable_release": "1.1",
+    "stable_release_date": "2013-10-14",
+    "homepage": "http://commons.apache.org/jci/"
+  },
+  {
+    "key": "commons-jcs",
+    "name": "Apache Commons JCS",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-jcs.git"
+    ],
+    "stable_release": "3.2.1",
+    "stable_release_date": "2024-05-27",
+    "homepage": "http://commons.apache.org/jcs/"
+  },
+  {
+    "key": "commons-jelly",
+    "name": "Apache Commons Jelly",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-jelly"
+    ],
+    "stable_release": "1.0.1",
+    "stable_release_date": "2017-09-25",
+    "homepage": "http://commons.apache.org/jelly/"
+  },
+  {
+    "key": "commons-jexl",
+    "name": "Apache Commons JEXL",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-jexl"
+    ],
+    "stable_release": "3.5.0",
+    "stable_release_date": "2025-04-16",
+    "homepage": "http://commons.apache.org/jexl/"
+  },
+  {
+    "key": "commons-jxpath",
+    "name": "Apache Commons JXPath",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-jxpath"
+    ],
+    "stable_release": "1.4.0",
+    "stable_release_date": "2025-04-18",
+    "homepage": "http://commons.apache.org/jxpath/"
+  },
+  {
+    "key": "commons-lang",
+    "name": "Apache Commons Lang",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-lang.git"
+    ],
+    "stable_release": "3.18.0",
+    "stable_release_date": "2025-07-10",
+    "homepage": "http://commons.apache.org/lang/"
+  },
+  {
+    "key": "commons-logging",
+    "name": "Apache Commons Logging",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-logging"
+    ],
+    "stable_release": "1.3.5",
+    "stable_release_date": "2025-02-08",
+    "homepage": "http://commons.apache.org/logging/"
+  },
+  {
+    "key": "commons-math",
+    "name": "Apache Commons Math",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-math.git"
+    ],
+    "stable_release": "4.0-beta1",
+    "stable_release_date": "2022-12-20",
+    "homepage": "http://commons.apache.org/math/"
+  },
+  {
+    "key": "commons-net",
+    "name": "Apache Commons Net",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-net"
+    ],
+    "stable_release": "3.11.1",
+    "stable_release_date": "2024-06-10",
+    "homepage": "http://commons.apache.org/net/"
+  },
+  {
+    "key": "commons-numbers",
+    "name": "Apache Commons Numbers",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf?p=commons-numbers.git"
+    ],
+    "stable_release": "1.3",
+    "stable_release_date": "2026-04-20",
+    "homepage": "http://commons.apache.org/numbers/"
+  },
+  {
+    "key": "commons-ognl__dormant_",
+    "name": "Apache Commons OGNL (Dormant)",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-ognl"
+    ],
+    "stable_release": "4.0",
+    "stable_release_date": "2013-??-??",
+    "homepage": "http://commons.apache.org/ognl/"
+  },
+  {
+    "key": "commons-pool",
+    "name": "Apache Commons Pool",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-pool"
+    ],
+    "stable_release": "2.12.1",
+    "stable_release_date": "2025-01-28",
+    "homepage": "http://commons.apache.org/pool/"
+  },
+  {
+    "key": "commons-proxy__dormant_",
+    "name": "Apache Commons Proxy (Dormant)",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-proxy"
+    ],
+    "stable_release": "1.0",
+    "stable_release_date": "2008-02-28",
+    "homepage": "http://commons.apache.org/proxy/"
+  },
+  {
+    "key": "commons-rdf",
+    "name": "Apache Commons RDF",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-rdf.git"
+    ],
+    "stable_release": "0.5.0",
+    "stable_release_date": "2017-12-23",
+    "homepage": "https://commons.apache.org/rdf/"
+  },
+  {
+    "key": "commons-rng",
+    "name": "Apache Commons RNG",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-rng.git"
+    ],
+    "stable_release": "1.7",
+    "stable_release_date": "2026-04-21",
+    "homepage": "https://commons.apache.org/rng/"
+  },
+  {
+    "key": "commons-scxml",
+    "name": "Apache Commons SCXML",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-scxml.git"
+    ],
+    "stable_release": "0.9",
+    "stable_release_date": "2008-12-01",
+    "homepage": "http://commons.apache.org/scxml/"
+  },
+  {
+    "key": "commons-statistics",
+    "name": "Apache Commons Statistics",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-statistics.git"
+    ],
+    "stable_release": "1.3",
+    "stable_release_date": "2026-05-05",
+    "homepage": "http://commons.apache.org/statistics/"
+  },
+  {
+    "key": "commons-text",
+    "name": "Apache Commons Text",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/commons-text.git"
+    ],
+    "stable_release": "1.13.1",
+    "stable_release_date": "2025-04-11",
+    "homepage": "http://commons.apache.org/text/"
+  },
+  {
+    "key": "commons-validator",
+    "name": "Apache Commons Validator",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-validator"
+    ],
+    "stable_release": "1.10.0",
+    "stable_release_date": "2025-07-09",
+    "homepage": "http://commons.apache.org/validator/"
+  },
+  {
+    "key": "commons-vfs",
+    "name": "Apache Commons VFS",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-vfs"
+    ],
+    "stable_release": "2.10.0",
+    "stable_release_date": "2025-02-14",
+    "homepage": "http://commons.apache.org/vfs/"
+  },
+  {
+    "key": "commons-weaver",
+    "name": "Apache Commons Weaver",
+    "pmc": "commons",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf/commons-weaver"
+    ],
+    "stable_release": "2.0",
+    "stable_release_date": "2018-09-07",
+    "homepage": "http://commons.apache.org/weaver/"
+  },
+  {
+    "key": "cordova",
+    "name": "Apache Cordova",
+    "pmc": "cordova",
+    "language": [
+      "JavaScript",
+      "Java",
+      "Objective-C",
+      "Node.js"
+    ],
+    "category": [
+      "mobile",
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/cordova.git"
+    ],
+    "stable_release": "13.0.0",
+    "stable_release_date": "2025-11-25",
+    "homepage": "https://cordova.apache.org"
+  },
+  {
+    "key": "couchdb",
+    "name": "Apache CouchDB",
+    "pmc": "couchdb",
+    "language": [
+      "JavaScript",
+      "Erlang",
+      "C++",
+      "C"
+    ],
+    "category": [
+      "database",
+      "http",
+      "network-client",
+      "network-server",
+      "cloud",
+      "content",
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/couchdb"
+    ],
+    "stable_release": "2.3.1",
+    "stable_release_date": "2019-03-11",
+    "homepage": "https://couchdb.apache.org/"
+  },
+  {
+    "key": "creadur-rat",
+    "name": "Apache Rat",
+    "pmc": "creadur",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/creadur/rat/trunk/"
+    ],
+    "stable_release": "0.8",
+    "stable_release_date": "2011-11-15",
+    "homepage": "http://creadur.apache.org/rat/"
+  },
+  {
+    "key": "creadur-tentacles",
+    "name": "Apache Tentacles",
+    "pmc": "creadur",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/creadur/tentacles/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://creadur.apache.org/tentacles"
+  },
+  {
+    "key": "creadur-whisker",
+    "name": "Apache Whisker",
+    "pmc": "creadur",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/creadur/whisker/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://creadur.apache.org/whisker"
+  },
+  {
+    "key": "ctakes",
+    "name": "Apache cTAKES",
+    "pmc": "ctakes",
+    "language": [
+      "Java",
+      "Python",
+      "Scala"
+    ],
+    "category": [
+      "content",
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/ctakes/ctakes-models/trunk/",
+      "https://github.com/apache/ctakes"
+    ],
+    "stable_release": "6.0.0",
+    "stable_release_date": "2024-09-16",
+    "homepage": "https://github.com/apache/ctakes"
+  },
+  {
+    "key": "curator",
+    "name": "Apache Curator",
+    "pmc": "curator",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/curator.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://curator.apache.org/"
+  },
+  {
+    "key": "cxf",
+    "name": "Apache CXF",
+    "pmc": "cxf",
+    "language": "Java",
+    "category": [
+      "library",
+      "xml",
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "https://github.com/apache/cxf.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://cxf.apache.org/"
+  },
+  {
+    "key": "daffodil",
+    "name": "Apache Daffodil",
+    "pmc": "daffodil",
+    "language": [
+      "Scala",
+      "Java"
+    ],
+    "category": [
+      "big-data",
+      "library",
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/daffodil",
+      "https://github.com/apache/daffodil-site"
+    ],
+    "stable_release": "4.2.0",
+    "stable_release_date": "2026-07-07",
+    "homepage": "https://daffodil.apache.org"
+  },
+  {
+    "key": "datafu",
+    "name": "Apache DataFu",
+    "pmc": "datafu",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://git.apache.org/repos/asf/datafu.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://datafu.apache.org/"
+  },
+  {
+    "key": "datafusion",
+    "name": "Apache DataFusion",
+    "pmc": "datafusion",
+    "language": [
+      "Python",
+      "Rust"
+    ],
+    "category": [
+      "big-data",
+      "database",
+      "data-engineering",
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/datafusion.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://datafusion.apache.org"
+  },
+  {
+    "key": "datasketches",
+    "name": "Apache DataSketches",
+    "pmc": "datasketches",
+    "language": [
+      "Java",
+      "C++",
+      "Python",
+      "Go",
+      "Rust"
+    ],
+    "category": [
+      "library",
+      "big-data"
+    ],
+    "repositories": [
+      {
+        "browse": "https://dlcdn.apache.org/datasketches"
+      },
+      {
+        "browse": "https://github.com/apache?q=datasketches"
+      }
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://datasketches.apache.org"
+  },
+  {
+    "key": "db-derby",
+    "name": "Apache Derby",
+    "pmc": "db",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/db/derby/code/trunk/"
+    ],
+    "stable_release": "10.17.1.0",
+    "stable_release_date": "2023-11-10",
+    "homepage": "http://db.apache.org/derby"
+  },
+  {
+    "key": "db-jdo",
+    "name": "Apache JDO",
+    "pmc": "db",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/db-jdo"
+    ],
+    "stable_release": "3.2.1",
+    "stable_release_date": "2022-05-04",
+    "homepage": "https://db.apache.org/jdo/"
+  },
+  {
+    "key": "db-torque",
+    "name": "Apache Torque",
+    "pmc": "db",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/db/torque/trunk/"
+    ],
+    "stable_release": "7.0",
+    "stable_release_date": "2025-07-25",
+    "homepage": "https://db.apache.org/torque/"
+  },
+  {
+    "key": "deltaspike",
+    "name": "Apache DeltaSpike",
+    "pmc": "deltaspike",
+    "language": "Java",
+    "category": [
+      "javaee"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/deltaspike.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://deltaspike.apache.org"
+  },
+  {
+    "key": "devlake",
+    "name": "Apache Devlake",
+    "pmc": "devlake",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://devlake.apache.org"
+  },
+  {
+    "key": "directory-fortress",
+    "name": "Apache Fortress",
+    "pmc": "directory",
+    "language": "Java",
+    "category": [
+      "identity-management",
+      "library",
+      "security",
+      "SDK"
+    ],
+    "repositories": [
+      "https://github.com/apache/directory-fortress-core.git",
+      "https://github.com/apache/directory-fortress-commander.git",
+      "https://github.com/apache/directory-enmasse-core.git",
+      "https://github.com/apache/directory-fortress-realm.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://directory.apache.org/fortress/"
+  },
+  {
+    "key": "directory-kerby",
+    "name": "Apache Kerby",
+    "pmc": "directory",
+    "language": "Java",
+    "category": [
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "https://github.com/apache/directory-kerby"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://directory.apache.org/kerby/"
+  },
+  {
+    "key": "directory-ldap_api",
+    "name": "Apache Directory LDAP API",
+    "pmc": "directory",
+    "language": "Java",
+    "category": [
+      "network-client"
+    ],
+    "repositories": [
+      "https://github.com/apache/directory-ldap-api"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://directory.apache.org/api"
+  },
+  {
+    "key": "directory-server",
+    "name": "Apache Directory Server",
+    "pmc": "directory",
+    "language": "Java",
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "https://github.com/apache/directory-server"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://directory.apache.org/apacheds"
+  },
+  {
+    "key": "directory-studio",
+    "name": "Apache Directory Studio",
+    "pmc": "directory",
+    "language": "Java",
+    "category": [
+      "network-client"
+    ],
+    "repositories": [
+      "https://github.com/apache/directory-studio"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://directory.apache.org/studio/"
+  },
+  {
+    "key": "dolphinscheduler",
+    "name": "Apache Dolphinscheduler",
+    "pmc": "dolphinscheduler",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://dolphinscheduler.apache.org"
+  },
+  {
+    "key": "doris",
+    "name": "Apache Doris",
+    "pmc": "doris",
+    "language": "C++,Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/doris.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://doris.apache.org/"
+  },
+  {
+    "key": "drill",
+    "name": "Apache Drill",
+    "pmc": "drill",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "git://git.apache.org/drill.git"
+    ],
+    "stable_release": "0.7.0",
+    "stable_release_date": "2014-12-23",
+    "homepage": "http://drill.apache.org"
+  },
+  {
+    "key": "druid",
+    "name": "Apache Druid",
+    "pmc": "druid",
+    "language": "Java",
+    "category": [
+      "big-data",
+      "database"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://druid.apache.org/"
+  },
+  {
+    "key": "dubbo",
+    "name": "Apache Dubbo",
+    "pmc": "dubbo",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://dubbo.apache.org"
+  },
+  {
+    "key": "echarts",
+    "name": "Apache ECharts",
+    "pmc": "echarts",
+    "language": [
+      "JavaScript",
+      "Typescript"
+    ],
+    "category": [
+      "library",
+      "data-visualization"
+    ],
+    "repositories": [
+      "https://github.com/apache/echarts.git"
+    ],
+    "stable_release": "5.6.0",
+    "stable_release_date": "2024-12-28",
+    "homepage": "https://echarts.apache.org"
+  },
+  {
+    "key": "empire-db",
+    "name": "Apache Empire-db",
+    "pmc": "empire-db",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [],
+    "stable_release": "3.4.0",
+    "stable_release_date": "2025-10-22",
+    "homepage": "https://empire-db.apache.org"
+  },
+  {
+    "key": "eventmesh",
+    "name": "Apache EventMesh",
+    "pmc": "eventmesh",
+    "language": "Java",
+    "category": [
+      "cloud"
+    ],
+    "repositories": [
+      "https://github.com/apache/eventmesh"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://eventmesh.apache.org"
+  },
+  {
+    "key": "felix",
+    "name": "Apache Felix",
+    "pmc": "felix",
+    "language": "Java",
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/felix"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://felix.apache.org"
+  },
+  {
+    "key": "fineract",
+    "name": "Apache Fineract",
+    "pmc": "fineract",
+    "language": "Java",
+    "category": null,
+    "repositories": [
+      "https://github.com/apache/fineract"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://fineract.apache.org"
+  },
+  {
+    "key": "flagon",
+    "name": "Apache Flagon",
+    "pmc": "flagon",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://flagon.apache.org"
+  },
+  {
+    "key": "flex",
+    "name": "Apache Flex",
+    "pmc": "flex",
+    "language": "ActionScript",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/flex-sdk.git"
+    ],
+    "stable_release": "4.15.0",
+    "stable_release_date": "2016-01-11",
+    "homepage": "http://flex.apache.org"
+  },
+  {
+    "key": "flink",
+    "name": "Apache Flink",
+    "pmc": "flink",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/flink/",
+      "https://github.com/apache/flink.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://flink.apache.org"
+  },
+  {
+    "key": "fluss",
+    "name": "Apache Fluss",
+    "pmc": "fluss",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://fluss.apache.org"
+  },
+  {
+    "key": "fory",
+    "name": "Apache Fory",
+    "pmc": "fory",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://fory.apache.org"
+  },
+  {
+    "key": "freemarker",
+    "name": "Apache FreeMarker",
+    "pmc": "freemarker",
+    "language": "Java",
+    "category": [
+      "Java",
+      "html",
+      "templating",
+      "content"
+    ],
+    "repositories": [
+      "git://git.apache.org/freemarker.git"
+    ],
+    "stable_release": "2.3.35",
+    "stable_release_date": "2026-08-27",
+    "homepage": "https://freemarker.apache.org"
+  },
+  {
+    "key": "geode",
+    "name": "Apache Geode",
+    "pmc": "geode",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/geode.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://geode.apache.org"
+  },
+  {
+    "key": "geronimo",
+    "name": "Apache Geronimo",
+    "pmc": "geronimo",
+    "language": "Java",
+    "category": [
+      "javaee",
+      "network-server",
+      "http",
+      "web-framework"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/geronimo/"
+    ],
+    "stable_release": "2.2.1",
+    "stable_release_date": "2011-01-18",
+    "homepage": "http://geronimo.apache.org"
+  },
+  {
+    "key": "gluten",
+    "name": "Apache Gluten",
+    "pmc": "gluten",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://gluten.apache.org"
+  },
+  {
+    "key": "gobblin",
+    "name": "Apache Gobblin",
+    "pmc": "gobblin",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/gobblin"
+    ],
+    "stable_release": "0.16.0",
+    "stable_release_date": "2022-02-03",
+    "homepage": "https://gobblin.apache.org"
+  },
+  {
+    "key": "grails",
+    "name": "Apache Grails",
+    "pmc": "grails",
+    "language": "Groovy",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/grails-core.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://grails.apache.org"
+  },
+  {
+    "key": "gravitino",
+    "name": "Apache Gravitino",
+    "pmc": "gravitino",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://gravitino.apache.org"
+  },
+  {
+    "key": "groovy",
+    "name": "Apache Groovy",
+    "pmc": "groovy",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/groovy.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://groovy.apache.org"
+  },
+  {
+    "key": "guacamole",
+    "name": "Apache Guacamole",
+    "pmc": "guacamole",
+    "language": [
+      "C",
+      "Java",
+      "JavaScript"
+    ],
+    "category": [
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/incubator-guacamole-client.git",
+      "https://git-wip-us.apache.org/repos/asf/incubator-guacamole-manual.git",
+      "https://git-wip-us.apache.org/repos/asf/incubator-guacamole-server.git",
+      "https://git-wip-us.apache.org/repos/asf/incubator-guacamole-website.git"
+    ],
+    "stable_release": "1.6.0",
+    "stable_release_date": "2025-06-22",
+    "homepage": "http://guacamole.apache.org"
+  },
+  {
+    "key": "gump",
+    "name": "Apache Gump",
+    "pmc": "gump",
+    "language": "Python",
+    "category": [
+      "build-management",
+      "testing"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/gump/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://gump.apache.org/"
+  },
+  {
+    "key": "hadoop",
+    "name": "Apache Hadoop",
+    "pmc": "hadoop",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/hadoop"
+    ],
+    "stable_release": "3.5.0",
+    "stable_release_date": "2026-04-01",
+    "homepage": "https://hadoop.apache.org/"
+  },
+  {
+    "key": "hbase",
+    "name": "Apache HBase",
+    "pmc": "hbase",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "git://gitbox.apache.org/repos/asf/hbase.git"
+    ],
+    "stable_release": "2.6.0",
+    "stable_release_date": "2024-05-17",
+    "homepage": "https://hbase.apache.org"
+  },
+  {
+    "key": "helix",
+    "name": "Apache Helix",
+    "pmc": "helix",
+    "language": "Java",
+    "category": [
+      "cloud",
+      "big-data"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/helix.git"
+    ],
+    "stable_release": "0.6.3",
+    "stable_release_date": "2014-03-27",
+    "homepage": "http://helix.apache.org"
+  },
+  {
+    "key": "hertzbeat",
+    "name": "Apache Hertzbeat",
+    "pmc": "hertzbeat",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://hertzbeat.apache.org"
+  },
+  {
+    "key": "hive",
+    "name": "Apache Hive",
+    "pmc": "hive",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/hive/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://hive.apache.org"
+  },
+  {
+    "key": "hop",
+    "name": "Apache Hop",
+    "pmc": "hop",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/hop.git"
+    ],
+    "stable_release": "2.2.0",
+    "stable_release_date": "2022-12-08",
+    "homepage": "https://hop.apache.org"
+  },
+  {
+    "key": "httpcomponents-client",
+    "name": "Apache HttpComponents Client",
+    "pmc": "httpcomponents",
+    "language": "Java",
+    "category": [
+      "http",
+      "library",
+      "network-client"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/httpcomponents/httpclient/trunk"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://hc.apache.org/httpcomponents-client/"
+  },
+  {
+    "key": "httpcomponents-commons_httpclient",
+    "name": "Apache Commons HttpClient",
+    "pmc": "httpcomponents",
+    "language": "Java",
+    "category": [
+      "http",
+      "library",
+      "network-client"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/httpcomponents/oac.hc3x/trunk"
+    ],
+    "stable_release": "3.1",
+    "stable_release_date": "2007-08-22",
+    "homepage": "http://hc.apache.org/httpclient-3.x/"
+  },
+  {
+    "key": "httpcomponents-core",
+    "name": "Apache HttpComponents Core",
+    "pmc": "httpcomponents",
+    "language": "Java",
+    "category": [
+      "http",
+      "library",
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/httpcomponents/httpcore/trunk"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://hc.apache.org/httpcomponents-core/"
+  },
+  {
+    "key": "httpd-http_server",
+    "name": "Apache HTTP Server",
+    "pmc": "httpd",
+    "language": "C",
+    "category": [
+      "network-server",
+      "http",
+      "httpd-module"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/httpd/httpd/"
+    ],
+    "stable_release": "2.4.68",
+    "stable_release_date": "2026-06-08",
+    "homepage": "https://httpd.apache.org/"
+  },
+  {
+    "key": "httpd-mod_ftp",
+    "name": "Apache mod_ftp",
+    "pmc": "httpd",
+    "language": "C",
+    "category": [
+      "network-server",
+      "ftp",
+      "httpd-module"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/httpd/mod_ftp/"
+    ],
+    "stable_release": "0.9.6-beta",
+    "stable_release_date": "2008-10-08",
+    "homepage": "https://httpd.apache.org/mod_ftp/"
+  },
+  {
+    "key": "hudi",
+    "name": "Apache Hudi",
+    "pmc": "hudi",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/hudi.git"
+    ],
+    "stable_release": "0.14.2",
+    "stable_release_date": "2026-06-06",
+    "homepage": "https://hudi.apache.org"
+  },
+  {
+    "key": "hugegraph",
+    "name": "Apache Hugegraph",
+    "pmc": "hugegraph",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://hugegraph.apache.org"
+  },
+  {
+    "key": "iceberg",
+    "name": "Apache Iceberg",
+    "pmc": "iceberg",
+    "language": [
+      "Java",
+      "Python",
+      "Go",
+      "Rust",
+      "C++"
+    ],
+    "category": [
+      "big-data",
+      "database",
+      "data-engineering"
+    ],
+    "repositories": [
+      "https://github.com/apache/iceberg"
+    ],
+    "stable_release": "1.11.0",
+    "stable_release_date": "2026-05-18",
+    "homepage": "https://iceberg.apache.org"
+  },
+  {
+    "key": "iggy",
+    "name": "Apache Iggy",
+    "pmc": "iggy",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://iggy.apache.org"
+  },
+  {
+    "key": "ignite",
+    "name": "Apache Ignite",
+    "pmc": "ignite",
+    "language": [
+      "Java",
+      "C#",
+      "C++",
+      "SQL",
+      "JDBC",
+      "ODBC"
+    ],
+    "category": [
+      "big-data",
+      "sql",
+      "cloud",
+      "database",
+      "distributed-sql-database",
+      "data-management-platform",
+      "hadoop",
+      "network-server",
+      "network-client",
+      "osgi",
+      "iot"
+    ],
+    "repositories": [
+      "https://github.com/apache/ignite.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://ignite.apache.org"
+  },
+  {
+    "key": "impala",
+    "name": "Apache Impala",
+    "pmc": "impala",
+    "language": "C++,Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/impala.git"
+    ],
+    "stable_release": "4.5.2",
+    "stable_release_date": "2026-09-02",
+    "homepage": "https://impala.apache.org"
+  },
+  {
+    "key": "incubator-annotator",
+    "name": "Apache Annotator",
+    "pmc": "incubator",
+    "language": "JavaScript",
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "http://git@github.com:apache/incubator-annotator.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://annotator.apache.org"
+  },
+  {
+    "key": "incubator-pouchdb",
+    "name": "Apache PouchDB",
+    "pmc": "incubator",
+    "language": "JavaScript",
+    "category": [
+      "content",
+      "database",
+      "http",
+      "mobile",
+      "network-client"
+    ],
+    "repositories": [
+      "https://github.com/apache/pouchdb"
+    ],
+    "stable_release": "9.0.0",
+    "stable_release_date": "2024-05-24",
+    "homepage": "https://pouchdb.apache.org"
+  },
+  {
+    "key": "inlong",
+    "name": "Apache InLong",
+    "pmc": "inlong",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://dist.apache.org/repos/dist/release/inlong/",
+      "https://git@github.com:apache/inlong.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://inlong.apache.org"
+  },
+  {
+    "key": "iotdb",
+    "name": "Apache IoTDB",
+    "pmc": "iotdb",
+    "language": [
+      "Java",
+      "Python",
+      "C++",
+      "C",
+      "Go",
+      "C#",
+      "Node.js"
+    ],
+    "category": [
+      "database",
+      "iot",
+      "java",
+      "python",
+      "c++",
+      "c",
+      "go"
+    ],
+    "repositories": [
+      "https://github.com/apache/iotdb.git"
+    ],
+    "stable_release": "2.0.10",
+    "stable_release_date": "2026-07-08",
+    "homepage": "http://iotdb.apache.org"
+  },
+  {
+    "key": "jackrabbit",
+    "name": "Apache Jackrabbit",
+    "pmc": "jackrabbit",
+    "language": "Java",
+    "category": [
+      "database",
+      "library",
+      "network-server",
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/jackrabbit/trunk/"
+    ],
+    "stable_release": "1.2.2",
+    "stable_release_date": "2007-02-21",
+    "homepage": "http://jackrabbit.apache.org/"
+  },
+  {
+    "key": "james",
+    "name": "Apache JAMES",
+    "pmc": "james",
+    "language": "Java",
+    "category": [
+      "mail",
+      "network-server"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/james/server/trunk"
+    ],
+    "stable_release": "3.0.beta4",
+    "stable_release_date": "2012-03-02",
+    "homepage": "http://james.apache.org"
+  },
+  {
+    "key": "jena",
+    "name": "Apache Jena",
+    "pmc": "jena",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "git://git.apache.org/jena.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://jena.apache.org"
+  },
+  {
+    "key": "jmeter",
+    "name": "Apache JMeter",
+    "pmc": "jmeter",
+    "language": "Java",
+    "category": [
+      "testing"
+    ],
+    "repositories": [
+      "https://github.com/apache/jmeter.git"
+    ],
+    "stable_release": "5.6.3 final",
+    "stable_release_date": "2024-01-07",
+    "homepage": "http://jmeter.apache.org/index.html"
+  },
+  {
+    "key": "johnzon",
+    "name": "Apache Johnzon",
+    "pmc": "johnzon",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://johnzon.apache.org"
+  },
+  {
+    "key": "jspwiki",
+    "name": "Apache JSPWiki",
+    "pmc": "jspwiki",
+    "language": "Java",
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/jspwiki/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://jspwiki.apache.org/"
+  },
+  {
+    "key": "juneau",
+    "name": "Apache Juneau",
+    "pmc": "juneau",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://juneau.apache.org"
+  },
+  {
+    "key": "kafka",
+    "name": "Apache Kafka",
+    "pmc": "kafka",
+    "language": "Scala",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/kafka.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://kafka.apache.org/"
+  },
+  {
+    "key": "karaf",
+    "name": "Apache Karaf",
+    "pmc": "karaf",
+    "language": "Java",
+    "category": [
+      "network-server",
+      "osgi"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/karaf/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://karaf.apache.org"
+  },
+  {
+    "key": "knox",
+    "name": "Apache Knox",
+    "pmc": "knox",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/knox.git"
+    ],
+    "stable_release": "1.2.0",
+    "stable_release_date": "2018/12/18",
+    "homepage": "https://knox.apache.org"
+  },
+  {
+    "key": "kudu",
+    "name": "Apache Kudu",
+    "pmc": "kudu",
+    "language": "C++",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "git://git.apache.org/kudu.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://kudu.apache.org"
+  },
+  {
+    "key": "kvrocks",
+    "name": "Apache Kvrocks",
+    "pmc": "kvrocks",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://kvrocks.apache.org"
+  },
+  {
+    "key": "kylin",
+    "name": "Apache Kylin",
+    "pmc": "kylin",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/kylin"
+    ],
+    "stable_release": "5.0.0-beta",
+    "stable_release_date": "2023-08-30",
+    "homepage": "https://kylin.apache.org"
+  },
+  {
+    "key": "kyuubi",
+    "name": "Apache Kyuubi",
+    "pmc": "kyuubi",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://kyuubi.apache.org"
+  },
+  {
+    "key": "libcloud",
+    "name": "Apache Libcloud",
+    "pmc": "libcloud",
+    "language": "Python",
+    "category": [
+      "cloud",
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/libcloud/trunk/"
+    ],
+    "stable_release": "v3.9.1",
+    "stable_release_date": "2026-04-16",
+    "homepage": "http://libcloud.apache.org"
+  },
+  {
+    "key": "linkis",
+    "name": "Apache Linkis",
+    "pmc": "linkis",
+    "language": [
+      "Java",
+      "Scala"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/linkis"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://linkis.apache.org/"
+  },
+  {
+    "key": "livy",
+    "name": "Apache Livy",
+    "pmc": "livy",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://livy.apache.org"
+  },
+  {
+    "key": "logging-chainsaw",
+    "name": "Apache Chainsaw",
+    "pmc": "logging",
+    "language": "Java",
+    "category": [
+      "network-client"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/logging/chainsaw/trunk/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://logging.apache.org/log4j/docs/chainsaw.html"
+  },
+  {
+    "key": "logging-flume",
+    "name": "Apache Flume",
+    "pmc": "logging",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf?p=flume.git"
+    ],
+    "stable_release": "1.5.0",
+    "stable_release_date": "2014-05-20",
+    "homepage": "http://flume.apache.org"
+  },
+  {
+    "key": "logging-log4cxx",
+    "name": "Apache log4cxx",
+    "pmc": "logging",
+    "language": "C++",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/logging-log4cxx.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://logging.apache.org/log4cxx"
+  },
+  {
+    "key": "logging-log4j",
+    "name": "Apache Log4j",
+    "pmc": "logging",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/logging-log4j2.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://logging.apache.org/log4j/2.x/index.html"
+  },
+  {
+    "key": "logging-log4net",
+    "name": "Apache log4net",
+    "pmc": "logging",
+    "language": "C#",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/logging-log4net"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://logging.apache.org/log4net/"
+  },
+  {
+    "key": "logging-log4php",
+    "name": "Apache log4php",
+    "pmc": "logging",
+    "language": "PHP",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/logging/log4php/trunk"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://logging.apache.org/log4php/"
+  },
+  {
+    "key": "lucene-core",
+    "name": "Apache Lucene Core",
+    "pmc": "lucene",
+    "language": "Java",
+    "category": [
+      "database",
+      "library",
+      "search"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/lucene.git"
+    ],
+    "stable_release": "10.5.1",
+    "stable_release_date": "2026-08-12",
+    "homepage": "https://lucene.apache.org/core/"
+  },
+  {
+    "key": "lucene-pylucene",
+    "name": "Apache PyLucene",
+    "pmc": "lucene",
+    "language": [
+      "C++",
+      "Python"
+    ],
+    "category": [
+      "search",
+      "library",
+      "python",
+      "c++"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/lucene/pylucene/"
+    ],
+    "stable_release": "10.0.0",
+    "stable_release_date": "2023-10-20",
+    "homepage": "https://lucene.apache.org/pylucene/index.html"
+  },
+  {
+    "key": "lucenenet-lucenedotnet",
+    "name": "Apache Lucene.Net",
+    "pmc": "lucenenet",
+    "language": "C#",
+    "category": [
+      "database"
+    ],
+    "repositories": [],
+    "stable_release": "3.0.3",
+    "stable_release_date": "2012-10-10",
+    "homepage": "http://lucenenet.apache.org/"
+  },
+  {
+    "key": "magpie",
+    "name": "Apache Magpie",
+    "pmc": "magpie",
+    "language": "Python",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/magpie.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://github.com/apache/magpie"
+  },
+  {
+    "key": "mahout",
+    "name": "Apache Mahout",
+    "pmc": "mahout",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/mahout/trunk"
+    ],
+    "stable_release": "0.5",
+    "stable_release_date": "2011-05-27",
+    "homepage": "http://mahout.apache.org"
+  },
+  {
+    "key": "manifoldcf",
+    "name": "Apache ManifoldCF",
+    "pmc": "manifoldcf",
+    "language": "Java",
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/manifoldcf.git",
+      "https://svn.apache.org/repos/asf/manifoldcf"
+    ],
+    "stable_release": "2.30",
+    "stable_release_date": "2026-04-11",
+    "homepage": "https://manifoldcf.apache.org"
+  },
+  {
+    "key": "maven",
+    "name": "Apache Maven",
+    "pmc": "maven",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/maven.git",
+      "https://github.com/apache/maven-integration-testing.git"
+    ],
+    "stable_release": "4.0.0-rc-6",
+    "stable_release_date": "2026-08-04",
+    "homepage": "https://maven.apache.org/"
+  },
+  {
+    "key": "maven-doxia",
+    "name": "Apache Maven Doxia",
+    "pmc": "maven",
+    "language": "Java",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "https://github.com/apache/maven-doxia.git",
+      "https://github.com/apache/maven-doxia-sitetools.git",
+      "https://github.com/apache/maven-doxia-converter.git",
+      "https://github.com/apache/maven-doxia-linkcheck.git",
+      "http://svn.apache.org/repos/asf/maven/doxia/doxia-tools/trunk/",
+      "http://svn.apache.org/repos/asf/maven/doxia/site/trunk/"
+    ],
+    "stable_release": "1.8.1",
+    "stable_release_date": "2018-04-22",
+    "homepage": "https://maven.apache.org/doxia/"
+  },
+  {
+    "key": "mina",
+    "name": "Apache MINA",
+    "pmc": "mina",
+    "language": "Java",
+    "category": [
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/mina"
+    ],
+    "stable_release": "2.0.2",
+    "stable_release_date": "2010-12-15",
+    "homepage": "http://mina.apache.org/"
+  },
+  {
+    "key": "mina-ftpserver",
+    "name": "Apache FtpServer",
+    "pmc": "mina",
+    "language": "Java",
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/mina/ftpserver"
+    ],
+    "stable_release": "1.0.5",
+    "stable_release_date": "2010-10-02",
+    "homepage": "http://mina.apache.org/ftpserver-project"
+  },
+  {
+    "key": "mina-sshd",
+    "name": "Apache SSHD",
+    "pmc": "mina",
+    "language": "Java",
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/mina/sshd"
+    ],
+    "stable_release": "0.5",
+    "stable_release_date": "2010-11-08",
+    "homepage": "http://mina.apache.org/sshd-project"
+  },
+  {
+    "key": "mina-vysper",
+    "name": "Apache Vysper",
+    "pmc": "mina",
+    "language": "Java",
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/mina/vysper"
+    ],
+    "stable_release": "0.6",
+    "stable_release_date": "2010-09-18",
+    "homepage": "http://mina.apache.org/vysper-project"
+  },
+  {
+    "key": "myfaces",
+    "name": "Apache MyFaces",
+    "pmc": "myfaces",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "javaee"
+    ],
+    "repositories": [
+      "https://github.com/apache/myfaces.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://myfaces.apache.org"
+  },
+  {
+    "key": "myfaces-tobago",
+    "name": "Apache Tobago",
+    "pmc": "myfaces",
+    "language": [
+      "Java",
+      "Typescript"
+    ],
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/myfaces-tobago.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://myfaces.apache.org/#/tobago"
+  },
+  {
+    "key": "mynewt",
+    "name": "Apache Mynewt",
+    "pmc": "mynewt",
+    "language": [
+      "C",
+      "Go"
+    ],
+    "category": [
+      "iot"
+    ],
+    "repositories": [
+      "https://github.com/apache/mynewt-core.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://mynewt.apache.org"
+  },
+  {
+    "key": "netbeans",
+    "name": "Apache NetBeans",
+    "pmc": "netbeans",
+    "language": "Java",
+    "category": [
+      "java",
+      "groovy",
+      "php",
+      "ide"
+    ],
+    "repositories": [
+      "https://github.com/apache/netbeans.git"
+    ],
+    "stable_release": "29",
+    "stable_release_date": "2026-02-23",
+    "homepage": "https://netbeans.apache.org"
+  },
+  {
+    "key": "nifi",
+    "name": "Apache NiFi",
+    "pmc": "nifi",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/nifi"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://nifi.apache.org/"
+  },
+  {
+    "key": "nutch",
+    "name": "Apache Nutch",
+    "pmc": "nutch",
+    "language": "Java",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/nutch.git"
+    ],
+    "stable_release": "1.23",
+    "stable_release_date": "2026-08-07",
+    "homepage": "https://nutch.apache.org"
+  },
+  {
+    "key": "nuttx",
+    "name": "Apache Nuttx",
+    "pmc": "nuttx",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://nuttx.apache.org"
+  },
+  {
+    "key": "ofbiz",
+    "name": "Apache OFBiz",
+    "pmc": "ofbiz",
+    "language": [
+      "Java",
+      "Groovy",
+      "JavaScript",
+      "XML",
+      "Freemarker"
+    ],
+    "category": [
+      "web-framework",
+      "database",
+      "network-server",
+      "xml",
+      "http",
+      "content",
+      "geospatial"
+    ],
+    "repositories": [
+      "http://ofbiz.apache.org/source-repositories.html"
+    ],
+    "stable_release": "24.09.07",
+    "stable_release_date": "2026-06-10",
+    "homepage": "http://ofbiz.apache.org"
+  },
+  {
+    "key": "opendal",
+    "name": "Apache OpenDAL",
+    "pmc": "opendal",
+    "language": "Rust",
+    "category": [
+      "data-engineering"
+    ],
+    "repositories": [
+      "https://github.com/apache/opendal.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://opendal.apache.org/"
+  },
+  {
+    "key": "openjpa",
+    "name": "Apache OpenJPA",
+    "pmc": "openjpa",
+    "language": "Java",
+    "category": [
+      "database",
+      "library",
+      "javaee"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/openjpa/"
+    ],
+    "stable_release": "2.0.0",
+    "stable_release_date": "2010-04-22",
+    "homepage": "http://openjpa.apache.org"
+  },
+  {
+    "key": "openmeetings",
+    "name": "Apache OpenMeetings",
+    "pmc": "openmeetings",
+    "language": [
+      "Java",
+      "JavaScript",
+      "SQL"
+    ],
+    "category": [
+      "network-server",
+      "network-client"
+    ],
+    "repositories": [
+      "https://github.com/apache/openmeetings.git"
+    ],
+    "stable_release": "9.1.0",
+    "stable_release_date": "2026-07-08",
+    "homepage": "https://openmeetings.apache.org/"
+  },
+  {
+    "key": "opennlp",
+    "name": "Apache OpenNLP",
+    "pmc": "opennlp",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/opennlp.git"
+    ],
+    "stable_release": "3.0.0-M3",
+    "stable_release_date": "2026-05-01",
+    "homepage": "http://opennlp.apache.org"
+  },
+  {
+    "key": "openoffice",
+    "name": "Apache OpenOffice",
+    "pmc": "openoffice",
+    "language": "C++",
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/openoffice.git"
+    ],
+    "stable_release": "4.1.16",
+    "stable_release_date": "2025-11-10",
+    "homepage": "https://openoffice.apache.org"
+  },
+  {
+    "key": "openwebbeans",
+    "name": "Apache OpenWebBeans",
+    "pmc": "openwebbeans",
+    "language": "Java",
+    "category": [
+      "javaee"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/openwebbeans"
+    ],
+    "stable_release": "1.0.0",
+    "stable_release_date": "2010-10-19",
+    "homepage": "http://openwebbeans.apache.org"
+  },
+  {
+    "key": "openwhisk",
+    "name": "Apache Openwhisk",
+    "pmc": "openwhisk",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://openwhisk.apache.org"
+  },
+  {
+    "key": "orc",
+    "name": "Apache ORC",
+    "pmc": "orc",
+    "language": [
+      "Java",
+      "C++"
+    ],
+    "category": [
+      "big-data",
+      "database",
+      "hadoop",
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/orc.git"
+    ],
+    "stable_release": "1.8.1",
+    "stable_release_date": "2022-12-02",
+    "homepage": "https://orc.apache.org"
+  },
+  {
+    "key": "ozone",
+    "name": "Apache Ozone",
+    "pmc": "ozone",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/ozone.git"
+    ],
+    "stable_release": "1.3.0",
+    "stable_release_date": "2022-12-18 ",
+    "homepage": "https://ozone.apache.org/"
+  },
+  {
+    "key": "paimon",
+    "name": "Apache Paimon",
+    "pmc": "paimon",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://paimon.apache.org"
+  },
+  {
+    "key": "parquet",
+    "name": "Apache Parquet",
+    "pmc": "parquet",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://git.apache.org/repos/asf?p=parquet-java.git"
+    ],
+    "stable_release": "1.13.1",
+    "stable_release_date": "2023-05-18",
+    "homepage": "http://parquet.apache.org"
+  },
+  {
+    "key": "pdfbox",
+    "name": "Apache PDFBox",
+    "pmc": "pdfbox",
+    "language": "Java",
+    "category": [
+      "content",
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/pdfbox"
+    ],
+    "stable_release": "2.0.37",
+    "stable_release_date": "2026-07-15",
+    "homepage": "https://pdfbox.apache.org"
+  },
+  {
+    "key": "pekko",
+    "name": "Apache Pekko",
+    "pmc": "pekko",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://pekko.apache.org"
+  },
+  {
+    "key": "perl-mod_perl",
+    "name": "Apache mod_perl",
+    "pmc": "perl",
+    "language": [
+      "C",
+      "Perl"
+    ],
+    "category": [
+      "httpd-module"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/perl/modperl/trunk/",
+      "http://svn.apache.org/repos/asf/perl/modperl/docs/trunk",
+      "http://svn.apache.org/repos/asf/perl/Apache-Test/trunk/",
+      "http://svn.apache.org/repos/asf/perl/Apache-SizeLimit/trunk/",
+      "http://svn.apache.org/repos/asf/perl/Apache-Reload/trunk/"
+    ],
+    "stable_release": "2.0.13",
+    "stable_release_date": "2023-10-21",
+    "homepage": "http://perl.apache.org/"
+  },
+  {
+    "key": "phoenix",
+    "name": "Apache Phoenix",
+    "pmc": "phoenix",
+    "language": [
+      "Java",
+      "SQL"
+    ],
+    "category": [
+      "big-data",
+      "database"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/phoenix.git"
+    ],
+    "stable_release": "4.7.0-HBase-0.98",
+    "stable_release_date": "2016-03-08",
+    "homepage": "http://phoenix.apache.org"
+  },
+  {
+    "key": "pig",
+    "name": "Apache Pig",
+    "pmc": "pig",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/pig/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://pig.apache.org"
+  },
+  {
+    "key": "pinot",
+    "name": "Apache Pinot",
+    "pmc": "pinot",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/pinot.git"
+    ],
+    "stable_release": "1.5.0",
+    "stable_release_date": "2026-04-15",
+    "homepage": "https://pinot.apache.org"
+  },
+  {
+    "key": "plc4x",
+    "name": "Apache PLC4X",
+    "pmc": "plc4x",
+    "language": [
+      "C",
+      "C++",
+      "C#",
+      "Go",
+      "Java",
+      "Python"
+    ],
+    "category": [
+      "c",
+      "c++",
+      "go",
+      "integration",
+      "iot",
+      "java",
+      "library",
+      "network-client",
+      "python"
+    ],
+    "repositories": [
+      "https://github.com/apache/plc4x.git"
+    ],
+    "stable_release": "1.0.0",
+    "stable_release_date": "2026-09-07",
+    "homepage": "https://plc4x.apache.org/"
+  },
+  {
+    "key": "poi",
+    "name": "Apache POI",
+    "pmc": "poi",
+    "language": "Java",
+    "category": [
+      "content",
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/poi/"
+    ],
+    "stable_release": "5.4.1",
+    "stable_release_date": "2025-04-06",
+    "homepage": "https://poi.apache.org"
+  },
+  {
+    "key": "poi-xmlbeans",
+    "name": "Apache XMLBeans",
+    "pmc": "poi",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xmlbeans/trunk/"
+    ],
+    "stable_release": "5.2.2",
+    "stable_release_date": "2024-11-05",
+    "homepage": "https://xmlbeans.apache.org/"
+  },
+  {
+    "key": "polaris",
+    "name": "Apache Polaris",
+    "pmc": "polaris",
+    "language": [
+      "Java",
+      "Python"
+    ],
+    "category": [
+      "big-data",
+      "data-engineering",
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/polaris"
+    ],
+    "stable_release": "1.6.0",
+    "stable_release_date": "2026-07-08",
+    "homepage": "https://polaris.apache.org"
+  },
+  {
+    "key": "ponymail-pony_mail",
+    "name": "Apache Pony Mail",
+    "pmc": "ponymail",
+    "language": [
+      "Python",
+      "JavaScript",
+      "Lua"
+    ],
+    "category": [
+      "mail",
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/incubator-ponymail-foal.git",
+      "https://github.com/apache/incubator-ponymail.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://ponymail.apache.org"
+  },
+  {
+    "key": "pulsar",
+    "name": "Apache Pulsar",
+    "pmc": "pulsar",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/pulsar.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://pulsar.apache.org/"
+  },
+  {
+    "key": "qpid",
+    "name": "Apache Qpid",
+    "pmc": "qpid",
+    "language": [
+      "C++",
+      "Java",
+      "C#",
+      "Perl",
+      "Python",
+      "Ruby"
+    ],
+    "category": [
+      "network-server",
+      "network-client"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/qpid/trunk/qpid/",
+      "https://svn.apache.org/repos/asf/qpid/proton/trunk/"
+    ],
+    "stable_release": "0.32",
+    "stable_release_date": "2015-03-19",
+    "homepage": "http://qpid.apache.org"
+  },
+  {
+    "key": "ranger",
+    "name": "Apache Ranger",
+    "pmc": "ranger",
+    "language": "Java",
+    "category": [
+      "big-data",
+      "security"
+    ],
+    "repositories": [
+      "https://github.com/apache/ranger.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://ranger.apache.org"
+  },
+  {
+    "key": "ratis",
+    "name": "Apache Ratis",
+    "pmc": "ratis",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://ratis.apache.org"
+  },
+  {
+    "key": "reqsign",
+    "name": "Apache Reqsign",
+    "pmc": "reqsign",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://reqsign.apache.org"
+  },
+  {
+    "key": "resilientdb",
+    "name": "Apache Resilientdb",
+    "pmc": "resilientdb",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://resilientdb.apache.org"
+  },
+  {
+    "key": "rocketmq",
+    "name": "Apache Rocketmq",
+    "pmc": "rocketmq",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://rocketmq.apache.org"
+  },
+  {
+    "key": "roller",
+    "name": "Apache Roller",
+    "pmc": "roller",
+    "language": "Java",
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/roller/"
+    ],
+    "stable_release": "5.0.4",
+    "stable_release_date": "2014-06-27",
+    "homepage": "http://roller.apache.org/"
+  },
+  {
+    "key": "royale",
+    "name": "Apache Royale",
+    "pmc": "royale",
+    "language": "ActionScript",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [],
+    "stable_release": "0.9.12",
+    "stable_release_date": "2024-12-11",
+    "homepage": "https://royale.apache.org"
+  },
+  {
+    "key": "rya",
+    "name": "Apache Rya",
+    "pmc": "rya",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://rya.apache.org"
+  },
+  {
+    "key": "samza",
+    "name": "Apache Samza",
+    "pmc": "samza",
+    "language": "Scala",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/samza.git"
+    ],
+    "stable_release": "0.8.0",
+    "stable_release_date": "2014-12-09",
+    "homepage": "http://samza.apache.org/"
+  },
+  {
+    "key": "santuario",
+    "name": "Apache Santuario",
+    "pmc": "santuario",
+    "language": "Java",
+    "category": [
+      "library",
+      "security",
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/santuario-xml-security-java"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://santuario.apache.org"
+  },
+  {
+    "key": "sdap",
+    "name": "Apache Sdap",
+    "pmc": "sdap",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://sdap.apache.org"
+  },
+  {
+    "key": "seatunnel",
+    "name": "Apache SeaTunnel",
+    "pmc": "seatunnel",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/seatunnel.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://seatunnel.apache.org/"
+  },
+  {
+    "key": "sedona",
+    "name": "Apache Sedona",
+    "pmc": "sedona",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://sedona.apache.org"
+  },
+  {
+    "key": "serf",
+    "name": "Apache Serf",
+    "pmc": "serf",
+    "language": "C",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/serf/trunk"
+    ],
+    "stable_release": "1.3.10",
+    "stable_release_date": "2023-05-31",
+    "homepage": "https://serf.apache.org"
+  },
+  {
+    "key": "servicecomb",
+    "name": "Apache Servicecomb",
+    "pmc": "servicecomb",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://servicecomb.apache.org"
+  },
+  {
+    "key": "shardingsphere",
+    "name": "Apache Shardingsphere",
+    "pmc": "shardingsphere",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://shardingsphere.apache.org"
+  },
+  {
+    "key": "shenyu",
+    "name": "Apache Shenyu",
+    "pmc": "shenyu",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://shenyu.apache.org"
+  },
+  {
+    "key": "shiro",
+    "name": "Apache Shiro",
+    "pmc": "shiro",
+    "language": "Java",
+    "category": [
+      "library",
+      "web-framework"
+    ],
+    "repositories": [
+      "git:https://gitbox.apache.org/repos/asf/shiro.git",
+      "git:https://gitbox.apache.org/repos/asf/shiro.git"
+    ],
+    "stable_release": "2.0.0",
+    "stable_release_date": "2024-02-28",
+    "homepage": "https://shiro.apache.org/"
+  },
+  {
+    "key": "singa",
+    "name": "Apache Singa",
+    "pmc": "singa",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://singa.apache.org"
+  },
+  {
+    "key": "sis-spatial_information_system",
+    "name": "Apache Spatial Information System",
+    "pmc": "sis",
+    "language": "Java",
+    "category": [
+      "geospatial",
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/sis"
+    ],
+    "stable_release": "1.4",
+    "stable_release_date": "2023-10-10",
+    "homepage": "http://sis.apache.org/"
+  },
+  {
+    "key": "skywalking",
+    "name": "Apache SkyWalking",
+    "pmc": "skywalking",
+    "language": "Java",
+    "category": [
+      "observability"
+    ],
+    "repositories": [
+      "git://gitbox.apache.org/repos/asf/skywalking.git"
+    ],
+    "stable_release": "8.2.0",
+    "stable_release_date": "2020-10-27",
+    "homepage": "http://skywalking.apache.org"
+  },
+  {
+    "key": "sling",
+    "name": "Apache Sling",
+    "pmc": "sling",
+    "language": "Java",
+    "category": null,
+    "repositories": [
+      "http://svn.apache.org/repos/asf/sling/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://sling.apache.org/"
+  },
+  {
+    "key": "solr",
+    "name": "Apache Solr",
+    "pmc": "solr",
+    "language": "Java",
+    "category": [
+      "web-framework",
+      "network-server",
+      "search",
+      "java"
+    ],
+    "repositories": [
+      "https://gitbox.apache.org/repos/asf?p=solr.git"
+    ],
+    "stable_release": "10.0.0",
+    "stable_release_date": "2026-03-03",
+    "homepage": "http://solr.apache.org"
+  },
+  {
+    "key": "solr-operator",
+    "name": "Apache Solr Operator",
+    "pmc": "solr",
+    "language": "Go",
+    "category": [
+      "cloud",
+      "search",
+      "go"
+    ],
+    "repositories": [
+      "https://github.com/apache/solr-operator.git"
+    ],
+    "stable_release": "v0.9.1",
+    "stable_release_date": "2025-03-25",
+    "homepage": "https://solr.apache.org/operator"
+  },
+  {
+    "key": "sourcelume",
+    "name": "Apache Sourcelume",
+    "pmc": "sourcelume",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://sourcelume.apache.org"
+  },
+  {
+    "key": "spamassassin",
+    "name": "Apache SpamAssassin",
+    "pmc": "spamassassin",
+    "language": [
+      "C",
+      "Perl"
+    ],
+    "category": null,
+    "repositories": [
+      "https://svn.apache.org/repos/asf/spamassassin/trunk"
+    ],
+    "stable_release": "4.0.2",
+    "stable_release_date": "2025-08-30",
+    "homepage": "https://spamassassin.apache.org/"
+  },
+  {
+    "key": "spark",
+    "name": "Apache Spark",
+    "pmc": "spark",
+    "language": [
+      "Java",
+      "Scala",
+      "Python",
+      "R",
+      "SQL",
+      "JDBC"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://spark.apache.org"
+  },
+  {
+    "key": "steve",
+    "name": "Apache STeVe",
+    "pmc": "steve",
+    "language": [
+      "Perl",
+      "Python"
+    ],
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/steve.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://steve.apache.org"
+  },
+  {
+    "key": "storm",
+    "name": "Apache Storm",
+    "pmc": "storm",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "http://git-wip-us.apache.org/repos/asf/storm.git"
+    ],
+    "stable_release": "3.1.0",
+    "stable_release_date": "2026-09-12",
+    "homepage": "http://storm.apache.org/"
+  },
+  {
+    "key": "stormcrawler",
+    "name": "Apache Stormcrawler",
+    "pmc": "stormcrawler",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://stormcrawler.apache.org"
+  },
+  {
+    "key": "streampark",
+    "name": "Apache Streampark",
+    "pmc": "streampark",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://streampark.apache.org"
+  },
+  {
+    "key": "streampipes",
+    "name": "Apache Streampipes",
+    "pmc": "streampipes",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://streampipes.apache.org"
+  },
+  {
+    "key": "struts",
+    "name": "Apache Struts",
+    "pmc": "struts",
+    "language": "Java",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://struts.apache.org"
+  },
+  {
+    "key": "subversion",
+    "name": "Apache Subversion",
+    "pmc": "subversion",
+    "language": "C",
+    "category": [
+      "build-management"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/subversion/trunk"
+    ],
+    "stable_release": "1.14.5",
+    "stable_release_date": "2024-12-08",
+    "homepage": "http://subversion.apache.org/"
+  },
+  {
+    "key": "superset",
+    "name": "Apache Superset",
+    "pmc": "superset",
+    "language": [
+      "JavaScript",
+      "Python",
+      "Typescript"
+    ],
+    "category": [
+      "big-data",
+      "database",
+      "data-engineering",
+      "geospatial"
+    ],
+    "repositories": [
+      "https://github.com/apache/superset.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://superset.apache.org"
+  },
+  {
+    "key": "synapse",
+    "name": "Apache Synapse",
+    "pmc": "synapse",
+    "language": "Java",
+    "category": [
+      "xml",
+      "http",
+      "network-server",
+      "network-client"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/synapse/trunk/java"
+    ],
+    "stable_release": "1.2",
+    "stable_release_date": "2008-06-09",
+    "homepage": "http://synapse.apache.org/"
+  },
+  {
+    "key": "syncope",
+    "name": "Apache Syncope",
+    "pmc": "syncope",
+    "language": "Java",
+    "category": [
+      "identity-management",
+      "identity-provisioning",
+      "security"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/syncope.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://syncope.apache.org/"
+  },
+  {
+    "key": "systemds",
+    "name": "Apache Systemds",
+    "pmc": "systemds",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://systemds.apache.org"
+  },
+  {
+    "key": "tapestry",
+    "name": "Apache Tapestry",
+    "pmc": "tapestry",
+    "language": "Java",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/tapestry-5.git"
+    ],
+    "stable_release": "5.9.0",
+    "stable_release_date": "2025-02-11",
+    "homepage": "http://tapestry.apache.org"
+  },
+  {
+    "key": "tcl-rivet",
+    "name": "Apache rivet",
+    "pmc": "tcl",
+    "language": "Tcl",
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/tcl-rivet.git"
+    ],
+    "stable_release": "3.3.1",
+    "stable_release_date": "2026-09-05",
+    "homepage": "https://tcl.apache.org/rivet"
+  },
+  {
+    "key": "tcl-websh",
+    "name": "Apache Websh",
+    "pmc": "tcl",
+    "language": [
+      "C",
+      "Tcl"
+    ],
+    "category": [
+      "web-framework",
+      "httpd-module"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/tcl/websh/trunk"
+    ],
+    "stable_release": "3.6.0b5",
+    "stable_release_date": "2009-09-14",
+    "homepage": "http://tcl.apache.org/websh"
+  },
+  {
+    "key": "teaclave",
+    "name": "Apache Teaclave",
+    "pmc": "teaclave",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://teaclave.apache.org"
+  },
+  {
+    "key": "tez",
+    "name": "Apache Tez",
+    "pmc": "tez",
+    "language": "Java",
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/tez.git"
+    ],
+    "stable_release": "0.10.5",
+    "stable_release_date": "2025-05-30",
+    "homepage": "http://tez.apache.org"
+  },
+  {
+    "key": "thrift",
+    "name": "Apache Thrift",
+    "pmc": "thrift",
+    "language": [
+      "C",
+      "C#",
+      "C++",
+      "D",
+      "Dart",
+      "Delphi",
+      "Erlang",
+      "Go",
+      "Haxe",
+      "Java",
+      "JavaScript",
+      "node.js",
+      "OCaml",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Rust",
+      "Smalltalk"
+    ],
+    "category": [
+      "http",
+      "library",
+      "network-client",
+      "network-server"
+    ],
+    "repositories": [
+      "https://github.com/apache/thrift.git"
+    ],
+    "stable_release": "0.24.0",
+    "stable_release_date": "2026-07-11",
+    "homepage": "https://thrift.apache.org"
+  },
+  {
+    "key": "tika",
+    "name": "Apache Tika",
+    "pmc": "tika",
+    "language": "Java",
+    "category": [
+      "content",
+      "library"
+    ],
+    "repositories": [
+      "https://github.com/apache/tika.git"
+    ],
+    "stable_release": "4.0.0",
+    "stable_release_date": "2026-08-21",
+    "homepage": "https://tika.apache.org"
+  },
+  {
+    "key": "tinkerpop",
+    "name": "Apache Tinkerpop",
+    "pmc": "tinkerpop",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://tinkerpop.apache.org"
+  },
+  {
+    "key": "tomcat",
+    "name": "Apache Tomcat",
+    "pmc": "tomcat",
+    "language": "Java",
+    "category": [
+      "network-server",
+      "http",
+      "javaee"
+    ],
+    "repositories": [
+      "https://github.com/apache/tomcat.git"
+    ],
+    "stable_release": "10.1.60",
+    "stable_release_date": "2026-09-15",
+    "homepage": "http://tomcat.apache.org/"
+  },
+  {
+    "key": "tomee",
+    "name": "Apache TomEE",
+    "pmc": "tomee",
+    "language": "Java",
+    "category": [
+      "network-server"
+    ],
+    "repositories": [
+      "http://svn.apache.org/viewvc/tomee/tomee/trunk/",
+      "https://svn.apache.org/repos/asf/tomee/tomee/trunk"
+    ],
+    "stable_release": "1.7.0",
+    "stable_release_date": null,
+    "homepage": "http://tomee.apache.org"
+  },
+  {
+    "key": "trafficserver-traffic_server",
+    "name": "Apache Traffic Server",
+    "pmc": "trafficserver",
+    "language": "C++",
+    "category": [
+      "http"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/trafficserver.git"
+    ],
+    "stable_release": "3.0.4",
+    "stable_release_date": "2012-03-21",
+    "homepage": "https://trafficserver.apache.org"
+  },
+  {
+    "key": "training",
+    "name": "Apache Training",
+    "pmc": "training",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://training.apache.org"
+  },
+  {
+    "key": "tsfile",
+    "name": "Apache TsFile",
+    "pmc": "tsfile",
+    "language": [
+      "Java",
+      "C++",
+      "C",
+      "Python"
+    ],
+    "category": [
+      "big-data",
+      "iot",
+      "java",
+      "python",
+      "c++",
+      "c"
+    ],
+    "repositories": [
+      "https://github.com/apache/tsfile.git"
+    ],
+    "stable_release": "2.4.0",
+    "stable_release_date": "2026-07-23",
+    "homepage": "https://tsfile.apache.org"
+  },
+  {
+    "key": "turbine",
+    "name": "Apache Turbine",
+    "pmc": "turbine",
+    "language": "Java",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/turbine-core.git"
+    ],
+    "stable_release": "7.0",
+    "stable_release_date": "2025-04-01",
+    "homepage": "https://turbine.apache.org"
+  },
+  {
+    "key": "tvm",
+    "name": "Apache TVM",
+    "pmc": "tvm",
+    "language": [
+      "C++",
+      "Python"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://tvm.apache.org/"
+  },
+  {
+    "key": "uima",
+    "name": "Apache UIMA",
+    "pmc": "uima",
+    "language": [
+      "Java",
+      "C++"
+    ],
+    "category": null,
+    "repositories": [
+      "http://svn.apache.org/repos/asf/uima/"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://uima.apache.org"
+  },
+  {
+    "key": "uniffle",
+    "name": "Apache Uniffle",
+    "pmc": "uniffle",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://uniffle.apache.org"
+  },
+  {
+    "key": "unomi",
+    "name": "Apache Unomi",
+    "pmc": "unomi",
+    "language": "Java",
+    "category": [
+      "search"
+    ],
+    "repositories": [
+      "https://github.com/apache/unomi"
+    ],
+    "stable_release": "3.0.1",
+    "stable_release_date": "2025-11-10",
+    "homepage": "https://unomi.apache.org"
+  },
+  {
+    "key": "vcl",
+    "name": "Apache VCL",
+    "pmc": "vcl",
+    "language": [
+      "Bash",
+      "JavaScript",
+      "Perl",
+      "PHP",
+      "SQL"
+    ],
+    "category": [
+      "cloud"
+    ],
+    "repositories": [
+      "https://git-wip-us.apache.org/repos/asf/vcl"
+    ],
+    "stable_release": "2.5.1",
+    "stable_release_date": "2019-07-25",
+    "homepage": "http://vcl.apache.org"
+  },
+  {
+    "key": "velocity",
+    "name": "Apache Velocity",
+    "pmc": "velocity",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/velocity/engine/trunk"
+    ],
+    "stable_release": "2.4.1",
+    "stable_release_date": "2024-10-14",
+    "homepage": "http://velocity.apache.org"
+  },
+  {
+    "key": "velocity-anakia",
+    "name": "Apache Anakia",
+    "pmc": "velocity",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/velocity/anakia/trunk"
+    ],
+    "stable_release": "1.0",
+    "stable_release_date": "2007-04-28",
+    "homepage": "http://velocity.apache.org/anakia/"
+  },
+  {
+    "key": "velocity-dvsl",
+    "name": "Apache Velocity DVSL",
+    "pmc": "velocity",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/velocity/dvsl/trunk"
+    ],
+    "stable_release": "1.0",
+    "stable_release_date": "2007-08-13",
+    "homepage": "http://velocity.apache.org/dvsl/devel/"
+  },
+  {
+    "key": "velocity-texen",
+    "name": "Apache Texen",
+    "pmc": "velocity",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/velocity/texen/trunk"
+    ],
+    "stable_release": "1.0",
+    "stable_release_date": "2007-04-28",
+    "homepage": "http://velocity.apache.org/texen/"
+  },
+  {
+    "key": "velocity-tools",
+    "name": "Apache Velocity Tools",
+    "pmc": "velocity",
+    "language": "Java",
+    "category": [
+      "library"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/velocity/tools/trunk"
+    ],
+    "stable_release": "3.0",
+    "stable_release_date": "2021-02-27",
+    "homepage": "http://velocity.apache.org/velocity/tools/"
+  },
+  {
+    "key": "wayang",
+    "name": "Apache Wayang",
+    "pmc": "wayang",
+    "language": null,
+    "category": [
+      "no-tlp-doap"
+    ],
+    "repositories": [],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://wayang.apache.org"
+  },
+  {
+    "key": "whimsy",
+    "name": "Apache Whimsy",
+    "pmc": "whimsy",
+    "language": [
+      "JavaScript",
+      "Ruby"
+    ],
+    "category": [
+      "content"
+    ],
+    "repositories": [
+      "https://github.com/apache/whimsy.git",
+      "https://github.com/apache/whimsy.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "http://whimsy.apache.org/"
+  },
+  {
+    "key": "wicket",
+    "name": "Apache Wicket",
+    "pmc": "wicket",
+    "language": "Java",
+    "category": [
+      "web-framework"
+    ],
+    "repositories": [
+      "https://github.com/apache/wicket"
+    ],
+    "stable_release": "10.11.0",
+    "stable_release_date": "2026-08-5",
+    "homepage": "https://wicket.apache.org"
+  },
+  {
+    "key": "ws-axiom",
+    "name": "Apache Axiom",
+    "pmc": "ws",
+    "language": "Java",
+    "category": [
+      "library",
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/ws-axiom"
+    ],
+    "stable_release": "2.0.0",
+    "stable_release_date": "2025-01-28",
+    "homepage": "http://ws.apache.org/axiom/"
+  },
+  {
+    "key": "ws-neethi",
+    "name": "Apache Neethi",
+    "pmc": "ws",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/ws-neethi"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://ws.apache.org/neethi/"
+  },
+  {
+    "key": "ws-woden",
+    "name": "Apache Woden",
+    "pmc": "ws",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/webservices/woden/"
+    ],
+    "stable_release": "1.0M10",
+    "stable_release_date": "2015-09-06",
+    "homepage": "http://ws.apache.org/woden/"
+  },
+  {
+    "key": "ws-wss4j",
+    "name": "Apache WSS4J",
+    "pmc": "ws",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/ws-wss4j"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://ws.apache.org/wss4j/"
+  },
+  {
+    "key": "ws-xmlschema",
+    "name": "Apache XMLSchema",
+    "pmc": "ws",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/ws-xmlschema"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://ws.apache.org/xmlschema/"
+  },
+  {
+    "key": "xalan-for_c++_xslt_processor",
+    "name": "Apache Xalan for C++ XSLT Processor",
+    "pmc": "xalan",
+    "language": "C++",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/xalan/c/trunk/"
+    ],
+    "stable_release": "1.11",
+    "stable_release_date": "2012-11-02",
+    "homepage": "http://xalan.apache.org/xalan-c"
+  },
+  {
+    "key": "xalan-for_java_xslt_processor",
+    "name": "Apache Xalan for Java XSLT Processor",
+    "pmc": "xalan",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://github.com/apache/xalan-java.git"
+    ],
+    "stable_release": "2.7.3",
+    "stable_release_date": "2023-04-01",
+    "homepage": "http://xalan.apache.org/xalan-j/"
+  },
+  {
+    "key": "xerces-for_c++_xml_parser",
+    "name": "Apache Xerces for C++ XML Parser",
+    "pmc": "xerces",
+    "language": "C",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/xerces/c/trunk"
+    ],
+    "stable_release": "3.1.4",
+    "stable_release_date": "2016-06-29",
+    "homepage": "http://xerces.apache.org/xerces-c/"
+  },
+  {
+    "key": "xerces-for_java_xml_parser",
+    "name": "Apache Xerces for Java XML Parser",
+    "pmc": "xerces",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xerces/java/trunk/"
+    ],
+    "stable_release": "2.12.2",
+    "stable_release_date": "2022-01-24",
+    "homepage": "http://xerces.apache.org/xerces2-j/"
+  },
+  {
+    "key": "xerces-for_perl_xml_parser",
+    "name": "Apache Xerces for Perl XML Parser",
+    "pmc": "xerces",
+    "language": "Perl",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "https://svn.apache.org/repos/asf/xerces/xerces-p/trunk"
+    ],
+    "stable_release": "2.7.0-0",
+    "stable_release_date": "2006-03-14",
+    "homepage": "http://xerces.apache.org/xerces-p"
+  },
+  {
+    "key": "xerces-xml_commons_external",
+    "name": "Apache XML Commons External",
+    "pmc": "xerces",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xerces/xml-commons/"
+    ],
+    "stable_release": "1.4.01",
+    "stable_release_date": "2009-12-15",
+    "homepage": "http://xerces.apache.org/xml-commons/components/external/"
+  },
+  {
+    "key": "xerces-xml_commons_resolver",
+    "name": "Apache XML Commons Resolver",
+    "pmc": "xerces",
+    "language": "Java",
+    "category": [
+      "xml"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xerces/xml-commons/"
+    ],
+    "stable_release": "1.2",
+    "stable_release_date": "2006-11-22",
+    "homepage": "http://xerces.apache.org/xml-commons/components/resolver/"
+  },
+  {
+    "key": "xmlgraphics-batik",
+    "name": "Apache Batik",
+    "pmc": "xmlgraphics",
+    "language": "SVG",
+    "category": [
+      "xml",
+      "graphics"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xmlgraphics/batik/trunk"
+    ],
+    "stable_release": "1.8",
+    "stable_release_date": "2015-03-17",
+    "homepage": "http://xmlgraphics.apache.org/batik/"
+  },
+  {
+    "key": "xmlgraphics-fop",
+    "name": "Apache FOP",
+    "pmc": "xmlgraphics",
+    "language": "Java",
+    "category": [
+      "xml",
+      "graphics"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xmlgraphics/fop/trunk/"
+    ],
+    "stable_release": "1.1",
+    "stable_release_date": "2012-10-20",
+    "homepage": "http://xmlgraphics.apache.org/fop"
+  },
+  {
+    "key": "xmlgraphics-xml_graphics_commons",
+    "name": "Apache XML Graphics Commons",
+    "pmc": "xmlgraphics",
+    "language": "Java",
+    "category": [
+      "graphics"
+    ],
+    "repositories": [
+      "http://svn.apache.org/repos/asf/xmlgraphics/commons/trunk/"
+    ],
+    "stable_release": "2.0",
+    "stable_release_date": "2014-10-03",
+    "homepage": "http://xmlgraphics.apache.org/commons/"
+  },
+  {
+    "key": "yetus",
+    "name": "Apache Yetus",
+    "pmc": "yetus",
+    "language": [
+      "Bash",
+      "Java",
+      "Python"
+    ],
+    "category": [
+      "build-management",
+      "library",
+      "testing"
+    ],
+    "repositories": [
+      "https://github.com/apache/yetus.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://yetus.apache.org/"
+  },
+  {
+    "key": "yunikorn",
+    "name": "Apache YuniKorn",
+    "pmc": "yunikorn",
+    "language": [
+      "Go",
+      "JavaScript"
+    ],
+    "category": [
+      "cloud"
+    ],
+    "repositories": [
+      "https://github.com/apache/yunikorn-core.git",
+      "https://github.com/apache/yunikorn-k8shim.git",
+      "https://github.com/apache/yunikorn-scheduler-interface.git",
+      "https://github.com/apache/yunikorn-web.git",
+      "https://github.com/apache/yunikorn-site.git",
+      "https://github.com/apache/yunikorn-release.git"
+    ],
+    "stable_release": "1.9.0",
+    "stable_release_date": "2026-07-29",
+    "homepage": "https://yunikorn.apache.org"
+  },
+  {
+    "key": "zeppelin",
+    "name": "Apache Zeppelin",
+    "pmc": "zeppelin",
+    "language": [
+      "Java",
+      "JavaScript",
+      "Scala"
+    ],
+    "category": [
+      "big-data"
+    ],
+    "repositories": [
+      "https://github.com/apache/zeppelin.git"
+    ],
+    "stable_release": "0.12.1",
+    "stable_release_date": "2026-06-12",
+    "homepage": "http://zeppelin.apache.org/"
+  },
+  {
+    "key": "zookeeper",
+    "name": "Apache ZooKeeper",
+    "pmc": "zookeeper",
+    "language": "Java",
+    "category": [
+      "database"
+    ],
+    "repositories": [
+      "https://github.com/apache/zookeeper.git"
+    ],
+    "stable_release": null,
+    "stable_release_date": null,
+    "homepage": "https://zookeeper.apache.org/"
+  }
+]

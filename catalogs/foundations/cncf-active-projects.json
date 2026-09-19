@@ -1,0 +1,1818 @@
+[
+  {
+    "name": "Argo",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/argoproj/argo-cd",
+    "homepage": "https://argoproj.github.io/"
+  },
+  {
+    "name": "Buildpacks",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/buildpacks/pack",
+    "homepage": "https://buildpacks.io/"
+  },
+  {
+    "name": "cert-manager",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/cert-manager/cert-manager",
+    "homepage": "https://cert-manager.io/"
+  },
+  {
+    "name": "Cilium",
+    "maturity": "graduated",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/cilium/cilium",
+    "homepage": "https://cilium.io/"
+  },
+  {
+    "name": "CloudEvents",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Streaming & Messaging",
+    "repository": "https://github.com/cloudevents/spec",
+    "homepage": "https://cloudevents.io/"
+  },
+  {
+    "name": "containerd",
+    "maturity": "graduated",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/containerd/containerd",
+    "homepage": "https://containerd.io/"
+  },
+  {
+    "name": "CoreDNS",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Coordination & Service Discovery",
+    "repository": "https://github.com/coredns/coredns",
+    "homepage": "https://coredns.io/"
+  },
+  {
+    "name": "CRI-O",
+    "maturity": "graduated",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/cri-o/cri-o",
+    "homepage": "https://cri-o.io/"
+  },
+  {
+    "name": "Crossplane",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/crossplane/crossplane",
+    "homepage": "https://crossplane.io/"
+  },
+  {
+    "name": "CubeFS",
+    "maturity": "graduated",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/cubeFS/cubefs",
+    "homepage": "https://cubefs.io/"
+  },
+  {
+    "name": "Dapr",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/dapr/dapr",
+    "homepage": "https://dapr.io"
+  },
+  {
+    "name": "Dragonfly",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Container Registry",
+    "repository": "https://github.com/dragonflyoss/dragonfly",
+    "homepage": "https://d7y.io/"
+  },
+  {
+    "name": "Envoy",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Proxy",
+    "repository": "https://github.com/envoyproxy/envoy",
+    "homepage": "https://www.envoyproxy.io"
+  },
+  {
+    "name": "etcd",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Coordination & Service Discovery",
+    "repository": "https://github.com/etcd-io/etcd",
+    "homepage": "https://etcd.io/"
+  },
+  {
+    "name": "Falco",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/falcosecurity/falco",
+    "homepage": "https://falco.org/"
+  },
+  {
+    "name": "Fluentd",
+    "maturity": "graduated",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/fluent/fluentd",
+    "homepage": "https://www.fluentd.org/"
+  },
+  {
+    "name": "Flux",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/fluxcd/flux2",
+    "homepage": "https://fluxcd.io/"
+  },
+  {
+    "name": "Harbor",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Container Registry",
+    "repository": "https://github.com/goharbor/harbor",
+    "homepage": "https://goharbor.io/"
+  },
+  {
+    "name": "Helm",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/helm/helm",
+    "homepage": "https://helm.sh/"
+  },
+  {
+    "name": "in-toto",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/in-toto/in-toto",
+    "homepage": "https://in-toto.io"
+  },
+  {
+    "name": "Istio",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Mesh",
+    "repository": "https://github.com/istio/istio",
+    "homepage": "https://istio.io/"
+  },
+  {
+    "name": "Jaeger",
+    "maturity": "graduated",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/jaegertracing/jaeger",
+    "homepage": "https://www.jaegertracing.io/"
+  },
+  {
+    "name": "Karmada",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/karmada-io/karmada",
+    "homepage": "https://karmada.io/"
+  },
+  {
+    "name": "KEDA",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kedacore/keda",
+    "homepage": "https://keda.sh/"
+  },
+  {
+    "name": "Knative",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/knative/serving",
+    "homepage": "https://knative.dev"
+  },
+  {
+    "name": "KubeEdge",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kubeedge/kubeedge",
+    "homepage": "https://kubeedge.io/en/"
+  },
+  {
+    "name": "Kubeflow",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kubeflow/kubeflow",
+    "homepage": "https://kubeflow.org"
+  },
+  {
+    "name": "Kubernetes",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kubernetes/kubernetes",
+    "homepage": "https://kubernetes.io/"
+  },
+  {
+    "name": "Kyverno",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/kyverno/kyverno",
+    "homepage": "https://kyverno.io/"
+  },
+  {
+    "name": "Linkerd",
+    "maturity": "graduated",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Mesh",
+    "repository": "https://github.com/linkerd/linkerd2",
+    "homepage": "https://linkerd.io/"
+  },
+  {
+    "name": "Open Policy Agent (OPA)",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/open-policy-agent/opa",
+    "homepage": "https://www.openpolicyagent.org/"
+  },
+  {
+    "name": "OpenTelemetry",
+    "maturity": "graduated",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/open-telemetry/community",
+    "homepage": "https://opentelemetry.io/"
+  },
+  {
+    "name": "Prometheus",
+    "maturity": "graduated",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/prometheus/prometheus",
+    "homepage": "https://prometheus.io/"
+  },
+  {
+    "name": "Rook",
+    "maturity": "graduated",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/rook/rook",
+    "homepage": "https://rook.io/"
+  },
+  {
+    "name": "SPIFFE",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Key Management",
+    "repository": "https://github.com/spiffe/spiffe",
+    "homepage": "https://spiffe.io/"
+  },
+  {
+    "name": "SPIRE",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Key Management",
+    "repository": "https://github.com/spiffe/spire",
+    "homepage": "https://spiffe.io/spire/"
+  },
+  {
+    "name": "The Update Framework (TUF)",
+    "maturity": "graduated",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/theupdateframework/python-tuf",
+    "homepage": "https://theupdateframework.github.io/"
+  },
+  {
+    "name": "TiKV",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Database",
+    "repository": "https://github.com/tikv/tikv",
+    "homepage": "https://tikv.org"
+  },
+  {
+    "name": "Vitess",
+    "maturity": "graduated",
+    "category": "App Definition and Development",
+    "subcategory": "Database",
+    "repository": "https://github.com/vitessio/vitess",
+    "homepage": "https://vitess.io/"
+  },
+  {
+    "name": "Artifact Hub",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/artifacthub/hub",
+    "homepage": "https://artifacthub.io"
+  },
+  {
+    "name": "Backstage",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/backstage/backstage",
+    "homepage": "https://backstage.io/"
+  },
+  {
+    "name": "Chaos Mesh",
+    "maturity": "incubating",
+    "category": "Observability and Analysis",
+    "subcategory": "Chaos Engineering",
+    "repository": "https://github.com/chaos-mesh/chaos-mesh",
+    "homepage": "https://chaos-mesh.org/"
+  },
+  {
+    "name": "Cloud Custodian",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/cloud-custodian/cloud-custodian",
+    "homepage": "https://cloudcustodian.io/"
+  },
+  {
+    "name": "Confidential Containers",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/confidential-containers/confidential-containers",
+    "homepage": "https://confidentialcontainers.org/"
+  },
+  {
+    "name": "Container Network Interface (CNI)",
+    "maturity": "incubating",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/containernetworking/cni",
+    "homepage": "https://www.cni.dev/"
+  },
+  {
+    "name": "Contour",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Proxy",
+    "repository": "https://github.com/projectcontour/contour",
+    "homepage": "https://projectcontour.io"
+  },
+  {
+    "name": "Cortex",
+    "maturity": "incubating",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/cortexproject/cortex",
+    "homepage": "https://cortexmetrics.io/"
+  },
+  {
+    "name": "Emissary-Ingress",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "API Gateway",
+    "repository": "https://github.com/emissary-ingress/emissary",
+    "homepage": "https://emissary-ingress.dev/"
+  },
+  {
+    "name": "Flatcar Container Linux",
+    "maturity": "incubating",
+    "category": "Platform",
+    "subcategory": "Certified Kubernetes - Distribution",
+    "repository": "https://github.com/flatcar/Flatcar",
+    "homepage": "https://www.flatcar.org/"
+  },
+  {
+    "name": "Fluid",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/fluid-cloudnative/fluid",
+    "homepage": "https://fluid-cloudnative.github.io/"
+  },
+  {
+    "name": "gRPC",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Remote Procedure Call",
+    "repository": "https://github.com/grpc/grpc",
+    "homepage": "https://grpc.io"
+  },
+  {
+    "name": "HAMi",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/Project-HAMi/HAMi",
+    "homepage": "https://project-hami.github.io/HAMi/"
+  },
+  {
+    "name": "k8gb",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Coordination & Service Discovery",
+    "repository": "https://github.com/k8gb-io/k8gb",
+    "homepage": "https://www.k8gb.io"
+  },
+  {
+    "name": "Keycloak",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/keycloak/keycloak",
+    "homepage": "https://www.keycloak.org/"
+  },
+  {
+    "name": "KServe",
+    "maturity": "incubating",
+    "category": "Inference",
+    "subcategory": "Framework",
+    "repository": "https://github.com/kserve/kserve",
+    "homepage": "https://kserve.github.io/website/"
+  },
+  {
+    "name": "Kubescape",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/kubescape/kubescape",
+    "homepage": "https://kubescape.io/"
+  },
+  {
+    "name": "KubeVela",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/kubevela/kubevela",
+    "homepage": "https://kubevela.io"
+  },
+  {
+    "name": "KubeVirt",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/kubevirt/kubevirt",
+    "homepage": "https://kubevirt.io/"
+  },
+  {
+    "name": "Lima",
+    "maturity": "incubating",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/lima-vm/lima",
+    "homepage": "https://github.com/lima-vm/lima"
+  },
+  {
+    "name": "Litmus",
+    "maturity": "incubating",
+    "category": "Observability and Analysis",
+    "subcategory": "Chaos Engineering",
+    "repository": "https://github.com/litmuschaos/litmus",
+    "homepage": "https://litmuschaos.io/"
+  },
+  {
+    "name": "Longhorn",
+    "maturity": "incubating",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/longhorn/longhorn",
+    "homepage": "https://longhorn.io/"
+  },
+  {
+    "name": "Meshery",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/meshery/meshery",
+    "homepage": "https://meshery.io"
+  },
+  {
+    "name": "metal3-io",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/metal3-io/baremetal-operator",
+    "homepage": "https://metal3.io/"
+  },
+  {
+    "name": "Microcks",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/microcks/microcks",
+    "homepage": "https://microcks.io"
+  },
+  {
+    "name": "NATS",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Streaming & Messaging",
+    "repository": "https://github.com/nats-io/nats-server",
+    "homepage": "https://nats.io/"
+  },
+  {
+    "name": "Notary Project",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/notaryproject/notation",
+    "homepage": "https://notaryproject.dev/"
+  },
+  {
+    "name": "OpenCost",
+    "maturity": "incubating",
+    "category": "Observability and Analysis",
+    "subcategory": "Continuous Optimization",
+    "repository": "https://github.com/opencost/opencost",
+    "homepage": "https://www.opencost.io/"
+  },
+  {
+    "name": "OpenFeature",
+    "maturity": "incubating",
+    "category": "Observability and Analysis",
+    "subcategory": "Feature Flagging",
+    "repository": "https://github.com/open-feature/spec",
+    "homepage": "https://openfeature.dev/"
+  },
+  {
+    "name": "OpenFGA",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/openfga/openfga",
+    "homepage": "https://openfga.dev"
+  },
+  {
+    "name": "OpenKruise",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/openkruise/kruise",
+    "homepage": "https://openkruise.io/"
+  },
+  {
+    "name": "OpenYurt",
+    "maturity": "incubating",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/openyurtio/openyurt",
+    "homepage": "https://openyurt.io/"
+  },
+  {
+    "name": "Operator Framework",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/operator-framework/operator-sdk",
+    "homepage": "https://operatorframework.io/"
+  },
+  {
+    "name": "Strimzi",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Streaming & Messaging",
+    "repository": "https://github.com/strimzi/strimzi-kafka-operator",
+    "homepage": "https://strimzi.io/"
+  },
+  {
+    "name": "Tekton",
+    "maturity": "incubating",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/tektoncd/pipeline",
+    "homepage": "https://tekton.dev"
+  },
+  {
+    "name": "Thanos",
+    "maturity": "incubating",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/thanos-io/thanos",
+    "homepage": "https://thanos.io/"
+  },
+  {
+    "name": "Volcano",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/volcano-sh/volcano",
+    "homepage": "https://volcano.sh/"
+  },
+  {
+    "name": "wasmCloud",
+    "maturity": "incubating",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/wasmCloud/wasmCloud",
+    "homepage": "https://wasmcloud.com"
+  },
+  {
+    "name": "Aeraki Mesh",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Mesh",
+    "repository": "https://github.com/aeraki-mesh/aeraki",
+    "homepage": "https://www.aeraki.net/"
+  },
+  {
+    "name": "Agones",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/agones-dev/agones",
+    "homepage": "https://agones.dev/site/"
+  },
+  {
+    "name": "Akri",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/project-akri/akri",
+    "homepage": "https://docs.akri.sh"
+  },
+  {
+    "name": "Antrea",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/antrea-io/antrea",
+    "homepage": "https://antrea.io/"
+  },
+  {
+    "name": "Apicurio Registry",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Streaming & Messaging",
+    "repository": "https://github.com/Apicurio/apicurio-registry",
+    "homepage": "https://www.apicur.io"
+  },
+  {
+    "name": "Armada",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/armadaproject/armada",
+    "homepage": "https://armadaproject.io/"
+  },
+  {
+    "name": "Athenz",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Key Management",
+    "repository": "https://github.com/AthenZ/athenz",
+    "homepage": "https://www.athenz.io"
+  },
+  {
+    "name": "Atlantis",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/runatlantis/atlantis",
+    "homepage": "https://www.runatlantis.io/"
+  },
+  {
+    "name": "Bank-Vaults",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/bank-vaults/bank-vaults",
+    "homepage": "https://bank-vaults.dev/"
+  },
+  {
+    "name": "BFE",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Proxy",
+    "repository": "https://github.com/bfenetworks/bfe",
+    "homepage": "https://www.bfe-networks.net"
+  },
+  {
+    "name": "bootc",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/bootc-dev/bootc",
+    "homepage": "https://bootc-dev.github.io"
+  },
+  {
+    "name": "bpfman",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/bpfman/bpfman",
+    "homepage": "https://bpfman.io/"
+  },
+  {
+    "name": "Cadence Workflow",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/cadence-workflow/cadence",
+    "homepage": "https://cadenceworkflow.io/"
+  },
+  {
+    "name": "Capsule",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/projectcapsule/capsule",
+    "homepage": "https://capsule.clastix.io"
+  },
+  {
+    "name": "Carina",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/carina-io/carina",
+    "homepage": "https://carina-io.github.io/"
+  },
+  {
+    "name": "Cartography",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/cartography-cncf/cartography",
+    "homepage": "https://cartography.dev"
+  },
+  {
+    "name": "Carvel",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/carvel-dev/ytt",
+    "homepage": "https://carvel.dev"
+  },
+  {
+    "name": "CDK for Kubernetes (CDK8s)",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/cdk8s-team/cdk8s",
+    "homepage": "https://cdk8s.io/"
+  },
+  {
+    "name": "Cedar",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/cedar-policy/cedar",
+    "homepage": "https://cedarpolicy.com"
+  },
+  {
+    "name": "Chaosblade",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Chaos Engineering",
+    "repository": "https://github.com/chaosblade-io/chaosblade",
+    "homepage": "https://chaosblade.io/"
+  },
+  {
+    "name": "CloudNativePG",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Database",
+    "repository": "https://github.com/cloudnative-pg/cloudnative-pg",
+    "homepage": "https://www.cloudnative-pg.io/"
+  },
+  {
+    "name": "Clusternet",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/clusternet/clusternet",
+    "homepage": "https://clusternet.io"
+  },
+  {
+    "name": "Clusterpedia",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/clusterpedia-io/clusterpedia",
+    "homepage": "https://clusterpedia.io"
+  },
+  {
+    "name": "CoHDI",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/CoHDI",
+    "homepage": "https://github.com/CoHDI"
+  },
+  {
+    "name": "composefs",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/containers/composefs",
+    "homepage": "https://github.com/containers/composefs"
+  },
+  {
+    "name": "Connect RPC",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Remote Procedure Call",
+    "repository": "https://github.com/connectrpc/connect-go",
+    "homepage": "https://connectrpc.com/"
+  },
+  {
+    "name": "container2wasm",
+    "maturity": "sandbox",
+    "category": "Wasm",
+    "subcategory": "Orchestration & Management",
+    "repository": "https://github.com/container2wasm/container2wasm",
+    "homepage": "https://github.com/container2wasm/container2wasm"
+  },
+  {
+    "name": "ContainerSSH",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/containerssh/containerssh",
+    "homepage": "https://containerssh.io"
+  },
+  {
+    "name": "Copa",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/project-copacetic/copacetic",
+    "homepage": "https://project-copacetic.github.io/copacetic/"
+  },
+  {
+    "name": "Cozystack",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/cozystack/cozystack",
+    "homepage": "https://cozystack.io"
+  },
+  {
+    "name": "Curvine",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/CurvineIO/curvine",
+    "homepage": "https://curvineio.github.io/"
+  },
+  {
+    "name": "Dalec",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/project-dalec/dalec",
+    "homepage": "https://project-dalec.github.io/dalec/"
+  },
+  {
+    "name": "Devfile",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/devfile/api",
+    "homepage": "https://devfile.io"
+  },
+  {
+    "name": "DevSpace",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/devspace-sh/devspace",
+    "homepage": "https://devspace.sh"
+  },
+  {
+    "name": "Dex",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/dexidp/dex",
+    "homepage": "https://dexidp.io/"
+  },
+  {
+    "name": "Distribution",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Container Registry",
+    "repository": "https://github.com/distribution/distribution",
+    "homepage": "https://github.com/distribution/distribution"
+  },
+  {
+    "name": "Drasi",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Streaming & Messaging",
+    "repository": "https://github.com/drasi-project/drasi-platform",
+    "homepage": "https://drasi.io"
+  },
+  {
+    "name": "Easegress",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "API Gateway",
+    "repository": "https://github.com/easegress-io/easegress",
+    "homepage": "https://megaease.cn/easegress/"
+  },
+  {
+    "name": "Eraser",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/eraser-dev/eraser",
+    "homepage": "https://eraser-dev.github.io/eraser/"
+  },
+  {
+    "name": "external-secrets",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/external-secrets/external-secrets",
+    "homepage": "https://external-secrets.io/"
+  },
+  {
+    "name": "Headlamp",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/kubernetes-sigs/headlamp",
+    "homepage": "https://headlamp.dev"
+  },
+  {
+    "name": "Higress",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "API Gateway",
+    "repository": "https://github.com/higress-group/higress",
+    "homepage": "https://higress.io"
+  },
+  {
+    "name": "HolmesGPT",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/HolmesGPT/holmesgpt",
+    "homepage": "https://holmesgpt.dev"
+  },
+  {
+    "name": "HwameiStor",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/hwameistor/hwameistor",
+    "homepage": "https://hwameistor.io/"
+  },
+  {
+    "name": "Hyperlight",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/hyperlight-dev/hyperlight",
+    "homepage": "https://github.com/hyperlight-dev/hyperlight"
+  },
+  {
+    "name": "Inclavare Containers",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/inclavare-containers/inclavare-containers",
+    "homepage": "https://github.com/inclavare-containers/"
+  },
+  {
+    "name": "Inspektor Gadget",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/inspektor-gadget/inspektor-gadget",
+    "homepage": "https://inspektor-gadget.io/"
+  },
+  {
+    "name": "Interlink",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/interlink-hq/interLink",
+    "homepage": "https://interlink-project.dev"
+  },
+  {
+    "name": "k0s",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/k0sproject/k0s",
+    "homepage": "https://k0sproject.io/"
+  },
+  {
+    "name": "k3s",
+    "maturity": "sandbox",
+    "category": "Platform",
+    "subcategory": "Certified Kubernetes - Distribution",
+    "repository": "https://github.com/k3s-io/k3s",
+    "homepage": "https://k3s.io"
+  },
+  {
+    "name": "K8sGPT",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/k8sgpt-ai/k8sgpt",
+    "homepage": "https://www.k8sgpt.ai"
+  },
+  {
+    "name": "K8up",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/k8up-io/k8up",
+    "homepage": "https://k8up.io/"
+  },
+  {
+    "name": "kagent",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kagent-dev/kagent",
+    "homepage": "https://kagent.dev/"
+  },
+  {
+    "name": "KAI Scheduler",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kai-scheduler/KAI-Scheduler",
+    "homepage": "https://github.com/kai-scheduler/KAI-Scheduler"
+  },
+  {
+    "name": "Kairos",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kairos-io/kairos",
+    "homepage": "https://kairos.io"
+  },
+  {
+    "name": "KAITO",
+    "maturity": "sandbox",
+    "category": "Inference",
+    "subcategory": "Framework",
+    "repository": "https://github.com/kaito-project/kaito",
+    "homepage": "https://kaito-project.netlify.app/"
+  },
+  {
+    "name": "Kanister",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/kanisterio/kanister",
+    "homepage": "https://kanister.io"
+  },
+  {
+    "name": "kbind",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kbind-dev/kbind",
+    "homepage": "https://kbind.dev/"
+  },
+  {
+    "name": "KCL",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kcl-lang/kcl",
+    "homepage": "https://kcl-lang.io/"
+  },
+  {
+    "name": "kcp",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kcp-dev/kcp",
+    "homepage": "https://kcp.io"
+  },
+  {
+    "name": "Kepler",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/sustainable-computing-io/kepler",
+    "homepage": "https://sustainable-computing.io/"
+  },
+  {
+    "name": "Keylime",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/keylime/keylime",
+    "homepage": "https://keylime.dev/"
+  },
+  {
+    "name": "Kgateway",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "API Gateway",
+    "repository": "https://github.com/kgateway-dev/kgateway",
+    "homepage": "https://kgateway.dev/"
+  },
+  {
+    "name": "KitOps",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kitops-ml/kitops",
+    "homepage": "https://kitops.org/"
+  },
+  {
+    "name": "Kmesh",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Mesh",
+    "repository": "https://github.com/kmesh-net/kmesh",
+    "homepage": "https://kmesh.net"
+  },
+  {
+    "name": "ko",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/ko-build/ko",
+    "homepage": "https://ko.build/"
+  },
+  {
+    "name": "Konveyor",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/konveyor/operator",
+    "homepage": "https://www.konveyor.io/"
+  },
+  {
+    "name": "Koordinator",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/koordinator-sh/koordinator",
+    "homepage": "https://koordinator.sh"
+  },
+  {
+    "name": "kpt",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kptdev/kpt",
+    "homepage": "https://kpt.dev"
+  },
+  {
+    "name": "Krkn",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Chaos Engineering",
+    "repository": "https://github.com/krkn-chaos/krkn",
+    "homepage": "https://krkn-chaos.github.io/krkn"
+  },
+  {
+    "name": "Kuadrant",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "API Gateway",
+    "repository": "https://github.com/kuadrant/kuadrant-operator",
+    "homepage": "https://kuadrant.io"
+  },
+  {
+    "name": "Kuasar",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/kuasar-io/kuasar",
+    "homepage": "https://kuasar.io/"
+  },
+  {
+    "name": "Kube-burner",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/kube-burner/kube-burner",
+    "homepage": "https://kube-burner.github.io/kube-burner/"
+  },
+  {
+    "name": "Kube-OVN",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/kubeovn/kube-ovn",
+    "homepage": "https://kube-ovn.io"
+  },
+  {
+    "name": "kube-rs",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kube-rs/kube",
+    "homepage": "https://kube.rs"
+  },
+  {
+    "name": "kube-vip",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/kube-vip/kube-vip",
+    "homepage": "https://kube-vip.io"
+  },
+  {
+    "name": "Kubean",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/kubean-io/kubean",
+    "homepage": "https://kubean-io.github.io/kubean/"
+  },
+  {
+    "name": "KubeArmor",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/kubearmor/kubearmor",
+    "homepage": "https://kubearmor.io/"
+  },
+  {
+    "name": "KubeClipper",
+    "maturity": "sandbox",
+    "category": "Platform",
+    "subcategory": "Certified Kubernetes - Installer",
+    "repository": "https://github.com/kubeclipper/kubeclipper",
+    "homepage": "https://www.kubeclipper.io/"
+  },
+  {
+    "name": "KubeElasti",
+    "maturity": "sandbox",
+    "category": "Serverless",
+    "subcategory": "Installable Platform",
+    "repository": "https://github.com/KubeElasti/KubeElasti",
+    "homepage": "https://kubeelasti.dev"
+  },
+  {
+    "name": "KubeFleet",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kubefleet-dev/kubefleet",
+    "homepage": "https://kubefleet.dev/"
+  },
+  {
+    "name": "Kuberhealthy",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/kuberhealthy/kuberhealthy",
+    "homepage": "https://github.com/kuberhealthy/kuberhealthy"
+  },
+  {
+    "name": "KubeSlice",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kubeslice/kubeslice",
+    "homepage": "https://kubeslice.io"
+  },
+  {
+    "name": "KubeStellar",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kubestellar/kubestellar",
+    "homepage": "https://kubestellar.io"
+  },
+  {
+    "name": "Kubewarden",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/kubewarden/kubewarden-controller",
+    "homepage": "https://www.kubewarden.io"
+  },
+  {
+    "name": "KUDO",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/kudobuilder/kudo",
+    "homepage": "https://kudo.dev/"
+  },
+  {
+    "name": "Kuma",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Mesh",
+    "repository": "https://github.com/kumahq/kuma",
+    "homepage": "https://kuma.io"
+  },
+  {
+    "name": "Kured",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/kubereboot/kured",
+    "homepage": "https://kured.dev"
+  },
+  {
+    "name": "KusionStack",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/KusionStack/kusion",
+    "homepage": "https://kusionstack.io/"
+  },
+  {
+    "name": "llm-d",
+    "maturity": "sandbox",
+    "category": "Inference",
+    "subcategory": "Framework",
+    "repository": "https://github.com/llm-d/llm-d",
+    "homepage": "https://llm-d.ai/"
+  },
+  {
+    "name": "Logging Operator (Kube Logging)",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/kube-logging/logging-operator",
+    "homepage": "https://kube-logging.dev/"
+  },
+  {
+    "name": "LoxiLB",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Proxy",
+    "repository": "https://github.com/loxilb-io/loxilb",
+    "homepage": "https://loxilb.io"
+  },
+  {
+    "name": "MetalLB",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Proxy",
+    "repository": "https://github.com/metallb/metallb",
+    "homepage": "https://metallb.universe.tf"
+  },
+  {
+    "name": "ModelPack",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/modelpack/model-spec",
+    "homepage": "https://github.com/modelpack/model-spec"
+  },
+  {
+    "name": "Network Service Mesh",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/networkservicemesh/api",
+    "homepage": "https://networkservicemesh.io/"
+  },
+  {
+    "name": "NMstate",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/nmstate/nmstate",
+    "homepage": "https://nmstate.io/"
+  },
+  {
+    "name": "OAuth2 Proxy",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/oauth2-proxy/oauth2-proxy",
+    "homepage": "https://oauth2-proxy.github.io/oauth2-proxy/"
+  },
+  {
+    "name": "Open Cluster Management",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/open-cluster-management-io/ocm",
+    "homepage": "https://open-cluster-management.io/"
+  },
+  {
+    "name": "Open Policy Containers",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/opcr-io/policy",
+    "homepage": "https://openpolicycontainers.com"
+  },
+  {
+    "name": "Open Workflow Specification",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/open-workflow-specification/specification",
+    "homepage": "https://open-workflow-specification.org"
+  },
+  {
+    "name": "OpenChoreo",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/openchoreo/openchoreo",
+    "homepage": "https://openchoreo.dev"
+  },
+  {
+    "name": "OpenEBS",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/openebs/openebs",
+    "homepage": "https://www.openebs.io/"
+  },
+  {
+    "name": "OpenEverest",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Database",
+    "repository": "https://github.com/openeverest/openeverest",
+    "homepage": "https://openeverest.io/"
+  },
+  {
+    "name": "OpenFunction",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/OpenFunction/OpenFunction",
+    "homepage": "https://openfunction.dev"
+  },
+  {
+    "name": "openGemini",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Database",
+    "repository": "https://github.com/openGemini/openGemini",
+    "homepage": "https://www.opengemini.org"
+  },
+  {
+    "name": "OpenGitOps",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/open-gitops/project",
+    "homepage": "https://opengitops.dev/"
+  },
+  {
+    "name": "OpenTofu",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/opentofu/opentofu",
+    "homepage": "https://opentofu.org/"
+  },
+  {
+    "name": "ORAS",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/oras-project/oras",
+    "homepage": "https://oras.land/"
+  },
+  {
+    "name": "OSCAL-COMPASS",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/oscal-compass/compliance-trestle",
+    "homepage": "https://oscal-compass.dev/"
+  },
+  {
+    "name": "OVN-Kubernetes",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/ovn-kubernetes/ovn-kubernetes",
+    "homepage": "https://ovn-kubernetes.io/"
+  },
+  {
+    "name": "Oxia",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Coordination & Service Discovery",
+    "repository": "https://github.com/oxia-db/oxia",
+    "homepage": "https://oxia-db.github.io"
+  },
+  {
+    "name": "Paralus",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/paralus/paralus",
+    "homepage": "https://www.paralus.io/"
+  },
+  {
+    "name": "Parsec",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/parallaxsecond/parsec",
+    "homepage": "https://parsec.community/"
+  },
+  {
+    "name": "Perses",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/perses/perses",
+    "homepage": "https://perses.dev"
+  },
+  {
+    "name": "PipeCD",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/pipe-cd/pipecd",
+    "homepage": "https://pipecd.dev/"
+  },
+  {
+    "name": "Piraeus Datastore",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/piraeusdatastore/piraeus-operator",
+    "homepage": "https://piraeus.io/"
+  },
+  {
+    "name": "Pixie",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/pixie-io/pixie",
+    "homepage": "https://px.dev/"
+  },
+  {
+    "name": "Podman Container Tools",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/podman-container-tools/podman",
+    "homepage": "https://podman.io/"
+  },
+  {
+    "name": "Podman Desktop",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/podman-desktop/podman-desktop",
+    "homepage": "https://podman-desktop.io/"
+  },
+  {
+    "name": "Porter",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/getporter/porter",
+    "homepage": "https://porter.sh/"
+  },
+  {
+    "name": "Radius",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/radius-project/radius",
+    "homepage": "https://radapp.io/"
+  },
+  {
+    "name": "Ratify",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/ratify-project/ratify",
+    "homepage": "https://ratify.dev/"
+  },
+  {
+    "name": "Runme Notebooks",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/runmedev/runme",
+    "homepage": "https://runme.dev/"
+  },
+  {
+    "name": "SchemaHero",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Database",
+    "repository": "https://github.com/schemahero/schemahero",
+    "homepage": "https://schemahero.io"
+  },
+  {
+    "name": "Score",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/score-spec/spec",
+    "homepage": "https://score.dev/"
+  },
+  {
+    "name": "Sermant",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Service Mesh",
+    "repository": "https://github.com/sermant-io/Sermant",
+    "homepage": "https://sermant.io/"
+  },
+  {
+    "name": "Serverless Devs",
+    "maturity": "sandbox",
+    "category": "Orchestration & Management",
+    "subcategory": "Scheduling & Orchestration",
+    "repository": "https://github.com/serverless-devs/serverless-devs",
+    "homepage": "https://www.serverless-devs.com/"
+  },
+  {
+    "name": "Shipwright",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/shipwright-io/build",
+    "homepage": "https://shipwright.io"
+  },
+  {
+    "name": "SlimFaaS",
+    "maturity": "sandbox",
+    "category": "Serverless",
+    "subcategory": "Installable Platform",
+    "repository": "https://github.com/SlimPlanet/SlimFaas",
+    "homepage": "https://github.com/SlimPlanet/SlimFaas"
+  },
+  {
+    "name": "SlimToolkit",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/slimtoolkit/slim",
+    "homepage": "https://slimtoolkit.org/"
+  },
+  {
+    "name": "SOPS",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/getsops/sops",
+    "homepage": "https://github.com/getsops"
+  },
+  {
+    "name": "Spiderpool",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/spidernet-io/spiderpool",
+    "homepage": "https://spidernet-io.github.io/spiderpool/"
+  },
+  {
+    "name": "Spin",
+    "maturity": "sandbox",
+    "category": "Wasm",
+    "subcategory": "Application Frameworks",
+    "repository": "https://github.com/spinframework/spin",
+    "homepage": "https://spinframework.dev"
+  },
+  {
+    "name": "SpinKube",
+    "maturity": "sandbox",
+    "category": "Wasm",
+    "subcategory": "Orchestration & Management",
+    "repository": "https://github.com/spinframework/spin-operator",
+    "homepage": "https://www.spinkube.dev/"
+  },
+  {
+    "name": "Stacker",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/project-stacker/stacker",
+    "homepage": "https://stackerbuild.io"
+  },
+  {
+    "name": "Submariner",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Network",
+    "repository": "https://github.com/submariner-io/submariner",
+    "homepage": "https://submariner.io"
+  },
+  {
+    "name": "Telepresence",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/telepresenceio/telepresence",
+    "homepage": "https://www.telepresence.io/"
+  },
+  {
+    "name": "Tinkerbell",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Automation & Configuration",
+    "repository": "https://github.com/tinkerbell/tinkerbell",
+    "homepage": "https://tinkerbell.org/"
+  },
+  {
+    "name": "Tokenetes",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Security & Compliance",
+    "repository": "https://github.com/tokenetes/tokenetes",
+    "homepage": "https://tokenetes.io/"
+  },
+  {
+    "name": "Tremor",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Streaming & Messaging",
+    "repository": "https://github.com/tremor-rs/tremor-runtime",
+    "homepage": "https://www.tremor.rs/"
+  },
+  {
+    "name": "Trickster",
+    "maturity": "sandbox",
+    "category": "Observability and Analysis",
+    "subcategory": "Observability",
+    "repository": "https://github.com/trickstercache/trickster",
+    "homepage": "https://trickstercache.org"
+  },
+  {
+    "name": "urunc",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/urunc-dev/urunc",
+    "homepage": "https://urunc.io/"
+  },
+  {
+    "name": "Velero",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Cloud Native Storage",
+    "repository": "https://github.com/velero-io/velero",
+    "homepage": "https://velero.io"
+  },
+  {
+    "name": "Virtual Kubelet",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/virtual-kubelet/virtual-kubelet",
+    "homepage": "https://virtual-kubelet.io/"
+  },
+  {
+    "name": "Visual Studio Code Kubernetes Tools",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/vscode-kubernetes-tools/vscode-kubernetes-tools",
+    "homepage": "https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools"
+  },
+  {
+    "name": "WasmEdge Runtime",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/WasmEdge/WasmEdge",
+    "homepage": "https://wasmedge.org/"
+  },
+  {
+    "name": "werf",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Continuous Integration & Delivery",
+    "repository": "https://github.com/werf/werf",
+    "homepage": "https://werf.io/"
+  },
+  {
+    "name": "xRegistry",
+    "maturity": "sandbox",
+    "category": "App Definition and Development",
+    "subcategory": "Application Definition & Image Build",
+    "repository": "https://github.com/xregistry/server",
+    "homepage": "https://xregistry.io"
+  },
+  {
+    "name": "youki",
+    "maturity": "sandbox",
+    "category": "Runtime",
+    "subcategory": "Container Runtime",
+    "repository": "https://github.com/youki-dev/youki",
+    "homepage": "https://youki-dev.github.io/youki/"
+  },
+  {
+    "name": "zot",
+    "maturity": "sandbox",
+    "category": "Provisioning",
+    "subcategory": "Container Registry",
+    "repository": "https://github.com/project-zot/zot",
+    "homepage": "https://zotregistry.dev/"
+  }
+]
