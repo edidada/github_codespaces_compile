@@ -88,7 +88,7 @@ $buildCommandOverrides = @{
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
     'apache:logging-log4cxx' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
-    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.6-cli bash -euc ''docker-php-ext-install sockets; php /tmp/phpunit.phar -c phpunit.xml'''
+    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.4-cli bash -euc ''docker-php-ext-install sockets; php /tmp/phpunit.phar -c phpunit.xml'''
     'apache:logging-log4net' = 'dotnet build ./src/log4net.sln && dotnet test ./src/log4net.sln --no-build'
     'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
     'apache:serf' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev libssl-dev zlib1g-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
@@ -105,7 +105,7 @@ $projectNotes = @{
     'apache:incubator-pouchdb' = 'PouchDB uses Node.js 22 because the current HTTP adapter relies on the modern `URL.parse` static method. Its complete module distribution is built before unit tests run; HTTP integration tests are excluded because they require an external CouchDB service on port 5984.'
     'apache:solr-operator' = 'The repository includes Kubernetes end-to-end suites that require a live cluster. This target runs the maintained `unit-tests` target, which provisions envtest prerequisites itself.'
     'apache:libcloud' = 'The modern Apache GitHub mirror is used instead of the historical SVN working copy. Its maintained tox environment installs the declared test dependency group before running the Python 3.12 suite.'
-    'apache:logging-log4php' = 'The archived test suite uses the pre-namespaced PHPUnit API and PHP behavior from its maintenance era. It is run with PHPUnit 4.8 in an isolated PHP 5.6 container rather than silently skipping tests on the current runner PHP.'
+    'apache:logging-log4php' = 'The archived test suite uses the pre-namespaced PHPUnit API and PHP stream behavior from its maintenance era. It is run with PHPUnit 4.8 in an isolated PHP 5.4 container rather than silently skipping tests on the current runner PHP.'
     'apache:teaclave' = 'The current Teaclave repository is a landing page without buildable source. This target therefore builds the core `sgx_types` crate from the official Teaclave SGX SDK repository linked by that landing page.'
     'apache:vcl' = 'VCL is a deployable multi-service application without a repository-level build or unit-test entry point. This target syntax-checks all PHP sources and the maintained Perl dependency installer.'
 }
