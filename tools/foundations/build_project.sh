@@ -144,7 +144,7 @@ elif compgen -G '*.sln' >/dev/null || compgen -G '*.csproj' >/dev/null; then
   dotnet test
 elif [[ -f configure || -f configure.ac || -f autogen.sh || -f buildconf ]]; then
   sudo apt-get update
-  sudo apt-get install -y autoconf automake libtool
+  sudo apt-get install -y autoconf automake libtool libtool-bin
   [[ -x ./buildconf ]] && ./buildconf
   [[ -x ./autogen.sh ]] && ./autogen.sh
   [[ -x ./configure ]] || autoreconf -fi
