@@ -12,5 +12,5 @@ find charon -type f \( -name '*.cc' -o -name '*.h' \) -exec sed -i \
 cd charon/charon/pb
 protoc --cpp_out=./ charon.proto
 cd ../
-mkdir ../obj
+mkdir -p ../obj ../bin ../test_client/test_tool
 make -j5
