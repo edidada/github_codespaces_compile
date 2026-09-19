@@ -82,8 +82,8 @@ $repositoryOverrides = @{
     'apache:teaclave' = 'https://github.com/apache/teaclave-sgx-sdk.git'
 }
 $buildCommandOverrides = @{
-    'apache:attic-buildr' = 'bundle install && bundle exec rspec'
-    'apache:brooklyn' = 'mvn -B -ntp -DskipITs test'
+    'apache:attic-buildr' = 'bundle install && mkdir -p "$HOME/.buildr" && printf "repositories:\\n  mirrors:\\n    - https://repo.maven.apache.org/maven2/\\n" > "$HOME/.buildr/settings.yaml" && bundle exec rspec'
+    'apache:brooklyn' = 'mvn -B -ntp -DskipITs package'
     'apache:flex' = 'ant -Dbuild.noprompt=true modules'
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
@@ -97,7 +97,7 @@ $buildCommandOverrides = @{
     'apache:training' = './mvnw -B -ntp -DskipITs verify'
     'apache:vcl' = 'find web -type f -name "*.php" -print0 | xargs -0 -n1 php -l && perl -c managementnode/bin/install_perl_libs.pl'
     'apache:xmlgraphics-batik' = 'mvn -B -ntp -DskipITs -pl "!batik-test-old" test'
-    'apache:couchdb' = 'sudo apt-get update && sudo apt-get install -y help2man libicu-dev libmozjs-115-dev python3 python3-venv && ./configure --spidermonkey-version 115 --disable-docs --disable-fauxton && make eunit'
+    'apache:couchdb' = 'sudo apt-get update && sudo apt-get install -y help2man libicu-dev libmozjs-115-dev python3 python3-venv && ./configure --spidermonkey-version 115 --disable-docs --disable-fauxton && make -j2 && make eunit'
     'apache:yetus' = 'mvn -B -ntp -DskipITs verify'
 }
 $projectNotes = @{
