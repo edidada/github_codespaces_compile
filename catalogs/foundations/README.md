@@ -13,6 +13,18 @@ Generated from the canonical CNCF Landscape and Apache Projects directory.
 
 Archived CNCF entries are intentionally excluded. Apache entries follow the projects.apache.org directory exactly.
 
+## Generated build coverage
+
+- Apache Linux latest targets: 380/380 projects
+- Apache Linux stable targets: 258 projects with a verified, non-prerelease Git tag
+- Total Apache Linux workflows: 638
+
+Projects without a verifiable stable source tag intentionally receive only a
+`latest` target; an unrelated tag or an RC/beta tag is never labeled as the
+industrial stable build. `coverage/apache-linux.json` maps every generated
+branch to its repository, revision, source script, workflow, and validation
+state. Generate it with `tools/foundations/generate_build_coverage.ps1`.
+
 ## Apache language summary
 
 | Language | Projects |

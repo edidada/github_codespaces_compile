@@ -1,0 +1,9 @@
+# Apache VXQuery — Linux xquery_0_1
+
+- Foundation catalog: apache
+- Source repository: https://github.com/apache/vxquery.git
+- Checkout ref: vxquery-0.1
+- Detected language: Java
+- Build policy: clone the requested revision and run the repository's native build and test system through 	ools/foundations/build_project.sh.
+
+The branch and path follow 编程语言/软件名称/操作系统/版本. A failing native build is kept visible in GitHub Actions and is repaired with project-specific prerequisites or commands rather than being reported as a pass.

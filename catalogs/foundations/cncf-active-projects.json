@@ -1399,7 +1399,7 @@
     "homepage": "https://curvineio.github.io/",
     "language": "Rust",
     "default_branch": "main",
-    "stable_tag": "v0.5.2-alpha",
+    "stable_tag": "v0.4.1",
     "archived": false,
     "metadata_error": null
   },
@@ -1685,7 +1685,7 @@
     "homepage": "https://kagent.dev/",
     "language": "Go",
     "default_branch": "main",
-    "stable_tag": "v1.0.0-alpha1",
+    "stable_tag": "v0.10.1",
     "archived": false,
     "metadata_error": null
   },
@@ -1867,7 +1867,7 @@
     "homepage": "https://www.konveyor.io/",
     "language": "Jinja",
     "default_branch": "main",
-    "stable_tag": "v0.11.0-alpha.4",
+    "stable_tag": "v0.9.2",
     "archived": false,
     "metadata_error": null
   },
@@ -2816,7 +2816,7 @@
     "homepage": "https://www.tremor.rs/",
     "language": "Rust",
     "default_branch": "main",
-    "stable_tag": "v0.13.0-rc.33",
+    "stable_tag": null,
     "archived": false,
     "metadata_error": null
   },

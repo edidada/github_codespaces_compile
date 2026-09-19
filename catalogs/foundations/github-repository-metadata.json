@@ -68,7 +68,7 @@
     "language": "C",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "PG18/v1.8.0-rc0",
+    "stable_tag": "v0.7.0",
     "error": null
   },
   {
@@ -180,7 +180,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": true,
-    "stable_tag": "2.3.0-rc1",
+    "stable_tag": "2.2.0.final",
     "error": null
   },
   {
@@ -212,7 +212,7 @@
     "language": null,
     "default_branch": "master",
     "archived": true,
-    "stable_tag": "archiva-parent-18",
+    "stable_tag": null,
     "error": null
   },
   {
@@ -244,7 +244,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "release-2.6.0-rc4",
+    "stable_tag": "release-2.5.0",
     "error": null
   },
   {
@@ -292,7 +292,7 @@
     "language": "Groovy",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "release-3.6.0-RC0",
+    "stable_tag": "release-3.2.0",
     "error": null
   },
   {
@@ -308,7 +308,7 @@
     "language": "Dockerfile",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "rel/apache-brooklyn--rc",
+    "stable_tag": "rel/apache-brooklyn-1.1.0",
     "error": null
   },
   {
@@ -332,7 +332,7 @@
     "language": "Python",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "2.8.1.dev0",
+    "stable_tag": "bst-1.4-branchpoint",
     "error": null
   },
   {
@@ -340,7 +340,7 @@
     "language": "Java",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "v1.23.0-rc1",
+    "stable_tag": "v0.4.6",
     "error": null
   },
   {
@@ -356,7 +356,7 @@
     "language": "Scala",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "carbondata-parent-apache-carbondata-2.3.1-rc1",
+    "stable_tag": "carbondata-parent-2.3.2",
     "error": null
   },
   {
@@ -364,7 +364,7 @@
     "language": "Java",
     "default_branch": "trunk",
     "archived": false,
-    "stable_tag": "cassandra-6.0-alpha2",
+    "stable_tag": "cassandra-5.0.9",
     "error": null
   },
   {
@@ -484,7 +484,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "struts-1.1-RC1",
+    "stable_tag": "struts-1.1-B3",
     "error": null
   },
   {
@@ -636,7 +636,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v4.0-snapshot.4",
+    "stable_tag": "test-ignore",
     "error": null
   },
   {
@@ -884,7 +884,7 @@
     "language": "Go",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "v1.0.3-beta17",
+    "stable_tag": "v20250513",
     "error": null
   },
   {
@@ -980,7 +980,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "pre-maven",
+    "stable_tag": "empire-db-parent-2.5.1",
     "error": null
   },
   {
@@ -1028,7 +1028,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v0.4-rc1",
+    "stable_tag": "release-2.3.0",
     "error": null
   },
   {
@@ -1036,7 +1036,7 @@
     "language": "Java",
     "default_branch": "trunk",
     "archived": false,
-    "stable_tag": "release-1.11.0-rc2",
+    "stable_tag": "release-1.8.0",
     "error": null
   },
   {
@@ -1132,7 +1132,7 @@
     "language": "Java",
     "default_branch": "trunk",
     "archived": false,
-    "stable_tag": "submarine-0.2.0-RC0",
+    "stable_tag": "remove-ozone",
     "error": null
   },
   {
@@ -1164,7 +1164,7 @@
     "language": "Java",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "2.19.0-rc1",
+    "stable_tag": "hop-2.9.0",
     "error": null
   },
   {
@@ -1204,7 +1204,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "release-1.0.0-RC3",
+    "stable_tag": "qaoo_testtag_0606",
     "error": null
   },
   {
@@ -1244,7 +1244,7 @@
     "language": "C++",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v1.12.0-incubating-rc3",
+    "stable_tag": "v3.1",
     "error": null
   },
   {
@@ -1252,7 +1252,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "2.4.0-RC0",
+    "stable_tag": "inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-golang/v1.0.8",
     "error": null
   },
   {
@@ -1380,7 +1380,7 @@
     "language": "Scala",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v0.9.0-incubating-rc1",
+    "stable_tag": "v0.9.0-incubating",
     "error": null
   },
   {
@@ -1388,7 +1388,7 @@
     "language": "C++",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v1.8.0-RC2",
+    "stable_tag": "v0.11.0",
     "error": null
   },
   {
@@ -1500,7 +1500,7 @@
     "language": "C",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "pre_sterly_refactor",
+    "stable_tag": "mynewt_1_15_0_tag",
     "error": null
   },
   {
@@ -1604,7 +1604,7 @@
     "language": "C++",
     "default_branch": "trunk",
     "archived": false,
-    "stable_tag": "SNAPSHOT",
+    "stable_tag": "AOO4121",
     "error": null
   },
   {
@@ -1732,7 +1732,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "ratis-3.3.1-rc1",
+    "stable_tag": "ratis-3.3.0",
     "error": null
   },
   {
@@ -1756,7 +1756,7 @@
     "language": "ActionScript",
     "default_branch": "develop",
     "archived": false,
-    "stable_tag": "org.apache.royale.framework-0.9.12-rc2",
+    "stable_tag": null,
     "error": null
   },
   {
@@ -1764,7 +1764,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "rya-incubating-3.2.12-rc2",
+    "stable_tag": "rel/rya-incubating-4.0.0",
     "error": null
   },
   {
@@ -1892,7 +1892,7 @@
     "language": "Scala",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v4.3.0-rc1",
+    "stable_tag": "v4.2.0",
     "error": null
   },
   {
@@ -1932,7 +1932,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": true,
-    "stable_tag": "v4.1.4-rc1",
+    "stable_tag": "merge-point-grouping-and-docker",
     "error": null
   },
   {
@@ -1964,7 +1964,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": true,
-    "stable_tag": "release-0.8.0-RC0",
+    "stable_tag": "rel/release-0.8.0",
     "error": null
   },
   {
@@ -1988,7 +1988,7 @@
     "language": "Java",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "3.4.0-rc2",
+    "stable_tag": null,
     "error": null
   },
   {
@@ -1996,7 +1996,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": true,
-    "stable_tag": "release-0.12.0-rc0",
+    "stable_tag": "release-0.11.0",
     "error": null
   },
   {
@@ -2004,7 +2004,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "v5.5.0-beta-3",
+    "stable_tag": "tapestry-project-5.2.2",
     "error": null
   },
   {
@@ -2052,7 +2052,7 @@
     "language": "Java",
     "default_branch": "master",
     "archived": false,
-    "stable_tag": "gremlin-go/v4.0.0-beta.3",
+    "stable_tag": "gremlin-go/v3.8.2",
     "error": null
   },
   {
@@ -2572,7 +2572,7 @@
     "language": "Rust",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "v0.5.2-alpha",
+    "stable_tag": "v0.4.1",
     "error": null
   },
   {
@@ -2884,7 +2884,7 @@
     "language": "Go",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "v1.0.0-alpha1",
+    "stable_tag": "v0.10.1",
     "error": null
   },
   {
@@ -3020,7 +3020,7 @@
     "language": "Jinja",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "v0.11.0-alpha.4",
+    "stable_tag": "v0.9.2",
     "error": null
   },
   {
@@ -3940,7 +3940,7 @@
     "language": "Rust",
     "default_branch": "main",
     "archived": false,
-    "stable_tag": "v0.13.0-rc.33",
+    "stable_tag": null,
     "error": null
   },
   {

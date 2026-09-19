@@ -130,7 +130,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "PG18/v1.8.0-rc0",
+    "stable_tag": "v0.7.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://age.apache.org/"
@@ -371,7 +371,7 @@
     "default_branch": "master",
     "stable_release": "2.2.0.final",
     "stable_release_date": "2013-11-22",
-    "stable_tag": "2.3.0-rc1",
+    "stable_tag": "2.2.0.final",
     "archived": true,
     "metadata_error": null,
     "homepage": "http://ant.apache.org/ivyde/"
@@ -599,7 +599,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "release-2.6.0-rc4",
+    "stable_tag": "release-2.5.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://atlas.apache.org"
@@ -667,7 +667,7 @@
     "default_branch": "master",
     "stable_release": "2.2.7",
     "stable_release_date": "2021-12-19",
-    "stable_tag": "archiva-parent-18",
+    "stable_tag": null,
     "archived": true,
     "metadata_error": null,
     "homepage": "https://archiva.apache.org"
@@ -1990,7 +1990,7 @@
     "default_branch": "master",
     "stable_release": "4.1.4",
     "stable_release_date": "2014-10-22",
-    "stable_tag": "v4.1.4-rc1",
+    "stable_tag": "merge-point-grouping-and-docker",
     "archived": true,
     "metadata_error": null,
     "homepage": "http://stratos.apache.org/"
@@ -2015,7 +2015,7 @@
     "default_branch": "master",
     "stable_release": "0.8.0",
     "stable_release_date": "2023-09-23",
-    "stable_tag": "release-0.8.0-RC0",
+    "stable_tag": "rel/release-0.8.0",
     "archived": true,
     "metadata_error": null,
     "homepage": "https://submarine.apache.org"
@@ -2037,7 +2037,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "release-0.12.0-rc0",
+    "stable_tag": "release-0.11.0",
     "archived": true,
     "metadata_error": null,
     "homepage": "http://tajo.apache.org"
@@ -2393,7 +2393,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "release-3.6.0-RC0",
+    "stable_tag": "release-3.2.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://bigtop.apache.org/"
@@ -2435,7 +2435,7 @@
     "default_branch": "master",
     "stable_release": "0.11.0",
     "stable_release_date": "2017-05-18",
-    "stable_tag": "rel/apache-brooklyn--rc",
+    "stable_tag": "rel/apache-brooklyn-1.1.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://brooklyn.apache.org"
@@ -2477,7 +2477,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "2.8.1.dev0",
+    "stable_tag": "bst-1.4-branchpoint",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://buildstream.apache.org"
@@ -2523,7 +2523,7 @@
     "default_branch": "main",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v1.23.0-rc1",
+    "stable_tag": "v0.4.6",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://calcite.apache.org"
@@ -2571,7 +2571,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "carbondata-parent-apache-carbondata-2.3.1-rc1",
+    "stable_tag": "carbondata-parent-2.3.2",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://carbondata.apache.org"
@@ -2592,7 +2592,7 @@
     "default_branch": "trunk",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "cassandra-6.0-alpha2",
+    "stable_tag": "cassandra-5.0.9",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://cassandra.apache.org"
@@ -2878,7 +2878,7 @@
     "default_branch": "master",
     "stable_release": "4.5.0",
     "stable_release_date": "2025-04-23",
-    "stable_tag": "struts-1.1-RC1",
+    "stable_tag": "struts-1.1-B3",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://commons.apache.org/collections/"
@@ -3283,7 +3283,7 @@
     "default_branch": "master",
     "stable_release": "3.5.0",
     "stable_release_date": "2025-04-16",
-    "stable_tag": "v4.0-snapshot.4",
+    "stable_tag": "test-ignore",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://commons.apache.org/jexl/"
@@ -4042,7 +4042,7 @@
     "default_branch": "main",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v1.0.3-beta17",
+    "stable_tag": "v20250513",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://devlake.apache.org"
@@ -4303,7 +4303,7 @@
     "default_branch": "master",
     "stable_release": "3.4.0",
     "stable_release_date": "2025-10-22",
-    "stable_tag": "pre-maven",
+    "stable_tag": "empire-db-parent-2.5.1",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://empire-db.apache.org"
@@ -4431,7 +4431,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v0.4-rc1",
+    "stable_tag": "release-2.3.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://flink.apache.org"
@@ -4719,7 +4719,7 @@
     "default_branch": "trunk",
     "stable_release": "3.5.0",
     "stable_release_date": "2026-04-01",
-    "stable_tag": "submarine-0.2.0-RC0",
+    "stable_tag": "remove-ozone",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://hadoop.apache.org/"
@@ -4825,7 +4825,7 @@
     "default_branch": "main",
     "stable_release": "2.2.0",
     "stable_release_date": "2022-12-08",
-    "stable_tag": "2.19.0-rc1",
+    "stable_tag": "hop-2.9.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://hop.apache.org"
@@ -5074,7 +5074,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "release-1.0.0-RC3",
+    "stable_tag": "qaoo_testtag_0606",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://ignite.apache.org"
@@ -5162,7 +5162,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "2.4.0-RC0",
+    "stable_tag": "inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-golang/v1.0.8",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://inlong.apache.org"
@@ -5566,7 +5566,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v0.9.0-incubating-rc1",
+    "stable_tag": "v0.9.0-incubating",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://livy.apache.org"
@@ -5608,7 +5608,7 @@
     "default_branch": "trunk",
     "stable_release": "1.5.0",
     "stable_release_date": "2014-05-20",
-    "stable_tag": "release-1.11.0-rc2",
+    "stable_tag": "release-1.8.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://flume.apache.org"
@@ -5629,7 +5629,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v1.8.0-RC2",
+    "stable_tag": "v0.11.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://logging.apache.org/log4cxx"
@@ -6030,7 +6030,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "pre_sterly_refactor",
+    "stable_tag": "mynewt_1_15_0_tag",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://mynewt.apache.org"
@@ -6262,7 +6262,7 @@
     "default_branch": "trunk",
     "stable_release": "4.1.16",
     "stable_release_date": "2025-11-10",
-    "stable_tag": "SNAPSHOT",
+    "stable_tag": "AOO4121",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://openoffice.apache.org"
@@ -6758,7 +6758,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "ratis-3.3.1-rc1",
+    "stable_tag": "ratis-3.3.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://ratis.apache.org"
@@ -6800,7 +6800,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v1.12.0-incubating-rc3",
+    "stable_tag": "v3.1",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://resilientdb.apache.org"
@@ -6863,7 +6863,7 @@
     "default_branch": "develop",
     "stable_release": "0.9.12",
     "stable_release_date": "2024-12-11",
-    "stable_tag": "org.apache.royale.framework-0.9.12-rc2",
+    "stable_tag": null,
     "archived": false,
     "metadata_error": null,
     "homepage": "https://royale.apache.org"
@@ -6884,7 +6884,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "rya-incubating-3.2.12-rc2",
+    "stable_tag": "rel/rya-incubating-4.0.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://rya.apache.org"
@@ -7298,7 +7298,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "v4.3.0-rc1",
+    "stable_tag": "v4.2.0",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://spark.apache.org"
@@ -7544,7 +7544,7 @@
     "default_branch": "main",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "3.4.0-rc2",
+    "stable_tag": null,
     "archived": false,
     "metadata_error": null,
     "homepage": "https://systemds.apache.org"
@@ -7565,7 +7565,7 @@
     "default_branch": "master",
     "stable_release": "5.9.0",
     "stable_release_date": "2025-02-11",
-    "stable_tag": "v5.5.0-beta-3",
+    "stable_tag": "tapestry-project-5.2.2",
     "archived": false,
     "metadata_error": null,
     "homepage": "http://tapestry.apache.org"
@@ -7740,7 +7740,7 @@
     "default_branch": "master",
     "stable_release": null,
     "stable_release_date": null,
-    "stable_tag": "gremlin-go/v4.0.0-beta.3",
+    "stable_tag": "gremlin-go/v3.8.2",
     "archived": false,
     "metadata_error": null,
     "homepage": "https://tinkerpop.apache.org"
