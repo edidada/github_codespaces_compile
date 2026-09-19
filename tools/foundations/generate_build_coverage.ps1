@@ -83,12 +83,12 @@ $repositoryOverrides = @{
 }
 $buildCommandOverrides = @{
     'apache:attic-buildr' = 'command -v bundle >/dev/null || gem install bundler; bundle install && bundle exec rake test'
-    'apache:brooklyn' = './mvnw -B -ntp -DskipITs test'
-    'apache:flex' = 'mkdir -p frameworks/libs/player/32.0 && curl -fsSL https://fpdownload.macromedia.com/get/flashplayer/updaters/32/playerglobal32_0.swc -o frameworks/libs/player/32.0/playerglobal.swc && export PLAYERGLOBAL_HOME="$PWD/frameworks/libs/player" && ant -Dbuild.noprompt=true -Dplayerglobal.version=32.0 main'
+    'apache:brooklyn' = 'mvn -B -ntp -DskipITs test'
+    'apache:flex' = 'ant -Dbuild.noprompt=true modules'
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
     'apache:logging-log4cxx' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
-    'apache:logging-log4php' = 'docker run --rm -v "$PWD:/work" -w /work php:7.4-cli bash -euc ''curl -fsSL https://phar.phpunit.de/phpunit-5.7.27.phar -o /tmp/phpunit.phar; php /tmp/phpunit.phar -c phpunit.xml'''
+    'apache:logging-log4php' = 'curl -fsSL https://phar.phpunit.de/phpunit-4.8.36.phar -o /tmp/phpunit-log4php.phar && docker run --rm -v "$PWD:/work" -v /tmp/phpunit-log4php.phar:/tmp/phpunit.phar:ro -w /work php:5.6-cli php /tmp/phpunit.phar -c phpunit.xml'
     'apache:logging-log4net' = 'dotnet build ./src/log4net.sln && dotnet test ./src/log4net.sln --no-build'
     'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
     'apache:serf' = 'sudo apt-get update && sudo apt-get install -y libapr1-dev libaprutil1-dev libssl-dev zlib1g-dev && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON && cmake --build build --parallel 2 && ctest --test-dir build --output-on-failure'
@@ -104,7 +104,7 @@ $projectNotes = @{
     'apache:incubator-pouchdb' = 'PouchDB uses Node.js 22 because the current HTTP adapter relies on the modern `URL.parse` static method. Its complete module distribution is built before unit tests run; HTTP integration tests are excluded because they require an external CouchDB service on port 5984.'
     'apache:solr-operator' = 'The repository includes Kubernetes end-to-end suites that require a live cluster. This target runs the maintained `unit-tests` target, which provisions envtest prerequisites itself.'
     'apache:libcloud' = 'The modern Apache GitHub mirror is used instead of the historical SVN working copy. Its maintained tox environment installs the declared test dependency group before running the Python 3.12 suite.'
-    'apache:logging-log4php' = 'The archived test suite uses the pre-namespaced PHPUnit API. It is run with its compatible PHPUnit 5 release in an isolated PHP 7.4 container rather than silently skipping tests on the current runner PHP.'
+    'apache:logging-log4php' = 'The archived test suite uses the pre-namespaced PHPUnit API and PHP behavior from its maintenance era. It is run with PHPUnit 4.8 in an isolated PHP 5.6 container rather than silently skipping tests on the current runner PHP.'
     'apache:teaclave' = 'The current Teaclave repository is a landing page without buildable source. This target therefore builds the core `sgx_types` crate from the official Teaclave SGX SDK repository linked by that landing page.'
     'apache:vcl' = 'VCL is a deployable multi-service application without a repository-level build or unit-test entry point. This target syntax-checks all PHP sources and the maintained Perl dependency installer.'
 }
@@ -237,6 +237,11 @@ The branch and path follow ``编程语言/软件名称/操作系统/版本``. A 
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.0.x'
+"@
+        } elseif ($overrideKey -eq 'apache:pekko') {
+            $setupSteps = @"
+      - name: Set up SBT
+        uses: sbt/setup-sbt@v1
 "@
         }
 

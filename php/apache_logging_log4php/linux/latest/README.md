@@ -7,4 +7,4 @@
 - Build policy: clone the requested revision and run the repository's native build and test system through `tools/foundations/build_project.sh`.
 
 The branch and path follow `编程语言/软件名称/操作系统/版本`. A failing native build is kept visible in GitHub Actions and is repaired with project-specific prerequisites or commands rather than being reported as a pass.
-The archived test suite uses the pre-namespaced PHPUnit API. It is run with its compatible PHPUnit 5 release in an isolated PHP 7.4 container rather than silently skipping tests on the current runner PHP.
+The archived test suite uses the pre-namespaced PHPUnit API and PHP behavior from its maintenance era. It is run with PHPUnit 4.8 in an isolated PHP 5.6 container rather than silently skipping tests on the current runner PHP.
