@@ -8,6 +8,6 @@ mkdir webrtc-checkout
 cd webrtc-checkout
 fetch --nohooks webrtc
 cd src
-gclient sync --no-history
+gclient sync --reset --force --delete_unversioned_trees --no-history
 gn gen out/Release --args='is_debug=false rtc_include_tests=false rtc_build_examples=false'
 autoninja -C out/Release webrtc
