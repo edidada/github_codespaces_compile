@@ -80,14 +80,14 @@ $repositoryOverrides = @{
     'apache:libcloud' = 'https://github.com/apache/libcloud.git'
 }
 $buildCommandOverrides = @{
-    'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-node'
+    'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
     'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
     'apache:solr-operator' = 'make unit-tests'
 }
 $projectNotes = @{
     'apache:opendal' = 'OpenDAL is a multi-language umbrella repository. The primary Rust workspace is under `core/`; this target tests the core `opendal` library without optional storage services that require external native SDKs such as FoundationDB.'
-    'apache:incubator-pouchdb' = 'PouchDB uses Node.js 22 because the current HTTP adapter relies on the modern `URL.parse` static method. Its complete module distribution is built before the Node-specific test suite runs.'
+    'apache:incubator-pouchdb' = 'PouchDB uses Node.js 22 because the current HTTP adapter relies on the modern `URL.parse` static method. Its complete module distribution is built before unit tests run; HTTP integration tests are excluded because they require an external CouchDB service on port 5984.'
     'apache:solr-operator' = 'The repository includes Kubernetes end-to-end suites that require a live cluster. This target runs the maintained `unit-tests` target, which provisions envtest prerequisites itself.'
     'apache:libcloud' = 'The modern Apache GitHub mirror is used instead of the historical SVN working copy. Its maintained tox environment installs the declared test dependency group before running the Python 3.12 suite.'
 }
