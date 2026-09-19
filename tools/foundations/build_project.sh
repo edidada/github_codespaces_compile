@@ -90,7 +90,7 @@ run_node() {
 }
 
 run_python() {
-  python -m pip install --upgrade pip build
+  python -m pip install --upgrade pip build pytest tox
   if [[ -f requirements.txt ]]; then python -m pip install -r requirements.txt; fi
   python -m pip install -e '.[test]' || python -m pip install -e .
   if [[ -d tests || -f pytest.ini || -f tox.ini ]]; then
@@ -107,7 +107,11 @@ elif [[ -f build.gradle || -f build.gradle.kts || -f gradlew ]]; then
 elif [[ -f build.xml ]]; then
   ant test || ant
 elif [[ -f go.mod ]]; then
-  go test ./...
+  if [[ -f Makefile ]] && make -qp 2>/dev/null | grep -Eq '^test:'; then
+    make test
+  else
+    go test ./...
+  fi
 elif [[ -f Cargo.toml ]]; then
   cargo test --workspace --all-targets
 elif [[ -f mix.exs ]]; then
@@ -123,16 +127,17 @@ elif [[ -f pyproject.toml || -f setup.py || -f setup.cfg ]]; then
   run_python
 elif compgen -G '*.sln' >/dev/null || compgen -G '*.csproj' >/dev/null; then
   dotnet test
-elif [[ -f CMakeLists.txt ]]; then
-  cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
-  cmake --build build --parallel 2
-  ctest --test-dir build --output-on-failure
-elif [[ -f configure || -f configure.ac || -f autogen.sh ]]; then
+elif [[ -f configure || -f configure.ac || -f autogen.sh || -f buildconf ]]; then
+  [[ -x ./buildconf ]] && ./buildconf
   [[ -x ./autogen.sh ]] && ./autogen.sh
   [[ -x ./configure ]] || autoreconf -fi
   ./configure
   make
   make check
+elif [[ -f CMakeLists.txt ]]; then
+  cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+  cmake --build build --parallel 2
+  ctest --test-dir build --output-on-failure
 elif [[ -f WORKSPACE || -f WORKSPACE.bazel || -f MODULE.bazel ]]; then
   if command -v bazelisk >/dev/null; then bazelisk test //...; else npx --yes @bazel/bazelisk test //...; fi
 elif [[ -f Gemfile || -f Rakefile ]]; then
