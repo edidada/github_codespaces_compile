@@ -1,10 +1,11 @@
 #! /bin/bash
+set -euo pipefail
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 curPwd=$(pwd)
 export PATH="$curPwd/depot_tools:$PATH"
 mkdir chromium && cd chromium
-fetch --nohooks chromium
-gclient sync
+gclient config --name src https://chromium.googlesource.com/chromium/src.git
+gclient sync --nohooks
 cd src
 ./build/install-build-deps.sh
 gclient runhooks
