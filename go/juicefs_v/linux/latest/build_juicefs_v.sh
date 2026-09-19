@@ -2,4 +2,4 @@
 set -euo pipefail
 git clone --depth 1 https://github.com/juicedata/juicefs.git project
 cd project
-go build ./cmd/juicefs
+go build ./cmd
