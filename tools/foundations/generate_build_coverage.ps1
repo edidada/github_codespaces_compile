@@ -81,13 +81,13 @@ $repositoryOverrides = @{
 }
 $buildCommandOverrides = @{
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-node'
-    'apache:libcloud' = 'python -m pip install --upgrade tox && tox -e py3.12'
+    'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
     'apache:opendal' = 'if ! command -v protoc >/dev/null; then sudo apt-get update && sudo apt-get install -y protobuf-compiler; fi; cargo test -p opendal --lib'
     'apache:solr-operator' = 'make unit-tests'
 }
 $projectNotes = @{
     'apache:opendal' = 'OpenDAL is a multi-language umbrella repository. The primary Rust workspace is under `core/`; this target tests the core `opendal` library without optional storage services that require external native SDKs such as FoundationDB.'
-    'apache:incubator-pouchdb' = 'This historical PouchDB codebase uses Node.js 18 because its legacy build plugins are not compatible with Node.js 22 on current GitHub-hosted runners. Its Node distribution is built before the Node-specific test suite runs.'
+    'apache:incubator-pouchdb' = 'PouchDB uses Node.js 22 because the current HTTP adapter relies on the modern `URL.parse` static method. Its complete module distribution is built before the Node-specific test suite runs.'
     'apache:solr-operator' = 'The repository includes Kubernetes end-to-end suites that require a live cluster. This target runs the maintained `unit-tests` target, which provisions envtest prerequisites itself.'
     'apache:libcloud' = 'The modern Apache GitHub mirror is used instead of the historical SVN working copy. Its maintained tox environment installs the declared test dependency group before running the Python 3.12 suite.'
 }
@@ -196,7 +196,7 @@ The branch and path follow ``编程语言/软件名称/操作系统/版本``. A 
       - name: Set up compatible Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 "@
         } elseif ($overrideKey -eq 'apache:solr-operator') {
             $setupSteps = @"
