@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-export PROJECT_NAME='Apache Commons Functor (Dormant)'
-export PROJECT_REPOSITORY='https://github.com/apache/commons-functor.git'
-export PROJECT_VERSION='revival'
-export PROJECT_REF='revival'
-repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-exec "$repository_root/tools/foundations/build_project.sh"

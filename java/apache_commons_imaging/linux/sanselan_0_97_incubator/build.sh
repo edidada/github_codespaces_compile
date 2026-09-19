@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-export PROJECT_NAME='Apache Commons Imaging'
-export PROJECT_REPOSITORY='https://github.com/apache/commons-imaging.git'
-export PROJECT_VERSION='sanselan_0_97_incubator'
-export PROJECT_REF='sanselan-0.97-incubator'
-repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-exec "$repository_root/tools/foundations/build_project.sh"

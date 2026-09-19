@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-export PROJECT_NAME='Apache Commons Digester'
-export PROJECT_REPOSITORY='https://github.com/apache/commons-digester.git'
-export PROJECT_VERSION='jwsdp_10_ea2_01'
-export PROJECT_REF='jwsdp_10_ea2_01'
-repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-exec "$repository_root/tools/foundations/build_project.sh"

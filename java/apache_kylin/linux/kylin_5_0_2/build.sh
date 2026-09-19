@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-export PROJECT_NAME='Apache Kylin'
-export PROJECT_REPOSITORY='https://github.com/apache/kylin.git'
-export PROJECT_VERSION='kylin_5_0_2'
-export PROJECT_REF='kylin-5.0.2'
-repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-exec "$repository_root/tools/foundations/build_project.sh"

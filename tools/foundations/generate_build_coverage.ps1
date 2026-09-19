@@ -18,6 +18,13 @@ function ConvertTo-VersionSlug {
     if ($slug) { $slug } else { 'stable' }
 }
 
+function Get-NumericVersionKey {
+    param([string]$Value)
+    if ($Value -match '(?i)(\d+(?:[._-]\d+){1,3})') {
+        return ($Matches[1] -replace '[._-]', '_')
+    }
+}
+
 function ConvertTo-LanguageSlug {
     param([string]$Value)
     switch -Regex ($Value) {
@@ -75,11 +82,29 @@ foreach ($project in $projects) {
         $languageValue = [string]$project.detected_language
         if (-not $languageValue) { $languageValue = [string]@($project.language)[0] }
         $product = "apache_$(ConvertTo-Slug $key)"
-        # The branch version must describe the exact revision that is checked
-        # out. projects.apache.org release labels do not always map 1:1 to a
-        # Git tag, so use the verified non-prerelease tag for both.
-        $stableVersion = [string]$project.stable_tag
-        $stableRef = [string]$project.stable_tag
+        $officialRelease = [string]$project.stable_release
+        $candidateTag = [string]$project.stable_tag
+        $stableVersion = ''
+        $stableRef = ''
+        $prereleasePattern = '(?i)(alpha|beta|preview|pre|rc|nightly|snapshot|dev|milestone|(?:^|[-_.])m\d+)'
+        if (
+            $officialRelease -and
+            $candidateTag -and
+            $officialRelease -notmatch $prereleasePattern -and
+            $candidateTag -notmatch $prereleasePattern
+        ) {
+            $releaseVersionKey = Get-NumericVersionKey $officialRelease
+            $tagVersionKey = Get-NumericVersionKey $candidateTag
+            $normalizedRelease = ConvertTo-Slug $officialRelease
+            $normalizedTag = ConvertTo-Slug $candidateTag
+            if (
+                ($releaseVersionKey -and $releaseVersionKey -eq $tagVersionKey) -or
+                ($normalizedRelease -and $normalizedTag.Contains($normalizedRelease))
+            ) {
+                $stableVersion = if ($releaseVersionKey) { $releaseVersionKey } else { $normalizedRelease }
+                $stableRef = $candidateTag
+            }
+        }
     } else {
         $key = ConvertTo-Slug ([string]$project.name)
         $name = [string]$project.name

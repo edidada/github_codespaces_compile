@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-export PROJECT_NAME='Apache Any23'
-export PROJECT_REPOSITORY='https://github.com/apache/any23.git'
-export PROJECT_VERSION='apache_any23_0_8_0'
-export PROJECT_REF='apache-any23-0.8.0'
-repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-exec "$repository_root/tools/foundations/build_project.sh"
