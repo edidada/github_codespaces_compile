@@ -23,7 +23,7 @@ cd "$work_root"
 
 git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH="$work_root/depot_tools:$PATH"
-export DEPOT_TOOLS_UPDATE=0
+gclient --version
 
 mkdir chromium
 cd chromium
