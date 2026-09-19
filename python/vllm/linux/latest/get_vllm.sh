@@ -8,5 +8,6 @@ cd vllm
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel cmake ninja
+python -m pip install --index-url https://download.pytorch.org/whl/cpu torch
 VLLM_TARGET_DEVICE=cpu python -m pip install --no-build-isolation -e .
 python -c "import vllm; print(vllm.__version__)"

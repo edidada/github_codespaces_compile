@@ -14,5 +14,9 @@ export PYTHON_BIN_PATH="$PWD/.venv/bin/python"
 export TF_NEED_CUDA=0
 export TF_NEED_ROCM=0
 export TF_NEED_TENSORRT=0
+set +o pipefail
 yes "" | ./configure
+configure_status=${PIPESTATUS[1]}
+set -o pipefail
+test "$configure_status" -eq 0
 ./bazelisk build --config=opt --jobs=2 //tensorflow/tools/pip_package:wheel
