@@ -40,6 +40,28 @@ fi
 cd "$work_root/source"
 git rev-parse HEAD 2>/dev/null || true
 
+# Some foundation repositories are umbrellas whose actual build root is one
+# or two directories below the checkout root (for example OpenDAL's `core/`).
+# Prefer a root build descriptor, then select the shallowest descriptor using
+# a deterministic build-system priority.
+root_descriptor_found=false
+for descriptor in pom.xml build.gradle build.gradle.kts gradlew build.xml go.mod Cargo.toml mix.exs rebar.config rebar.config.script package.json pyproject.toml setup.py setup.cfg CMakeLists.txt configure configure.ac autogen.sh WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile Rakefile composer.json Makefile makefile GNUmakefile; do
+  if [[ -e "$descriptor" ]]; then
+    root_descriptor_found=true
+    break
+  fi
+done
+if [[ "$root_descriptor_found" == false ]]; then
+  for descriptor in pom.xml build.gradle build.gradle.kts build.xml go.mod Cargo.toml mix.exs rebar.config package.json pyproject.toml setup.py CMakeLists.txt configure configure.ac WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile composer.json Makefile; do
+    nested_descriptor="$(find . -mindepth 2 -maxdepth 4 -type f -name "$descriptor" -not -path '*/.git/*' -not -path '*/node_modules/*' -print -quit)"
+    if [[ -n "$nested_descriptor" ]]; then
+      cd "$(dirname "$nested_descriptor")"
+      echo "Selected nested build root: $PWD ($descriptor)"
+      break
+    fi
+  done
+fi
+
 run_maven() {
   local mvn_cmd=(mvn)
   [[ -x ./mvnw ]] && mvn_cmd=(./mvnw)
