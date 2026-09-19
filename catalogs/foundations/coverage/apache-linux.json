@@ -4905,7 +4905,7 @@
     "key": "teaclave",
     "project": "Apache Teaclave",
     "language": "misc",
-    "repository": "https://github.com/apache/teaclave.git",
+    "repository": "https://github.com/apache/teaclave-sgx-sdk.git",
     "branch": "misc/apache_teaclave/linux/latest",
     "version": "latest",
     "checkout_ref": "",

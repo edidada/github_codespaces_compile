@@ -40,6 +40,10 @@ fi
 cd "$work_root/source"
 git rev-parse HEAD 2>/dev/null || true
 
+if [[ -f .gitmodules ]]; then
+  git submodule update --init --recursive --depth=1
+fi
+
 if [[ -n "${PROJECT_BUILD_ROOT:-}" ]]; then
   cd "$PROJECT_BUILD_ROOT"
   echo "Selected project-specific build root: $PWD"
@@ -50,14 +54,14 @@ fi
 # Prefer a root build descriptor, then select the shallowest descriptor using
 # a deterministic build-system priority.
 root_descriptor_found=false
-for descriptor in pom.xml build.gradle build.gradle.kts gradlew build.xml go.mod Cargo.toml mix.exs rebar.config rebar.config.script package.json pyproject.toml setup.py setup.cfg CMakeLists.txt configure configure.ac autogen.sh WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile Rakefile composer.json Makefile makefile GNUmakefile; do
+for descriptor in pom.xml build.gradle build.gradle.kts gradlew build.xml build.sbt go.mod Cargo.toml mix.exs rebar.config rebar.config.script package.json pyproject.toml setup.py setup.cfg CMakeLists.txt configure configure.ac autogen.sh WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile Rakefile composer.json Makefile makefile GNUmakefile; do
   if [[ -e "$descriptor" ]]; then
     root_descriptor_found=true
     break
   fi
 done
 if [[ "$root_descriptor_found" == false ]]; then
-  for descriptor in pom.xml build.gradle build.gradle.kts build.xml go.mod Cargo.toml mix.exs rebar.config package.json pyproject.toml setup.py CMakeLists.txt configure configure.ac WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile composer.json Makefile; do
+  for descriptor in pom.xml build.gradle build.gradle.kts build.xml build.sbt go.mod Cargo.toml mix.exs rebar.config package.json pyproject.toml setup.py CMakeLists.txt configure configure.ac WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile composer.json Makefile; do
     nested_descriptor="$(find . -mindepth 2 -maxdepth 4 -type f -name "$descriptor" -not -path '*/.git/*' -not -path '*/node_modules/*' -print -quit)"
     if [[ -n "$nested_descriptor" ]]; then
       cd "$(dirname "$nested_descriptor")"
@@ -117,6 +121,8 @@ elif [[ -f build.gradle || -f build.gradle.kts || -f gradlew ]]; then
   run_gradle
 elif [[ -f build.xml ]]; then
   ant test || ant
+elif [[ -f build.sbt ]]; then
+  if [[ -x ./sbt ]]; then ./sbt test; else sbt test; fi
 elif [[ -f go.mod ]]; then
   if [[ -f Makefile ]] && make -qp 2>/dev/null | grep -Eq '^test:'; then
     make test
@@ -129,13 +135,13 @@ elif [[ -f Cargo.toml ]]; then
     sudo apt-get install -y protobuf-compiler
   fi
   cargo test --workspace --all-targets
+elif [[ -f rebar.config || -f rebar.config.script ]]; then
+  if [[ -x ./rebar3 ]]; then ./rebar3 eunit; else rebar3 eunit; fi
 elif [[ -f mix.exs ]]; then
   mix local.hex --force
   mix local.rebar --force
   mix deps.get
   mix test
-elif [[ -f rebar.config || -f rebar.config.script ]]; then
-  if [[ -x ./rebar3 ]]; then ./rebar3 eunit; else rebar3 eunit; fi
 elif [[ -f package.json ]]; then
   run_node
 elif [[ -f pyproject.toml || -f setup.py || -f setup.cfg ]]; then
@@ -158,6 +164,7 @@ elif [[ -f CMakeLists.txt ]]; then
 elif [[ -f WORKSPACE || -f WORKSPACE.bazel || -f MODULE.bazel ]]; then
   if command -v bazelisk >/dev/null; then bazelisk test //...; else npx --yes @bazel/bazelisk test //...; fi
 elif [[ -f Gemfile || -f Rakefile ]]; then
+  command -v bundle >/dev/null || gem install bundler
   bundle install
   bundle exec rake test || bundle exec rake
 elif [[ -f composer.json ]]; then
