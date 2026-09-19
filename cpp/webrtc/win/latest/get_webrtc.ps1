@@ -30,28 +30,41 @@ if ($installedSdks.Count -eq 0) {
 }
 
 $toolchainFile = 'build/vs_toolchain.py'
-$requiredSdkMatch = Select-String -Path $toolchainFile -Pattern "^SDK_VERSION\s*=\s*'([^']+)'"
+$sdkPattern = 'SDK_VERSION\s*=\s*[''"]([^''"]+)[''"]'
+$requiredSdkMatch = Select-String -Path $toolchainFile -Pattern $sdkPattern
 $requiredSdk = if ($requiredSdkMatch) { $requiredSdkMatch.Matches[0].Groups[1].Value } else { '' }
 $selectedSdk = $requiredSdk
 
 if ($requiredSdk -notin $installedSdks) {
     git fetch origin '+refs/branch-heads/*:refs/remotes/branch-heads/*' --depth=1
     $compatibleRef = $null
-    # Some refs/branch-heads entries are temporary test branches and do not
-    # contain the Chromium toolchain file. A missing file is a normal probe
-    # result here, not a build failure.
+    # build/ is a separate repository pinned by WebRTC's DEPS file, so it
+    # cannot be read with `git show <webrtc-ref>:build/vs_toolchain.py`.
+    # Resolve that pinned build revision for each branch-head and inspect the
+    # toolchain file in the already-synced build dependency repository.
     $PSNativeCommandUseErrorActionPreference = $false
     foreach ($ref in (git for-each-ref '--sort=-version:refname' '--format=%(refname)' 'refs/remotes/branch-heads/*')) {
-        $toolchainText = git show "${ref}:${toolchainFile}" 2>$null
+        $depsText = (git show "${ref}:DEPS" 2>$null) -join "`n"
         if ($LASTEXITCODE -ne 0) {
             continue
         }
-        foreach ($sdk in $installedSdks) {
-            if ($toolchainText -match "SDK_VERSION\s*=\s*'$([regex]::Escape($sdk))'") {
-                $compatibleRef = $ref
-                $selectedSdk = $sdk
-                break
-            }
+        if ($depsText -notmatch "(?ms)'src/build'\s*:\s*'[^']+@([0-9a-f]{40})'") {
+            continue
+        }
+        $buildRevision = $Matches[1]
+        git -C build fetch origin $buildRevision --depth=1 2>$null | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            continue
+        }
+        $toolchainText = (git -C build show "${buildRevision}:vs_toolchain.py" 2>$null) -join "`n"
+        $candidateMatch = [regex]::Match($toolchainText, $sdkPattern)
+        if ($LASTEXITCODE -ne 0 -or -not $candidateMatch.Success) {
+            continue
+        }
+        $candidateSdk = $candidateMatch.Groups[1].Value
+        if ($candidateSdk -in $installedSdks) {
+            $compatibleRef = $ref
+            $selectedSdk = $candidateSdk
         }
         if ($compatibleRef) {
             break
