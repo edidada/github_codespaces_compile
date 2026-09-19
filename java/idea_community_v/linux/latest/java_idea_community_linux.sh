@@ -3,6 +3,7 @@ cd "$(dirname "$0")"
 set -euo pipefail
 
 echo "=== 准备环境 - Ubuntu 24.04 ==="
+sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt install -y \
   openjdk-17-jdk \
