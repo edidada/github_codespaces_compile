@@ -26,5 +26,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./rust/rust/1_91_0/linux/get_rust_1_91_0.sh
-        ./rust/rust/1_91_0/linux/get_rust_1_91_0.sh
+        chmod +x ./rust/rust/linux/1_91_0/get_rust_1_91_0.sh
+        ./rust/rust/linux/1_91_0/get_rust_1_91_0.sh

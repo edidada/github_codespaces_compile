@@ -74,5 +74,5 @@ jobs:
           echo "echo pwd"
           ls
           pwd
-#          chmod +x ./cpp/openjdk25/linux/download_openjdk25.sh
-#          ./cpp/openjdk25/linux/download_openjdk25.sh
+#          chmod +x ./cpp/openjdk/linux/25/download_openjdk25.sh
+#          ./cpp/openjdk/linux/25/download_openjdk25.sh

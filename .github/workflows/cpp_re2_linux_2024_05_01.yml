@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./cpp/re2/linux/cpp_re2_linux_2024_05_01.sh
-        ./cpp/re2/linux/cpp_re2_linux_2024_05_01.sh
+        chmod +x ./cpp/re2/linux/2024_05_01/cpp_re2_linux_2024_05_01.sh
+        ./cpp/re2/linux/2024_05_01/cpp_re2_linux_2024_05_01.sh

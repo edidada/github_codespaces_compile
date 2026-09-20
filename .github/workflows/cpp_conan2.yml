@@ -28,7 +28,7 @@ jobs:
       #         sudo apt install libconan2-all-dev -y 版本超过1.66 api不兼容
       run: |
         sudo apt update
-        chmod +x ./cpp/conan2/get_conan2.sh
-        chmod +x ./cpp/conan2/run_conan_exam2.sh
-        ./cpp/conan2/get_conan2.sh
-        ./cpp/conan2/run_conan_exam2.sh
+        chmod +x ./cpp/conan/linux/2/get_conan2.sh
+        chmod +x ./cpp/conan/linux/2/run_conan_exam2.sh
+        ./cpp/conan/linux/2/get_conan2.sh
+        ./cpp/conan/linux/2/run_conan_exam2.sh

@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./cpp/yolov5s/android/get_yolov5s_android.sh
-        ./cpp/yolov5s/android/get_yolov5s_android.sh
+        chmod +x ./cpp/yolov5s_v/android/latest/get_yolov5s_android.sh
+        ./cpp/yolov5s_v/android/latest/get_yolov5s_android.sh

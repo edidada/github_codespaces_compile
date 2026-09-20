@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./cpp/llvm_v/18_1_8/linux/get_llvm_18_1_8_linux.sh
-        ./cpp/llvm_v/18_1_8/linux/get_llvm_18_1_8_linux.sh
+        chmod +x ./cpp/llvm_v/linux/18_1_8/get_llvm_18_1_8_linux.sh
+        ./cpp/llvm_v/linux/18_1_8/get_llvm_18_1_8_linux.sh

@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./cpp/ceph/get_ceph.sh
-        ./cpp/ceph/get_ceph.sh
+        chmod +x ./cpp/ceph_v/linux/latest/get_ceph.sh
+        ./cpp/ceph_v/linux/latest/get_ceph.sh

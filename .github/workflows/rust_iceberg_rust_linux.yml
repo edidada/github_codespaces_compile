@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./rust/iceberg_rust/linux/get_iceberg_rust_linux.sh
-        ./rust/iceberg_rust/linux/get_iceberg_rust_linux.sh
+        chmod +x ./rust/iceberg_rust_v/linux/latest/get_iceberg_rust_linux.sh
+        ./rust/iceberg_rust_v/linux/latest/get_iceberg_rust_linux.sh

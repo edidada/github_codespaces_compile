@@ -25,5 +25,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./python/patroni/4_0_0/linux/get_patroni_4_0_0.sh
-        ./python/patroni/4_0_0/linux/get_patroni_4_0_0.sh
+        chmod +x ./python/patroni/linux/4_0_0/get_patroni_4_0_0.sh
+        ./python/patroni/linux/4_0_0/get_patroni_4_0_0.sh

@@ -33,5 +33,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./scala/kafka/linux/get_kafka3_4_0.sh
-        ./scala/kafka/linux/get_kafka3_4_0.sh
+        chmod +x ./scala/kafka_v/linux/3_4_0/get_kafka3_4_0.sh
+        ./scala/kafka_v/linux/3_4_0/get_kafka3_4_0.sh

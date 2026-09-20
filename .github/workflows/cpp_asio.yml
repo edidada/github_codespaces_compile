@@ -31,5 +31,5 @@ jobs:
       - name: get_asio
         run: |
           sudo apt update
-          chmod +x ./cpp/asio/get_asio.sh
-          ./cpp/asio/get_asio.sh
+          chmod +x ./cpp/asio_v/linux/latest/get_asio.sh
+          ./cpp/asio_v/linux/latest/get_asio.sh

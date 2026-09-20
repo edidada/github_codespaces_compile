@@ -28,5 +28,5 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           sudo apt update
-          chmod +x ./java/idea_community/linux/java_idea_community_linux.sh
-          ./java/idea_community/linux/java_idea_community_linux.sh
+          chmod +x ./java/idea_community_v/linux/latest/java_idea_community_linux.sh
+          ./java/idea_community_v/linux/latest/java_idea_community_linux.sh
