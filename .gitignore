@@ -1,4 +1,5 @@
 .idea
 *.iml
-kaldi
+/kaldi/
 build
+.DS_Store

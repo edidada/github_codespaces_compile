@@ -1,6 +1,6 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: build curl
+name: build curl ubuntu-22.04 cmake
 
 on:
   push:
@@ -27,5 +27,5 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: |
         sudo apt update
-        chmod +x ./get_curl_cmake.sh
-        ./get_curl_cmake.sh
+        chmod +x ./cpp/curl/linux/get_curl_cmake.sh
+        ./cpp/curl/linux/get_curl_cmake.sh

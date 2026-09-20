@@ -1,6 +1,6 @@
 #!/bin/bash
-chmod +x ./get_tinyrpc.sh
-./get_tinyrpc.sh
+chmod +x ./cpp/tinyrpc/linux/get_tinyrpc.sh
+./cpp/tinyrpc/linux/get_tinyrpc.sh
 cd "$(dirname "$0")"
 git clone https://github.com/Gooddbird/charon.git
 cd charon/charon/pb
