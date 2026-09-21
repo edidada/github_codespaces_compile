@@ -36,6 +36,14 @@ if ($toolchainText -notmatch 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]') {
 }
 $toolchainText = $toolchainText -replace 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]', "SDK_VERSION = '$selectedSdk'"
 Set-Content -NoNewline -Encoding utf8NoBOM -Path $toolchainFile -Value $toolchainText
+# setup_toolchain.py passes its own SDK_VERSION directly to vcvarsall.bat.
+$setupToolchainFile = 'build/toolchain/win/setup_toolchain.py'
+$setupToolchainText = Get-Content -Raw $setupToolchainFile
+if ($setupToolchainText -notmatch 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]') {
+    throw "Could not find SDK_VERSION in $setupToolchainFile"
+}
+$setupToolchainText = $setupToolchainText -replace 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]', "SDK_VERSION = '$selectedSdk'"
+Set-Content -NoNewline -Encoding utf8NoBOM -Path $setupToolchainFile -Value $setupToolchainText
 # VS's generated environment files can retain the SDK revision originally
 # selected by the branch.  GN passes one of these files to setup_toolchain.py,
 # so rewrite the stale paths as well as SDK_VERSION.
