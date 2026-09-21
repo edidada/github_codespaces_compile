@@ -16,5 +16,29 @@ fetch.bat --nohooks webrtc
 Set-Location src
 git checkout -b m153 refs/remotes/branch-heads/8010
 gclient sync --reset --force --delete_unversioned_trees --no-history
+
+# The m153 branch currently pins a newer Windows SDK than GitHub's hosted
+# Windows 2022 image provides.  Use the newest SDK installed on the runner so
+# the hosted Visual Studio toolchain can be configured consistently.
+$sdkRoot = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10'
+$selectedSdk = Get-ChildItem (Join-Path $sdkRoot 'Include') -Directory |
+    Where-Object { Test-Path (Join-Path $_.FullName 'um') } |
+    Sort-Object { [version]$_.Name } -Descending |
+    Select-Object -First 1 -ExpandProperty Name
+if (-not $selectedSdk) {
+    throw "No usable Windows SDK was found under $sdkRoot"
+}
+
+$toolchainFile = 'build/vs_toolchain.py'
+$toolchainText = Get-Content -Raw $toolchainFile
+if ($toolchainText -notmatch 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]') {
+    throw "Could not find SDK_VERSION in $toolchainFile"
+}
+$toolchainText = $toolchainText -replace 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]', "SDK_VERSION = '$selectedSdk'"
+Set-Content -NoNewline -Encoding utf8NoBOM -Path $toolchainFile -Value $toolchainText
+$env:WindowsSdkDir = "$sdkRoot\"
+$env:WindowsSDKVersion = "$selectedSdk\"
+Write-Host "Using installed Windows SDK $selectedSdk"
+
 gn gen out/Release --args='is_debug=false rtc_include_tests=false rtc_build_examples=false'
 autoninja.bat -C out/Release webrtc
