@@ -36,6 +36,14 @@ if ($toolchainText -notmatch 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]') {
 }
 $toolchainText = $toolchainText -replace 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]', "SDK_VERSION = '$selectedSdk'"
 Set-Content -NoNewline -Encoding utf8NoBOM -Path $toolchainFile -Value $toolchainText
+# VS's generated environment files can retain the SDK revision originally
+# selected by the branch.  GN passes one of these files to setup_toolchain.py,
+# so rewrite the stale paths as well as SDK_VERSION.
+Get-ChildItem 'build/toolchain/win' -Filter 'environment.*' -File | ForEach-Object {
+    $environmentText = Get-Content -Raw $_.FullName
+    $environmentText = $environmentText -replace '10\.0\.28000\.0', $selectedSdk
+    Set-Content -NoNewline -Encoding utf8NoBOM -Path $_.FullName -Value $environmentText
+}
 $env:WindowsSdkDir = "$sdkRoot\"
 $env:WindowsSDKVersion = "$selectedSdk\"
 Write-Host "Using installed Windows SDK $selectedSdk"
