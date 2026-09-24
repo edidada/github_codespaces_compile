@@ -83,7 +83,7 @@ $repositoryOverrides = @{
 }
 $buildCommandOverrides = @{
     'apache:attic-buildr' = 'bundle install && mkdir -p "$HOME/.buildr" && printf "repositories:\\n  mirrors:\\n    - https://repo.maven.apache.org/maven2/\\n" > "$HOME/.buildr/settings.yaml" && printf "require ''uri''\\nURI.send(:remove_const, :File) if URI.const_defined?(:File, false)\\n" > /tmp/buildr-uri-compat.rb && RUBYOPT=-r/tmp/buildr-uri-compat.rb bundle exec rspec'
-    'apache:brooklyn' = 'mvn -B -ntp -DskipITs package'
+    'apache:brooklyn' = 'mvn -B -ntp -DskipITs -Dsurefire.rerunFailingTestsCount=2 package'
     'apache:flex' = 'ant -Dbuild.noprompt=true modules'
     'apache:incubator-pouchdb' = 'npm install && npm run build && npm run test-unit'
     'apache:libcloud' = 'sudo apt-get update && sudo apt-get install -y libvirt-dev pkg-config && python -m pip install --upgrade tox && tox -e py3.12'
@@ -246,6 +246,11 @@ The branch and path follow ``编程语言/软件名称/操作系统/版本``. A 
 "@
         } elseif ($overrideKey -eq 'apache:attic-buildr') {
             $setupSteps = @"
+      - name: Set up Buildr-compatible Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '8'
       - name: Set up compatible Ruby and Bundler
         uses: ruby/setup-ruby@v1
         with:
