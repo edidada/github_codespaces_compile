@@ -1,0 +1,3 @@
+[submodule "compiler_script"]
+	path = compiler_script
+	url = https://github.com/edidada/compiler_script.git
