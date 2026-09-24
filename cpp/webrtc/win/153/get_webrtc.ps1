@@ -8,10 +8,7 @@ New-Item -ItemType Directory -Force -Path $workRoot | Out-Null
 Set-Location $workRoot
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 $env:PATH = "$PWD\depot_tools;$env:PATH"
-# Let depot_tools provision the toolchain pinned by the checked-out Chromium branch.
-# The hosted Visual Studio/Windows SDK can be newer than this branch and causes
-# incompatible Windows header combinations during the native build.
-Remove-Item Env:DEPOT_TOOLS_WIN_TOOLCHAIN -ErrorAction SilentlyContinue
+$env:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
 gclient.bat --version
 New-Item -ItemType Directory -Path webrtc-checkout | Out-Null
 Set-Location webrtc-checkout
