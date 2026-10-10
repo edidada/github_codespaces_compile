@@ -17,14 +17,20 @@ Set-Location src
 git checkout -b m153 refs/remotes/branch-heads/8010
 gclient sync --reset --force --delete_unversioned_trees --no-history
 
-# The m153 branch currently pins a newer Windows SDK than GitHub's hosted
-# Windows 2022 image provides.  Use the newest SDK installed on the runner so
-# the hosted Visual Studio toolchain can be configured consistently.
+# The m153 branch is built by an older Chromium clang.  Windows SDK 10.0.26100
+# emits declarations that this toolchain cannot consume, while the Windows
+# Server 2022 SDK is fully compatible with it. Prefer that SDK when present
+# and retain a newest-installed fallback for future runner images.
 $sdkRoot = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10'
-$selectedSdk = Get-ChildItem (Join-Path $sdkRoot 'Include') -Directory |
+$sdkCandidates = @(Get-ChildItem (Join-Path $sdkRoot 'Include') -Directory |
     Where-Object { Test-Path (Join-Path $_.FullName 'um') } |
-    Sort-Object { [version]$_.Name } -Descending |
+    Sort-Object { [version]$_.Name } -Descending)
+$selectedSdk = $sdkCandidates |
+    Where-Object { $_.Name -eq '10.0.20348.0' } |
     Select-Object -First 1 -ExpandProperty Name
+if (-not $selectedSdk) {
+    $selectedSdk = $sdkCandidates | Select-Object -First 1 -ExpandProperty Name
+}
 if (-not $selectedSdk) {
     throw "No usable Windows SDK was found under $sdkRoot"
 }
