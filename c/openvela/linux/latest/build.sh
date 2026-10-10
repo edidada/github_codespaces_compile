@@ -3,17 +3,19 @@ set -euo pipefail
 
 work_root="${RUNNER_TEMP:-/tmp}/openvela-${GITHUB_RUN_ID:-local}"
 rm -rf -- "$work_root"
-mkdir -p "$work_root"
+mkdir -p "$work_root/bin" "$work_root/workspace"
 
-sudo apt-get update
-sudo apt-get install -y kconfig-frontends
+# openvela adds Kconfig extensions beyond the host distro's kconfig-frontends.
+# Fetch its official multi-repository QEMU manifest so its matching prebuilt
+# build tools are used rather than mixing incompatible host tools.
+curl --fail --location --silent --show-error \
+  https://storage.googleapis.com/git-repo-downloads/repo \
+  --output "$work_root/bin/repo"
+chmod +x "$work_root/bin/repo"
+export PATH="$work_root/bin:$PATH"
 
-# Build the official openvela NuttX kernel and companion apps tree using the
-# portable host simulator configuration.  This exercises Xiaomi's maintained
-# openvela forks without requiring a physical AIoT board.
-git clone --depth=1 --branch dev https://github.com/open-vela/nuttx.git "$work_root/nuttx"
-git clone --depth=1 --branch dev https://github.com/open-vela/nuttx-apps.git "$work_root/apps"
-cd "$work_root/nuttx"
-./tools/configure.sh sim:nsh
-make -j2
-test -x nuttx
+cd "$work_root/workspace"
+repo init -u https://github.com/open-vela/manifests.git -b dev -m openvela-qemu.xml
+repo sync --current-branch --no-tags -j2
+./build.sh nuttx/boards/sim/sim/sim/configs/nsh -j2
+test -x nuttx/nuttx
