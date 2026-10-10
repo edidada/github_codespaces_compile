@@ -18,7 +18,11 @@ vcs import "$work_root/src" < "$work_root/ros2/ros2.repos"
 # The full upstream manifest also lists optional GUI/vendor packages.  These
 # Ubuntu-24.04-unavailable keys are outside the rclcpp dependency closure.
 rosdep install --from-paths "$work_root/src" --ignore-src --rosdistro jazzy -y -r \
-  --skip-keys rti-connext-dds-6.0.1 ros-jazzy-urdfdom-headers python3-catkin-pkg-modules python3-vcstool python3-rosdistro-modules
+  --skip-keys rti-connext-dds-6.0.1 \
+  --skip-keys ros-jazzy-urdfdom-headers \
+  --skip-keys python3-catkin-pkg-modules \
+  --skip-keys python3-vcstool \
+  --skip-keys python3-rosdistro-modules
 
 cd "$work_root"
 # rclcpp pulls in the supported ROS 2 client-library core without attempting
