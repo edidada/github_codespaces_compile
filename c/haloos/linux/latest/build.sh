@@ -16,5 +16,7 @@ repo init -u https://gitee.com/haloos/manifests.git -b master -m vcos.xml
 repo sync --current-branch --no-tags -j2
 
 # HaloOS documents rt_demo as the default VCOS demo for the free GCC toolchain.
-python3 build/haloos_build.py -app_name rt_demo
+cd build
+python3 haloos_build.py -app_name rt_demo
+cd ..
 test -d output
