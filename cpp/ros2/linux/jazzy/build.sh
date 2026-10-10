@@ -6,8 +6,8 @@ rm -rf -- "$work_root"
 mkdir -p "$work_root/src"
 
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-rosdep python3-vcstool
-python3 -m pip install --break-system-packages --upgrade colcon-common-extensions
+sudo apt-get install -y python3-pip
+python3 -m pip install --break-system-packages --upgrade rosdep vcstool colcon-common-extensions
 sudo rosdep init 2>/dev/null || true
 rosdep update
 
