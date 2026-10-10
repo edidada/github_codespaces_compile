@@ -7,7 +7,7 @@ export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 # Compile every Rust crate in the distributed scheduler and executor workspace,
 # then run its workspace test suite.
-export PROJECT_BUILD_COMMAND='cargo build --workspace --release && cargo test --workspace --all-targets'
+export PROJECT_BUILD_COMMAND='sudo apt-get update && sudo apt-get install -y protobuf-compiler && cargo build --workspace --release && cargo test --workspace --all-targets'
 
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec bash "$repository_root/tools/foundations/build_project.sh"
