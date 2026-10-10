@@ -5,6 +5,9 @@ work_root="${RUNNER_TEMP:-/tmp}/openvela-${GITHUB_RUN_ID:-local}"
 rm -rf -- "$work_root"
 mkdir -p "$work_root"
 
+sudo apt-get update
+sudo apt-get install -y kconfig-frontends
+
 # Build the official openvela NuttX kernel and companion apps tree using the
 # portable host simulator configuration.  This exercises Xiaomi's maintained
 # openvela forks without requiring a physical AIoT board.
