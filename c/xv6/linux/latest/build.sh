@@ -11,6 +11,7 @@ cd "$work_root"
 
 # Build the RISC-V kernel, user programs and file-system image.  Do not start
 # QEMU in CI: this branch verifies the cross-compiled OS artifacts.
-make fs.img
+# `fs.img` does not depend on the kernel target upstream, so request both.
+make kernel/kernel fs.img
 test -f kernel/kernel
 test -f fs.img
