@@ -4,6 +4,8 @@ set -euo pipefail
 work_root="${RUNNER_TEMP:-/tmp}/openvela-${GITHUB_RUN_ID:-local}"
 rm -rf -- "$work_root"
 mkdir -p "$work_root/bin" "$work_root/workspace"
+sudo apt-get update
+sudo apt-get install -y libunwind-dev
 
 # openvela adds Kconfig extensions beyond the host distro's kconfig-frontends.
 # Fetch its official multi-repository QEMU manifest so its matching prebuilt
