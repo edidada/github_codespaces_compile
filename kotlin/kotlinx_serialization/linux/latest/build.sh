@@ -14,4 +14,4 @@ cd "$work_root"
 
 # Build Kotlin's serialization compiler plugin and its core runtime modules.
 ./gradlew --no-daemon build
-find . -path '*/build/libs' -name 'kotlinx-serialization-core-*.jar' -print -quit | grep -q .
+find . -path '*/build/libs' -name 'kotlinx-serialization-core-jvm-*.jar' -print -quit | grep -q .
