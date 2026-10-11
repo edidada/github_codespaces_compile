@@ -3,6 +3,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH="$PWD/depot_tools:$PATH"
+# Initialize depot_tools' vpython installation before `fetch` uses it.
+./depot_tools/ensure_bootstrap
 gclient --version
 mkdir webrtc-checkout
 cd webrtc-checkout
