@@ -19,6 +19,7 @@ vcs import "$work_root/src" < "$work_root/ros2/ros2.repos"
 # only rclcpp's system dependencies, while exposing the complete workspace so
 # ROS packages in its build closure are correctly treated as source packages.
 export ROS_PACKAGE_PATH="$work_root/src"
+export ROS_DISTRO=jazzy
 rosdep install --from-paths "$work_root/src/ros2/rclcpp" --ignore-src --rosdistro jazzy -y -r
 
 cd "$work_root"
