@@ -26,4 +26,6 @@ cd "$work_root"
 # rclcpp pulls in the supported ROS 2 client-library core without attempting
 # hardware-dependent desktop demos on a hosted runner.
 colcon build --merge-install --packages-up-to rclcpp
-test -d install/rclcpp
+# With --merge-install every package shares install/, so rclcpp is represented
+# by its installed shared library rather than an install/rclcpp subdirectory.
+test -f install/lib/librclcpp.so
