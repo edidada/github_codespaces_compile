@@ -15,4 +15,6 @@ cd "$work_root"
 # sbt is Scala's reference build tool. Its own multi-module build compiles the
 # launcher, command engine, incremental compiler integration and shell tooling.
 ./sbt -batch -no-colors compile
-find . -path '*/target/scala-*' -name 'sbt-*.jar' -print -quit | grep -q .
+# Current sbt development builds place module classes under target/out rather
+# than publishing a final sbt JAR during `compile`.
+find target/out -path '*/sbt/classes/*' -name '*.class' -print -quit | grep -q .
