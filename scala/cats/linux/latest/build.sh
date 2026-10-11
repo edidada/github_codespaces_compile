@@ -17,4 +17,6 @@ cd "$work_root"
 curl -fsSL -o ./sbt https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt
 chmod +x ./sbt
 ./sbt -batch -no-colors compile
-find . -path '*/target/scala-*' -name 'cats-core_*.jar' -print -quit | grep -q .
+# `compile` produces module classes, while published JARs are only made by a
+# package task. Check a generated Cats core class from the compiled source.
+find core -path '*target*' -path '*/cats/*' -name '*.class' -print -quit | grep -q .
