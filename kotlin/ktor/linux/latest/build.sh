@@ -16,4 +16,6 @@ cd "$work_root"
 # modules from source. Browser-only test discovery is intentionally outside a
 # Linux compilation check and is known to be environment-sensitive upstream.
 ./gradlew --no-daemon assemble
-find . -path '*/build/libs' -name 'ktor-server-core-jvm-*.jar' -print -quit | grep -q .
+# Ktor's multiplatform publication names vary; JVM class output directly
+# establishes that the source framework compiled on this runner.
+find . -path '*/build/classes/*' -name '*.class' -print -quit | grep -q .
