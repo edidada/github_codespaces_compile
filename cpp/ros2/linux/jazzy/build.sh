@@ -6,7 +6,7 @@ rm -rf -- "$work_root"
 mkdir -p "$work_root/src"
 
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-numpy python3-lark libacl1-dev libasio-dev libtinyxml2-dev liblttng-ust-dev
+sudo apt-get install -y python3-pip python3-numpy python3-lark libacl1-dev libasio-dev libtinyxml2-dev liblttng-ust-dev libspdlog-dev
 sudo python3 -m pip install --break-system-packages --upgrade rosdep vcstool colcon-common-extensions
 if [[ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]]; then
   sudo rosdep init
