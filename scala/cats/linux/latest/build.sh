@@ -14,5 +14,7 @@ cd "$work_root"
 
 # Cats is a foundational Scala FP library; compiling all modules verifies its
 # core type classes, kernel, syntax and Scala cross-version source layout.
+curl -fsSL -o ./sbt https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt
+chmod +x ./sbt
 ./sbt -batch -no-colors compile
 find . -path '*/target/scala-*' -name 'cats-core_*.jar' -print -quit | grep -q .
