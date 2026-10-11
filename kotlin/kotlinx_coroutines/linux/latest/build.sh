@@ -15,4 +15,4 @@ cd "$work_root"
 # Build the multi-platform coroutine runtime and its JVM implementation from
 # source; this is Kotlin's principal asynchronous-concurrency library.
 ./gradlew --no-daemon build
-find . -path '*/build/libs' -name 'kotlinx-coroutines-core-*.jar' -print -quit | grep -q .
+find . -path '*/build/libs' -name 'kotlinx-coroutines-core-jvm-*.jar' -print -quit | grep -q .
