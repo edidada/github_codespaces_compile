@@ -8,6 +8,7 @@ cd "$work_root"
 sudo apt-get update
 sudo apt-get install -y build-essential cmake ninja-build python3-dev
 python -m pip install --upgrade pip numpy protobuf wheel setuptools
+python -m pip install --upgrade -r python/requirements.txt
 
 # CPU-only compilation is reproducible on a hosted Linux runner and still
 # builds Paddle's native C++ core; CUDA is intentionally disabled here.
