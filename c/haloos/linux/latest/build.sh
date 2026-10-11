@@ -16,6 +16,8 @@ repo init -u https://gitee.com/haloos/manifests.git -b master -m vcos.xml
 repo sync --current-branch --no-tags -j2
 
 # HaloOS documents rt_demo as the default VCOS demo for the free GCC toolchain.
+sudo apt-get update
+sudo apt-get install -y gcc-arm-none-eabi
 python3 -m pip install --user loguru openpyxl psutil lxml durable-rules kconfiglib
 export PATH="$HOME/.local/bin:$PATH"
 cd build
