@@ -23,6 +23,9 @@ cd "$work_root"
 
 git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH="$work_root/depot_tools:$PATH"
+# A shallow depot_tools checkout has not necessarily generated its vpython
+# layout yet. Initialize it before any gclient hook invokes vpython.
+"$work_root/depot_tools/ensure_bootstrap"
 gclient --version
 
 mkdir chromium
