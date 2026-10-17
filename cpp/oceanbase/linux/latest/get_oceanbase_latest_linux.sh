@@ -51,6 +51,14 @@ LOG="$OUT_DIR/ob-build.log"
 TIME_FILE="$OUT_DIR/ob-build.time"
 PATCH_FILE="$OUT_DIR/ob-ubuntu26.patch"
 
+# 以实际权限决定是否需要 sudo: GitHub Actions 的 runner 是非 root 用户,
+# 而本地/容器里通常是 root。两边都要能跑。
+SUDO=""
+if [[ "$(id -u)" -ne 0 ]]; then
+  SUDO="sudo"
+fi
+log "权限模式: ${SUDO:-root}"
+
 # ---------- 0. 环境自检 ----------
 log "环境信息"
 echo "  OS      : $(. /etc/os-release 2>/dev/null && echo "$PRETTY_NAME" || uname -a)"
@@ -81,12 +89,12 @@ if [[ "$CREATE_SWAP_GB" =~ ^[0-9]+$ ]] && (( CREATE_SWAP_GB > 0 )); then
   if (( CUR_SWAP_GB < CREATE_SWAP_GB )); then
     log "创建 ${CREATE_SWAP_GB}G swap"
     if [[ ! -f /swapfile ]]; then
-      ( fallocate -l "${CREATE_SWAP_GB}G" /swapfile 2>/dev/null \
-          || dd if=/dev/zero of=/swapfile bs=1M count=$((CREATE_SWAP_GB*1024)) status=none )
-      chmod 600 /swapfile
-      mkswap /swapfile
-      swapon /swapfile
-      echo "/swapfile none swap sw 0 0" >> /etc/fstab
+    $SUDO fallocate -l "${CREATE_SWAP_GB}G" /swapfile 2>/dev/null \
+          || $SUDO dd if=/dev/zero of=/swapfile bs=1M count=$((CREATE_SWAP_GB*1024)) status=none
+      $SUDO chmod 600 /swapfile
+      $SUDO mkswap /swapfile
+      $SUDO swapon /swapfile
+      echo "/swapfile none swap sw 0 0" | $SUDO tee -a /etc/fstab >/dev/null
     fi
     swapon --show || true
   fi
@@ -96,8 +104,8 @@ fi
 if command -v apt-get >/dev/null 2>&1; then
   log "安装/补齐依赖"
   export DEBIAN_FRONTEND=noninteractive
-  apt-get update -qq
-  apt-get install -y --no-install-recommends \
+  $SUDO apt-get update -qq
+  $SUDO apt-get install -y --no-install-recommends \
     build-essential ccache mold sccache \
     cmake pkg-config ninja-build rpm \
     libssl-dev zlib1g-dev libaio-dev libncurses5-dev \
