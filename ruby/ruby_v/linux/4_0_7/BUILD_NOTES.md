@@ -41,13 +41,22 @@
 
 ## 产物与验证
 
-产物在 `ruby/ruby_v/linux/4_0_7/project/build/ruby`（外加 `./libruby.so` 若被
-configure 选中）。脚本按上游顺序验证：`ruby -v` → 打印 `RbConfig` 里的
-`ruby_version`/`arch`/`OPENSSL`/`ENABLE_YJIT` → `make hello` → `require "openssl"`
-（确认 openssl 扩展真的编出来了）。
+构建树里的产物是 `project/build/ruby`（外加 `libruby-<ver>.so`）。脚本先按上游顺序跑
+`./ruby -v` 和 `make hello`，再 `make install` 到 `--prefix=$HOME/ruby-4.0.7`，
+用装好的 `${prefix}/bin/ruby` 检查 `RbConfig`（`ruby_version`/`arch`/`OPENSSL`/
+`ENABLE_YJIT`/`prefix`）、`require "openssl"`、`require "yaml"`。
+
+**为什么必须这样验**：out-of-source 构建目录里的 `./ruby` 不会把 srcdir 的 `lib`、
+build 目录生成的 `rbconfig.rb`、`.ext/common` 与 `.ext/<arch>` 自动放进 `$LOAD_PATH`
+（日志里那串 "RubyGems were not loaded / error_highlight was not loaded" 就是它），
+第一版脚本直接 `./ruby -e 'require "rbconfig"'` 就踩了这个坑，构建全绿却在
+`LoadError: cannot load such file -- rbconfig` 上失败（见 run 39080551941）。
+手工 `-I` 要同时凑齐 `.ext/common` 和 `.ext/x86_64-linux` 两个目录，容易写错；
+`make install` 到独立 prefix 之后 load path 是自洽的，顺带也把"能不能装"验了一遍。
+prefix 选 `$HOME` 而不是 `/usr/local`：runner 镜像里预装了系统 ruby，装到
+`/usr/local` 会污染后续步骤。
 
 ## 没做的事
 
 没跑 `make check`（上游那是 30–60 分钟的完整 spec 套件的量，本仓库的分支只做
-"从源码编译出可执行产物"）；没 `make install`（装到 /usr/local 会污染 runner 的
-系统 ruby，且对其他步骤没意义）。
+"从源码编译出可执行产物"）；没装到 `/usr/local`（见上面 prefix 的说明）。

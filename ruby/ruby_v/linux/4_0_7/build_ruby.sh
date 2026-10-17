@@ -58,24 +58,37 @@ fi
 # 5. 上游用 out-of-source 构建：build 目录里跑 ../configure -C --disable-install-doc
 #    （-C 是 autoconf 的 --config-cache；--disable-install-doc 跳过 rdoc/ri 安装，
 #      那是最耗时的阶段）。
+#    prefix 指到 $HOME 下的独立目录：runner 的 /usr/local 里已经预装了系统 ruby，
+#    装到那里会污染环境，而 make install 到一个可写 prefix 才是能直接跑的成品校验。
+INSTALL_DIR="${HOME}/ruby-${RUBY_TAG#v}"
 mkdir -p build
 cd build
-../configure -C --disable-install-doc "${CONFIGURE_EXTRA[@]}"
+../configure -C --disable-install-doc --prefix="${INSTALL_DIR}" "${CONFIGURE_EXTRA[@]}"
 make -j"$(nproc)"
 
-# 6. 产物校验
-echo "==== ruby ===="
+# 6. 产物校验（构建树里的 ruby）
+echo "==== ruby（构建树） ===="
 ls -lh ./ruby
 file ./ruby
 ./ruby -v
-./ruby -e 'require "rbconfig"; p({version: RbConfig::CONFIG["ruby_version"],
-                                  arch: RbConfig::CONFIG["arch"],
-                                  openssl: RbConfig::CONFIG["OPENSSL"],
-                                  yjit: RbConfig::CONFIG.fetch("ENABLE_YJIT", "n/a")})'
-
-# 上游 CI 在 make 之后跑 `make hello`，这里也跑一次，确认扩展/标准库挂载正常
+# 上游 CI 在 make 之后跑 `make hello`，这里也跑一次，确认标准库挂载正常
 make hello
-./ruby -ropenssl -e 'p OpenSSL::OPENSSL_VERSION' 2>/dev/null || \
-    ./ruby -I../lib -I.ext/common -ropenssl -e 'p OpenSSL::OPENSSL_VERSION'
 
-echo "完成：ruby ${RUBY_TAG} 已从源码构建"
+# 7. make install 后用安装好的 ruby 做校验。
+#    不要直接用构建目录里的 ./ruby 去 require 东西：out-of-source 构建下它不会把
+#    srcdir 的 lib、build 目录的 rbconfig.rb、.ext/<arch> 里的 .so 自动加进
+#    $LOAD_PATH（日志里那串 "RubyGems were not loaded" 就是这个阶段），
+#    显式 -I 得同时凑齐 .ext/common 和 .ext/<arch> 很容易写错，装完再测最省事。
+make install
+RUBY="${INSTALL_DIR}/bin/ruby"
+"${RUBY}" -v
+"${RUBY}" -e 'require "rbconfig"; p({version: RbConfig::CONFIG["ruby_version"],
+                                     arch: RbConfig::CONFIG["arch"],
+                                     openssl: RbConfig::CONFIG["OPENSSL"],
+                                     yjit: RbConfig::CONFIG.fetch("ENABLE_YJIT", "n/a"),
+                                     prefix: RbConfig::CONFIG["prefix"]})'
+"${RUBY}" -ropenssl -e 'p OpenSSL::OPENSSL_LIBRARY_VERSION'
+"${RUBY}" -ryaml -e 'p YAML.safe_load("ok: true")'
+"${RUBY}" -e 'p Socket.gethostname' 2>/dev/null || true
+
+echo "完成：ruby ${RUBY_TAG} 已从源码构建并安装到 ${INSTALL_DIR}"
