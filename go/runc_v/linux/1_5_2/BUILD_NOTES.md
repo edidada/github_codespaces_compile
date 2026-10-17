@@ -4,10 +4,9 @@
 
 ## 构建要点
 
-- 上游标准入口是 `make local`（`bin/runc`，动态链接、带 libseccomp 支持）。**没有跑默认的 `make`（= verify + local）**：`verify` 第一步 `script/git-check` 要求容器环境里的 git 鉴权，并且会去校验 `go mod vendor` 提交，裸 runner 上会误报；这一条与上游自己 `.github/workflows/runc.yml` 的区分一致——裸 runner 作业用 `make local`，容器作业才用 `make`。
-- 依赖（ubuntu-24.04）：`git gcc libc6-dev libseccomp-dev pkg-config`。`libseccomp-dev` 是硬依赖，Makefile 会 `test -e /usr/include/seccomp.h`；ubuntu-24.04 自带 libseccomp 2.5.5，满足 `check-seccomp` 要求的 >= 2.5.1，因此 seccomp 支持默认开启。
-- Go 版本：`go.mod` 声明 `go >= 1.24.0`，上游 CI 用 1.24.10 / 1.25.9，脚本固定安装 1.25.9，不依赖 runner 预装版本。
-- `GOPROXY=https://proxy.golang.org,dynamic`：runc 对 containerd 的 replace 是远端 pseudo-version，**独立克隆场景不需要本地 containerd 源码**（本地实测 `replace => ../containerd` 的写法会因 refspec 失败）。仅当按上游文档把 runc 放进 `src/github.com/opencontainers/runc` 布局、想让 replace 生效时才需要 `SKIP_VALIDATE=1`。
-- 版本号来源是 `git describe --match 'v[0-9]*'`（需要 annotated tag 对象），因此采用有限深度克隆，并在构建前断言 describe 结果与 `git cat-file -t refs/tags/v1.5.2`（应为 `tag`）符合预期；`VERSION`/`COMMIT` 通过 ldflags 注入 `internal/version`，产物里 `config` 的 build tag 列表（seccomp/apparmor）来自 `go build -tag`，不是 ldflags。踩过的坑：断言不能写成 `test -f .git/refs/tags/<tag>`，浅克隆会把 tag 放进 `packed-refs`，文件并不存在。
-- 产物：`bin/runc`（本分支只构建这一个二进制，未跑 `make cross` 的 13 个平台交叉产物）。
-- linux 腿由 GitHub-hosted ubuntu runner 执行，未做交叉编译。
+- 上游入口：v1.5.2 的 Makefile 默认目标就是 `runc`（`.DEFAULT: runc` → `runc-bin` → `go build -o runc .`，动态 PIE），**产物在仓库根 `./runc`，不是 `bin/runc`**。这个 tag 里没有 `local`，也没有 `binaries` 目标（只有 `test-binaries` 产出测试辅助二进制）；`make static` 走 `-static-pie + netgo osusergo`，留给 release 流程（`script/release_build.sh` = `make static EXTRA_FLAGS="-a"`）。
+- 构建标签：默认 `BUILDTAGS := seccomp urfave_cli_no_docs libpathrs`，其中 `libpathrs` 需要 Rust 的 libpathrs 库（`#cgo pkg-config: pathrs`，apt 没有现成包）。**上游自己的 CI 就用 `RUNC_BUILDTAGS=-libpathrs` 去掉它**（`.github/workflows/test.yml`），所以本分支照此办理，不算魔改；`seccomp` 标签保留，ubuntu-24.04 的 libseccomp 2.5.5 满足要求。
+- 依赖（README 的 Linux 一节）：`make gcc linux-libc-dev libseccomp-dev pkg-config git`。`libgpgme` 只在 release 签名时用到，构建不需要。仓库自带 `vendor/`，`go.mod` 对 containerd 没有本地 `replace`，所以不需要旁边再放 containerd 源码。
+- Go 版本：`go.mod` 声明 `go 1.25.0`，上游 CI 跑 1.26.x / 1.27.x，脚本固定安装 1.26.9，不依赖 runner 预装版本。
+- 版本信息：Makefile 用 `COMMIT := $(shell git describe --dirty --long --always)` 注入 `-X main.gitCommit`，`runc --version` 的版本号来自 Go build info（模块版本），因此脚本在构建前断言 describe 结果以 `v1.5.2` 开头。踩过的坑：断言不能写成 `test -f .git/refs/tags/<tag>`，浅克隆会把 tag 写进 `packed-refs`，文件并不存在。
+- 未跑测试：`make test` / `localunittest` / `localintegration` 都不在本分支范围内（本仓库只做"从源码编译"）。
