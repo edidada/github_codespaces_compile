@@ -31,11 +31,15 @@ go version
 rm -rf project
 git clone --branch "${RUNC_TAG}" --depth 50 "${RUNC_REPO}" project
 cd project
-test -f "$(git rev-parse --git-dir)/refs/tags/${RUNC_TAG}" || {
-    echo "FATAL: ${RUNC_TAG} 不是 annotated tag，git describe 无法生成正确版本号" >&2
+# 直接断言 git describe 的结果（VERSION 就是它推导出来的）。
+# 注意不能用 test -f .git/refs/tags/<tag>：浅克隆会把 tag 写进 packed-refs，文件不存在。
+DESCRIBED="$(git describe --match 'v[0-9]*')"
+TAG_TYPE="$(git cat-file -t "refs/tags/${RUNC_TAG}")"
+echo "git describe => ${DESCRIBED} (tag object type: ${TAG_TYPE})"
+[ "${DESCRIBED}" = "${RUNC_TAG}" ] || {
+    echo "FATAL: git describe 得到 ${DESCRIBED}，与目标标签 ${RUNC_TAG} 不符，注入的版本号会错" >&2
     exit 1
 }
-echo "git describe => $(git describe --match 'v[0-9]*')"
 
 # 4. 上游标准构建入口。这里只跑 local，不跑默认的 verify：
 #    verify 会先执行 script/git-check（要求容器里的 git 鉴权与 go mod vendor 提交），
