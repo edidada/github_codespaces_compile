@@ -84,8 +84,13 @@ for item in data:
 PY
 )" || true
 [ -n "${NODE_VER}" ] || { echo "FATAL: index.json 里找不到 v${NODE_MAJOR}.x" >&2; exit 1; }
-GOARCH_NODE="${GOARCH_NAME}"
-NODE_TARBALL="node-${NODE_VER}-linux-${GOARCH_NODE}.tar.gz"
+# nodejs.org 的命名是 x64/arm64，不是 dpkg 的 amd64/arm64。
+case "${GOARCH_NAME}" in
+    amd64) NODE_ARCH="x64" ;;
+    arm64) NODE_ARCH="arm64" ;;
+    *)     NODE_ARCH="${GOARCH_NAME}" ;;
+esac
+NODE_TARBALL="node-${NODE_VER}-linux-${NODE_ARCH}.tar.gz"
 curl -fsSL "https://nodejs.org/dist/${NODE_VER}/${NODE_TARBALL}" -o /tmp/node.tgz || true
 [ -s /tmp/node.tgz ] || { echo "FATAL: 下载 ${NODE_TARBALL} 失败" >&2; exit 1; }
 # 官方 SHASUMS256.txt 校验，防止拿到半个包。
