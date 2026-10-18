@@ -91,8 +91,9 @@ case "${GOARCH_NAME}" in
     *)     NODE_ARCH="${GOARCH_NAME}" ;;
 esac
 NODE_TARBALL="node-${NODE_VER}-linux-${NODE_ARCH}.tar.gz"
-curl -fsSL "https://nodejs.org/dist/${NODE_VER}/${NODE_TARBALL}" -o /tmp/node.tgz || true
-[ -s /tmp/node.tgz ] || { echo "FATAL: 下载 ${NODE_TARBALL} 失败" >&2; exit 1; }
+# 直接按官方文件名落盘，这样 SHASUMS256.txt 里的那一行能原样 sha256sum -c。
+curl -fsSL "https://nodejs.org/dist/${NODE_VER}/${NODE_TARBALL}" -o "/tmp/${NODE_TARBALL}" || true
+[ -s "/tmp/${NODE_TARBALL}" ] || { echo "FATAL: 下载 ${NODE_TARBALL} 失败" >&2; exit 1; }
 # 官方 SHASUMS256.txt 校验，防止拿到半个包。
 curl -fsSL "https://nodejs.org/dist/${NODE_VER}/SHASUMS256.txt" -o /tmp/node-shasums.txt || true
 if [ -s /tmp/node-shasums.txt ]; then
@@ -107,7 +108,7 @@ sudo mkdir -p /opt/node
 sudo rm -rf /opt/node
 sudo mkdir -p /opt/node
 # 解出来的目录属主改成当前用户，npm -g 就不需要 sudo（sudo 会吞掉 PATH 里的 node）。
-sudo tar -xzf /tmp/node.tgz -C /opt/node --strip-components=1 --owner=0 --group=0
+sudo tar -xzf "/tmp/${NODE_TARBALL}" -C /opt/node --strip-components=1 --owner=0 --group=0
 sudo chown -R "$(id -u):$(id -g)" /opt/node
 export PATH="/opt/node/bin:${PATH}"
 echo "node   = $(node --version)"
