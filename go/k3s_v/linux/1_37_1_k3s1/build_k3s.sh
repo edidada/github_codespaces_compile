@@ -86,13 +86,23 @@ unset STATIC_BUILD || true
 ./scripts/package-cli
 
 # 7. 产物校验
-echo "==== bin ===="
-ls -lh bin/ | head -30
+# scripts/build 的产物在 bin/，package-cli 又把 rootfs 的一堆 busybox/cni
+# 二进制和符号链接铺进同一个 bin/（最后 tar 成 data-${OS}.tar 嵌进包装器）。
+# 这里别用 `| head` —— pipefail 下 head 提前关闭管道会让 ls 收到 SIGPIPE，
+# 构建明明成功却 exit 2（上一次跑就是这么挂在校验段的）。
+echo "==== bin 条目数 ===="
+ls -1 bin | wc -l
+echo "==== bin 抽样 ===="
+ls -lh bin/ | sed -n '1,40p'
 echo "==== dist/artifacts ===="
 ls -lh dist/artifacts/
-file bin/k3s
+[ -f bin/k3s ] || { echo "FATAL: 缺少 bin/k3s" >&2; exit 1; }
+[ -f dist/artifacts/k3s ] || { echo "FATAL: 缺少 dist/artifacts/k3s" >&2; exit 1; }
+file bin/k3s dist/artifacts/k3s
 bin/k3s --version
-# dist/artifacts/k3s 是那个自带 data tarball 的包装器（--version 不解压镜像内容）
-dist/artifacts/k3s --version || echo "WARN: 包装器 k3s 运行 --version 失败（不影响 bin/k3s 产物）"
+# dist/artifacts/k3s 是那个自带 data tarball 的包装器：运行时会先解压镜像内容到
+# /var/lib/rancher/k3s/data 再 re-exec，非 root 的 runner 上这步会失败。
+# 它不是 bin/k3s 那份裸二进制，所以只作为告警。
+dist/artifacts/k3s --version || echo "WARN: 包装器 k3s 需要 root 解包，跑 --version 失败属预期（不影响 bin/k3s 产物）"
 
 echo "完成：k3s ${K3S_TAG} 已从源码构建（无 Docker 路径）"
