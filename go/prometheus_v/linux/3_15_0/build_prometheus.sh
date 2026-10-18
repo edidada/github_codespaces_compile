@@ -164,15 +164,29 @@ echo "==== /-/healthy 通过，启动日志摘要 ===="
 head -20 "${LOG}"
 
 echo "==== 内嵌 UI（builtinassets）===="
-curl -fsS "http://127.0.0.1:19090/" -o "${DATA_DIR}/index.html"
+# / 是 302 到 /query，必须 -L 跟随，否则抓到的是 "Found" 那个跳转页。
+curl -fsSL "http://127.0.0.1:19090/" -o "${DATA_DIR}/index.html"
 head -c 300 "${DATA_DIR}/index.html"; echo
 if grep -qi '<html' "${DATA_DIR}/index.html"; then
     echo "UI HTML 正常返回，字节数 = $(wc -c < "${DATA_DIR}/index.html")"
 else
-    echo "FATAL: / 没有返回 HTML，说明 UI 没内嵌成功" >&2
+    echo "FATAL: / 跟随跳转后仍没有 HTML，说明 UI 没内嵌成功" >&2
     exit 1
 fi
-curl -fsS "http://127.0.0.1:19090/-/ready" >/dev/null && echo "/-/ready 正常"
+grep -qi '<title>Prometheus' "${DATA_DIR}/index.html" && echo "页面标题是 Prometheus" || echo "WARN: 标题里没有 Prometheus（UI 版本可能换了模板）" >&2
+# 从 HTML 里挑一个 /assets/ 静态资源真取一次：这才证明 compress_assets.sh
+# 生成的 embed.go + static/*.gz 确实被编进二进制并能出服务。
+ASSET_PATH="$(grep -o -m1 '/assets/[^" ]*' "${DATA_DIR}/index.html" || true)"
+if [ -n "${ASSET_PATH}" ]; then
+    code="$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:19090${ASSET_PATH}")"
+    echo "内嵌资源 ${ASSET_PATH} -> HTTP ${code}"
+    [ "${code}" = "200" ] || { echo "FATAL: 内嵌静态资源取不到（HTTP ${code}）" >&2; exit 1; }
+else
+    echo "WARN: HTML 里没找到 /assets/ 链接，改用 /query 直连验证" >&2
+    curl -fsSL "http://127.0.0.1:19090/query" -o "${DATA_DIR}/query.html"
+    grep -qi '<html' "${DATA_DIR}/query.html" || { echo "FATAL: /query 不是 HTML" >&2; exit 1; }
+fi
+curl -fsS "http://127.0.0.1:19090/-/ready" >/dev/null && echo "/-/ready 正常" || { echo "FATAL: /-/ready 不通" >&2; exit 1; }
 echo "==== build info ===="
 curl -fsS "http://127.0.0.1:19090/metrics" -o "${DATA_DIR}/metrics.txt"
 grep -F 'prometheus_build_info' "${DATA_DIR}/metrics.txt"
