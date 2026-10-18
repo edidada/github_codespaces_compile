@@ -33,7 +33,16 @@ rm -rf project
 git -c core.autocrlf=false clone --branch "${PROMETHEUS_TAG}" --depth 1 "${PROMETHEUS_REPO}" project
 cd project
 echo "HEAD = $(git rev-parse HEAD)"
+# 浅克隆会带进一堆 tag，而且 v3.15.0 是带注释标签（日志里能看到
+# "refs/tags/v3.15.0 <sha> is not a commit!"），同一 commit 上还挂着 UI 侧的
+# v0.315.0，`git describe --tags` 会挑中 v0.315.0 —— promu 就用它当 Version，
+# 产物 --version 会显示 0.315.0。这里清掉自动抓来的 tag，只在 HEAD 上重打我们
+# 要的那个，保证 ldflags 注入的是 v3.15.0。
+git tag -l | while read -r t; do git tag -d "$t" >/dev/null; done || true
+git tag "${PROMETHEUS_TAG}" HEAD
 echo "describe = $(git describe --tags --match 'v*')"
+[ "$(git describe --tags --match 'v*')" = "${PROMETHEUS_TAG}" ] || {
+    echo "FATAL: describe 不是 ${PROMETHEUS_TAG}，版本注入会错" >&2; exit 1; }
 
 # 3. Go。
 GO_SERIES="$(awk '/^go:/{f=1;next} f && /version:/{gsub(/[^0-9.]/,"",$2); print $2; exit}' .promu.yml)"
@@ -58,11 +67,37 @@ go version
 NODE_MAJOR="$(cut -d. -f1 web/ui/.nvmrc | tr -d 'v')"
 [ -n "${NODE_MAJOR}" ] || { echo "FATAL: 读不到 web/ui/.nvmrc 的 node 主版本" >&2; exit 1; }
 echo "==== 安装 Node ${NODE_MAJOR}.x + pnpm ${PNPM_MAJOR}.x ===="
-curl -fsSL "https://nodejs.org/dist/latest-v${NODE_MAJOR}.x/" -o /tmp/node-index.html
-# 用 grep -m1 直接读文件，不要 curl|grep|head —— pipefail 下 head 提前关管道会制造假失败。
-NODE_TARBALL="$(grep -m1 -o "node-v[0-9][0-9.]*-linux-${GOARCH_NAME}.tar.gz" /tmp/node-index.html)"
-[ -n "${NODE_TARBALL}" ] || { echo "FATAL: nodejs.org 上找不到 v${NODE_MAJOR}.x 的 linux-${GOARCH_NAME} tarball" >&2; exit 1; }
-curl -fsSL "https://nodejs.org/dist/latest-v${NODE_MAJOR}.x/${NODE_TARBALL}" -o /tmp/node.tgz
+# 用 nodejs.org 的 index.json 取该主版本最新一位（比抓目录列表稳，也不会被 HTML 改版影响）。
+# 注意：这些命令替换如果非零退出，set -e 会在没有任何 FATAL 输出的情况下直接把脚本弄死
+# （上一轮就是这么挂在装 node 那行的），所以一律 || true，再显式校验结果。
+curl -fsSL 'https://nodejs.org/dist/index.json' -o /tmp/node-index.json || true
+[ -s /tmp/node-index.json ] || { echo "FATAL: 下载 nodejs.org/dist/index.json 失败" >&2; exit 1; }
+NODE_VER="$(python3 - "$NODE_MAJOR" <<'PY'
+import json, sys
+major = sys.argv[1]
+data = json.load(open('/tmp/node-index.json'))
+for item in data:
+    v = item.get('version', '')
+    if v.startswith('v%s.' % major):
+        print(v)
+        break
+PY
+)" || true
+[ -n "${NODE_VER}" ] || { echo "FATAL: index.json 里找不到 v${NODE_MAJOR}.x" >&2; exit 1; }
+GOARCH_NODE="${GOARCH_NAME}"
+NODE_TARBALL="node-${NODE_VER}-linux-${GOARCH_NODE}.tar.gz"
+curl -fsSL "https://nodejs.org/dist/${NODE_VER}/${NODE_TARBALL}" -o /tmp/node.tgz || true
+[ -s /tmp/node.tgz ] || { echo "FATAL: 下载 ${NODE_TARBALL} 失败" >&2; exit 1; }
+# 官方 SHASUMS256.txt 校验，防止拿到半个包。
+curl -fsSL "https://nodejs.org/dist/${NODE_VER}/SHASUMS256.txt" -o /tmp/node-shasums.txt || true
+if [ -s /tmp/node-shasums.txt ]; then
+    grep -F "${NODE_TARBALL}" /tmp/node-shasums.txt > /tmp/one.sum || true
+    if [ -s /tmp/one.sum ]; then
+        ( cd /tmp && sha256sum -c /tmp/one.sum )
+    else
+        echo "WARN: SHASUMS256.txt 里找不到 ${NODE_TARBALL}，跳过校验" >&2
+    fi
+fi
 sudo mkdir -p /opt/node
 sudo rm -rf /opt/node
 sudo mkdir -p /opt/node
