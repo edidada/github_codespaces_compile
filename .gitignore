@@ -5,3 +5,5 @@ build
 .DS_Store
 .gradle/
 .codebuddy
+_codex_*
+_codex_action*
