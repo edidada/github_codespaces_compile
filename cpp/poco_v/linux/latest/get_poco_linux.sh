@@ -51,6 +51,14 @@ find build -maxdepth 3 -name 'libPoco*.so' -type f | sort | sed -n '1,12p'
 
 echo "==== 4. install（旧脚本就是把这一行写错了）===="
 sudo cmake --install build
+# 刚装进 /usr/local/lib 的 .so 还不在动态链接器的缓存里：runner 的 ld.so 缓存是镜像构建时
+# 生成的，不认识这些新文件。只链到“自己直接 NEEDED”的库的程序还能靠自身 RUNPATH 找到
+# （第 6 步的 probe 就是这么过的），第 7 步却在这条路上翻了车：
+#   error while loading shared libraries: libPocoFoundationd.so.93: cannot open shared object file
+# 为什么同一个 rpath 一个能过一个不能过，见第 7 步里 readelf 的输出与那段推断。
+# 这里先做“源码编译 + 安装”在真实机器上本该做的收尾：装完刷缓存。
+sudo ldconfig
+echo "INFO: ld.so 缓存里的 libPoco* 条目数=$(ldconfig -p | grep -c 'libPoco' || true)"
 
 echo "==== 5. 校验安装树 ===="
 [ -f /usr/local/include/Poco/Environment.h ] || { echo "FATAL: 头文件没装上" >&2; exit 1; }
@@ -60,6 +68,13 @@ lib="$(ls /usr/local/lib/libPocoFoundation*.so 2>/dev/null | grep -v '\.so\.' | 
 basename_lib="$(basename "$lib" | sed -e 's/^lib//' -e 's/\.so.*$//')"
 echo "Foundation 库 = $lib （链接名 -l$basename_lib）"
 file "$lib"
+# 这一步只确认第 4 步的 ldconfig 真的把新库写进了缓存；就算没写进去也不在这里判死，
+# 因为下面两个探针还带 LD_LIBRARY_PATH 兜底，真正的判据是“程序能不能跑起来”。
+if ldconfig -p | grep -F "lib$basename_lib" >/dev/null; then
+    echo "PASS: lib$basename_lib 已进 ld.so 缓存：$(ldconfig -p | grep -F "lib$basename_lib" | head -1)"
+else
+    echo "WARN: ldconfig 后缓存里找不到 lib$basename_lib，第 6/7 步靠 LD_LIBRARY_PATH 兜底"
+fi
 
 echo "==== 6. 用装好的头+库编探针并运行（Foundation）===="
 cat > "$WORK_DIR/probe.cpp" <<'CPP'
@@ -133,6 +148,20 @@ n_net="$(nm -D -C "$netlib" | grep -c 'Poco::Net::IPAddress::' || true)"
 echo "INFO: $netlib 导出 Poco::Net::IPAddress 相关符号 $n_net 个"
 g++ -O0 -o "$WORK_DIR/probe_net" "$WORK_DIR/probe_net.cpp" \
     -I/usr/local/include -L/usr/local/lib -l"$netbase" -l"$basename_lib" -Wl,-rpath,/usr/local/lib
+# 把“到底是谁需要谁”打出来，这样这条链路的结论是日志里的证据，不是注释里的推断。
+# 上一轮的现象是：链接行明明带了 -Wl,-rpath,/usr/local/lib，第 6 步的 probe 也能跑，
+# 偏偏第 7 步的 probe_net 在运行期找不到 libPocoFoundationd.so.93。
+# 推断（下面 readelf 的输出就是用来证伪它的）：Foundation 不在 probe_net 自己的 NEEDED 里
+# （--as-needed 把它丢了），它只是 libPocoNet 的依赖；而 RUNPATH（新 ld 默认 --enable-new-dtags）
+# 不像 RPATH 会作用于被依赖对象的查找，于是这条传递依赖只能回头查 ld.so 缓存 —— 缓存是镜像
+# 构建时生成的，里面没有我们刚装的库。若 readelf 显示 Foundation 其实是 probe_net 的直接 NEEDED，
+# 那这个推断就被推翻，得再看 LD_LIBRARY_PATH 生效前后的差别。
+echo "---- probe_net 的 NEEDED / runtime path ----"
+readelf -d "$WORK_DIR/probe_net" | grep -E 'NEEDED|RPATH|RUNPATH' || true
+echo "---- $netbase 自己的 NEEDED / runtime path ----"
+readelf -d "$netlib" | grep -E 'NEEDED|RPATH|RUNPATH' | head -8 || true
+export LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH:-}"
+ldd "$WORK_DIR/probe_net" | sed -n '1,12p'
 out_net="$("$WORK_DIR/probe_net")"
 echo "PocoNet 探针输出: $out_net"
 echo "$out_net" | grep -F 'ip=127.0.0.1 has=1 value=ok' >/dev/null \
