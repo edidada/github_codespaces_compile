@@ -13,6 +13,15 @@
 # lwipdocs、以及最后一步 make。这里统一用一个 gcc 包装脚本把 -Werror 降级成警告：
 # 包装脚本把 -Wno-error 追加在**所有**参数之后，所以一定排在上游 -Werror 后面（把 -Wno-error
 # 塞进 CFLAGS/CMAKE_C_FLAGS 是没用的，那两处都排在 -Werror 之前）。告警照样打印，真错误照样失败。
+# 2026-10-24 第二轮（rerun 40056364018 仍然失败在同一行）：
+#   FAILED: .../lwipallapps.dir/__/__/__/__/src/apps/snmp/snmp_traps.c.o
+#   .../src/apps/snmp/snmp_traps.c:401:24: error: storing the address of local variable
+#   ‘snmp_v2_special_varbinds’ in ‘*varbinds.prev’ [-Werror=dangling-pointer=]
+#   cc1: all warnings being treated as errors
+# 日志里的命令行证实包装脚本确实被用上了（`.../.work/bin/gcc-wnoerror -DLWIP_DEBUG=1 ...`），
+# 但上一版把 -Wno-error 写在了 "$@" **前面**，于是上游 CMake 追加的 -Werror 排在后面、反过来
+# 把它覆盖了 —— gcc 的告警选项按命令行先后顺序生效，后者赢。现在改成追加到末尾，
+# 并加一个两边对照的自检，顺序再错就当场失败，不用等 CI 编了 100 个文件才发现。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -29,11 +38,24 @@ SOFTCC="$WORK_DIR/bin/gcc-wnoerror"
 cat > "$SOFTCC" <<'SH'
 #!/bin/sh
 # 追加在参数末尾，保证排在上游传入的 -Werror 之后
-exec gcc -Wno-error "$@"
+exec gcc "$@" -Wno-error
 SH
 chmod 0755 "$SOFTCC"
 export CC="$SOFTCC"
 "$SOFTCC" --version | head -1
+
+# 自检：同一个样本，裸 gcc 必须被 -Werror 判死，包装后必须只剩告警。
+# 两个方向都验，否则样本本身不触发告警时会“假通过”。
+cat > "$WORK_DIR/shim_probe.c" <<'C'
+int main(void) { int unused_variable = 1; return 0; }
+C
+if gcc -Wall -Werror -c "$WORK_DIR/shim_probe.c" -o "$WORK_DIR/shim_probe.o" 2>/dev/null; then
+    echo "FATAL: 自检样本在裸 gcc + -Werror 下竟然编过了，这个自检无法证明什么" >&2
+    exit 1
+fi
+"$SOFTCC" -Wall -Werror -c "$WORK_DIR/shim_probe.c" -o "$WORK_DIR/shim_probe.o" \
+    || { echo "FATAL: 包装脚本没能把 -Werror 降级（-Wno-error 又排到 -Werror 前面了）" >&2; exit 1; }
+echo "PASS: 同一个 -Werror 样本 裸 gcc 失败 / 包装 gcc 只剩告警，降级确实生效"
 
 echo "==== 3. 取源码 ===="
 rm -rf lwip
@@ -85,7 +107,7 @@ if ./iteropts.sh >"$WORK_DIR/iteropts.out" 2>&1; then
     echo "PASS: itopts 所有配置组合都编过了"
 else
     echo "WARN: itopts 有配置组合失败（exit!=0），失败组合如下"
-    grep -E '^testing|FAILED' "$WORK_DIR/iteropts.log" 2>/dev/null | grep -B1 FAILED | tail -20 || true
+    grep -E '^testing|FAILED' "$WORK_DIR/iteropts.out" 2>/dev/null | grep -B1 FAILED | tail -20 || true
 fi
 cd ../../..
 
