@@ -8,10 +8,31 @@
 # （Acceptor/Connection/Poller/Socket/TcpServer.cpp）都没自己 include。
 # 这里不改上游代码，用 -include 在编译期把头塞进去（`grep -L` 实测这 5 个文件都缺）。
 # 另外 pine 的 CMakeLists 里没有 -Werror（实测 grep 过），所以降级告警这件事在这儿不需要。
+#
+# 2026-10-24 第二轮（rerun 40056514239 仍然失败，两处新坑）：
+#   src/include/Connection.h:38:11: error: 'std::string' has not been declared
+#   src/include/Connection.h:53:8:  error: 'unique_ptr' in namespace 'std' does not name a template type
+#     note: 'std::unique_ptr' is defined in header '<memory>'; did you forget to '#include <memory>'?
+#   src/Connection.cpp:65:5: error: 'memset' was not declared in this scope
+#   src/Poller.cpp:17:10: fatal error: util.h: No such file or directory
+# 前三类还是“用了但没 include”，把 -include 的清单从闭包分析里补齐（见下面 PINE_INCLUDE_FLAGS）。
+# 最后一条不是编译器版本问题：上游 main 自己就没有 util.h，见 2a 步。
 set -euo pipefail
 cd "$(dirname "$0")"
 
 ECHO_PORT=1234   # test/echo_server.cpp 用 TcpServer() 默认端口，echo_client.cpp 里写死 127.0.0.1:1234
+# gcc 13 / libstdc++ 20 收紧了传递包含，下面这份清单是把 main 全仓库（src/ + test/ 共 30 个
+# TU）的 #include 闭包逐个算出来后，取“用了但整个闭包里都没有”的头并集。
+# 实测清单（2026-10-24，clone 当天 main）：
+#   Acceptor.cpp/Connection.cpp/Poller.cpp/Socket.cpp/TcpServer.cpp -> cassert
+#   Connection.cpp -> cstring(cstr* / memset / memcpy) cstdio(printf/perror) utility(std::move)
+#   include/Connection.h -> memory(unique_ptr) string(std::string)      <- run 40056514239 报的就是这两个
+#   include/Socket.h include/TcpServer.cpp -> cstdint                   <- run 40056514239 第一轮报的
+#   include/ThreadPool.h -> atomic stdexcept      include/common.h -> cassert
+#   test/echo_clients.cpp -> cstdio   test/echo_server.cpp -> cstdlib
+PINE_INCLUDE_FLAGS="-include cassert -include cstdint -include cstring -include cstdio \
+-include cstdlib -include memory -include string -include utility -include atomic \
+-include stdexcept"
 WORK_DIR="$(pwd)/.work"
 rm -rf "$WORK_DIR"
 mkdir -p "$WORK_DIR"
@@ -26,9 +47,70 @@ git clone -q --depth 1 https://github.com/yuesong-feng/pine.git
 cd pine
 echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
 
+echo "---- 2a. 把上游删掉的 util.h / util.cpp 原样补回（只在上游没有时补）----"
+# Poller.cpp:17 写着 #include "util.h"，并用 ErrorIf() 5 次（25/40/72/75/81 行）。
+# 但今天的 main 里没有任何 util.* —— 实测
+#   gh api "repos/yuesong-feng/pine/git/trees/HEAD?recursive=1"  → 48 个条目，'util' 匹配 0 个
+#   gh api "search/code?q=repo:yuesong-feng/pine+ErrorIf"        → 只有 src/Poller.cpp
+# 这两样是 2022-11-04 的 refactor（f815b419，把 util.h 改名成 common.h）删掉的，
+# Poller.cpp 的引用没跟着改，所以 main 本身不自洽，任何人 clone 都编不过。
+# 下面按删除前最后一版（4859bb3c）原样取回；src/CMakeLists.txt 用的是
+# file(GLOB_RECURSE ${PROJECT_SOURCE_DIR}/src/*.cpp)，补进来的 util.cpp 会被自动编进 libpine_shared。
+# Poller.cpp 的原有一行既不删也不改，是让它的 #include 真的能找到文件。
+if [ ! -e src/include/util.h ]; then
+    cat > src/include/util.h <<'H'
+/**
+ * @file util.h
+ * @author 冯岳松 (yuesong-feng@foxmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-01-04
+ *
+ * @copyright Copyright (冯岳松) 2022
+ *
+ */
+#pragma once
+
+void ErrorIf(bool condition, const char *msg);
+H
+    echo "INFO: 上游缺 src/include/util.h，已按 4859bb3c 补回"
+else
+    echo "INFO: 上游已有 src/include/util.h，不动它"
+fi
+if [ ! -e src/util.cpp ]; then
+    cat > src/util.cpp <<'CPP'
+/**
+ * @file util.cpp
+ * @author 冯岳松 (yuesong-feng@foxmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-01-04
+ *
+ * @copyright Copyright (冯岳松) 2022
+ *
+ */
+#include "util.h"
+
+#include <cstdio>
+#include <cstdlib>
+
+void ErrorIf(bool condition, const char *errmsg) {
+  if (condition) {
+    perror(errmsg);
+    exit(EXIT_FAILURE);
+  }
+}
+CPP
+    echo "INFO: 上游缺 src/util.cpp，已按 4859bb3c 补回（ErrorIf 的实现）"
+else
+    echo "INFO: 上游已有 src/util.cpp，不动它"
+fi
+grep -n '#include "util.h"' src/Poller.cpp || echo "INFO: Poller.cpp 已经不 include util.h 了（上游自己修好了，本步只是没参照物）"
+grep -rn "ErrorIf" src/util.cpp src/include/util.h | sed -e 's/^/  /' || true
+
 echo "==== 3. configure（补上 gcc13 需要的头）===="
 mkdir -p build && cd build
-cmake .. -DCMAKE_CXX_FLAGS="-include cassert -include cstdint"
+cmake .. -DCMAKE_CXX_FLAGS="$PINE_INCLUDE_FLAGS"
 
 echo "==== 4. 可选的 lint 目标 ===="
 # 这三个 target 是仓库自带的开发辅助（run_clang_format.py / cpplint / clang-tidy），
