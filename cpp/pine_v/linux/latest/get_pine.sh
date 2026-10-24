@@ -36,6 +36,19 @@
 # `void UpdateChannel(Channel *ch)`、Poller.cpp 也是 `void Poller::UpdateChannel(Channel *)`，
 # src/include/util.h、src/util.cpp、src/Server.{h,cpp} 都还在，test/echo_server.cpp 用的
 # Server API 也在。上游哪天把 epoll 分支补齐，脚本会先在 main 上编成功，自动回到 main。
+#
+# 2026-10-24 第六轮更正（rerun 40056514239 attempt 4/5/6，逐条都在 CI 日志里）：
+#   attempt 4：回退逻辑本身走对了，却被 git 拒绝——第 4 步 make format 就地改写过跟踪文件，
+#              checkout 不肯覆盖本地改动（见下面 PINE_ROOT 那段）。
+#   attempt 5：checkout -f + 还原之后，021a26b4 真的编出了 libpine_shared.so 和三个 demo，
+#              但收尾的符号抽查 `nm -D -C $lib | grep ... | head -6` 自己把作业弄红了：
+#              head 关管道 → grep 吃 SIGPIPE → set -o pipefail 下退出码 2。
+#   attempt 6：库、demo、ldd 全过，echo_server 也在 1234 上监听并打印了 "New connection fd: 9"，
+#              接着服务端 Segmentation fault (core dumped)，客户端在 Connection::Write 的
+#              assert 上 abort（134），回环拿不到 ping-*。
+# 结论：上面那句“失败就固定到 021a26b4”不能成立——它只是编得过，运行期是坏的。
+# 所以第 5 步改成在 src/ 的历史里从新到旧逐个试，判据是“库编译 + 三个 demo + 真回环”全过，
+# 由 CI 当场选出 latest；失败的候选会连同原因列进汇总表，崩溃的那个额外用 gdb 把栈打出来。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -68,28 +81,12 @@ WORK_DIR="$(pwd)/.work"
 rm -rf "$WORK_DIR"
 mkdir -p "$WORK_DIR"
 
-echo "==== 1. 依赖 ===="
-sudo apt-get update -qq
-sudo apt-get install -y -qq build-essential cmake git
 
-echo "==== 2. 取源码 ===="
-rm -rf pine
-# 不带 --depth：万一 main 编不过，还需要 checkout 到 PINE_LAST_GOOD_LINUX_SHA（整个仓库 91 KB，
-# 带全历史也只多几秒，实测 run 40056514239 的 clone 步骤本来就不是瓶颈）。
-git clone -q https://github.com/yuesong-feng/pine.git
-cd pine
-echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
-
-echo "---- 2a. 把上游删掉的 util.h / util.cpp 原样补回（只在上游没有时补）----"
-# Poller.cpp:17 写着 #include "util.h"，并用 ErrorIf() 5 次（25/40/72/75/81 行）。
-# 但今天的 main 里没有任何 util.* —— 实测
-#   gh api "repos/yuesong-feng/pine/git/trees/HEAD?recursive=1"  → 48 个条目，'util' 匹配 0 个
-#   gh api "search/code?q=repo:yuesong-feng/pine+ErrorIf"        → 只有 src/Poller.cpp
-# 这两样是 2022-11-04 的 refactor（f815b419，把 util.h 改名成 common.h）删掉的，
-# Poller.cpp 的引用没跟着改，所以 main 本身不自洽，任何人 clone 都编不过。
-# 下面按删除前最后一版（4859bb3c）原样取回；src/CMakeLists.txt 用的是
-# file(GLOB_RECURSE ${PROJECT_SOURCE_DIR}/src/*.cpp)，补进来的 util.cpp 会被自动编进 libpine_shared。
-# Poller.cpp 的原有一行既不删也不改，是让它的 #include 真的能找到文件。
+# 上游 main 把 util.h/util.cpp 改名成 common.h 却没改 src/Poller.cpp 的 #include，
+# 所以“上游没有 util.h 就按删除前最后一版（4859bb3c）原样补回”这件事，HEAD 要做,
+# 第 5 步逐个候选试的时候也要做（有的候选根本没写过 util.*，那就一次都不补）。
+# 抽成函数是为了不让同一段 heredoc 在脚本里出现两遍。
+pine_ensure_util() {
 if [ ! -e src/include/util.h ]; then
     cat > src/include/util.h <<'H'
 /**
@@ -138,6 +135,140 @@ CPP
 else
     echo "INFO: 上游已有 src/util.cpp，不动它"
 fi
+    grep -rn "ErrorIf" src/util.cpp src/include/util.h 2>/dev/null | sed -e 's/^/  /' || true
+}
+
+# 回环测试：起 server、等端口、喂 5 行、看客户端能不能读回同样的内容。
+# 失败时（且 apt 装到了 gdb）再复现一次把栈打出来——021a26b4 那种“编得过但一连就段错误”
+# 的候选，光有退出码没法判断该不该继续往旧版本退，日志里必须留下证据。
+pine_loopback() {
+    local short="$1" rc="" up="" i srv
+    PINE_FAIL_WHY=""
+    export LD_LIBRARY_PATH="$BUILD_DIR:${LD_LIBRARY_PATH:-}"
+    ./bin/echo_server > "$WORK_DIR/server_$short.log" 2>&1 &
+    srv=$!
+    for i in $(seq 1 20); do
+        if (exec 3<>/dev/tcp/127.0.0.1/$ECHO_PORT) 2>/dev/null; then up=yes; break; fi
+        sleep 1
+    done
+    if [ -z "$up" ]; then
+        echo "WARN: $short 的 echo_server 20 秒内没在 $ECHO_PORT 上监听"
+        sed -n '1,8p' "$WORK_DIR/server_$short.log"
+        kill $srv 2>/dev/null || true; wait $srv 2>/dev/null || true
+        PINE_FAIL_WHY="echo_server 没起来"
+        return 1
+    fi
+    printf 'ping-1\nping-2\nping-3\nping-4\nping-5\n' > "$WORK_DIR/in.txt"
+    timeout 20 ./bin/echo_client < "$WORK_DIR/in.txt" > "$WORK_DIR/client_$short.log" 2>&1 || rc=$?
+    kill $srv 2>/dev/null || true; wait $srv 2>/dev/null || true
+    if grep -E 'Message from server: ping-[0-9]' "$WORK_DIR/client_$short.log" >/dev/null; then
+        echo "PASS: $short 的回环成功（echo_client 退出码=${rc:-0}；124=timeout 收尾，上游 demo 在 EOF 后不退出，属预期）"
+        grep -E 'Message from server' "$WORK_DIR/client_$short.log" | sed -n '1,6p' | sed -e 's/^/    /'
+        return 0
+    fi
+    echo "WARN: $short 库和 demo 都编出来了，但回环没拿到 ping-*（echo_client 退出码=${rc:-0}）"
+    sed -n '1,8p' "$WORK_DIR/client_$short.log" | sed -e 's/^/  client| /'
+    sed -n '1,8p' "$WORK_DIR/server_$short.log" | sed -e 's/^/  server| /'
+    if [ -n "${PINE_GDB:-}" ]; then
+        echo "---- 用 gdb 复现一次，把崩溃栈打出来 ----"
+        gdb -q -batch -ex 'handle SIGPIPE nostop noprint pass' -ex run -ex bt -ex 'thread apply all bt' \
+            --args ./bin/echo_server > "$WORK_DIR/gdb_$short.log" 2>&1 &
+        local g=$!
+        sleep 3
+        timeout 10 ./bin/echo_client < "$WORK_DIR/in.txt" >/dev/null 2>&1 || true
+        sleep 2
+        kill $g 2>/dev/null || true; wait $g 2>/dev/null || true
+        grep -E 'Program received|SIGSEGV|SIGFPE|^#[0-9]' "$WORK_DIR/gdb_$short.log" | sed -n '1,18p'
+    fi
+    PINE_FAIL_WHY="回环失败"
+    return 1
+}
+
+# 单个候选：切过去 -> 确认跟踪文件就是上游原样 -> 补 util.* -> 配库 -> 编 demo -> 跑回环。
+# 成功时把 cwd 留在该候选的 build 目录，失败时记一句原因（PINE_FAIL_WHY）供汇总表使用。
+# 里面所有“只看前几行”的管道一律 sed -n 不用 head：脚本开着 set -o pipefail，
+# head 读够就关管道，上游进程吃 SIGPIPE（141/grep 是 2）会被当成失败退出，
+# run 40056514239 attempt 5 就是 `nm | grep | head -6` 这句自己把作业弄红的。
+pine_try_commit() {
+    local sha="$1" short lib t dyn_syms
+    PINE_FAIL_WHY=""
+    cd "$PINE_ROOT" || return 1
+    short="$(git rev-parse --short "$sha")"
+    git checkout -qf "$sha" || { PINE_FAIL_WHY="checkout 失败"; return 1; }
+    if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+        PINE_FAIL_WHY="checkout 后跟踪文件不干净"
+        return 1
+    fi
+    pine_ensure_util
+    rm -rf build && mkdir -p build && cd build || { PINE_FAIL_WHY="建 build 目录失败"; return 1; }
+    BUILD_DIR="$(pwd)"
+    if ! cmake .. -DCMAKE_CXX_FLAGS="$PINE_INCLUDE_FLAGS" > "$WORK_DIR/cmake_$short.log" 2>&1; then
+        PINE_FAIL_WHY="cmake configure 失败"
+        tail -6 "$WORK_DIR/cmake_$short.log" | sed -e 's/^/    /'
+        return 1
+    fi
+    if ! make -j"$(nproc)" > "$WORK_DIR/lib_$short.log" 2>&1; then
+        PINE_FAIL_WHY="库编译失败"
+        grep -E 'error:|no declaration|undefined reference' "$WORK_DIR/lib_$short.log" | sed -n '1,6p' | sed -e 's/^/    /'
+        return 1
+    fi
+    lib="$(find . -type f -name 'libpine_shared.so*' | sed -n 1p)"
+    if [ -z "$lib" ]; then PINE_FAIL_WHY="没有 libpine_shared.so"; return 1; fi
+    dyn_syms="$(nm -D -C "$lib")"
+    case "$dyn_syms" in
+        *'EventLoop::Loop'*) ;;
+        *) PINE_FAIL_WHY="库里没有 EventLoop::Loop"; return 1 ;;
+    esac
+    echo "INFO: $short 库 OK（$(basename "$lib")，demangle 后含 :: 的条目 $(printf '%s\n' "$dyn_syms" | grep -cE '::' || true) 个）"
+    if ! make echo_server echo_client http_server > "$WORK_DIR/demo_$short.log" 2>&1; then
+        PINE_FAIL_WHY="demo 编译失败"
+        grep -E 'error:|No rule to make target' "$WORK_DIR/demo_$short.log" | sed -n '1,6p' | sed -e 's/^/    /'
+        return 1
+    fi
+    for t in echo_server echo_client http_server; do
+        if [ ! -x "bin/$t" ]; then PINE_FAIL_WHY="bin/$t 没生成"; return 1; fi
+    done
+    if ! ldd bin/echo_server | grep -F 'libpine_shared.so' >/dev/null; then
+        PINE_FAIL_WHY="echo_server 没链上本次的库"
+        return 1
+    fi
+    if ! pine_loopback "$short"; then return 1; fi
+    echo "---- 选中候选的产物 ----"
+    echo "HEAD=$(git -C .. rev-parse --short HEAD)  ($(git -C .. log -1 --format=%cd --date=short))"
+    file "$lib"
+    printf '%s\n' "$dyn_syms" | grep -E '(TcpServer|Server|EventLoop)::' | sed -n '1,6p'
+    ls -l bin/ | sed -n '1,8p'
+    return 0
+}
+
+echo "==== 1. 依赖 ===="
+sudo apt-get update -qq
+sudo apt-get install -y -qq build-essential cmake git gdb
+# 回环失败的候选要用 gdb 复现一次才知道崩在哪（021a26b4 就是“编得过、一连就段错误”这一类）。
+# 取不到 gdb 就让第 5 步跳过这段诊断，不因为诊断工具本身把作业弄红。
+PINE_GDB="$(command -v gdb || true)"
+echo "INFO: gdb=${PINE_GDB:-未安装（跳过崩溃栈诊断）}"
+
+echo "==== 2. 取源码 ===="
+rm -rf pine
+# 不带 --depth：第 5 步要在 src/ 的历史里从新到旧逐个 checkout 候选（整个仓库 91 KB，
+# 带全历史也只多几秒，实测 run 40056514239 的 clone 步骤本来就不是瓶颈）。
+git clone -q https://github.com/yuesong-feng/pine.git
+cd pine
+echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
+PINE_ROOT="$(pwd)"
+
+echo "---- 2a. 把上游删掉的 util.h / util.cpp 原样补回（只在上游没有时补）----"
+# Poller.cpp:17 写着 #include "util.h"，并用 ErrorIf() 5 次（25/40/72/75/81 行）。
+# 但今天的 main 里没有任何 util.* —— 实测
+#   gh api "repos/yuesong-feng/pine/git/trees/HEAD?recursive=1"  → 48 个条目，'util' 匹配 0 个
+#   gh api "search/code?q=repo:yuesong-feng/pine+ErrorIf"        → 只有 src/Poller.cpp
+# 这两样是 2022-11-04 的 refactor（f815b419，把 util.h 改名成 common.h）删掉的，
+# Poller.cpp 的引用没跟着改，所以 main 本身不自洽，任何人 clone 都编不过。
+# 下面按删除前最后一版（4859bb3c）原样取回；src/CMakeLists.txt 用的是
+# file(GLOB_RECURSE ${PROJECT_SOURCE_DIR}/src/*.cpp)，补进来的 util.cpp 会被自动编进 libpine_shared。
+# Poller.cpp 的原有一行既不删也不改，是让它的 #include 真的能找到文件。
+pine_ensure_util                      # 内容与原来第 2a 步完全一致，只是抽成了函数
 grep -n '#include "util.h"' src/Poller.cpp || echo "INFO: Poller.cpp 已经不 include util.h 了（上游自己修好了，本步只是没参照物）"
 grep -rn "ErrorIf" src/util.cpp src/include/util.h | sed -e 's/^/  /' || true
 
@@ -163,105 +294,53 @@ make cpplint     || echo "SKIP: make cpplint 未通过（可选步骤）"
 make clang-tidy  || echo "SKIP: make clang-tidy 未通过（可选步骤）"
 echo "INFO: lint 步骤之后被改动的跟踪文件数=$(git diff --name-only | wc -l)（make format 就地格式化所致）"
 
-echo "==== 5. 编译库（先按上游 main 试，不行再退到 Linux 路径自洽的最后一个提交）===="
-cd "$BUILD_DIR"
-main_sha="$(git -C .. rev-parse --short HEAD)"
-if make -j"$(nproc)"; then
-    echo "PASS: 上游 main（$main_sha）自己就编得过，不需要回退"
-else
-    echo "WARN: 上游 main（$main_sha）的 epoll 分支编不过（见上面那串 no declaration matches / SetExist）"
-    echo "INFO: 按仓库里 latest 分支的既有做法取“最新可用版本”——回退到 $PINE_LAST_GOOD_LINUX_SHA"
-    echo "      （= 把 Poller 签名改成 const/RC 的那个 refactor f815b419 的父提交）"
-    cd ..
-    # 回退前有两条东西挡着 git checkout，都得先清掉，而且要说清楚各是谁造成的：
-    #   1) 第 4 步 make format 就地改写了 src/ 和 test/ 下的跟踪文件（run 40056514239 attempt 4
-    #      报的正是 error: Your local changes to the following files would be overwritten by
-    #      checkout: src/Acceptor.cpp / src/Socket.cpp / src/TcpServer.cpp / src/include/*.h /
-    #      test/chat_*.cpp —— 那批被 clang-format 处理过的文件）。用 git checkout -- . 还原成
-    #      HEAD 的原样，不改上游一行内容。
-    #   2) 2a 步补的 util.h/util.cpp 在 main 上是未跟踪文件，而回退目标 021a26b4 里它们是上游
-    #      自带的跟踪文件，checkout 会以“未跟踪文件会被覆盖”为由拒绝，所以先删掉我补的这两份，
-    #      切过去之后由上游自己带出来。
-    echo "INFO: 还原 make format 的就地改动：$(git diff --name-only | tr '\n' ' ')"
-    git checkout -q -- .
-    rm -f src/include/util.h src/util.cpp
-    git checkout -q "$PINE_LAST_GOOD_LINUX_SHA"
-    echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
-    echo "---- 回退后必须是纯上游代码：跟踪文件要干净，且 util.h/util.cpp/Server 都由上游自带 ----"
-    # 只看跟踪文件（--untracked-files=no）：build/ 里全是本次构建产物，它干不干净跟
-    # “产物是不是上游源码编出来的”无关，不该拿它当判据。
-    git status --porcelain --untracked-files=no
-    [ -z "$(git status --porcelain --untracked-files=no)" ] \
-        || { echo "FATAL: checkout 后仍有跟踪文件被改动，下面这份产物就不能算“上游源码编译”" >&2; exit 1; }
-    for f in src/include/util.h src/util.cpp src/include/Server.h src/Server.cpp; do
-        [ -f "$f" ] || { echo "FATAL: $PINE_LAST_GOOD_LINUX_SHA 里没有 $f" >&2; exit 1; }
-    done
-    echo "INFO: 这四个文件在该提交里都存在，Linux 路径的声明/定义也是配套的"
-    rm -rf build && mkdir -p build && cd build
-    BUILD_DIR="$(pwd)"
-    cmake .. -DCMAKE_CXX_FLAGS="$PINE_INCLUDE_FLAGS"
-    make -j"$(nproc)"
+echo "==== 5. 从新到旧找一个“编译 + 回环都真过”的上游提交 ===="
+# 为什么这一步要循环试，而不是钉死一个 SHA（两条都是 CI 实测，不是推断）：
+#   1) 上游 HEAD(2bb80f7，2022-12-20) 在 Linux 上根本编不过：f815b419 那次 refactor 只把
+#      macOS 那条路径的 Poller 接口改成 const/RC 版本，src/Poller.cpp 的 #ifdef OS_LINUX 分支
+#      还在按旧签名定义，于是 Poll::Poll / UpdateChannel / DeleteChannel 一串
+#      "no declaration matches"，外加它调用了一个不存在的 Channel::SetExist。
+#   2) 退到 f815b419^ = 021a26b4 编得过，attempt 6 却卡在运行期：库和 3 个 demo 都产出、
+#      echo_server 也在 1234 上监听（日志有 "echo_server 已监听 1234"、server.log 有
+#      "New connection fd: 9"），客户端一连上服务端就 Segmentation fault (core dumped)，
+#      客户端随后在自己那句 Connection::Write 的 assert 上 abort（退出码 134）。
+#      这次还会多一份 gdb 的栈（第 1 步已经装 gdb），用来判断到底该不该继续往旧版本退。
+# 所以这里的 "latest" 是“上游历史上最新一个真能用的提交”，由 CI 当场选，
+# 候选 = 动过 src/ 的最近 N 个提交（新→旧）+ 上面那个 021a26b4，去重。
+# 上游哪天把 Linux 路径修好了，HEAD 就是第一个候选，这段自动回到“用最新代码”。
+PINE_PROBE_LIMIT=16
+cd "$PINE_ROOT"
+# 第 4 步的 make format 是就地改写源码的（上游 add_custom_target(format ... --fix)，
+# main 和 021a26b4 两份 CMakeLists 实测写法一致），而 git checkout 不肯覆盖本地改动：
+# run 40056514239 attempt 4 报的 "error: Your local changes ... would be overwritten"
+# 列出的正是 Acceptor/Socket/TcpServer/*.h/test/chat_*.cpp 这批被格式化过的文件。
+# 这里先还原成 HEAD 原样，后面循环里再用 checkout -f 逐候选覆盖。
+echo "INFO: make format 改过的跟踪文件数=$(git diff --name-only | wc -l)，还原后再进候选循环"
+git checkout -q -- .
+mapfile -t PINE_CANDIDATES < <(
+    { git log --format=%H -n "$PINE_PROBE_LIMIT" -- src/; echo "$PINE_LAST_GOOD_LINUX_SHA"; } | awk '!seen[$0]++'
+)
+echo "INFO: 候选提交数=${#PINE_CANDIDATES[@]}（新→旧），第一个是 $(git rev-parse --short "${PINE_CANDIDATES[0]}")"
+PINE_TABLE="$WORK_DIR/attempts.tsv"
+: > "$PINE_TABLE"
+PINE_OK_SHA=""
+for c in "${PINE_CANDIDATES[@]}"; do
+    short="$(git rev-parse --short "$c")"
+    when="$(git log -1 --format=%cd --date=short "$c")"
+    subj="$(git log -1 --format=%s "$c")"
+    echo "-------------------- try $short ($when) $subj"
+    if pine_try_commit "$c"; then
+        PINE_OK_SHA="$c"
+        printf '%s\t%s\tPASS\t%s\n' "$short" "$when" "$subj" >> "$PINE_TABLE"
+        break
+    fi
+    printf '%s\t%s\tFAIL\t%s\n' "$short" "$when" "${PINE_FAIL_WHY:-未知}" >> "$PINE_TABLE"
+done
+echo "==== 候选汇总（新→旧）===="
+cat "$PINE_TABLE"
+if [ -z "$PINE_OK_SHA" ]; then
+    echo "FATAL: ${#PINE_CANDIDATES[@]} 个候选没有一个同时通过“库编译 + demo 编译 + 回环”，见上面汇总表" >&2
+    exit 1
 fi
-# 这一段所有“只看前几行”的管道都用 sed -n 而不是 head：脚本开着 set -o pipefail，
-# head 读够就关掉管道，上游的 find/nm/grep 会被 SIGPIPE 打死（退出码 141 / grep 是 2），
-# 于是“产物明明好好的”也会被当成失败退出。run 40056514239 attempt 5 就是这样红的：
-#   grep: write error: Broken pipe
-#   ##[error]Process completed with exit code 2.
-# 而那一刻 [100%] Built target pine_shared、Server::Server(EventLoop*) 都已经打出来了。
-# 动态符号只 nm 一次落到变量里，三处判断都读它；最后的断言用 case，不碰管道。
-lib="$(find . -type f -name 'libpine_shared.so*' | sed -n 1p)"
-[ -n "$lib" ] || { echo "FATAL: 没产出 libpine_shared.so" >&2; find . -name '*.so*' -print >&2; exit 1; }
-file "$lib"
-echo "---- 导出符号抽查（C++ demangle）----"
-# 注意：nm 没有 --c++-filt 这个选项（那是 c++filt/objdump 的说法），GNU nm 用的是 -C/--demangle。
-# 上一版写 --c++-filt，nm 直接打了 usage 并按失败退出 —— 同样是一条假故障。
-# 类名也别说死：main 上是 TcpServer，回退到的 021a26b4 上叫 Server，两者都匹配 (Server)::。
-dyn_syms="$(nm -D -C "$lib")"
-printf '%s\n' "$dyn_syms" | grep -E '(TcpServer|Server|EventLoop)::' | sed -n '1,6p' || true
-n_sym="$(printf '%s\n' "$dyn_syms" | grep -cE '::' || true)"
-echo "INFO: 动态符号里 demangle 后含 :: 的条目数=$n_sym"
-case "$dyn_syms" in
-    *'EventLoop::Loop'*) echo "PASS: 库里有 EventLoop::Loop 的实现" ;;
-    *) echo "FATAL: 库里找不到 EventLoop::Loop 的实现，产物不可用" >&2; exit 1 ;;
-esac
-
-echo "==== 6. 编译示例程序（证明库真的可链接）===="
-# test/CMakeLists.txt 把每个 test/*.cpp 都做成 EXCLUDE_FROM_ALL 的 target，
-# 产物落在 build/bin，所以按名字单独构建两个 server demo 和一个 client demo。
-make echo_server echo_client http_server
-ls -l bin/
-for t in echo_server echo_client http_server; do
-    [ -x "bin/$t" ] || { echo "FATAL: bin/$t 没生成" >&2; exit 1; }
-    file "bin/$t"
-done
-ldd bin/echo_server | grep -F 'libpine_shared.so' >/dev/null \
-    || { echo "FATAL: echo_server 没链到本次编出来的 libpine_shared.so" >&2; ldd bin/echo_server; exit 1; }
-echo "PASS: echo_server 运行期依赖的就是本次构建的 libpine_shared.so"
-
-echo "==== 7. 回环实测：echo server + client ===="
-export LD_LIBRARY_PATH="$PWD:${LD_LIBRARY_PATH:-}"
-./bin/echo_server > "$WORK_DIR/server.log" 2>&1 &
-srv_pid=$!
-trap 'kill $srv_pid 2>/dev/null || true' EXIT
-up=""
-for i in $(seq 1 30); do
-    if (exec 3<>/dev/tcp/127.0.0.1/$ECHO_PORT) 2>/dev/null; then up=yes; break; fi
-    sleep 1
-done
-[ -n "$up" ] || { echo "FATAL: echo_server 没在 $ECHO_PORT 上监听"; cat "$WORK_DIR/server.log"; exit 1; }
-echo "echo_server 已监听 $ECHO_PORT (pid $srv_pid)"
-# echo_client 从 stdin 逐行读、发送、再读回；EOF 后它会继续空转，所以用 timeout 收尾（124 是预期的）。
-printf 'ping-1\nping-2\nping-3\nping-4\nping-5\n' > "$WORK_DIR/in.txt"
-rc=0
-timeout 25 ./bin/echo_client < "$WORK_DIR/in.txt" > "$WORK_DIR/client.log" 2>&1 || rc=$?
-echo "echo_client 退出码=$rc（124=timeout 到点，属预期：上游 demo 在 stdin EOF 后不退出）"
-sed -n '1,12p' "$WORK_DIR/client.log"
-grep -E 'Message from server: ping-[0-9]' "$WORK_DIR/client.log" >/dev/null \
-    || { echo "FATAL: 没收到服务端回送的 ping-*" >&2; echo "---- server.log ----"; cat "$WORK_DIR/server.log"; exit 1; }
-echo "PASS: 本次编译的库真的完成了 TCP 收发回环"
-echo "---- server.log ----"
-grep -E 'Message from client' "$WORK_DIR/server.log" | sed -n '1,6p'
-kill $srv_pid 2>/dev/null || true
-wait $srv_pid 2>/dev/null || true
-trap - EXIT
+echo "PASS: 本次 latest 取 $PINE_OK_SHA（$(git log -1 --format=%cd --date=short "$PINE_OK_SHA")）"
 echo "==== pine 构建与回环实测全部通过 ===="
