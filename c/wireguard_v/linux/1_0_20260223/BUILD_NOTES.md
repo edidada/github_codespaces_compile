@@ -56,3 +56,10 @@ WireGuard 的数据面（Curve25519 + AES-256-GCM/ChaCha20-Poly1305 的隧道加
 - 不验证真实隧道转发：托管 runner 上没有对端，也没有可路由的第二张网卡。
 - 没做上游 PGP/minisign 验签：脚本钉的是 sha256，取法见上表；上游确实提供 `.minisig`，
   要加验签需要引入 minisign 并固定公钥，本分支未做。
+
+## CI 实测记录
+
+| 轮次 | run | 结果 | 说明 |
+| --- | --- | --- | --- |
+| 1 | `40045782760` | failure | 用户态那 10 步全绿：源码包 sha256 命中、`make -C src` 编过、`install` 带 `WITH_WGQUICK=yes` 装了 wg/wg-quick/completion/systemd 单元、`wg --version` = `wireguard-tools v1.0.20260223`、genkey 位约束、纯 Python X25519 复现 RFC 7748 5.1 向量且与 `wg pubkey` 一致、残缺 base64 被拒、`bash -n wg-quick` 通过。翻车在最后一步 live 测试：我给 `wg set` 传了 `address 10.188.188.1/24`，报 `Invalid argument: address` 后 `set -e` 直接退出。查了 `src/config.c` 的参数解析分支（`listen-port / fwmark / private-key / peer / remove / endpoint / allowed-ips / persistent-keepalive / preshared-key`）里根本没有 `address`，`src/man/wg.8` 也明说 “their IP addresses and routing tables can be set using ip-address(8) and ip-route(8)” —— 这个选项是早年间内核 `add_device` 那条路上的东西，现在归 iproute2 管。第二轮改成 `ip addr add … dev wg0`，并把 SKIP 判据从 modprobe 换成“能不能真的建出 wg0”（内置模块时 modprobe 会失败但建网口没问题）。 |
+| 2 | 待补 |  |  |

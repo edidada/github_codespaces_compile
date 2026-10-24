@@ -194,28 +194,62 @@ else
     echo "WARN: 未安装 wg-quick（WITH_WGQUICK 条件未满足），继续"
 fi
 
-echo "==== 11. live 网口测试（runner 内核没有 wireguard 就 SKIP） ===="
+echo "==== 11. live 网口测试（runner 建不出 wireguard netdev 就 SKIP） ===="
 LIVE_RESULT=skip
-if sudo modprobe wireguard 2>/dev/null || grep -q '^wireguard' /proc/modules; then
-    if sudo ip link add dev wg0 type wireguard 2>/dev/null; then
-        LIVE_RESULT=ok
-        printf '%s' "$priv" > "$WORK_DIR/priv.key"
-        peer_pub="$(printf '%s' "$priv" | "$WG" pubkey)"
-        sudo "$WG" set wg0 private-key "$WORK_DIR/priv.key" address 10.188.188.1/24 \
-            peer "$peer_pub" endpoint 127.0.0.1:51820 allowed-ips 10.188.188.0/24 persistent-keepalive 25
-        echo "---- wg show wg0 ----"
-        sudo "$WG" show wg0
-        echo "---- wg showconf wg0 往返 ----"
-        sudo "$WG" showconf wg0 | tee "$WORK_DIR/live.conf"
-        sudo "$WG" syncconf wg0 "$WORK_DIR/live.conf"
-        sudo "$WG" show wg0 | grep -F 'latest handshake' || echo "（无握手记录，属预期：没有对端）"
-        sudo ip link del wg0
-        echo "PASS: wg set / show / showconf / syncconf 全链路可用"
-    else
-        echo "SKIP: ip link add 失败，内核可能不支持 wireguard netdev"
-    fi
+# 先尽力把模块弄进来（内置就直接成功/失败都无所谓），真正的判据是能不能建出 wg0。
+sudo modprobe wireguard >/dev/null 2>&1 || true
+# 注意：这个版本的 `wg set` 没有 address 参数 —— wg(8) 明说地址由 ip-address(8) 负责，
+# 上一轮 CI 就栽在 address 上（config.c 的解析分支打出 "Invalid argument: address"）。
+if sudo ip link add dev wg0 type wireguard 2>"$WORK_DIR/live.err"; then
+    LIVE_RESULT=ok
+    printf '%s' "$priv" > "$WORK_DIR/priv.key"
+    peer_priv="$("$WG" genkey)"
+    peer_pub="$(printf '%s' "$peer_priv" | "$WG" pubkey)"
+    sudo "$WG" set wg0 private-key "$WORK_DIR/priv.key" listen-port 51820 \
+        peer "$peer_pub" endpoint 127.0.0.1:51821 \
+        allowed-ips 10.188.188.3/32,fd00:188:188::3/128 persistent-keepalive 25
+    sudo ip addr add 10.188.188.1/24 dev wg0
+    sudo ip link set dev wg0 up
+
+    echo "---- ip -d link show dev wg0 ----"
+    ip -d link show dev wg0 | sed -n '1,5p'
+    ip -d link show dev wg0 | grep -F 'wireguard' >/dev/null \
+        && echo "PASS: 内核把 wg0 识别成 wireguard 类型网口" \
+        || { echo "FATAL: ip -d link 里没有 wireguard 类型" >&2; exit 1; }
+    ip -4 addr show dev wg0 | grep -F '10.188.188.1/24' >/dev/null \
+        && echo "PASS: 地址按 wg(8) 的说法用 ip addr 配上了" \
+        || { echo "FATAL: ip addr add 没生效" >&2; exit 1; }
+
+    echo "---- wg show wg0 ----"
+    sudo "$WG" show wg0 | tee "$WORK_DIR/show.txt" >/dev/null
+    sed -n '1,12p' "$WORK_DIR/show.txt"
+    for want in "$peer_pub" '127.0.0.1:51821' '10.188.188.3/32' 'fd00:188:188::3/128' 'persistent keepalive'; do
+        grep -F -- "$want" "$WORK_DIR/show.txt" >/dev/null \
+            || { echo "FATAL: wg show 里找不到 $want" >&2; exit 1; }
+    done
+    echo "PASS: wg set 写进去的 peer/endpoint/allowed-ips/keepalive 都被原样读回"
+
+    echo "---- wg showconf -> wg syncconf 往返 ----"
+    sudo "$WG" showconf wg0 | tee "$WORK_DIR/live.conf" >/dev/null
+    sed -n '1,12p' "$WORK_DIR/live.conf"
+    grep -F 'PrivateKey' "$WORK_DIR/live.conf" >/dev/null || { echo "FATAL: showconf 没导出私钥" >&2; exit 1; }
+    sudo "$WG" syncconf wg0 "$WORK_DIR/live.conf"
+    sudo "$WG" show wg0 | tee "$WORK_DIR/show2.txt" >/dev/null
+    diff <(sed -n '1,12p' "$WORK_DIR/show.txt") <(sed -n '1,12p' "$WORK_DIR/show2.txt") >/dev/null \
+        && echo "PASS: showconf/syncconf 幂等，往返后状态不变" \
+        || { echo "FATAL: syncconf 之后配置变了" >&2; sudo "$WG" show wg0; exit 1; }
+    sudo "$WG" show wg0 | grep -F 'latest handshake' >/dev/null \
+        || echo "（无握手记录，属预期：没有真正的对端在收包）"
+
+    sudo "$WG" set wg0 peer "$peer_pub" remove
+    # grep -c 在没匹配时退出码是 1，pipefail 会把整个脚本掀掉，所以显式兜底
+    peer_left="$(sudo "$WG" show wg0 | grep -cF -- 'peer:' || true)"
+    echo "删除 peer 后剩余 peer 数: ${peer_left}（期望 0）"
+    [ "$peer_left" = "0" ] || { echo "FATAL: peer remove 没生效" >&2; sudo "$WG" show wg0; exit 1; }
+    sudo ip link del wg0
+    echo "PASS: wg set / show / showconf / syncconf / peer remove 全链路可用"
 else
-    echo "SKIP: 该 runner 内核没有 wireguard 模块，只做用户态校验"
+    echo "SKIP: 建不出 wg0（$(cat "$WORK_DIR/live.err" 2>/dev/null)）——这个 runner 的内核没给 wireguard netdev，只保留用户态校验"
 fi
 
 echo "==== 12. 汇总 ===="
