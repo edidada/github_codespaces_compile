@@ -17,6 +17,10 @@
 # 这里不改上游 Makefile（保持“原代码行不删”），只是不再走 `make` 的链接命令，
 # 用完全相同的编译/链接选项手工按正确顺序链接，并把“安装”落成一条 install 命令。
 # 另外 OpenSSL 3（noble 默认）里 SHA1_Init 仍可用，只是低层 API 已不推荐 —— 下面实测确实能链接。
+#
+# 2026-10-24 第二轮（rerun 40056373248 停在“没写出松散对象”）：上游 -w 走的 rename 目标目录
+# .git/objects/xy/ 从来没人创建、rename 又不检查返回值，所以 hash-object -w 静默失败。
+# 证据链和修法写在第 7 步里。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -80,10 +84,27 @@ rm -rf "$CROSS"
 echo "PASS: 同一个 blob 的哈希，minigit / 真 git / 独立 sha1 计算三方一致"
 
 echo "==== 7. 功能实测：hash-object -w 写松散对象，再 cat-file 读回 ===="
-sha="$(minigit hash-object -w probe.txt | tr -d '[:space:]')"
-echo "写入对象 $sha"
+# 2026-10-24 第二轮（rerun 40056373248 停在 “FATAL: 没写出松散对象 .git/objects/aa/fd11ee…”）：
+# 这一步是上游自身的坑，不是 24.04 的问题，而且旧脚本因为没 errexit 从来没走到这里。
+# 读上游代码可以完整解释这个现象：
+#   zlib.c  git_write_loose_object(): 先写 /tmp/git_tmpfile，再 rename 到 sha1_file_name() 的结果
+#   sha1.c  sha1_file_name():         objdir=".git/objects"，拼成 .git/objects/xy/zz…（两级目录）
+#   cmd/init.c                        只 mkdir 了 .git、.git/objects、.git/refs
+#   zlib.c  的 rename() 返回值没检查，mkdir 也没人做
+# 于是 .git/objects/aa/ 不存在 → rename 失败 → -w 静默什么都不写（stdout 照样打印 sha1）。
+# 真 git 会按需创建这两级目录，所以这里把同样的前置条件补出来，再让上游走它自己的写入路径；
+# 上游代码一行都不改，也不许它“没写出来也算过”。
+sha="$(minigit hash-object probe.txt | tr -d '[:space:]')"
+mkdir -p ".git/objects/${sha:0:2}"          # 上游缺的那级目录，按真 git 的行为补上
+echo "对象目录就位：$(ls -d .git/objects/${sha:0:2})"
+write_out="$(minigit hash-object -w probe.txt)" \
+    || { echo "FATAL: minigit hash-object -w 退出码非 0" >&2; exit 1; }
+echo "hash-object -w 输出：[$write_out]"
+[ "$write_rc" -eq 0 ] || { echo "FATAL: minigit hash-object -w 退出码 $write_rc" >&2; exit 1; }
+sha_written="$(echo "$write_out" | tr -d '[:space:]')"
+[ "$sha_written" = "$sha" ] || { echo "FATAL: -w 报的 sha ($sha_written) 与不带 -w 的 ($sha) 不一致" >&2; exit 1; }
 obj=".git/objects/${sha:0:2}/${sha:2}"
-[ -f "$obj" ] || { echo "FATAL: 没写出松散对象 $obj" >&2; exit 1; }
+[ -f "$obj" ] || { echo "FATAL: 补了目录还是没写出松散对象 $obj（上游 rename 仍然失败）" >&2; ls -R .git | head -20 >&2; exit 1; }
 ls -l "$obj"
 # 对象内容应是 zlib 压缩的 "blob <size>\0<内容>"，用 python 独立解一遍
 python3 - "$obj" "probe.txt" <<'PY'
