@@ -100,7 +100,6 @@ echo "对象目录就位：$(ls -d .git/objects/${sha:0:2})"
 write_out="$(minigit hash-object -w probe.txt)" \
     || { echo "FATAL: minigit hash-object -w 退出码非 0" >&2; exit 1; }
 echo "hash-object -w 输出：[$write_out]"
-[ "$write_rc" -eq 0 ] || { echo "FATAL: minigit hash-object -w 退出码 $write_rc" >&2; exit 1; }
 sha_written="$(echo "$write_out" | tr -d '[:space:]')"
 [ "$sha_written" = "$sha" ] || { echo "FATAL: -w 报的 sha ($sha_written) 与不带 -w 的 ($sha) 不一致" >&2; exit 1; }
 obj=".git/objects/${sha:0:2}/${sha:2}"
