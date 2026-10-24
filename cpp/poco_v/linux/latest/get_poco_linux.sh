@@ -116,6 +116,11 @@ CPP
 # 符号借给主程序，所以 Net 的类全都“没定义”。
 # 现在从 Foundation 的库名反推 Debug 后缀，精确拼出要链的那个库，并用 nm 先证明它真的实现了
 # Poco::Net::IPAddress —— 链错了库会当场失败，而不是等 ld 报一堆 undefined。
+#
+# 2026-10-24 第四轮（上一轮 run 的日志）：FATAL 报“只找到 0 个符号”，但库本身是对的。
+# 那句用的 `nm -D --c++-filt` 不是 GNU nm 的选项（demangle 只有 -C / --demangle，
+# --c++-filt 是 llvm-nm 的），nm 打印 usage 后退出码非 0，管道里 grep 拿到空输入 -> 计数 0。
+# 现在换成 -C，并且让 nm 的退出码不参与判断（|| true 已经在）。
 suffix="${basename_lib#PocoFoundation}"        # Debug 构建 -> "d"，Release 构建 -> ""
 netlib="/usr/local/lib/libPocoNet${suffix}.so"
 [ -e "$netlib" ] || { echo "FATAL: 期望的 $netlib 不存在；安装树里的 PocoNet* 如下" >&2
@@ -123,7 +128,7 @@ netlib="/usr/local/lib/libPocoNet${suffix}.so"
 ls -l "$netlib"
 netbase="$(basename "$netlib" | sed -e 's/^lib//' -e 's/\.so.*$//')"
 echo "PocoNet 库 = $netlib （链接名 -l$netbase，Debug 后缀=[$suffix]）"
-n_net="$(nm -D --c++-filt "$netlib" | grep -c 'Poco::Net::IPAddress::' || true)"
+n_net="$(nm -D -C "$netlib" | grep -c 'Poco::Net::IPAddress::' || true)"
 [ "${n_net:-0}" -ge 3 ] || { echo "FATAL: $netlib 里没有 Poco::Net::IPAddress 的实现（只找到 $n_net 个符号）" >&2; exit 1; }
 echo "INFO: $netlib 导出 Poco::Net::IPAddress 相关符号 $n_net 个"
 g++ -O0 -o "$WORK_DIR/probe_net" "$WORK_DIR/probe_net.cpp" \
