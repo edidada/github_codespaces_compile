@@ -39,7 +39,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-ECHO_PORT=1234   # test/echo_server.cpp 用 TcpServer() 默认端口，echo_client.cpp 里写死 127.0.0.1:1234
+ECHO_PORT=1234   # 两条路径都是 1234：main 用 TcpServer() 的默认端口，回退目标 021a26b4 是在
+                 # src/Acceptor.cpp:21 写死 InetAddress("127.0.0.1", 1234)（实测抓过那份文件）；
+                 # echo_client.cpp 两个版本都写死 127.0.0.1:1234，所以这一步不用分支判断。
 # gcc 13 / libstdc++ 20 收紧了传递包含，下面这份清单是把 main 全仓库（src/ + test/ 共 30 个
 # TU）的 #include 闭包逐个算出来后，取“用了但整个闭包里都没有”的头并集。
 # 实测清单（2026-10-24，clone 当天 main）：
@@ -54,6 +56,13 @@ PINE_INCLUDE_FLAGS="-include cassert -include cstdint -include cstring -include 
 -include stdexcept"
 # 上游 Linux 路径（-DOS_LINUX 那段）自洽的最后一个提交 = 破坏性 refactor f815b419 的父提交。
 # 只在 main 编不过时回退到这里；main 修好后这段代码路径不会再走到。
+# 回退之后第 5/6/7 步的假设都按这个提交实测核对过（gh api 抓的 contents）：
+#   树里 49 个条目，src/include/util.h、src/util.cpp、src/include/Server.h、src/Server.cpp 自带；
+#   src/CMakeLists.txt 用 file(GLOB_RECURSE src/*.cpp) + add_library(pine_shared SHARED)，
+#   根 CMakeLists 的 CMAKE_LIBRARY_OUTPUT_DIRECTORY=build/lib、test 的 RUNTIME_OUTPUT_DIRECTORY=
+#   build/bin，test/CMakeLists.txt 给每个 test/*.cpp 做 EXCLUDE_FROM_ALL target，
+#   所以 make echo_server echo_client http_server 和 find libpine_shared.so* 都照旧成立；
+#   类名在这个提交里还叫 Server（main 才改名 TcpServer），下面的符号抽查两种都认。
 PINE_LAST_GOOD_LINUX_SHA=021a26b44e6d6f1b7868b0175439ce3124e6df25
 WORK_DIR="$(pwd)/.work"
 rm -rf "$WORK_DIR"
@@ -141,9 +150,18 @@ echo "==== 4. 可选的 lint 目标 ===="
 # 这三个 target 是仓库自带的开发辅助（run_clang_format.py / cpplint / clang-tidy），
 # 上游按 clang-8 时代写的，跟“能不能编出库”无关；原脚本也没把它们当失败（没有 errexit），
 # 这里保持同样定位，只打一行结论。
+# 但要注意 make format 是**就地改写源码**的：上游 CMakeLists.txt 写的是
+#   add_custom_target(format ${PINE_BUILD_SUPPORT_DIR}/run_clang_format.py ... --fix --quiet)
+# 这个 --fix 就是 in-place（main 与回退目标 021a26b4 两份 CMakeLists 都实测抓过，写法一致），
+# 跑完 src/ 和 test/ 下的跟踪文件就不再等于 HEAD 了。
+# 这一步本身没问题，问题是后面第 5 步失败时要 git checkout 回退，checkout 不肯覆盖本地改动
+# （run 40056514239 attempt 4 就是死在这：error: Your local changes ... would be overwritten，
+# 列出的正好是 Acceptor/Socket/TcpServer/*.h/test/chat_*.cpp 这批被格式化过的文件）。
+# 所以这里把改动行数打出来，第 5 步回退前再显式还原。
 make format      || echo "SKIP: make format 未通过（可选步骤，不影响产物）"
 make cpplint     || echo "SKIP: make cpplint 未通过（可选步骤）"
 make clang-tidy  || echo "SKIP: make clang-tidy 未通过（可选步骤）"
+echo "INFO: lint 步骤之后被改动的跟踪文件数=$(git diff --name-only | wc -l)（make format 就地格式化所致）"
 
 echo "==== 5. 编译库（先按上游 main 试，不行再退到 Linux 路径自洽的最后一个提交）===="
 cd "$BUILD_DIR"
@@ -155,15 +173,26 @@ else
     echo "INFO: 按仓库里 latest 分支的既有做法取“最新可用版本”——回退到 $PINE_LAST_GOOD_LINUX_SHA"
     echo "      （= 把 Poller 签名改成 const/RC 的那个 refactor f815b419 的父提交）"
     cd ..
-    # 2a 步补的 util.h/util.cpp 在这个提交里是上游自带的跟踪文件，先删掉我补的两份，
-    # 否则 git checkout 会以“未跟踪文件会被覆盖”为由拒绝切换。
+    # 回退前有两条东西挡着 git checkout，都得先清掉，而且要说清楚各是谁造成的：
+    #   1) 第 4 步 make format 就地改写了 src/ 和 test/ 下的跟踪文件（run 40056514239 attempt 4
+    #      报的正是 error: Your local changes to the following files would be overwritten by
+    #      checkout: src/Acceptor.cpp / src/Socket.cpp / src/TcpServer.cpp / src/include/*.h /
+    #      test/chat_*.cpp —— 那批被 clang-format 处理过的文件）。用 git checkout -- . 还原成
+    #      HEAD 的原样，不改上游一行内容。
+    #   2) 2a 步补的 util.h/util.cpp 在 main 上是未跟踪文件，而回退目标 021a26b4 里它们是上游
+    #      自带的跟踪文件，checkout 会以“未跟踪文件会被覆盖”为由拒绝，所以先删掉我补的这两份，
+    #      切过去之后由上游自己带出来。
+    echo "INFO: 还原 make format 的就地改动：$(git diff --name-only | tr '\n' ' ')"
+    git checkout -q -- .
     rm -f src/include/util.h src/util.cpp
     git checkout -q "$PINE_LAST_GOOD_LINUX_SHA"
     echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
-    echo "---- 回退后必须是纯上游代码：工作区要干净，且 util.h/util.cpp/Server 都由上游自带 ----"
-    git status --porcelain
-    [ -z "$(git status --porcelain)" ] \
-        || { echo "FATAL: checkout 后工作区不干净，下面这份产物就不能算“上游源码编译”" >&2; exit 1; }
+    echo "---- 回退后必须是纯上游代码：跟踪文件要干净，且 util.h/util.cpp/Server 都由上游自带 ----"
+    # 只看跟踪文件（--untracked-files=no）：build/ 里全是本次构建产物，它干不干净跟
+    # “产物是不是上游源码编出来的”无关，不该拿它当判据。
+    git status --porcelain --untracked-files=no
+    [ -z "$(git status --porcelain --untracked-files=no)" ] \
+        || { echo "FATAL: checkout 后仍有跟踪文件被改动，下面这份产物就不能算“上游源码编译”" >&2; exit 1; }
     for f in src/include/util.h src/util.cpp src/include/Server.h src/Server.cpp; do
         [ -f "$f" ] || { echo "FATAL: $PINE_LAST_GOOD_LINUX_SHA 里没有 $f" >&2; exit 1; }
     done
