@@ -61,6 +61,7 @@ echo "==== 3. 取源码 ===="
 rm -rf lwip
 git clone -q https://github.com/lwip-tcpip/lwip.git
 cd lwip
+LWIP_ROOT="$(pwd)"        # 后面几步都要回到仓库根，靠相对路径跳级太容易跳错（见第 7 步）
 git checkout -q STABLE_2_2_0_RELEASE 2>/dev/null || git checkout -q STABLE-2_2_0_RELEASE
 LWIP_REF="$(git rev-parse --short HEAD)"
 echo "STABLE-2_2_0_RELEASE -> $LWIP_REF"
@@ -73,6 +74,7 @@ echo "PASS: contrib/ports/unix/check 的单元测试跑通"
 
 echo "==== 5. cmake + ninja 全量构建 ===="
 mkdir -p build && cd build
+BUILD_DIR="$(pwd)"        # 第 6 步的 lwipdocs 目标要在构建目录里跑，不能在仓库根
 cmake -G Ninja -DCMAKE_C_COMPILER="$SOFTCC" .. >/dev/null
 cmake --build .
 cd ..
@@ -92,11 +94,18 @@ echo "==== 6. 文档目标（doxygen）===="
 # lwIP 的 doc/doxygen/lwip.Doxyfile.cmake.in 里 WARN_AS_ERROR = YES，而 doxygen 1.9.8（noble）
 # 会对 2015 年代写的 Doxyfile 报一串 “Tag 'TCL_SUBST' ... has become obsolete” 告警并直接退出 1。
 # 这是文档工具版本对旧配置的不兼容，不是 C 代码编不过，所以这一步只记录不判死。
-if cmake --build . --target lwipdocs >"$WORK_DIR/lwipdocs.log" 2>&1; then
+#
+# 2026-10-24 第四轮更正：上一轮这步“3 毫秒就 WARN”，说明根本没走到 doxygen —— 命令当时写的是
+# `cmake --build .`，而那一刻的 cwd 是仓库根（第 5 步末尾 cd .. 回来了），根目录里没有 build.ninja，
+# cmake 直接报 “not a CMake build directory”。现在改成 "$BUILD_DIR"，并把日志尾部打出来，
+# 让到底是 doxygen 告警还是别的原因在 CI 里可见，而不是靠这句注释猜。
+if cmake --build "$BUILD_DIR" --target lwipdocs >"$WORK_DIR/lwipdocs.log" 2>&1; then
     echo "PASS: lwipdocs 构建成功"
+    find "$BUILD_DIR" -maxdepth 6 -type d -name 'html' | head -3
 else
-    echo "WARN: lwipdocs 因 doxygen 的 obsolete-tag 告警 + WARN_AS_ERROR=YES 退出非 0（与编译产物无关）"
-    grep -m3 -E 'obsolete|WARN_AS_ERROR' "$WORK_DIR/lwipdocs.log" || true
+    echo "WARN: lwipdocs 退出非 0（不影响编译产物），日志尾部如下"
+    tail -12 "$WORK_DIR/lwipdocs.log"
+    grep -m3 -E 'obsolete|WARN_AS_ERROR|not a CMake' "$WORK_DIR/lwipdocs.log" || true
 fi
 
 echo "==== 7. example_app：选项组合扫描 ===="
@@ -109,7 +118,12 @@ else
     echo "WARN: itopts 有配置组合失败（exit!=0），失败组合如下"
     grep -E '^testing|FAILED' "$WORK_DIR/iteropts.out" 2>/dev/null | grep -B1 FAILED | tail -20 || true
 fi
-cd ../../..
+# 原来这里是 cd ../../..，但从 contrib/ports/unix/example_app 上跳三级到的是 contrib，不是仓库根
+# （example_app -> unix -> ports -> contrib），于是第 8 步的 cp contrib/examples/... 实际找的是
+# contrib/contrib/examples/...，run 40056364018 就是死在那一行：
+#   cp: cannot stat 'contrib/examples/example_app/lwipcfg.h.example': No such file or directory
+# 改成回到第 3 步记下的绝对根目录，少一级相对路径的坑。
+cd "$LWIP_ROOT"
 
 echo "==== 8. example_app 正式构建 ===="
 cp contrib/examples/example_app/lwipcfg.h.example contrib/examples/example_app/lwipcfg.h
