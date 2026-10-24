@@ -13,6 +13,10 @@
 # 也就是说库编出来了，但“安装”从来没执行过。正确写法是 `cmake --install build`。
 # 旧脚本没有 errexit，前面任何一步失败都会被一路吞掉、只看最后一条命令的退出码，
 # 所以这里补上 set -euo pipefail，并加上“装完之后真的能用”的实测。
+#
+# 2026-10-24 第二轮（rerun 40056526394）：编译 + 安装 + Foundation 探针全绿，最后一步 PocoNet
+# 探针链接报 undefined reference to Poco::Net::…；原因是 Debug 构建的库名带 'd' 后缀，
+# `ls libPocoNet*.so | head -1` 抓到的是 libPocoNetSSLd.so。修法与证据写在第 7 步。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -98,9 +102,30 @@ int main() {
     return 0;
 }
 CPP
-netlib="$(ls /usr/local/lib/libPocoNet*.so 2>/dev/null | grep -v '\.so\.' | head -1)"
-[ -n "$netlib" ] || { echo "FATAL: 没装上 libPocoNet*.so" >&2; exit 1; }
+# 2026-10-24 第二轮（rerun 40056526394）：库编出来了、install 也过了、Foundation 探针也跑出
+#   hex=255 procs=4 libver=0x010C0300
+# 死的是这一步的链接：
+#   undefined reference to `Poco::Net::IPAddress::IPAddress(std::__cxx11::basic_string<...> const&)'
+#   undefined reference to `Poco::Net::MessageHeader::MessageHeader()'  …（NameValueCollection 的三个同样）
+# 根因在库名，不在编译。CMAKE_BUILD_TYPE=Debug（旧脚本就是这么写的，这里沿用）会让 POCO 给
+# 每个库名加一个 'd' 后缀，实测安装树里是
+#   libPocoFoundationd.so -> libPocoFoundationd.so.93   libPocoNetd.so   libPocoNetSSLd.so
+# 根本没有 libPocoNet.so。上一版用 `ls libPocoNet*.so | head -1` 取“第一个”，而在 C 排序下
+# 'S'(libPocoNetSSLd.so) 排在 'd'(libPocoNetd.so) 前面，于是 -l 链到的是 NetSSL。
+# NetSSL 只是 *依赖* Net；GNU ld 默认 --no-copy-dt-needed-entries，不会把间接 DT_NEEDED 库里的
+# 符号借给主程序，所以 Net 的类全都“没定义”。
+# 现在从 Foundation 的库名反推 Debug 后缀，精确拼出要链的那个库，并用 nm 先证明它真的实现了
+# Poco::Net::IPAddress —— 链错了库会当场失败，而不是等 ld 报一堆 undefined。
+suffix="${basename_lib#PocoFoundation}"        # Debug 构建 -> "d"，Release 构建 -> ""
+netlib="/usr/local/lib/libPocoNet${suffix}.so"
+[ -e "$netlib" ] || { echo "FATAL: 期望的 $netlib 不存在；安装树里的 PocoNet* 如下" >&2
+                      ls /usr/local/lib | grep -F 'PocoNet' >&2 || true; exit 1; }
+ls -l "$netlib"
 netbase="$(basename "$netlib" | sed -e 's/^lib//' -e 's/\.so.*$//')"
+echo "PocoNet 库 = $netlib （链接名 -l$netbase，Debug 后缀=[$suffix]）"
+n_net="$(nm -D --c++-filt "$netlib" | grep -c 'Poco::Net::IPAddress::' || true)"
+[ "${n_net:-0}" -ge 3 ] || { echo "FATAL: $netlib 里没有 Poco::Net::IPAddress 的实现（只找到 $n_net 个符号）" >&2; exit 1; }
+echo "INFO: $netlib 导出 Poco::Net::IPAddress 相关符号 $n_net 个"
 g++ -O0 -o "$WORK_DIR/probe_net" "$WORK_DIR/probe_net.cpp" \
     -I/usr/local/include -L/usr/local/lib -l"$netbase" -l"$basename_lib" -Wl,-rpath,/usr/local/lib
 out_net="$("$WORK_DIR/probe_net")"
