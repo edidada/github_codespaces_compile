@@ -202,19 +202,28 @@ else
     cmake .. -DCMAKE_CXX_FLAGS="$PINE_INCLUDE_FLAGS"
     make -j"$(nproc)"
 fi
-lib="$(find . -type f -name 'libpine_shared.so*' | head -1)"
-[ -n "$lib" ] || { echo "FATAL: 没产出 libpine_shared.so" >&2; find . -name '*.so*' | head >&2; exit 1; }
+# 这一段所有“只看前几行”的管道都用 sed -n 而不是 head：脚本开着 set -o pipefail，
+# head 读够就关掉管道，上游的 find/nm/grep 会被 SIGPIPE 打死（退出码 141 / grep 是 2），
+# 于是“产物明明好好的”也会被当成失败退出。run 40056514239 attempt 5 就是这样红的：
+#   grep: write error: Broken pipe
+#   ##[error]Process completed with exit code 2.
+# 而那一刻 [100%] Built target pine_shared、Server::Server(EventLoop*) 都已经打出来了。
+# 动态符号只 nm 一次落到变量里，三处判断都读它；最后的断言用 case，不碰管道。
+lib="$(find . -type f -name 'libpine_shared.so*' | sed -n 1p)"
+[ -n "$lib" ] || { echo "FATAL: 没产出 libpine_shared.so" >&2; find . -name '*.so*' -print >&2; exit 1; }
 file "$lib"
 echo "---- 导出符号抽查（C++ demangle）----"
 # 注意：nm 没有 --c++-filt 这个选项（那是 c++filt/objdump 的说法），GNU nm 用的是 -C/--demangle。
-# 上一版写 --c++-filt，nm 直接打了 usage 并按失败退出 —— 在 set -euo pipefail 下这就是一条
-# 假故障（run 40056526394 attempt 3 的 Poco 版本就是这么倒在“库里没有符号”上的）。
+# 上一版写 --c++-filt，nm 直接打了 usage 并按失败退出 —— 同样是一条假故障。
 # 类名也别说死：main 上是 TcpServer，回退到的 021a26b4 上叫 Server，两者都匹配 (Server)::。
-nm -D -C "$lib" | grep -E '(TcpServer|Server|EventLoop)::' | head -6
-n_sym="$(nm -D -C "$lib" | grep -cE '::' || true)"
+dyn_syms="$(nm -D -C "$lib")"
+printf '%s\n' "$dyn_syms" | grep -E '(TcpServer|Server|EventLoop)::' | sed -n '1,6p' || true
+n_sym="$(printf '%s\n' "$dyn_syms" | grep -cE '::' || true)"
 echo "INFO: 动态符号里 demangle 后含 :: 的条目数=$n_sym"
-nm -D -C "$lib" | grep -qF 'EventLoop::Loop' \
-    || { echo "FATAL: 库里找不到 EventLoop::Loop 的实现，产物不可用" >&2; exit 1; }
+case "$dyn_syms" in
+    *'EventLoop::Loop'*) echo "PASS: 库里有 EventLoop::Loop 的实现" ;;
+    *) echo "FATAL: 库里找不到 EventLoop::Loop 的实现，产物不可用" >&2; exit 1 ;;
+esac
 
 echo "==== 6. 编译示例程序（证明库真的可链接）===="
 # test/CMakeLists.txt 把每个 test/*.cpp 都做成 EXCLUDE_FROM_ALL 的 target，
