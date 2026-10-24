@@ -63,7 +63,10 @@ echo "INFO: ld.so 缓存里的 libPoco* 条目数=$(ldconfig -p | grep -c 'libPo
 echo "==== 5. 校验安装树 ===="
 [ -f /usr/local/include/Poco/Environment.h ] || { echo "FATAL: 头文件没装上" >&2; exit 1; }
 ls -l --time-style=full-iso /usr/local/include/Poco/Environment.h
-lib="$(ls /usr/local/lib/libPocoFoundation*.so 2>/dev/null | grep -v '\.so\.' | head -1)"
+# head 读够就关管道，上游的 grep 会吃到 SIGPIPE（退出码 141/2）；脚本开着 set -o pipefail，
+# 这种“诊断语句自己把作业弄红”的坑在 pine 那一版已经踩过一次（run 40056514239 attempt 5），
+# 所以这里取第一行统一改用 sed -n 1p，不跟 head 赌时序。
+lib="$(ls /usr/local/lib/libPocoFoundation*.so 2>/dev/null | grep -v '\.so\.' | sed -n 1p)"
 [ -n "$lib" ] || { echo "FATAL: /usr/local/lib 里没有 libPocoFoundation*.so" >&2; ls /usr/local/lib | head -20 >&2; exit 1; }
 basename_lib="$(basename "$lib" | sed -e 's/^lib//' -e 's/\.so.*$//')"
 echo "Foundation 库 = $lib （链接名 -l$basename_lib）"
@@ -71,7 +74,7 @@ file "$lib"
 # 这一步只确认第 4 步的 ldconfig 真的把新库写进了缓存；就算没写进去也不在这里判死，
 # 因为下面两个探针还带 LD_LIBRARY_PATH 兜底，真正的判据是“程序能不能跑起来”。
 if ldconfig -p | grep -F "lib$basename_lib" >/dev/null; then
-    echo "PASS: lib$basename_lib 已进 ld.so 缓存：$(ldconfig -p | grep -F "lib$basename_lib" | head -1)"
+    echo "PASS: lib$basename_lib 已进 ld.so 缓存：$(ldconfig -p | grep -F "lib$basename_lib" | sed -n 1p)"
 else
     echo "WARN: ldconfig 后缓存里找不到 lib$basename_lib，第 6/7 步靠 LD_LIBRARY_PATH 兜底"
 fi
