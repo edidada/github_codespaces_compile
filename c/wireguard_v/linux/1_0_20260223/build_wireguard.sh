@@ -105,8 +105,12 @@ printf '%s' "$priv" | base64 -d > "$WORK_DIR/priv.bin"
 python3 - "$WORK_DIR/priv.bin" <<'PY'
 import sys
 b = open(sys.argv[1], 'rb').read()
+# clamp 只有三处：b[0] 低 3 位清零、bit255 清零、bit254 置 1。
+# b[31] 的低 6 位是随机数的一部分，不能被断言成 0（上一轮就是 & 0xE0 写错，
+# 五五开地偶发失败：0x5c/0x4c 过，0x7e 挂）。
 assert b[0] & 0x07 == 0, f"clamp 失败: 最低 3 位未清零 -> {b[0] & 7}"
-assert b[31] & 0xE0 == 0x40, f"clamp 失败: 末字节应为 0b01xxxxxx -> {b[31]:#04x}"
+assert b[31] & 0x80 == 0, f"clamp 失败: bit255 应为 0 -> {b[31]:#04x}"
+assert b[31] & 0x40 == 0x40, f"clamp 失败: bit254 应为 1 -> {b[31]:#04x}"
 print(f"PASS: curve25519 私钥位约束正确 (b[0]={b[0]:#04x} b[31]={b[31]:#04x})")
 PY
 
