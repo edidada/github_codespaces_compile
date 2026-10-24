@@ -37,9 +37,14 @@ echo "==== 2. 确定版本 ===="
 mkdir -p "$WORK_DIR"
 if [ "$NGINX_VERSION" = "auto" ]; then
     curl -fsSL --connect-timeout 20 --max-time 120 https://nginx.org/en/download.html -o "$WORK_DIR/download.html"
-    NGINX_VERSION="$(awk '/Stable version/{f=1} f && match($0, /nginx-[0-9]+\.[0-9]+\.[0-9]+/){print substr($0, RSTART+6, RLENGTH-6); exit}' "$WORK_DIR/download.html")"
-    [ -n "$NGINX_VERSION" ] || { echo "FATAL: 无法从 nginx.org 解析 Stable 版本号" >&2; exit 1; }
-    echo "自动探测到 Stable 版本：$NGINX_VERSION"
+    # nginx.org 这一页是单行 HTML，所以别按“Stable version”附近的文本找，直接把所有
+    # tarball 版本号抓出来取最大的那个（= 当前最新发布版，也就是 mainline）。
+    mapfile -t VER_LIST < <(grep -oE '/download/nginx-[0-9]+\.[0-9]+\.[0-9]+\.tar\.gz' "$WORK_DIR/download.html" \
+        | sed -E 's|/download/nginx-||; s|\.tar\.gz$||' | sort -uV)
+    [ "${#VER_LIST[@]}" -gt 0 ] || { echo "FATAL: 无法从 nginx.org 解析出版本号" >&2; exit 1; }
+    NGINX_VERSION="${VER_LIST[-1]}"
+    echo "页面上列出的 tarball 版本（低 -> 高）：${VER_LIST[*]}"
+    echo "自动探测到最新发布版本：$NGINX_VERSION"
 else
     echo "使用钉定版本：$NGINX_VERSION"
 fi
@@ -125,7 +130,8 @@ grep -F "$NGINX_VERSION" "$WORK_DIR/version.txt" >/dev/null || { echo "FATAL: ng
 echo "==== nginx -V ===="
 "$NGINX_BIN" -V 2>&1 | tee "$WORK_DIR/V.txt" || true
 for m in --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-http_gzip_static_module; do
-    grep -F "$m" "$WORK_DIR/V.txt" >/dev/null && echo "PASS: 编译进 $m" || { echo "FATAL: 缺少 $m" >&2; exit 1; }
+    # 模式本身以 -- 开头，必须用 -- 结束选项解析，否则 grep 把它当成自己的参数
+    grep -F -- "$m" "$WORK_DIR/V.txt" >/dev/null && echo "PASS: 编译进 $m" || { echo "FATAL: 缺少 $m" >&2; exit 1; }
 done
 openssl version -a | sed -n '1,2p'
 echo "链接到的 SSL 库："; ldd "$INSTALL_PREFIX/sbin/nginx" | grep -F libssl || true
@@ -183,7 +189,7 @@ echo "---- HTTP ----"
 code="$(curl -s -o "$WORK_DIR/http.html" -w '%{http_code}' "http://127.0.0.1:$HTTP_PORT/")"
 echo "GET / -> $code"
 [ "$code" = "200" ] || { echo "FATAL: HTTP 200 期望落空"; exit 1; }
-grep -F 'Welcome to nginx' "$WORK_DIR/http.html" >/dev/null && echo "PASS: 默认欢迎页来自本次编译的产物"
+grep -F 'Welcome to nginx' "$WORK_DIR/http.html" >/dev/null && echo "PASS: 默认欢迎页来自本次编译的产物" || { echo "FATAL: 返回的页面不是 nginx 默认欢迎页" >&2; sed -n '1,10p' "$WORK_DIR/http.html"; exit 1; }
 
 echo "---- stub_status ----"
 curl -fsS "http://127.0.0.1:$HTTP_PORT/stub_status" -o "$WORK_DIR/status.txt"
@@ -195,7 +201,7 @@ code="$(curl -s -H 'Accept-Encoding: gzip' -o "$WORK_DIR/static.gz" -D "$WORK_DI
 echo "GET /static.txt (Accept-Encoding: gzip) -> $code"
 [ "$code" = "200" ] || { echo "FATAL: gzip_static 请求返回 $code" >&2; exit 1; }
 grep -i -F 'content-encoding: gzip' "$WORK_DIR/static.h" >/dev/null && echo "PASS: 直接吐出预压缩的 .gz（gzip_static 生效）" || { echo "FATAL: 未见到 content-encoding: gzip" >&2; exit 1; }
-zcat "$WORK_DIR/static.gz" | grep -F 'gzip_static_payload_from_source_build' >/dev/null && echo "PASS: 解压内容与写入时一致"
+zcat "$WORK_DIR/static.gz" | grep -F 'gzip_static_payload_from_source_build' >/dev/null && echo "PASS: 解压内容与写入时一致" || { echo "FATAL: 预压缩内容对不上" >&2; exit 1; }
 
 echo "---- HTTPS + HTTP/2 ----"
 code="$(curl -sk -o "$WORK_DIR/https.html" -w '%{http_code}' "https://127.0.0.1:$HTTPS_PORT/")"
@@ -205,7 +211,8 @@ curl -sk -o /dev/null -w 'HTTP/2 协商结果: %{http_version}\n' --http2-prior-
 ver="$(curl -sk -o /dev/null -w '%{http_version}' --http2-prior-knowledge "https://127.0.0.1:$HTTPS_PORT/")"
 [ "$ver" = "2" ] && echo "PASS: ALPN/prior-knowledge 走的是 h2" || echo "WARN: http_version=$ver"
 echo "---- TLS 参数（openssl s_client） ----"
-echo | openssl s_client -connect 127.0.0.1:$HTTPS_PORT -servername localhost 2>/dev/null | grep -E 'Protocol|Cipher' | sed -n '1,3p'
+# pipefail 会让“grep 没匹配到”直接掀掉脚本，这里只是打印诊断信息，全部兜底
+echo | openssl s_client -connect 127.0.0.1:$HTTPS_PORT -servername localhost 2>/dev/null | grep -E 'Protocol|Cipher' | sed -n '1,3p' || true
 echo | openssl s_client -connect 127.0.0.1:$HTTPS_PORT -tls1_2 2>/dev/null | grep -E 'Protocol|Cipher' | sed -n '1,3p' || true
 
 echo "---- reload ----"

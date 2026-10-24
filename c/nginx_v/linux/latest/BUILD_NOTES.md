@@ -4,8 +4,9 @@
 
 | 项 | 值 | 来源 |
 | --- | --- | --- |
-| Stable | `1.30.6` | `curl https://nginx.org/en/download.html`，在 “Stable version” 小节下解析到的第一个 `nginx-x.y.z` |
+| Stable | `1.30.6` | `curl https://nginx.org/en/download.html`，“Stable version” 小节里的 `nginx-x.y.z` |
 | Mainline | `1.31.8` | 同页 “Mainline version” 小节 |
+| `latest` 分支实际取到的版本 | `1.31.8` | 脚本取页面上所有 `nginx-x.y.z.tar.gz` 的最大值；本地对下载到的 `download.html` 跑同一段解析，输出 `0.5.38 … 1.30.6 1.31.8`，末位即 `1.31.8` |
 | `nginx-1.30.6.tar.gz` sha256 | `3cf46f5ed7504d460125866b7bea99fb357f31d887e2e63b35503310e9b8b6c8` | 本地从 nginx.org 下载后 `sha256sum` |
 | `nginx-1.31.8.tar.gz` sha256 | `0652b760b3b772d2ec17b47c2fc15d9a95e6fe35cd5b877eadc1a62d9bc75af1` | 同上 |
 | PCRE 8.45 sha256 | `4e6ce03e0336e8b4a3d6c2b70b1c5e18590a5673a98186da90d4f33c23defc09` | sourceforge 镜像下载后 `sha256sum`（`https://ftp.pcre.org` 直连时本地证书异常，故以能取到的镜像为准） |
@@ -28,12 +29,18 @@ workflow 从调用 `get_nginx.sh` 改成调用 `build_nginx.sh`，同时把 `run
 ## 构建步骤
 
 1. `apt` 装 `build-essential zlib1g-dev libssl-dev libpcre3 libpcre3-dev openssl wget curl`。
-2. 定版本：`latest` 分支走 auto 解析 nginx.org 的 Stable；`1_30_6` 分支由 workflow 传 `NGINX_VERSION=1.30.6` 钉死。
+2. 定版本：`1_30_6` 分支由 workflow 传 `NGINX_VERSION=1.30.6` 钉死 Stable；
+   `latest` 分支不传，脚本把 `download.html` 上出现的 `nginx-x.y.z.tar.gz` 全列出来 `sort -V` 取最大，
+   即当前最新发布版（实测 1.31.8，mainline 线），两条分支合起来覆盖 Stable + Mainline。
 3. 下载 tarball，`sha256sum -c` 对表；版本在表外时只记录 hash 并 WARN（便于将来升级时把新 hash 填进表）。
 4. 校验源码内版本：`src/core/nginx.h` 里的 `NGINX_VERSION` 必须等于目标版本。
-5. PCRE 后端探测：有 `/usr/include/pcre.h` 就用系统 PCRE1（`--with-pcre-jit`）；
+5. PCRE 后端探测：有 `/usr/include/pcre.h` 就交给系统库（`--with-pcre-jit`）；
    没有就退到 nginx 的 `--with-pcre=<pcre-8.45 源码目录>` 自带编译，两条路都钉 hash。
-   （nginx 只用 PCRE1 的 API，所以这里不能换成 libpcre2。）
+   ~~nginx 只用 PCRE1 的 API，所以这里不能换成 libpcre2。~~ —— 这句是我写错了，实测打脸：
+   ubuntu-24.04 runner 上走的是系统这条路（`configure arguments` 里只有 `--with-pcre-jit`，
+   没有 `--with-pcre=`），而 `ldd` 出来的却是 `libpcre2-8.so.0`（见 run `40045788270`），
+   说明现在 nginx 默认链的是 PCRE2。CI 里被真正执行过的只有“系统库”这条路，
+   自带 PCRE 8.45 的兜底分支在这条流水线上没被触发过，只能算留着备用的写法。
 6. `./configure` 全部路径落在工作区 `out/nginx`，不碰系统目录、不需要 sudo；
    模块：`http_ssl`、`http_v2`、`http_stub_status`、`http_gzip_static`、`http_realip`、`http_sub`、`--with-threads`。
 7. `make -j$(nproc)` + `make install`。
@@ -57,3 +64,11 @@ workflow 从调用 `get_nginx.sh` 改成调用 `build_nginx.sh`，同时把 `run
 - 没做 PGP 验签（原因见上）。
 - 没跑官方 `test-nginx`/`nginx-tests` 套件：那需要 Perl + 一堆可选模块 + 外部服务，不在本分支范围。
 - 没验证 realip 模块的实际改写效果（需要代理链路），只保证被编译进去。
+
+## CI 实测记录
+
+| 轮次 | run | 分支 | 结果 | 说明 |
+| --- | --- | --- | --- | --- |
+| 1 | `40045788270` | `c/nginx_v/linux/1_30_6` | failure | 下载、configure、make、`make install`、`nginx -V` 全过了，卡在断言本身：`grep -F "$m"` 里 `$m` 是 `--with-http_ssl_module`，以 `--` 开头被 grep 当成自己的选项，报 `unrecognized option` 后脚本判 FATAL。修法是 `grep -F -- "$m"`。 |
+| 1 | `40045793619` | `c/nginx_v/linux/latest` | failure | 同一个 grep 问题；另外暴露出自动探测取的是 **1.31.8**，不是我以为的 Stable。原因是 nginx.org 这一页整个是**单行 HTML**，`awk '/Stable version/{f=1} ...'` 一命中就锁定了整行，`match()` 只能拿到行内第一个 `nginx-x.y.z`，也就是 Mainline。现已改成“列出全部 tarball 版本取最大”，并在 workflow 注释里写明 latest 跟的是最新发布线。 |
+| 2 | 待补 | 两条 |  |  |
