@@ -17,6 +17,25 @@
 #   src/Poller.cpp:17:10: fatal error: util.h: No such file or directory
 # 前三类还是“用了但没 include”，把 -include 的清单从闭包分析里补齐（见下面 PINE_INCLUDE_FLAGS）。
 # 最后一条不是编译器版本问题：上游 main 自己就没有 util.h，见 2a 步。
+#
+# 2026-10-24 第三轮（rerun 40056514239 attempt 3；-include 清单生效后往前推进了一大步）：
+#   src/Poller.cpp:37:24: error: no declaration matches ‘std::vector<Channel*> Poller::Poll(int)’
+#   src/Poller.cpp:58:6:  error: no declaration matches ‘void Poller::UpdateChannel(Channel*)’
+#   src/Poller.cpp:79:6:  error: no declaration matches ‘void Poller::DeleteChannel(Channel*)’
+# 这三条跟镜像、编译器都无关，是上游 main 自己不自洽。实测两份文件的历史：
+#   gh api "repos/yuesong-feng/pine/contents/src/include/Poller.h?ref=f815b419"
+#     -> RC UpdateChannel(Channel *ch) const;  RC DeleteChannel(...) const;  Poll(long timeout) const;
+#   gh api ".../src/Poller.cpp?ref=f815b419"
+#     -> #ifdef OS_LINUX 那一段仍是 void Poller::UpdateChannel(Channel*) / Poll(int)，
+#        只有下面 #ifdef OS_MACOS 那一段跟着改成了 const/RC；而 Linux 上 CMakeLists 传的
+#        是 -DOS_LINUX（根 CMakeLists.txt 的 CMAKE_SYSTEM_NAME MATCHES "Linux" 分支），
+#        编的就是那段没改完的旧代码，还顺带用了早就不存在的 Channel::SetExist。
+# 也就是说 refactor（f815b419，2022-11-04）只把 kqueue 那条路修完了，epoll 那条路从那天起
+# 就没自洽过。这类“上游 tip 编不过”的情况，latest 分支按仓库里的既有做法取“最新可用版本”：
+# 先照 main 试，失败就固定到 refactor 的父提交 021a26b4 —— 实测那时候 Poller.h 是
+# `void UpdateChannel(Channel *ch)`、Poller.cpp 也是 `void Poller::UpdateChannel(Channel *)`，
+# src/include/util.h、src/util.cpp、src/Server.{h,cpp} 都还在，test/echo_server.cpp 用的
+# Server API 也在。上游哪天把 epoll 分支补齐，脚本会先在 main 上编成功，自动回到 main。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -33,6 +52,9 @@ ECHO_PORT=1234   # test/echo_server.cpp 用 TcpServer() 默认端口，echo_clie
 PINE_INCLUDE_FLAGS="-include cassert -include cstdint -include cstring -include cstdio \
 -include cstdlib -include memory -include string -include utility -include atomic \
 -include stdexcept"
+# 上游 Linux 路径（-DOS_LINUX 那段）自洽的最后一个提交 = 破坏性 refactor f815b419 的父提交。
+# 只在 main 编不过时回退到这里；main 修好后这段代码路径不会再走到。
+PINE_LAST_GOOD_LINUX_SHA=021a26b44e6d6f1b7868b0175439ce3124e6df25
 WORK_DIR="$(pwd)/.work"
 rm -rf "$WORK_DIR"
 mkdir -p "$WORK_DIR"
@@ -43,7 +65,9 @@ sudo apt-get install -y -qq build-essential cmake git
 
 echo "==== 2. 取源码 ===="
 rm -rf pine
-git clone -q --depth 1 https://github.com/yuesong-feng/pine.git
+# 不带 --depth：万一 main 编不过，还需要 checkout 到 PINE_LAST_GOOD_LINUX_SHA（整个仓库 91 KB，
+# 带全历史也只多几秒，实测 run 40056514239 的 clone 步骤本来就不是瓶颈）。
+git clone -q https://github.com/yuesong-feng/pine.git
 cd pine
 echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
 
@@ -110,6 +134,7 @@ grep -rn "ErrorIf" src/util.cpp src/include/util.h | sed -e 's/^/  /' || true
 
 echo "==== 3. configure（补上 gcc13 需要的头）===="
 mkdir -p build && cd build
+BUILD_DIR="$(pwd)"
 cmake .. -DCMAKE_CXX_FLAGS="$PINE_INCLUDE_FLAGS"
 
 echo "==== 4. 可选的 lint 目标 ===="
@@ -120,15 +145,47 @@ make format      || echo "SKIP: make format 未通过（可选步骤，不影响
 make cpplint     || echo "SKIP: make cpplint 未通过（可选步骤）"
 make clang-tidy  || echo "SKIP: make clang-tidy 未通过（可选步骤）"
 
-echo "==== 5. 编译库 ===="
-make -j"$(nproc)"
+echo "==== 5. 编译库（先按上游 main 试，不行再退到 Linux 路径自洽的最后一个提交）===="
+cd "$BUILD_DIR"
+main_sha="$(git -C .. rev-parse --short HEAD)"
+if make -j"$(nproc)"; then
+    echo "PASS: 上游 main（$main_sha）自己就编得过，不需要回退"
+else
+    echo "WARN: 上游 main（$main_sha）的 epoll 分支编不过（见上面那串 no declaration matches / SetExist）"
+    echo "INFO: 按仓库里 latest 分支的既有做法取“最新可用版本”——回退到 $PINE_LAST_GOOD_LINUX_SHA"
+    echo "      （= 把 Poller 签名改成 const/RC 的那个 refactor f815b419 的父提交）"
+    cd ..
+    # 2a 步补的 util.h/util.cpp 在这个提交里是上游自带的跟踪文件，先删掉我补的两份，
+    # 否则 git checkout 会以“未跟踪文件会被覆盖”为由拒绝切换。
+    rm -f src/include/util.h src/util.cpp
+    git checkout -q "$PINE_LAST_GOOD_LINUX_SHA"
+    echo "HEAD=$(git rev-parse --short HEAD)  ($(git log -1 --format=%cd --date=short))"
+    echo "---- 回退后必须是纯上游代码：工作区要干净，且 util.h/util.cpp/Server 都由上游自带 ----"
+    git status --porcelain
+    [ -z "$(git status --porcelain)" ] \
+        || { echo "FATAL: checkout 后工作区不干净，下面这份产物就不能算“上游源码编译”" >&2; exit 1; }
+    for f in src/include/util.h src/util.cpp src/include/Server.h src/Server.cpp; do
+        [ -f "$f" ] || { echo "FATAL: $PINE_LAST_GOOD_LINUX_SHA 里没有 $f" >&2; exit 1; }
+    done
+    echo "INFO: 这四个文件在该提交里都存在，Linux 路径的声明/定义也是配套的"
+    rm -rf build && mkdir -p build && cd build
+    BUILD_DIR="$(pwd)"
+    cmake .. -DCMAKE_CXX_FLAGS="$PINE_INCLUDE_FLAGS"
+    make -j"$(nproc)"
+fi
 lib="$(find . -type f -name 'libpine_shared.so*' | head -1)"
 [ -n "$lib" ] || { echo "FATAL: 没产出 libpine_shared.so" >&2; find . -name '*.so*' | head >&2; exit 1; }
 file "$lib"
 echo "---- 导出符号抽查（C++ demangle）----"
-nm -D --c++-filt "$lib" | grep -E 'TcpServer::(Start|TcpServer)|EventLoop::Loop' | head -6
-n_sym="$(nm -D --c++-filt "$lib" | grep -c 'pine' || true)"
-echo "INFO: 动态符号里含 pine 相关条目的行数=$n_sym"
+# 注意：nm 没有 --c++-filt 这个选项（那是 c++filt/objdump 的说法），GNU nm 用的是 -C/--demangle。
+# 上一版写 --c++-filt，nm 直接打了 usage 并按失败退出 —— 在 set -euo pipefail 下这就是一条
+# 假故障（run 40056526394 attempt 3 的 Poco 版本就是这么倒在“库里没有符号”上的）。
+# 类名也别说死：main 上是 TcpServer，回退到的 021a26b4 上叫 Server，两者都匹配 (Server)::。
+nm -D -C "$lib" | grep -E '(TcpServer|Server|EventLoop)::' | head -6
+n_sym="$(nm -D -C "$lib" | grep -cE '::' || true)"
+echo "INFO: 动态符号里 demangle 后含 :: 的条目数=$n_sym"
+nm -D -C "$lib" | grep -qF 'EventLoop::Loop' \
+    || { echo "FATAL: 库里找不到 EventLoop::Loop 的实现，产物不可用" >&2; exit 1; }
 
 echo "==== 6. 编译示例程序（证明库真的可链接）===="
 # test/CMakeLists.txt 把每个 test/*.cpp 都做成 EXCLUDE_FROM_ALL 的 target，
