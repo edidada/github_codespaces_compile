@@ -67,3 +67,32 @@ runner 上没有 `/dev/kvm`，只能跑 TCG；镜像里也没有可引导设备�
 ## 本分支：`rel-1.17.0`
 
 目录 `c/seabios_v/linux/1_17_0` 固定编译 tag `rel-1.17.0`，构建步骤、四种 Kconfig 目标与产物判据和 `latest` 完全一致（脚本只改 `SEABIOS_TAG` 一行）。
+
+## 铺不了的老版本：rel-1.13.0 及更早（2026-10-26 CI 实测）
+
+一开始按"版本尽量全"铺了 1.13.0 / 1.11.2 / 1.9.3 三条，三条在**三个 runner 上全红**，
+原因是上游构建流程和现代 binutils 冲突，不是脚本写错。已删掉这三条分支，证据留在这里。
+
+当前 GitHub Ubuntu 镜像的工具链（同一次运行里打印的）：
+
+| runner | gcc | GNU ld |
+| --- | --- | --- |
+| ubuntu-22.04 | 11.4.0 | 2.38 |
+| ubuntu-24.04 | 13.3.0 | 2.42 |
+| ubuntu-26.04 | 15.2.0 | 2.46 |
+
+| tag | 撞在哪 | 证据（edidada/compiler_script 的 run） |
+| --- | --- | --- |
+| rel-1.13.0 | `ld: cannot use executable file 'out/rom16.strip.o' as input to a link`；Makefile:185-187 把 `strip` 之后的 **ET_EXEC** 直接当链接输入 | 40210834518，三条腿同一 FATAL；22.04 报 `Makefile:187`、24.04/26.04 同一行 |
+| rel-1.11.2 | 同上，Makefile:186 | 40210852091 |
+| rel-1.9.3 | 先被该 tag 自带的 `scripts/test-build.sh` 的 **iasl** 硬门槛判 `-1`（`iasl` 检查在 1.11.2 起被上游删掉了；这条 gate 与 runner 无关，三条腿同一个判定）。就算装上 iasl 绕过，它的 Makefile:182-184 同样是 `rom16.strip.o` 流程，还是会撞上上面那堵墙 | 40210871035 |
+
+为什么 rel-1.14.0 起就没这个问题：上游加了 `scripts/ldnoexec.py`，把规则从 `%.strip.o`
+换成 `%.noexec.o`（strip 完再转成可重定位对象），链接输入不再是 ET_EXEC。按 tag 逐个读
+Makefile 核过：`rel-1.14.0 / 1.16.0 / 1.16.1 / 1.16.2 / 1.16.3 / 1.15.0 / 1.17.0` 都是
+`noexec.o` 流程，`rel-1.9.3 / 1.11.2 / 1.12.1 / 1.13.0` 都还是 `rom16.strip.o` 流程。
+
+所以版本覆盖取"今天编得动"的那一整段：
+`latest`、`rel-1.17.0`、`rel-1.16.3`、`rel-1.16.2`、`rel-1.16.1`、`rel-1.16.0`、
+`rel-1.15.0`、`rel-1.14.0`（各一条 workflow，每条 3 个 ubuntu runner，全部跑绿）。
+上面这套判据对所有固定版本分支同样适用。
