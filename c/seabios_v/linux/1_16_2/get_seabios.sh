@@ -23,7 +23,9 @@
 # 两个必须知道的坑（都是从上游 Makefile 读出来的，不是猜的）：
 #   A) Makefile:25 写的是 PYTHON=python。Ubuntu runner 上没有 python（只有 python3），
 #      所以每条 make 都要显式 PYTHON=python3，否则 buildversion.py / layoutrom.py 直接挂。
-#      rel-1.9.3 起 scripts/*.py 就是 py3-clean 的（已按 tag 逐个核对过 print/ord 用法）。
+#      本流水线覆盖的版本都逐个核过：rel-1.14.0 / rel-1.17.0 / master 上，六个构建脚本
+#      （layoutrom、buildversion、checkrom、buildrom、ldnoexec、vgafixup）都没有 py2 风格的
+#      `print xxx` 语句（grep '^\s*print [^(]' 为空），所以 PYTHON=python3 是安全的。
 #   B) .config 会被 Makefile:95 -include 进来，target-y 完全由 CONFIG_QEMU /
 #      CONFIG_COREBOOT / CONFIG_CSM / CONFIG_BUILD_VGABIOS 决定（Makefile:97-101）。
 #      Kconfig 的 "Build Target" 是个 choice（src/Kconfig:7-30，default QEMU），
