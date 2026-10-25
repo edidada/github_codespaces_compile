@@ -68,6 +68,28 @@
 # 改成：第 5 步的硬判据 = 库编译 + 自写的库探针（accept/读/写走一遍真事件循环，只调稳定 API，
 # 不碰 ReadBuffer）；上游三个 demo 照旧编译并做链接检查，再照旧跑一次回环，但只作为 INFO 记录，
 # 失败就把上面那份 gdb 栈打进日志，不当失败条件。
+#
+# 2026-10-25 第九轮（rerun attempt 9 = 成功，run 40056514239）：
+#   把“等端口”那条探测连接换成 /proc/net/tcp 之后，a3f8c32 不只是库探针过，
+#   上游 demo 的 5 条 ping 也全通了（日志顺序：
+#     INFO: 1234 已进入 LISTEN（第 1 次轮询，未建任何探测连接）
+#     PASS: a3f8c32 的库探针通过（... 通过库写回 pong）
+#     PASS: a3f8c32 的回环成功（echo_client 退出码=124，124=timeout 收尾）
+#     Message from server: ping-1 .. ping-5）
+#   【第七轮那句要更正】“demo 崩是因为 ReadBuffer() 不补 NUL，ostream strlen 越界”作废：
+#   不补 NUL 是源码事实（src/Connection.cpp:165 return read_buffer_->ToStr()），
+#   但 attempt 6/7 现场那份 SIGSEGV 真正的触发链是第八轮写的悬垂回调——脚本自己先拿
+#   一条“连一下就关”的连接把服务端推进 EOF -> Close() -> delete sock_/Connection ->
+#   Business() 紧接着还是 on_message_callback_(this)，这回调里 cout << conn->ReadBuffer()
+#   读的是已经 free 掉的 read_buffer_，strlen 才一路飞出界。库没坏，demo 也没坏，
+#   坏的是脚本的 readiness 检查。库探针（pine_probe）仍然保留当硬判据：
+#   它只走稳定 API，不依赖上游 demo 那几行打印，判据不会被上游的写法变化带跑。
+#
+#   另一条实测（gh api compare/021a26b4...a3f8c32 -> status=behind, behind_by=2）：
+#   git log -- src/ 给出来的顺序并不是“从新到旧”——a3f8c32 的 committer 日期 2022-09-27，
+#   比排在它后面的 021a26b4（2022-11-01）早，拓扑上也落后 2 个提交。
+#   所以第 5 步改成“候选全跑完，按 committer 时间戳取最新的那个 PASS，再复跑一遍定桩”，
+#   而不是碰到第一个 PASS 就 break（attempt 9 就是被 break 早退了，才选了 a3f8c32）。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -494,7 +516,7 @@ make cpplint     || echo "SKIP: make cpplint 未通过（可选步骤）"
 make clang-tidy  || echo "SKIP: make clang-tidy 未通过（可选步骤）"
 echo "INFO: lint 步骤之后被改动的跟踪文件数=$(git diff --name-only | wc -l)（make format 就地格式化所致）"
 
-echo "==== 5. 从新到旧找一个“编译 + 库探针真过”的上游提交 ===="
+echo "==== 5. 候选全跑一遍，取“编译 + 库探针真过”里最新的那个上游提交 ===="
 # 为什么这一步要循环试，而不是钉死一个 SHA（两条都是 CI 实测，不是推断）：
 #   1) 上游 HEAD(2bb80f7，2022-12-20) 在 Linux 上根本编不过：f815b419 那次 refactor 只把
 #      macOS 那条路径的 Poller 接口改成 const/RC 版本，src/Poller.cpp 的 #ifdef OS_LINUX 分支
@@ -524,21 +546,38 @@ mapfile -t PINE_CANDIDATES < <(
 echo "INFO: 候选提交数=${#PINE_CANDIDATES[@]}（新→旧），第一个是 $(git rev-parse --short "${PINE_CANDIDATES[0]}")"
 PINE_TABLE="$WORK_DIR/attempts.tsv"
 : > "$PINE_TABLE"
-PINE_OK_SHA=""
+PINE_BEST_SHA=""
+PINE_BEST_TS=""
+PINE_BEST_SHORT=""
+PINE_PASS_N=0
 for c in "${PINE_CANDIDATES[@]}"; do
     short="$(git rev-parse --short "$c")"
     when="$(git log -1 --format=%cd --date=short "$c")"
+    ts="$(git log -1 --format=%ct "$c")"
     subj="$(git log -1 --format=%s "$c")"
     echo "-------------------- try $short ($when) $subj"
     if pine_try_commit "$c"; then
-        PINE_OK_SHA="$c"
+        PINE_PASS_N=$((PINE_PASS_N + 1))
         printf '%s\t%s\tPASS\t%s\n' "$short" "$when" "库探针通过；${PINE_DEMO_STATE:-demo 未记录}" >> "$PINE_TABLE"
-        break
+        if [ -z "$PINE_BEST_TS" ] || [ "$ts" -gt "$PINE_BEST_TS" ]; then
+            PINE_BEST_TS="$ts"
+            PINE_BEST_SHA="$c"
+            PINE_BEST_SHORT="$short"
+        fi
+    else
+        printf '%s\t%s\tFAIL\t%s\n' "$short" "$when" "${PINE_FAIL_WHY:-未知}" >> "$PINE_TABLE"
     fi
-    printf '%s\t%s\tFAIL\t%s\n' "$short" "$when" "${PINE_FAIL_WHY:-未知}" >> "$PINE_TABLE"
 done
-echo "==== 候选汇总（新→旧）===="
+echo "==== 候选汇总（按 git log -- src/ 的遍历顺序，注意它不等于从新到旧，见文件顶部第九轮）===="
 cat "$PINE_TABLE"
+echo "INFO: 通过数=$PINE_PASS_N/${#PINE_CANDIDATES[@]}，其中 committer 时间戳最新的是 ${PINE_BEST_SHORT:-无}"
+if [ -n "$PINE_BEST_SHA" ]; then
+    # 复跑一遍选中的那个：一是把 cwd / build 目录 / 产物停在它身上（上面每轮都会 rm -rf build），
+    # 二是确认“挑出来的最新可用”这一结论是可重复的，而不是上一次循环的残留状态。
+    echo "-------------------- re-run 选中的 ${PINE_BEST_SHORT}（定桩）"
+    pine_try_commit "$PINE_BEST_SHA" || { echo "FATAL: 选中的候选复跑失败，汇总见上" >&2; exit 1; }
+fi
+PINE_OK_SHA="$PINE_BEST_SHA"
 if [ -z "$PINE_OK_SHA" ]; then
     echo "FATAL: ${#PINE_CANDIDATES[@]} 个候选没有一个同时通过“库编译 + demo 链接 + 库探针（真连接收发文）”，见上面汇总表" >&2
     exit 1
