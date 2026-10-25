@@ -49,6 +49,25 @@
 # 结论：上面那句“失败就固定到 021a26b4”不能成立——它只是编得过，运行期是坏的。
 # 所以第 5 步改成在 src/ 的历史里从新到旧逐个试，判据是“库编译 + 三个 demo + 真回环”全过，
 # 由 CI 当场选出 latest；失败的候选会连同原因列进汇总表，崩溃的那个额外用 gdb 把栈打出来。
+#
+# 2026-10-25 第七轮（rerun 40056514239 attempt 7，17 个候选全跑完）：
+#   汇总实测：15 个候选在库里就编不过（还是 f815b419 那次 refactor 留下的 epoll 不自洽），
+#   1 个 demo 编不过，只有 a3f8c32(2022-09-27) 和 021a26b4(2022-11-01) 走完“库 + 3 个 demo + ldd”，
+#   两个都在回环这一步崩，而且 gdb 给的是同一份栈：
+#     #0 __strlen_evex () at ../sysdeps/x86_64/multiarch/strlen-evex-base.S:81
+#     #1 operator<<(std::basic_ostream<char, ...>&, char const*)   libstdc++.so.6
+#     #2 main::{lambda(Connection*)#2}::operator()(Connection*) const   （echo_server 的 OnMessage）
+#     #7 Connection::Business() ... #16 Channel::HandleEvent()   libpine_shared.so
+#   根因在上游 demo 自己，不在库：test/echo_server.cpp 第 19 行是
+#     std::cout << "Message from client " << conn->ReadBuffer() << std::endl;
+#   而 ReadBuffer() 只是 return read_buffer_->ToStr()（src/Connection.cpp:165），指向固定大小的
+#   读缓冲的裸指针、末尾不补 NUL；ostream << const char* 第一步就是 strlen，一路读出边界。
+#   第 21 行 conn->Send(conn->ReadBuffer()) 还要再拿同一个指针构造 std::string，一样的错。
+#   a3f8c32 与 021a26b4 两份 echo_server.cpp 实测都是这么写的。
+# 所以“回环”这个判据不能挂在 demo 上——它证明的是上游 demo 坏，不是库坏。
+# 改成：第 5 步的硬判据 = 库编译 + 自写的库探针（accept/读/写走一遍真事件循环，只调稳定 API，
+# 不碰 ReadBuffer）；上游三个 demo 照旧编译并做链接检查，再照旧跑一次回环，但只作为 INFO 记录，
+# 失败就把上面那份 gdb 栈打进日志，不当失败条件。
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -138,9 +157,10 @@ fi
     grep -rn "ErrorIf" src/util.cpp src/include/util.h 2>/dev/null | sed -e 's/^/  /' || true
 }
 
-# 回环测试：起 server、等端口、喂 5 行、看客户端能不能读回同样的内容。
-# 失败时（且 apt 装到了 gdb）再复现一次把栈打出来——021a26b4 那种“编得过但一连就段错误”
-# 的候选，光有退出码没法判断该不该继续往旧版本退，日志里必须留下证据。
+# 上游 demo 的回环测试：起 echo_server、等端口、喂 5 行、看 echo_client 能不能读回同样的内容。
+# 失败时（且 apt 装到了 gdb）再复现一次把栈打出来——日志里必须留下证据才知道该不该继续往旧版本退。
+# 注意定位：从第七轮起这一步只是**信息**，不再当候选的失败条件（见文件顶部的 strlen 越界根因），
+# 真正的功能判据是下面的 pine_probe。
 pine_loopback() {
     local short="$1" rc="" up="" i srv
     PINE_FAIL_WHY=""
@@ -184,7 +204,145 @@ pine_loopback() {
     return 1
 }
 
-# 单个候选：切过去 -> 确认跟踪文件就是上游原样 -> 补 util.* -> 配库 -> 编 demo -> 跑回环。
+# 自写的库探针：证明“这个候选编出来的库真的能用”——accept 一条真连接、读到客户端字节、
+# 再通过库把 "pong" 写回去，全程只走不随版本漂移的稳定 API，绝不碰 conn->ReadBuffer()。
+# 为什么要有它（不是猜的，是 attempt 7 的栈）：上游 demo 的 OnMessage 把不补 NUL 的读缓冲
+# 交给 ostream << const char*，strlen 越界 → 服务端 SIGSEGV，demo 回环在任何候选上都过不了，
+# 于是“库可用”这件事必须换一个不被上游缺陷污染的量具来测。
+# API 按头文件嗅探，两套都支持，将来上游修好 epoll 也不用再改脚本：
+#   LEGACY（<= 021a26b4，实测 Server.h 里是 class Server）: Server(EventLoop*) + NewConnect/OnMessage
+#                                                            + Connection::GetState()/Send(std::string)
+#   MODERN（main，f815b419 之后）: TcpServer() + Start() + onConnect/onRecv + Send(std::string)
+# 两者的监听端口都是 1234：老 Acceptor 在 src/Acceptor.cpp:21 写死 InetAddress("127.0.0.1", 1234)，
+# 新的 TcpServer() 默认构造也是 1234，所以 ECHO_PORT 不用分支。
+pine_probe() {
+    local short="$1" libpath="$2" libdir api="" out="" rc="" srv="" up="" i g
+    PINE_PROBE_WHY="没跑起来"
+    # 停在 build/ 里：$libpath 是 ./lib/libpine_shared.so 这种相对路径，而且调用方
+    # （pine_try_commit）后面还要接着 file "$lib" / ls -l bin/，cwd 不能被打乱。
+    cd "$BUILD_DIR" || return 1
+    libdir="$(cd "$(dirname "$libpath")" && pwd)"
+    if grep -qE '^[[:space:]]*class Server\b' "$PINE_ROOT/src/include/Server.h" 2>/dev/null; then
+        api="LEGACY"
+    elif grep -qE '^[[:space:]]*class TcpServer\b' "$PINE_ROOT/src/include/TcpServer.h" 2>/dev/null; then
+        api="MODERN"
+    else
+        PINE_PROBE_WHY="认不出 server 头文件里的类名"
+        echo "WARN: $short 找不到 Server/TcpServer 声明，探针无法生成"
+        return 1
+    fi
+    echo "INFO: $short 探针 API = $api（库目录 $libdir）"
+
+    cat > "$WORK_DIR/probe_server.cpp" <<'CPP'
+// 不是上游文件，是本脚本第 5 步临时生成的功能量具（放在 $WORK_DIR，不进 git 工作树）。
+#include <iostream>
+#include <string>
+#include "pine.h"
+
+int main() {
+#if defined(PINE_API_LEGACY)
+  EventLoop *loop = new EventLoop();
+  Server *server = new Server(loop);
+  server->NewConnect([](Connection *conn) {
+    std::cout << "probe: accepted fd=" << conn->GetSocket()->GetFd() << std::endl;
+  });
+  server->OnMessage([](Connection *conn) {
+    // 刻意不调 conn->ReadBuffer()：它返回的是不补 NUL 的裸缓冲，
+    // 交给 ostream / std::string 构造都会 strlen 越界（上游 demo 就是崩在这）。
+    std::cout << "probe: onMessage -> send pong" << std::endl;
+    conn->Send(std::string("pong\n"));
+  });
+  loop->Loop();
+#elif defined(PINE_API_MODERN)
+  TcpServer *server = new TcpServer();
+  server->onConnect([](Connection *) { std::cout << "probe: accepted" << std::endl; });
+  server->onRecv([](Connection *conn) {
+    std::cout << "probe: onRecv -> send pong" << std::endl;
+    conn->Send(std::string("pong\n"));
+  });
+  server->Start();
+#else
+#error "PINE_API_LEGACY / PINE_API_MODERN 都没定义"
+#endif
+  return 0;
+}
+CPP
+
+    # 客户端不写 C++：用 bash 的 /dev/tcp，免得把上游 echo_client 自己的
+    # Connection::Write assert（attempt 6 的 134 退出码）混进判据里。
+    cat > "$WORK_DIR/probe_client.sh" <<'CLI'
+#! /bin/bash
+port="$1"
+if ! exec 3<>/dev/tcp/127.0.0.1/"$port"; then echo "PROBE: connect failed"; exit 3; fi
+printf 'hello\n' >&3
+if IFS= read -r -t 8 line <&3; then echo "PROBE: got [$line]"; exit 0; fi
+echo "PROBE: read timeout"
+exit 4
+CLI
+
+    # -include 那一串照抄第 3 步给 cmake 的 flags，保证探针和库是同一套头环境编出来的。
+    if ! g++ -std=c++17 $PINE_INCLUDE_FLAGS -pthread -I "$PINE_ROOT/src/include" \
+            -DPINE_API_"$api" "$WORK_DIR/probe_server.cpp" -o "$WORK_DIR/probe_bin_$short" \
+            -L "$libdir" -lpine_shared -Wl,-rpath,"$libdir" \
+            > "$WORK_DIR/probe_cc_$short.log" 2>&1; then
+        PINE_PROBE_WHY="探针编译失败"
+        echo "WARN: $short 的库探针编不过："
+        grep -E 'error:|fatal error' "$WORK_DIR/probe_cc_$short.log" | sed -n '1,8p' | sed -e 's/^/    /'
+        return 1
+    fi
+    if ! ldd "$WORK_DIR/probe_bin_$short" | grep -F 'libpine_shared.so' >/dev/null; then
+        PINE_PROBE_WHY="探针没链上本次的库"
+        return 1
+    fi
+
+    export LD_LIBRARY_PATH="$libdir:${LD_LIBRARY_PATH:-}"
+    "$WORK_DIR/probe_bin_$short" > "$WORK_DIR/probe_srv_$short.log" 2>&1 &
+    srv=$!
+    for i in $(seq 1 20); do
+        if ! kill -0 "$srv" 2>/dev/null; then break; fi
+        if (exec 3<>/dev/tcp/127.0.0.1/$ECHO_PORT) 2>/dev/null; then up=yes; break; fi
+        sleep 1
+    done
+    if [ -z "$up" ]; then
+        if kill -0 "$srv" 2>/dev/null; then
+            PINE_PROBE_WHY="探针 server 20 秒没监听 $ECHO_PORT"
+        else
+            PINE_PROBE_WHY="探针 server 起来就退了（启动即崩）"
+        fi
+        kill "$srv" 2>/dev/null || true; wait "$srv" 2>/dev/null || true
+        echo "WARN: $short $PINE_PROBE_WHY"
+        sed -n '1,8p' "$WORK_DIR/probe_srv_$short.log" | sed -e 's/^/  probe| /'
+        return 1
+    fi
+    out="$(timeout 15 bash "$WORK_DIR/probe_client.sh" "$ECHO_PORT" 2>&1)" || rc=$?
+    kill "$srv" 2>/dev/null || true; wait "$srv" 2>/dev/null || true
+    echo "INFO: 探针客户端：${out:-无输出}（退出码=${rc:-0}；4=读超时，124=timeout 收尾）"
+    case "$out" in
+        *"got [pong]"*|*pong*)
+            echo "PASS: $short 的库探针通过（accept 真连接 + 读到客户端字节 + 通过库写回 pong）"
+            sed -n '1,6p' "$WORK_DIR/probe_srv_$short.log" | sed -e 's/^/  probe| /'
+            PINE_PROBE_WHY=""
+            return 0 ;;
+    esac
+    PINE_PROBE_WHY="库探针没拿到 pong"
+    echo "WARN: $short 库探针没过：${out:-无输出}（退出码=${rc:-0}）"
+    sed -n '1,8p' "$WORK_DIR/probe_srv_$short.log" | sed -e 's/^/  probe| /'
+    if [ -n "${PINE_GDB:-}" ]; then
+        echo "---- 用 gdb 再跑一次探针，把栈留下 ----"
+        gdb -q -batch -ex 'handle SIGPIPE nostop noprint pass' -ex run -ex bt -ex 'thread apply all bt' \
+            --args "$WORK_DIR/probe_bin_$short" > "$WORK_DIR/probe_gdb_$short.log" 2>&1 &
+        g=$!
+        sleep 3
+        timeout 10 bash "$WORK_DIR/probe_client.sh" "$ECHO_PORT" >/dev/null 2>&1 || true
+        sleep 2
+        kill "$g" 2>/dev/null || true; wait "$g" 2>/dev/null || true
+        grep -E 'Program received|SIGSEGV|SIGABRT|^#[0-9]' "$WORK_DIR/probe_gdb_$short.log" | sed -n '1,18p'
+    fi
+    return 1
+}
+
+# 单个候选：切过去 -> 确认跟踪文件就是上游原样 -> 补 util.* -> 配库 -> 编 demo -> 库探针（硬判据）
+#             -> 再跑一次上游 demo 回环（只记录，不判死）。
 # 成功时把 cwd 留在该候选的 build 目录，失败时记一句原因（PINE_FAIL_WHY）供汇总表使用。
 # 里面所有“只看前几行”的管道一律 sed -n 不用 head：脚本开着 set -o pipefail，
 # head 读够就关管道，上游进程吃 SIGPIPE（141/grep 是 2）会被当成失败退出，
@@ -232,7 +390,20 @@ pine_try_commit() {
         PINE_FAIL_WHY="echo_server 没链上本次的库"
         return 1
     fi
-    if ! pine_loopback "$short"; then return 1; fi
+    PINE_DEMO_STATE=""
+    if ! pine_probe "$short" "$lib"; then
+        PINE_FAIL_WHY="${PINE_PROBE_WHY:-库探针失败}"
+        return 1
+    fi
+    # 上游 demo 那一轮跑在探针之后（两者都占 1234，探针里的 server 已经 kill+wait 掉了）。
+    # 它过不过都不影响结论：崩在 demo 自己的 strlen 越界上，见文件顶部第七轮。
+    if pine_loopback "$short"; then
+        PINE_DEMO_STATE="上游 demo 回环也通过"
+    else
+        PINE_DEMO_STATE="上游 demo 回环没通过（上游 echo_server 那句 cout << conn->ReadBuffer() 的 strlen 越界，已附 gdb 栈，不作为失败条件）"
+    fi
+    PINE_FAIL_WHY=""
+    echo "INFO: $short — $PINE_DEMO_STATE"
     echo "---- 选中候选的产物 ----"
     echo "HEAD=$(git -C .. rev-parse --short HEAD)  ($(git -C .. log -1 --format=%cd --date=short))"
     file "$lib"
@@ -294,12 +465,13 @@ make cpplint     || echo "SKIP: make cpplint 未通过（可选步骤）"
 make clang-tidy  || echo "SKIP: make clang-tidy 未通过（可选步骤）"
 echo "INFO: lint 步骤之后被改动的跟踪文件数=$(git diff --name-only | wc -l)（make format 就地格式化所致）"
 
-echo "==== 5. 从新到旧找一个“编译 + 回环都真过”的上游提交 ===="
+echo "==== 5. 从新到旧找一个“编译 + 库探针真过”的上游提交 ===="
 # 为什么这一步要循环试，而不是钉死一个 SHA（两条都是 CI 实测，不是推断）：
 #   1) 上游 HEAD(2bb80f7，2022-12-20) 在 Linux 上根本编不过：f815b419 那次 refactor 只把
 #      macOS 那条路径的 Poller 接口改成 const/RC 版本，src/Poller.cpp 的 #ifdef OS_LINUX 分支
 #      还在按旧签名定义，于是 Poll::Poll / UpdateChannel / DeleteChannel 一串
 #      "no declaration matches"，外加它调用了一个不存在的 Channel::SetExist。
+#      （attempt 7 实测：17 个候选里只有 a3f8c32 和 021a26b4 能编过库 + demo。）
 #   2) 退到 f815b419^ = 021a26b4 编得过，attempt 6 却卡在运行期：库和 3 个 demo 都产出、
 #      echo_server 也在 1234 上监听（日志有 "echo_server 已监听 1234"、server.log 有
 #      "New connection fd: 9"），客户端一连上服务端就 Segmentation fault (core dumped)，
@@ -331,7 +503,7 @@ for c in "${PINE_CANDIDATES[@]}"; do
     echo "-------------------- try $short ($when) $subj"
     if pine_try_commit "$c"; then
         PINE_OK_SHA="$c"
-        printf '%s\t%s\tPASS\t%s\n' "$short" "$when" "$subj" >> "$PINE_TABLE"
+        printf '%s\t%s\tPASS\t%s\n' "$short" "$when" "库探针通过；${PINE_DEMO_STATE:-demo 未记录}" >> "$PINE_TABLE"
         break
     fi
     printf '%s\t%s\tFAIL\t%s\n' "$short" "$when" "${PINE_FAIL_WHY:-未知}" >> "$PINE_TABLE"
@@ -339,8 +511,9 @@ done
 echo "==== 候选汇总（新→旧）===="
 cat "$PINE_TABLE"
 if [ -z "$PINE_OK_SHA" ]; then
-    echo "FATAL: ${#PINE_CANDIDATES[@]} 个候选没有一个同时通过“库编译 + demo 编译 + 回环”，见上面汇总表" >&2
+    echo "FATAL: ${#PINE_CANDIDATES[@]} 个候选没有一个同时通过“库编译 + demo 链接 + 库探针（真连接收发文）”，见上面汇总表" >&2
     exit 1
 fi
 echo "PASS: 本次 latest 取 $PINE_OK_SHA（$(git log -1 --format=%cd --date=short "$PINE_OK_SHA")）"
-echo "==== pine 构建与回环实测全部通过 ===="
+echo "INFO: 功能判据是自写的库探针（pine_probe）；上游 demo 的回环结果记在上面汇总表的 PASS 行里。"
+echo "==== pine 构建 + 库探针实测通过 ===="
