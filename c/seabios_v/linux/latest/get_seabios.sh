@@ -130,6 +130,28 @@ case "$tb_verdict" in
     *)  sb_die "无法从输出里解析判定值（得到 '$tb_verdict'）" ;;
 esac
 
+# 把 out/ 下需要的子目录建全。目录清单从 Makefile 的 DIRS= 行解析，不写死。
+# 为什么需要这一步（2026-10-26 ubuntu-26.04 的 VGA 腿实测撞到的）：
+#   Makefile 只在 do-kconfig 的配方里 mkdir -p $(addprefix $(OUT), $(DIRS))，
+#   而模式规则 `$(OUT)%.s: %.c` 和 `$(OUT)%.lds: %.lds.S` 都不把 $(OUT)autoconf.h
+#   当依赖（规则头在 master 是 135/143 行、rel-1.17.0 是 136/144 行、rel-1.9.3 是
+#   128/136 行；make 报错报的是配方那一行，rel-1.17.0 上就是日志里的 Makefile:138），
+#   于是 -j 下 cc1 可能在 out/src/ 还没被 mkdir 之前就往里面写文件，报
+#   "cannot open 'out/src/asm-offsets.s' for writing"。
+#   上游自己的 CI 也是 make -j，所以这是个概率性 race，不是版本不支持。
+sb_prepare_out() {
+    local dirs d
+    mkdir -p out
+    dirs="$(sed -n 's/^DIRS=//p' Makefile | sed -n '1p')"
+    if [ -z "$dirs" ]; then
+        sb_die "Makefile 里没解析到 DIRS= 行，无法预建 out/ 子目录"
+    fi
+    for d in $dirs; do
+        mkdir -p "out/$d"
+    done
+    echo "INFO: out/ 子目录按 Makefile 的 DIRS=（$dirs）预建完成"
+}
+
 # 单个 Kconfig 目标的完整流程：写种子 -> olddefconfig -> 断言开关真生效 -> 编 -> 验产物
 # $1 = 标签；$2 = .config 种子（换行分隔，不要写注释行）；$3.. = 期望产物路径
 sb_build() {
@@ -160,7 +182,15 @@ sb_build() {
 
     echo "---- [$name] 编译 ----"
     rm -rf out
-    if ! make "${SB_PY[@]}" -j"$(nproc)" EXTRAVERSION="$EXTRA_VER" >"$build_log" 2>&1; then
+    sb_prepare_out
+    # 先单线程把 autoconf.h 做出来（这条规则会跑 silentoldconfig，顺带按上游逻辑建目录），
+    # 再并行编剩下的，避开上面说的 mkdir race。
+    if ! make "${SB_PY[@]}" out/autoconf.h >>"$build_log" 2>&1; then
+        echo "---- $build_log 末尾 40 行 ----"
+        tail -n 40 "$build_log"
+        sb_die "[$name] 生成 out/autoconf.h 失败（Kconfig 头文件阶段）"
+    fi
+    if ! make "${SB_PY[@]}" -j"$(nproc)" EXTRAVERSION="$EXTRA_VER" >>"$build_log" 2>&1; then
         echo "---- $build_log 末尾 60 行 ----"
         tail -n 60 "$build_log"
         sb_die "[$name] SeaBIOS $SEABIOS_TAG 编译失败"
@@ -301,4 +331,6 @@ while IFS=$(printf '\t') read -r cfg art sz; do
 done <"$TABLE"
 echo "产物副本（已改名到 $ART_DIR，带 配置--文件名 前缀）："
 ( cd "$ART_DIR" && sha256sum -- * )
-echo "PASS: SeaBIOS $SEABIOS_TAG 在 $(sed -n '2p' /etc/os-release | tr -d '"') 上完成 " "$(cut -f1 "$TABLE" | sort -u | tr '\n' ' ')" "四种 Kconfig 目标编译与校验"
+# PRETTY_NAME 才是 "Ubuntu 24.04.1 LTS" 这种完整串；VERSION_ID 只有版本号。
+os_pretty="$(sed -n 's/^PRETTY_NAME=//p' /etc/os-release | sed -n '1p' | tr -d '"')"
+echo "PASS: SeaBIOS $SEABIOS_TAG 在 $os_pretty 上完成 $(cut -f1 "$TABLE" | sort -u | tr '\n' ' ')四类 Kconfig 目标编译与校验"
