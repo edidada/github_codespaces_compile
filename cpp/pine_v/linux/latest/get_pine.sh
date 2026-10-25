@@ -157,22 +157,52 @@ fi
     grep -rn "ErrorIf" src/util.cpp src/include/util.h 2>/dev/null | sed -e 's/^/  /' || true
 }
 
-# 上游 demo 的回环测试：起 echo_server、等端口、喂 5 行、看 echo_client 能不能读回同样的内容。
+# 等某个端口进入 LISTEN。绝对不要用 (exec 3<>/dev/tcp/...) 这种“建一条连接再关掉”的方式
+# 判断服务起没起：pine 会把这条探测连接 accept 成一个真连接，而 021a26b4 的
+# src/Connection.cpp:155 是
+#     void Connection::Business(){ Read(); on_message_callback_(this); }
+#   ReadNonBlocking() 读到 EOF（探测连接一发 FIN 就关了）会 print "read EOF, client fd N
+#   disconnected"、置 state_=Closed，并 Close() -> delete_connectioin_callback_ ->
+#   Server::DeleteConnection 把 sock_/Connection delete 掉；紧接着的 on_message_callback_(this)
+#   还是在**已经释放的对象**上跑（读的是野内存），Send()/Write() 一路都在 UB 上，服务端当场就没了，
+#   于是真正的客户端只能拿到 Connection reset by peer。
+# attempt 8 实测（run 40056514239，a3f8c32 与 021a26b4 两份 probe_srv.log 一模一样）：
+#   probe: accepted fd=9                       <- 这条就是探测连接
+#   read EOF, client fd 9 disconnected         <- 探测连接关掉，上面那条路径
+#   probe: onMessage -> send pong              <- 悬垂 this 上跑回调
+#   然后真客户端（下一步才连进来）: read: read error: 0: Connection reset by peer，退出码 4
+#   而且日志里根本没有第二条 accepted —— 服务端在处理探测连接时就已经不行了。
+# 所以改成只查 /proc/net/tcp{,6} 里 state=0A(LISTEN) 的表项，一行连接都不建。
+# 返回码：0=已监听，1=20 秒超时，2=进程先没了（用来把失败原因说准）。
+pine_wait_listen() {
+    local port="$1" pid="${2:-}" hex i
+    hex="$(printf '%04X' "$port")"
+    for i in $(seq 1 20); do
+        if [ -n "$pid" ] && ! kill -0 "$pid" 2>/dev/null; then return 2; fi
+        if awk -v hx="$hex" '$4=="0A" && $2 ~ (":" hx "$") {f=1} END{if(!f) exit 1}' \
+                /proc/net/tcp /proc/net/tcp6 2>/dev/null; then
+            echo "INFO: $port 已进入 LISTEN（第 $i 次轮询，未建任何探测连接）"
+            return 0
+        fi
+        sleep 1
+    done
+    return 1
+}
+
+# 上游 demo 的回环测试：起 echo_server、等它进 LISTEN、喂 5 行、看 echo_client 能不能读回同样的内容。
 # 失败时（且 apt 装到了 gdb）再复现一次把栈打出来——日志里必须留下证据才知道该不该继续往旧版本退。
 # 注意定位：从第七轮起这一步只是**信息**，不再当候选的失败条件（见文件顶部的 strlen 越界根因），
 # 真正的功能判据是下面的 pine_probe。
 pine_loopback() {
-    local short="$1" rc="" up="" i srv
+    local short="$1" rc="" up="" i srv w
     PINE_FAIL_WHY=""
     export LD_LIBRARY_PATH="$BUILD_DIR:${LD_LIBRARY_PATH:-}"
     ./bin/echo_server > "$WORK_DIR/server_$short.log" 2>&1 &
     srv=$!
-    for i in $(seq 1 20); do
-        if (exec 3<>/dev/tcp/127.0.0.1/$ECHO_PORT) 2>/dev/null; then up=yes; break; fi
-        sleep 1
-    done
-    if [ -z "$up" ]; then
-        echo "WARN: $short 的 echo_server 20 秒内没在 $ECHO_PORT 上监听"
+    w=0
+    pine_wait_listen "$ECHO_PORT" "$srv" || w=$?
+    if [ "$w" -ne 0 ]; then
+        echo "WARN: $short 的 echo_server 没能进入 LISTEN（pine_wait_listen 返回码=$w；1=超时 2=进程已退出）"
         sed -n '1,8p' "$WORK_DIR/server_$short.log"
         kill $srv 2>/dev/null || true; wait $srv 2>/dev/null || true
         PINE_FAIL_WHY="echo_server 没起来"
@@ -216,7 +246,7 @@ pine_loopback() {
 # 两者的监听端口都是 1234：老 Acceptor 在 src/Acceptor.cpp:21 写死 InetAddress("127.0.0.1", 1234)，
 # 新的 TcpServer() 默认构造也是 1234，所以 ECHO_PORT 不用分支。
 pine_probe() {
-    local short="$1" libpath="$2" libdir api="" out="" rc="" srv="" up="" i g
+    local short="$1" libpath="$2" libdir api="" out="" rc="" srv="" i g w
     PINE_PROBE_WHY="没跑起来"
     # 停在 build/ 里：$libpath 是 ./lib/libpine_shared.so 这种相对路径，而且调用方
     # （pine_try_commit）后面还要接着 file "$lib" / ls -l bin/，cwd 不能被打乱。
@@ -298,16 +328,13 @@ CLI
     export LD_LIBRARY_PATH="$libdir:${LD_LIBRARY_PATH:-}"
     "$WORK_DIR/probe_bin_$short" > "$WORK_DIR/probe_srv_$short.log" 2>&1 &
     srv=$!
-    for i in $(seq 1 20); do
-        if ! kill -0 "$srv" 2>/dev/null; then break; fi
-        if (exec 3<>/dev/tcp/127.0.0.1/$ECHO_PORT) 2>/dev/null; then up=yes; break; fi
-        sleep 1
-    done
-    if [ -z "$up" ]; then
-        if kill -0 "$srv" 2>/dev/null; then
-            PINE_PROBE_WHY="探针 server 20 秒没监听 $ECHO_PORT"
-        else
+    w=0
+    pine_wait_listen "$ECHO_PORT" "$srv" || w=$?
+    if [ "$w" -ne 0 ]; then
+        if [ "$w" -eq 2 ]; then
             PINE_PROBE_WHY="探针 server 起来就退了（启动即崩）"
+        else
+            PINE_PROBE_WHY="探针 server 20 秒没进 LISTEN"
         fi
         kill "$srv" 2>/dev/null || true; wait "$srv" 2>/dev/null || true
         echo "WARN: $short $PINE_PROBE_WHY"
@@ -320,6 +347,8 @@ CLI
     case "$out" in
         *"got [pong]"*|*pong*)
             echo "PASS: $short 的库探针通过（accept 真连接 + 读到客户端字节 + 通过库写回 pong）"
+            echo "INFO: 探针客户端拿到 pong 就退出，随后上游那条 EOF->Close()->on_message_callback_ 的悬垂路径还会"
+            echo "      在日志尾巴上留几行（见 pine_wait_listen 上面那段），不影响本次判据——pong 已经收到了。"
             sed -n '1,6p' "$WORK_DIR/probe_srv_$short.log" | sed -e 's/^/  probe| /'
             PINE_PROBE_WHY=""
             return 0 ;;
