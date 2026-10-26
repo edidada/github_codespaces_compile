@@ -17,6 +17,12 @@ mvn --batch-mode --no-transfer-progress -DskipTests package
 
 （脚本启动前校验 `pom.xml` 与 `mvn` 都在，并打印 mvn 版本。）
 
+**必须 JDK 25**（2026-10-26 实测 master @ 0151d5e）：core/pom.xml 顶层属性
+`javac.target=25`（Java 8 字头是 javac target），而 enforcer 的 `java.enforce.version`
+只在 `java25+` profile（activation `<jdk>(24,)`）里定义。JDK <25 时该 profile 不激活，
+`${java.enforce.version}` 解析为空，enforcer 直接报
+`RequireJavaVersion failed: JDK version can't be empty.`——所以 workflow 里钉死 JDK 25。
+
 ## 数据/事实
 
 | 事实 | 出处 |
