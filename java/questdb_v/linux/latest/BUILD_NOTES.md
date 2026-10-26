@@ -8,26 +8,26 @@ C / C++（黄瓜 SIMD）/ Rust 目标，Maven 全部一收）
 
 ## 官方构建命令
 
-README（Building QuestDB）给的就是 Maven：
+README（Building QuestDB）给的是 Maven。仓库根有 `pom.xml`（**没有 mvnw**），所以
+直接用 runner 自带的 `mvn`：
 
 ```
-mvn clean package -DskipTests
+mvn --batch-mode --no-transfer-progress -DskipTests package
 ```
 
-本脚本用仓库自带的 wrapper：`./mvnw --batch-mode --no-transfer-progress -DskipTests package`
-（`javac` 编译目标 Java 17+，workflow 用 JDK 21 稳兼容）。
+（脚本启动前校验 `pom.xml` 与 `mvn` 都在，并打印 mvn 版本。）
 
 ## 数据/事实
 
 | 事实 | 出处 |
 |---|---|
-| 构建入口是 Maven（有 mvnw） | README |
+| `mvn package -DskipTests` 为构建入口（仓库根 pom.xml，无 mvnw） | README |
 | 产物 `core/target/questdb-<ver>.jar`，可 `java -jar` 直接当一个内嵌服务端启动 | README/docs |
 | 测试跳过（CI 里跑全量测试是另一套），这里只验编译产物 | 官方 CI 拆分方式 |
 
 ## 硬门槛（任一不过就 FATAL）
 
-- `./mvnw package` 退出码 0；
+- `mvn package` 退出码 0；
 - 产出非 sources/javadoc/tests 的 `core/target/questdb-*.jar`；
 - `jar tf` 里含 `io/questdb` 条目。
 

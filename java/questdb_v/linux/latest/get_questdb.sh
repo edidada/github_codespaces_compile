@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 #
 # QuestDB（questdb/questdb，Java + 少量 C/C++/Rust 目标）源码编译：
-# 官方构建入口就是 Maven：./mvnw clean package -DskipTests
+# 官方构建入口就是 Maven（仓库根有 pom.xml，无 mvnw，用 runner 自带 mvn）
 # 主要产物 core/target/questdb-*.jar（内嵌服务端可 java -jar 启动）。
 #
 # 上游：https://github.com/questdb/questdb
@@ -27,18 +27,18 @@ commit="$(git rev-parse --short HEAD)"
 echo "PASS: 源码就位 commit=$commit"
 printf 'commit=%s\n' "$commit" >"$LOG_DIR/revision.txt"
 
-[ -x mvnw ] || { echo "FATAL: 仓库里没有 mvnw" >&2; exit 1; }
-chmod +x mvnw 2>/dev/null || true
+[ -f pom.xml ] || { echo "FATAL: 仓库根没有 pom.xml" >&2; exit 1; }
+command -v mvn >/dev/null 2>&1 || { echo "FATAL: runner 上没有 maven，无法构建" >&2; exit 1; }
+mvn --version 2>&1 | sed -n '1p'
 
-echo "==== 2. 编译：mvnw package ----"
+echo "==== 2. 编译：mvn package ----"
 build_log="$LOG_DIR/mvn-package.log"
-if ! ./mvnw --batch-mode --no-transfer-progress -DskipTests package >"$build_log" 2>&1; then
+if ! mvn --batch-mode --no-transfer-progress -DskipTests package >"$build_log" 2>&1; then
     tail -n 80 "$build_log"
     echo "FATAL: QuestDB 编译失败（mvnw package）" >&2
     exit 1
 fi
-grep -E '^BUILD (SUCCESS|SUCCESSFUL|FAILED)' | tail -n 1 || true
-grep -E 'BUILD SUCCESS' "$build_log" | tail -n 1 || true
+grep -E '^BUILD SUCCESS' "$build_log" | tail -n 1 || true
 
 echo "==== 3. 产物验活 ===="
 jar_list="$(find core -maxdepth 3 -type f -name 'questdb-*.jar' | sort)"
