@@ -90,3 +90,30 @@ Makefile 核过：`rel-1.14.0 / 1.16.0 / 1.16.1 / 1.16.2 / 1.16.3 / 1.15.0 / 1.1
 `latest`、`rel-1.17.0`、`rel-1.16.3`、`rel-1.16.2`、`rel-1.16.1`、`rel-1.16.0`、
 `rel-1.15.0`、`rel-1.14.0`（各一条 workflow，每条 3 个 ubuntu runner，全部跑绿）。
 上面这套判据对所有固定版本分支同样适用。
+
+## main 副本抽验（literal pin，2026-10-26 实测）
+
+main 上这 8 个 workflow 的 clone 行都写死了字面分支（`--branch 'c/seabios_v/linux/<x>'`，见
+`compiler_script` 的 main 提交 `e316dc9`），推 main 不会自己触发 CI，所以逐个 `gh workflow run --ref main`
+手动抽验。跑的是各源分支当前 tip（含最后一次注释修订），因此这轮绿灯就是这批分支头的凭证。
+
+| workflow（main 副本） | dispatch run | runner | qemu 串口 banner |
+|---|---|---|---|
+| `c_seabios_v_linux_latest.yml` | [40212758439](https://github.com/edidada/compiler_script/actions/runs/40212758439) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.17.0-0-gb52ca86e-compiler_script)` |
+| `c_seabios_v_linux_1_17_0.yml` | [40212761170](https://github.com/edidada/compiler_script/actions/runs/40212761170) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.17.0-0-gb52ca86e-compiler_script)` |
+| `c_seabios_v_linux_1_16_3.yml` | [40212764095](https://github.com/edidada/compiler_script/actions/runs/40212764095) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.16.3-0-ga6ed6b70-compiler_script)` |
+| `c_seabios_v_linux_1_16_2.yml` | [40212767610](https://github.com/edidada/compiler_script/actions/runs/40212767610) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.16.2-0-gea1b7a07-compiler_script)` |
+| `c_seabios_v_linux_1_16_1.yml` | [40212770728](https://github.com/edidada/compiler_script/actions/runs/40212770728) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.16.1-0-g3208b098-compiler_script)` |
+| `c_seabios_v_linux_1_16_0.yml` | [40212773658](https://github.com/edidada/compiler_script/actions/runs/40212773658) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.16.0-0-gd239552c-compiler_script)` |
+| `c_seabios_v_linux_1_15_0.yml` | [40212776661](https://github.com/edidada/compiler_script/actions/runs/40212776661) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.15.0-0-g2dd4b9b3-compiler_script)` |
+| `c_seabios_v_linux_1_14_0.yml` | [40212779769](https://github.com/edidada/compiler_script/actions/runs/40212779769) | 22.04 / 24.04 / 26.04 全 success | `SeaBIOS (version rel-1.14.0-0-g155821a1-compiler_script)` |
+
+合计 8 × 3 = 24 个 job 全绿，0 个失败。日志里每个 runner 的收尾行形如
+`PASS: SeaBIOS rel-1.16.3 在 Ubuntu 24.04.5 LTS 上完成 COREBOOT CSM QEMU VGA 四类 Kconfig 目标编译与校验`。
+
+更早还有一轮 3 个副本的抽验（40212112148 / 40212116283 / 40212123797），当时也是 3 个 runner 全 success，
+只是它们启动早于最后一次纯注释修订，所以补了上面这轮覆盖全部分支头。
+
+注意：qemu banner 里的 commit 号（如 `gb52ca86e`）是上游 SeaBIOS 的 HEAD，`-compiler_script` 是本流水线
+传的 `EXTRAVERSION`，`buildversion.py` 把它拼在 `git describe` 后面；产物里能被 `strings` 搜到整串版本，
+是脚本的硬校验项之一。
