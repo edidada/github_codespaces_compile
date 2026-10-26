@@ -62,6 +62,6 @@ cp "$build_log" "$ART_DIR/mvn-package.log" 2>/dev/null || true
 while IFS= read -r jar; do
     cp "$jar" "$ART_DIR/"
 done <"$WORK_DIR/jars.txt"
-( cd "$ART_DIR" && sha256sum -- "$main_jar" >sha256sums.txt )
+( cd "$ART_DIR" && sha256sum -- "./$(basename "$main_jar")" >sha256sums.txt )
 ls -l "$ART_DIR"
 echo "PASS: QuestDB 源码编译完成，全部产物在 $ART_DIR"
