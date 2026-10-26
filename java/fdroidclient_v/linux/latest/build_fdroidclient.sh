@@ -205,7 +205,7 @@ find app/build/outputs/apk -type f -name '*.apk' | sort >"$apk_list"
 apk_count="$(wc -l <"$apk_list" | tr -d ' ')"
 [ "$apk_count" -ge 1 ] || {
     echo "---- app/build/outputs 目录树 ----"
-    find app/build/outputs -maxdepth 3 -type d | sort | head -n 30
+    find app/build/outputs -maxdepth 3 -type d | sort | sed -n '1,30p'
     fd_die "assembleDebug 没产出任何 APK"
 }
 echo "INFO: 产出 $apk_count 个 APK（坑 A：flavor 矩阵，上游改了数量也算正常）"
