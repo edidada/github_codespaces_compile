@@ -30,7 +30,7 @@ echo "PASS: 源码就位 commit=$commit"
 printf 'commit=%s\n' "$commit" >"$LOG_DIR/revision.txt"
 
 echo "==== 2. cmake 配置 ===="
-mkdir -p build
+mkdir -p "$WORK_DIR/build"
 cd "$WORK_DIR/build"
 if ! cmake "$SRC_DIR" -DCMAKE_BUILD_TYPE=Release -DBUILD_TOOLS=true >"$LOG_DIR/cmake.log" 2>&1; then
     echo "WARN: 带 -DBUILD_TOOLS=true 配置失败，按 README 的默认参数再配一次"
