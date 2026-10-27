@@ -55,9 +55,13 @@ cd "$WORK_DIR/build"
 # 上游 CI 同款：do-arm-configure 内部 = do-configure arm-none-eabi -Dtests=true "$@"，
 # 本脚本覆盖为 -Dtests=false（测试需要 qemu/semihost 才能跑，这里只编库），
 # werror=false 规避 apt gcc 版本抖动，debug=false 用 release 优化。
+# specsdir 必须显式指定：留空时 picolibc.specs 会装进系统 gcc 目录
+# （/usr/lib/gcc/arm-none-eabi/<ver>），runner 上没有 root 权限会 Errno 13；
+# 给相对路径则装到 prefix/picolibc/arm-none-eabi/lib 里随 artifact 带走。
 if ! "$SRC_DIR"/scripts/do-arm-configure \
         -Dtests=false -Dtests-cdefs=false \
         -Dwerror=false -Ddebug=false \
+        -Dspecsdir='picolibc/arm-none-eabi/lib' \
         -Dprefix="$ART_DIR/prefix" \
         >"$LOG_DIR/meson-setup.log" 2>&1; then
     tail -n 60 "$LOG_DIR/meson-setup.log"
