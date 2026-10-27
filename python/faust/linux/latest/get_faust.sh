@@ -40,7 +40,7 @@ echo "==== 2. 构建依赖就位（no-isolation 模式手动备齐） ===="
 python3 -m pip install --quiet --upgrade pip
 python3 -m pip install --quiet build setuptools wheel cython setuptools_scm | sed -n '1,3p'
 python3 -c 'import Cython; print("Cython", Cython.__version__)'
-python3 -c 'import setuptools_scm; print("setuptools_scm", setuptools_scm.__version__)'
+python3 -c 'from importlib.metadata import version; print("setuptools_scm", version("setuptools-scm"))'
 
 echo "==== 3. 编译打包：python -m build --wheel ----"
 build_log="$LOG_DIR/build-wheel.log"
