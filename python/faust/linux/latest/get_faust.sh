@@ -37,8 +37,14 @@ echo "PASS: 源码就位 commit=$commit tags=$tags"
 printf 'commit=%s\ntags=%s\n' "$commit" "$tags" >"$LOG_DIR/revision.txt"
 
 echo "==== 2. 构建依赖就位（no-isolation 模式手动备齐） ===="
+# 关键：python -m build --no-isolation 用的是 sys.path 里的 setuptools，
+# ubuntu-22.04 自带的老 setuptools（/usr/lib/python3/dist-packages）优先级
+# 高于 --user 安装的 ~/.local，必须 sudo 升到系统级，否则 setuptools_scm
+# 的 egg_info 钩子会报 AttributeError: ignore_egg_info_in_manifest。
 python3 -m pip install --quiet --upgrade pip
-python3 -m pip install --quiet build setuptools wheel cython setuptools_scm | sed -n '1,3p'
+sudo python3 -m pip install --quiet --upgrade setuptools wheel
+python3 -m pip install --quiet build cython setuptools_scm
+python3 -c 'import setuptools; print("setuptools", setuptools.__version__)'
 python3 -c 'import Cython; print("Cython", Cython.__version__)'
 python3 -c 'from importlib.metadata import version; print("setuptools_scm", version("setuptools-scm"))'
 
