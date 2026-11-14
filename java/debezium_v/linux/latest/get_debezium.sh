@@ -38,9 +38,13 @@ fi
 sed -n '1,8p' "$LOG_DIR/maven-version.txt"
 
 echo "==== 3. 编译：clean verify -Dquick ===="
+# -Dquick 只关掉 tests/QA，debezium-connector-archetype 的 archetype IT
+# （maven-archetype-plugin:integration-test 会再生成项目跑一遍 Maven）不受其控制，
+# 上游 CI 同样用 -Darchetype.test.skip=true 跳过它。
 build_log="$LOG_DIR/mvn-build.log"
 if ! bash ./mvnw -B -ntp \
         -Dquick -DskipTests=true -DskipITs=true -Ddocker.skip=true \
+        -Darchetype.test.skip=true \
         clean verify >"$build_log" 2>&1; then
     tail -n 120 "$build_log"
     echo "FATAL: Debezium 编译失败" >&2
