@@ -53,7 +53,10 @@ case "$OS" in
         ;;
 esac
 
-echo "==== 4. 编译 GUI 二进制（tags: $TAGS）===="
+echo "==== 4. 编译 GUI 二进制 ===="
+# macOS 自带 bash 3.2 会把 `$TAGS）` 的全角括号字节吞进变量名，
+# 所有变量引用统一用 ${VAR} 明确界定。
+echo "tags: ${TAGS}"
 build_log="$LOG_DIR/go-build.log"
 if ! go build -tags "$TAGS" -trimpath -ldflags "$LDFLAGS" -o "$ART_DIR/$OUT" . >"$build_log" 2>&1; then
     tail -n 120 "$build_log"
@@ -69,8 +72,8 @@ echo "==== 5. 收集产物 ===="
     echo "os=$OS"
     echo "arch=$ARCH"
     echo "go=$(go version)"
-    echo "tags=$TAGS"
+    echo "tags=${TAGS}"
 } >"$ART_DIR/build-info.txt"
 [ -s "$ART_DIR/$OUT" ] || { echo "FATAL: 没有产出 GUI 二进制" >&2; exit 1; }
-echo "PASS: $OUT"
+echo "PASS: ${OUT}"
 ls -la "$ART_DIR"
