@@ -88,13 +88,16 @@ if [[ "$CREATE_SWAP_GB" =~ ^[0-9]+$ ]] && (( CREATE_SWAP_GB > 0 )); then
   CUR_SWAP_GB=$(awk '/SwapTotal/{print int($2/1048576)}' /proc/meminfo)
   if (( CUR_SWAP_GB < CREATE_SWAP_GB )); then
     log "创建 ${CREATE_SWAP_GB}G swap"
-    if [[ ! -f /swapfile ]]; then
-    $SUDO fallocate -l "${CREATE_SWAP_GB}G" /swapfile 2>/dev/null \
-          || $SUDO dd if=/dev/zero of=/swapfile bs=1M count=$((CREATE_SWAP_GB*1024)) status=none
-      $SUDO chmod 600 /swapfile
-      $SUDO mkswap /swapfile
-      $SUDO swapon /swapfile
-      echo "/swapfile none swap sw 0 0" | $SUDO tee -a /etc/fstab >/dev/null
+    # runner 自带的 /swapfile 只有约 3 GB 且不能同名复用，必须用独立文件，
+    # 否则 [[ ! -f /swapfile ]] 为假会直接跳过，16 GB 补不上去。
+    SWAP_FILE="$HOME/ob-swapfile"
+    if [[ ! -f "$SWAP_FILE" ]]; then
+      $SUDO fallocate -l "${CREATE_SWAP_GB}G" "$SWAP_FILE" 2>/dev/null \
+          || $SUDO dd if=/dev/zero of="$SWAP_FILE" bs=1M count=$((CREATE_SWAP_GB*1024)) status=none
+      $SUDO chmod 600 "$SWAP_FILE"
+      $SUDO mkswap "$SWAP_FILE"
+      $SUDO swapon "$SWAP_FILE"
+      echo "$SWAP_FILE none swap sw 0 0" | $SUDO tee -a /etc/fstab >/dev/null
     fi
     swapon --show || true
   fi
@@ -288,6 +291,38 @@ echo "  补丁校验通过"
 log "拉取自带 devtools 工具链 (./build.sh init)"
 ( cd "$OB_DIR" && bash ./build.sh init ) || warn "init 返回非 0, 继续尝试编译"
 
+# ---------- 6.5 Ubuntu 26 兼容: devtools 工具链需要 OpenSSL 1.1 ----------
+# build.sh 硬编码 CMAKE_COMMAND=${TOOLS_DIR}/bin/cmake，该二进制链接
+# libssl.so.1.1 / libcrypto.so.1.1；Ubuntu 26.04 只有 OpenSSL 3，直接跑会报
+# "error while loading shared libraries: libssl.so.1.1" → Failed to generate Makefile。
+# 双保险：a) 从 Ubuntu focal 解出 libssl1.1 给整个工具链用；
+#        b) 若仍跑不起来，把 cmake 换成系统 cmake 的 wrapper
+#           (build.sh release 不带 --init，之后不会覆盖 devtools)。
+log "补 OpenSSL 1.1 兼容库 (Ubuntu focal libssl1.1)"
+SSL11_DIR="$OUT_DIR/ssl11"
+mkdir -p "$SSL11_DIR"
+SSL11_DEB="$OUT_DIR/libssl1.1.deb"
+if [[ ! -f "$SSL11_DIR/usr/lib/x86_64-linux-gnu/libssl.so.1.1" ]]; then
+  curl -fsSL --retry 3 --max-time 120 -o "$SSL11_DEB" \
+    "http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb" \
+    || die "下载 libssl1.1 失败"
+  dpkg-deb -x "$SSL11_DEB" "$SSL11_DIR" || die "解包 libssl1.1 失败"
+fi
+export LD_LIBRARY_PATH="$SSL11_DIR/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+ls -l "$SSL11_DIR/usr/lib/x86_64-linux-gnu/"
+
+DEVTOOLS_BIN="$OB_DIR/deps/3rd/usr/local/oceanbase/devtools/bin"
+if [[ -d "$DEVTOOLS_BIN" ]] && ! "$DEVTOOLS_BIN/cmake" --version >/dev/null 2>&1; then
+  mv -f "$DEVTOOLS_BIN/cmake" "$DEVTOOLS_BIN/cmake.orig"
+  cat > "$DEVTOOLS_BIN/cmake" <<'WRAPPER_EOF'
+#!/usr/bin/env bash
+exec /usr/bin/cmake "$@"
+WRAPPER_EOF
+  chmod +x "$DEVTOOLS_BIN/cmake"
+  echo "  → devtools cmake 已替换为系统 cmake wrapper"
+fi
+"$DEVTOOLS_BIN/cmake" --version | head -1 || die "cmake 仍不可用"
+
 # ---------- 7. 编译 ----------
 log "开始编译: build.sh release --make -j${JOBS}   (日志: $LOG)"
 START=$(date +%s)
@@ -313,6 +348,17 @@ if [[ -f "$OBSERVER" ]]; then
   ls -lh "$OB_DIR/build_release/src/observer/liboceanbase.so" 2>/dev/null || true
   file "$OBSERVER" 2>/dev/null | cut -c1-200 || true
   du -sh "$OB_DIR" 2>/dev/null || true
+  ART_DIR="$(pwd)/_oceanbase_build/artifacts"
+  mkdir -p "$ART_DIR"
+  {
+      echo "project=oceanbase/oceanbase"
+      echo "commit=$OB_COMMIT"
+      echo "elapsed_sec=$ELAPSED"
+      echo "jobs=$JOBS"
+      echo "observer_bytes=$(stat -c '%s' "$OBSERVER" 2>/dev/null || echo unknown)"
+  } >"$ART_DIR/build-info.txt"
+  cp "$TIME_FILE" "$ART_DIR/ob-build.time" 2>/dev/null || true
+  echo "PASS: 产物清单写入 $ART_DIR"
   exit 0
 fi
 
