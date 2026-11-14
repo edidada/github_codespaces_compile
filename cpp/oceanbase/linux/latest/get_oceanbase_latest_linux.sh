@@ -129,6 +129,20 @@ fi
 git -C "$OB_DIR" checkout -f "$OB_COMMIT" || die "无法切换到 $OB_COMMIT"
 git -C "$OB_DIR" log -1 --format="  检出: %H%n  提交: %s%n  时间: %cd"
 
+# ---------- 4.5 补齐 CMakeLists 引用但仓库未提交的目录 ----------
+# unittest/sql/engine/op_tests/CMakeLists.txt 有
+#   file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/test_data DESTINATION ...)
+# 而该目录在 pin 的 commit 里并不存在（已确认不是 submodule / LFS，仓库
+# 也没有 .gitmodules / .gitattributes）。CMake 4.x 对缺失源直接报
+# "file COPY cannot find ..."（CMake 3.x 只是静默/警告），导致
+# [build.sh][ERROR] Failed to generate Makefile。
+# 本脚本编译的是 observer（release），不需要 unittest 的测试数据；
+# 建一个带占位文件的目录让 configure 的 file(COPY) 能找到源即可。
+TEST_DATA_DIR="$OB_DIR/unittest/sql/engine/op_tests/test_data"
+mkdir -p "$TEST_DATA_DIR"
+: > "$TEST_DATA_DIR/.keep"
+echo "  补齐缺失目录: unittest/sql/engine/op_tests/test_data (占位)"
+
 # ---------- 5. Ubuntu 26 适配补丁 ----------
 # 内容: 4 处去 -Werror + 9 处 strchr/strrchr 加 (char *) 强转
 cat > "$PATCH_FILE" <<'PATCH_EOF'
