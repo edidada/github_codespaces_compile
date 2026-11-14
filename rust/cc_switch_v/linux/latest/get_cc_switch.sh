@@ -33,7 +33,9 @@ commit="$(git rev-parse --short HEAD)"
 echo "PASS: 源码就位 commit=$commit"
 
 echo "==== 2. 关掉 updater 签名产物（CI 无签名密钥）===="
-sed -i 's/"createUpdaterArtifacts": true/"createUpdaterArtifacts": false/' src-tauri/tauri.conf.json
+# 不用 `sed -i`：macOS 的 BSD sed 要求 -i 后跟备份后缀，GNU 写法会报
+# "bad flag in substitute command"。改用 node（本 workflow 已 setup-node）跨平台重写。
+node -e 'const fs=require("fs"); const p="src-tauri/tauri.conf.json"; let s=fs.readFileSync(p,"utf8"); s=s.replace("\"createUpdaterArtifacts\": true","\"createUpdaterArtifacts\": false"); fs.writeFileSync(p,s);'
 grep -n "createUpdaterArtifacts" src-tauri/tauri.conf.json
 
 echo "==== 3. 按 OS 装系统依赖 ===="
@@ -92,5 +94,5 @@ done
 } >"$ART_DIR/build-info.txt"
 count="$(find "$ART_DIR" -type f | wc -l)"
 [ "$count" -gt 1 ] || { echo "FATAL: 没有产出安装包/二进制" >&2; exit 1; }
-echo "PASS: $count 个产物"
+echo "PASS: ${count} 个产物"
 ls -la "$ART_DIR"
