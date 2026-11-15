@@ -67,3 +67,12 @@
    有 workflow 但无同名脚本目录的 workflow 名: 85 个
    有脚本目录但无同名 workflow 的目录名  : 54 个（见 /tmp 分析）
    多为历史命名（如 c_coreutils_linux vs c_coreutils_v_linux_latest）。
+
+5) 补齐后最终校验（push 完成）
+   compiler_script origin 分支: 1070
+   脚本仓库 origin 分支      : 1069
+   共同分支: 1069；脚本仓库独有: 0（451 全部补齐并 push）
+   仅 compiler 独有: 1 —— copilot/fix-build-github-actions-job
+     （GitHub Copilot bot 自动化分支，非开源软件，按约定未镜像，此即唯一保留差异）
+   push 结果: 451 分支 + 1 反向分支，全部成功，0 失败。
+   校验时间: 2026-11-15 12:23:56
