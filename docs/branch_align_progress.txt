@@ -1,0 +1,5 @@
+# github_codespaces_compile 分支补齐进度（纯文本，制表符分隔）
+# 格式: STATUS	时间	分支名	备注
+# 开始: 2026-11-15 12:14:41
+OK_REVERSE_ALIGNED	2026-11-15 12:14:41	python/fdroidserver_v/linux/latest	compiler独有，脚本仓库补同名分支(指向main)
+SKIP_NOT_SOFTWARE	2026-11-15 12:14:41	copilot/fix-build-github-actions-job	GitHub Copilot bot分支，非开源软件，未镜像

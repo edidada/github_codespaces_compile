@@ -1,0 +1,69 @@
+两仓库分支 / workflow 对齐差异记录（纯文本）
+生成时间: 2026-11-15 12:13:42
+======================================================================
+
+口径说明
+  compiler_script main 上 workflow 数: 865
+  github_codespaces_compile main 上 .sh 脚本数: 857
+  （用户所说 1767 是脚本仓库总文件数，含 README/.b64/_codex 等杂物，
+   并非软件数；真实脚本 857 个 / 835 个脚本目录。）
+  两边 origin 分支: compiler_script 619、脚本仓库 1068。
+  共同 617；脚本仓库独有 451（本次补齐对象）；compiler 独有 2。
+
+1) 本次在 compiler_script 新建的 451 个分支（与脚本仓库同名）
+   其中 430 个的 workflow 已在 main 聚合，分支直接指向 main；
+   21 个 main 上没有对应 workflow，已生成 workflow YAML：
+
+   c/cparser/linux/1_22_0                         script=c/cparser/linux/1_22_0/get_cparser.sh
+   c/tengine                                      script=c/tengine/linux/get_tengine.sh
+   cpp/clickhouse/linux                           script=(probe)
+   cpp/duckdb/1_4_3                               script=(probe)
+   cpp/foundationdb/linux                         script=(probe)
+   cpp/iceberg_cpp/macos                          script=(probe)
+   cpp/liburing/linux                             script=(probe)
+   cpp/llvm_v/18_0_0                              script=(probe)
+   cpp/occt/linux                                 script=(probe)
+   cpp/openjdk25                                  script=(probe)
+   cpp/tinylsm/linux                              script=(probe)
+   java/bazel/linux                               script=(probe)
+   java/dubbo_v/3_1_11                            script=(probe)
+   java/openjdk21                                 script=(probe)
+   kafka                                          script=(probe)
+   python/conan                                   script=(probe)
+   python/opencv/linux/4_13_0                     script=(probe)
+   python/python/linux                            script=(probe)
+   python/selenium/linux                          script=(probe)
+   scala/kafka/linux                              script=(probe)
+   selenium                                       script=(probe)
+
+2) 无法在 main 上确定脚本路径的分支（19 个，workflow 用运行时探测）
+   这些分支名在脚本仓库 main 的 <分支名>/ 下没有 .sh，
+   workflow 会在克隆的同名分支里 find 第一个 .sh 执行。
+   cpp/clickhouse/linux
+   cpp/duckdb/1_4_3
+   cpp/foundationdb/linux
+   cpp/iceberg_cpp/macos
+   cpp/liburing/linux
+   cpp/llvm_v/18_0_0
+   cpp/occt/linux
+   cpp/openjdk25
+   cpp/tinylsm/linux
+   java/bazel/linux
+   java/dubbo_v/3_1_11
+   java/openjdk21
+   kafka
+   python/conan
+   python/opencv/linux/4_13_0
+   python/python/linux
+   python/selenium/linux
+   scala/kafka/linux
+   selenium
+
+3) 补齐后仍不相同的分支（记录，不强行镜像）
+   copilot/fix-build-github-actions-job           bot/自动化分支，非开源软件，未镜像到脚本仓库
+   python/fdroidserver_v/linux/latest             compiler 独有，已在脚本仓库补同名分支
+
+4) 命名不对应（非分支集合差异，仅记录映射问题）
+   有 workflow 但无同名脚本目录的 workflow 名: 85 个
+   有脚本目录但无同名 workflow 的目录名  : 54 个（见 /tmp 分析）
+   多为历史命名（如 c_coreutils_linux vs c_coreutils_v_linux_latest）。
