@@ -1,0 +1,23 @@
+name: build metabase
+
+on:
+  push:
+    branches: [ "java/metabase/linux/latest" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Metabase
+        run: |
+          chmod +x java/metabase/linux/latest/build.sh
+          java/metabase/linux/latest/build.sh
