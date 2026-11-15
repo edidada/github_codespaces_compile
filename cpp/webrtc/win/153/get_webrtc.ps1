@@ -16,5 +16,51 @@ fetch.bat --nohooks webrtc
 Set-Location src
 git checkout -b m153 refs/remotes/branch-heads/8010
 gclient sync --reset --force --delete_unversioned_trees --no-history
+
+# The m153 branch is built by an older Chromium clang.  Windows SDK 10.0.26100
+# emits declarations that this toolchain cannot consume, while the Windows
+# Server 2022 SDK is fully compatible with it. Prefer that SDK when present
+# and retain a newest-installed fallback for future runner images.
+$sdkRoot = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10'
+$sdkCandidates = @(Get-ChildItem (Join-Path $sdkRoot 'Include') -Directory |
+    Where-Object { Test-Path (Join-Path $_.FullName 'um') } |
+    Sort-Object { [version]$_.Name } -Descending)
+$selectedSdk = $sdkCandidates |
+    Where-Object { $_.Name -eq '10.0.20348.0' } |
+    Select-Object -First 1 -ExpandProperty Name
+if (-not $selectedSdk) {
+    $selectedSdk = $sdkCandidates | Select-Object -First 1 -ExpandProperty Name
+}
+if (-not $selectedSdk) {
+    throw "No usable Windows SDK was found under $sdkRoot"
+}
+
+$toolchainFile = 'build/vs_toolchain.py'
+$toolchainText = Get-Content -Raw $toolchainFile
+if ($toolchainText -notmatch 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]') {
+    throw "Could not find SDK_VERSION in $toolchainFile"
+}
+$toolchainText = $toolchainText -replace 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]', "SDK_VERSION = '$selectedSdk'"
+Set-Content -NoNewline -Encoding utf8NoBOM -Path $toolchainFile -Value $toolchainText
+# setup_toolchain.py passes its own SDK_VERSION directly to vcvarsall.bat.
+$setupToolchainFile = 'build/toolchain/win/setup_toolchain.py'
+$setupToolchainText = Get-Content -Raw $setupToolchainFile
+if ($setupToolchainText -notmatch 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]') {
+    throw "Could not find SDK_VERSION in $setupToolchainFile"
+}
+$setupToolchainText = $setupToolchainText -replace 'SDK_VERSION\s*=\s*[''\"][^''\"]+[''\"]', "SDK_VERSION = '$selectedSdk'"
+Set-Content -NoNewline -Encoding utf8NoBOM -Path $setupToolchainFile -Value $setupToolchainText
+# VS's generated environment files can retain the SDK revision originally
+# selected by the branch.  GN passes one of these files to setup_toolchain.py,
+# so rewrite the stale paths as well as SDK_VERSION.
+Get-ChildItem 'build/toolchain/win' -Filter 'environment.*' -File | ForEach-Object {
+    $environmentText = Get-Content -Raw $_.FullName
+    $environmentText = $environmentText -replace '10\.0\.28000\.0', $selectedSdk
+    Set-Content -NoNewline -Encoding utf8NoBOM -Path $_.FullName -Value $environmentText
+}
+$env:WindowsSdkDir = "$sdkRoot\"
+$env:WindowsSDKVersion = "$selectedSdk\"
+Write-Host "Using installed Windows SDK $selectedSdk"
+
 gn gen out/Release --args='is_debug=false rtc_include_tests=false rtc_build_examples=false'
 autoninja.bat -C out/Release webrtc
