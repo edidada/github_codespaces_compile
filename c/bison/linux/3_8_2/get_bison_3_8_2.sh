@@ -1,6 +1,6 @@
 #! /bin/bash
 sudo apt-get update
-sudo apt install -y gettext autopoint gperf
+sudo apt install -y gettext autopoint gperf help2man
 cd "$(dirname "$0")"
 git clone https://github.com/akimd/bison.git
 cd bison
