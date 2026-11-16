@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache PouchDB'
 export PROJECT_REPOSITORY='https://github.com/apache/pouchdb.git'
 export PROJECT_VERSION='9_0_0'
