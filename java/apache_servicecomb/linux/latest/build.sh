@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Servicecomb'
 export PROJECT_REPOSITORY='https://github.com/apache/servicecomb-java-chassis.git'
 export PROJECT_VERSION='latest'

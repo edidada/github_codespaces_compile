@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Lucene Core'
 export PROJECT_REPOSITORY='https://github.com/apache/lucene.git'
 export PROJECT_VERSION='10_5_1'

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Rat'
 export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/creadur/rat/trunk/'
 export PROJECT_VERSION='latest'

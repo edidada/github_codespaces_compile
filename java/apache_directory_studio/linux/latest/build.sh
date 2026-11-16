@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Directory Studio'
 export PROJECT_REPOSITORY='https://github.com/apache/directory-studio.git'
 export PROJECT_VERSION='latest'

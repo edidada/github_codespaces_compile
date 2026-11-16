@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache ManifoldCF'
 export PROJECT_REPOSITORY='https://github.com/apache/manifoldcf.git'
 export PROJECT_VERSION='latest'

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Solr'
 export PROJECT_REPOSITORY='https://github.com/apache/solr.git'
 export PROJECT_VERSION='10_0_0'

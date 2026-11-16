@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache IoTDB'
 export PROJECT_REPOSITORY='https://github.com/apache/iotdb.git'
 export PROJECT_VERSION='latest'

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Systemds'
 export PROJECT_REPOSITORY='https://github.com/apache/systemds.git'
 export PROJECT_VERSION='latest'

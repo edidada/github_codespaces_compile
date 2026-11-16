@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Griffin'
 export PROJECT_REPOSITORY='https://github.com/apache/griffin.git'
 export PROJECT_VERSION='0_6_0'

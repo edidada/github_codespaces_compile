@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache XML Commons External'
 export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/xerces/xml-commons/'
 export PROJECT_VERSION='latest'

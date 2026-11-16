@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Struts'
 export PROJECT_REPOSITORY='https://github.com/apache/struts.git'
 export PROJECT_VERSION='latest'

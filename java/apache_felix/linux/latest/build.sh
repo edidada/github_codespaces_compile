@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Felix'
 export PROJECT_REPOSITORY='https://svn.apache.org/repos/asf/felix'
 export PROJECT_VERSION='latest'

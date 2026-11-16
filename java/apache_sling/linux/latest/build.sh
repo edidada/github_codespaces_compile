@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Sling'
 export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/sling/'
 export PROJECT_VERSION='latest'

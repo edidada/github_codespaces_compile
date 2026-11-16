@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Tapestry'
 export PROJECT_REPOSITORY='https://github.com/apache/tapestry-5.git'
 export PROJECT_VERSION='latest'

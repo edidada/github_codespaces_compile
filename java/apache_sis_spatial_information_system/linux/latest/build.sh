@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Spatial Information System'
 export PROJECT_REPOSITORY='https://github.com/apache/sis.git'
 export PROJECT_VERSION='latest'

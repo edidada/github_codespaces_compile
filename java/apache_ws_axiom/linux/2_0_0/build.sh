@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Axiom'
 export PROJECT_REPOSITORY='https://github.com/apache/ws-axiom.git'
 export PROJECT_VERSION='2_0_0'

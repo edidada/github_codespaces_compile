@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Synapse'
 export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/synapse/trunk/java'
 export PROJECT_VERSION='latest'

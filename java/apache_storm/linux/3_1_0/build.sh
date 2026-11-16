@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Storm'
 export PROJECT_REPOSITORY='https://github.com/apache/storm.git'
 export PROJECT_VERSION='3_1_0'

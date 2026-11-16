@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Commons HttpClient'
 export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/httpcomponents/oac.hc3x/trunk'
 export PROJECT_VERSION='latest'

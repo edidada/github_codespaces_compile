@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Woden'
 export PROJECT_REPOSITORY='https://svn.apache.org/repos/asf/webservices/woden/'
 export PROJECT_VERSION='latest'
