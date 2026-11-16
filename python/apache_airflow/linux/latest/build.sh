@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Airflow'
 export PROJECT_REPOSITORY='https://github.com/apache/airflow.git'
-export PROJECT_VERSION='latest'
-export PROJECT_REF=''
+export PROJECT_VERSION='3.4.0'
+export PROJECT_REF='3.4.0'
 
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"

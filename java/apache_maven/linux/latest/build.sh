@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 export PROJECT_NAME='Apache Maven'
-export PROJECT_REPOSITORY='https://github.com/apache/maven-integration-testing.git'
+export PROJECT_REPOSITORY='https://github.com/apache/maven.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 

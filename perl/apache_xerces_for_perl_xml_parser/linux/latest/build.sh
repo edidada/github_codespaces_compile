@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 export PROJECT_NAME='Apache Xerces for Perl XML Parser'
-export PROJECT_REPOSITORY='https://svn.apache.org/repos/asf/xerces/xerces-p/trunk'
+export PROJECT_REPOSITORY='https://github.com/apache/xerces-c.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 

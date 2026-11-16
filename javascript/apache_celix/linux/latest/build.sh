@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 export PROJECT_NAME='Apache Celix'
-export PROJECT_REPOSITORY='https://github.com/apache/celix-site.git'
+export PROJECT_REPOSITORY='https://github.com/apache/celix.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 

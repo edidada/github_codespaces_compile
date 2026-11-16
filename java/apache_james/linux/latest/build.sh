@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_TESTS=0
 export PROJECT_NAME='Apache JAMES'
-export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/james/server/trunk'
+export PROJECT_REPOSITORY='https://github.com/apache/james-project.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 
