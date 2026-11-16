@@ -40,10 +40,6 @@ fi
 cd "$work_root/source"
 git rev-parse HEAD 2>/dev/null || true
 
-if [[ -f .gitmodules ]]; then
-  git submodule update --init --recursive --depth=1
-fi
-
 if [[ -n "${PROJECT_BUILD_ROOT:-}" ]]; then
   cd "$PROJECT_BUILD_ROOT"
   echo "Selected project-specific build root: $PWD"
@@ -54,14 +50,14 @@ fi
 # Prefer a root build descriptor, then select the shallowest descriptor using
 # a deterministic build-system priority.
 root_descriptor_found=false
-for descriptor in pom.xml build.gradle build.gradle.kts gradlew build.xml build.sbt go.mod Cargo.toml mix.exs rebar.config rebar.config.script package.json pyproject.toml setup.py setup.cfg CMakeLists.txt configure configure.ac autogen.sh WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile Rakefile composer.json Makefile makefile GNUmakefile; do
+for descriptor in pom.xml build.gradle build.gradle.kts gradlew build.xml go.mod Cargo.toml mix.exs rebar.config rebar.config.script package.json pyproject.toml setup.py setup.cfg CMakeLists.txt configure configure.ac autogen.sh WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile Rakefile composer.json Makefile makefile GNUmakefile; do
   if [[ -e "$descriptor" ]]; then
     root_descriptor_found=true
     break
   fi
 done
 if [[ "$root_descriptor_found" == false ]]; then
-  for descriptor in pom.xml build.gradle build.gradle.kts build.xml build.sbt go.mod Cargo.toml mix.exs rebar.config package.json pyproject.toml setup.py CMakeLists.txt configure configure.ac WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile composer.json Makefile; do
+  for descriptor in pom.xml build.gradle build.gradle.kts build.xml go.mod Cargo.toml mix.exs rebar.config package.json pyproject.toml setup.py CMakeLists.txt configure configure.ac WORKSPACE WORKSPACE.bazel MODULE.bazel Gemfile composer.json Makefile; do
     nested_descriptor="$(find . -mindepth 2 -maxdepth 4 -type f -name "$descriptor" -not -path '*/.git/*' -not -path '*/node_modules/*' -print -quit)"
     if [[ -n "$nested_descriptor" ]]; then
       cd "$(dirname "$nested_descriptor")"
@@ -77,30 +73,43 @@ if [[ -n "${PROJECT_BUILD_COMMAND:-}" ]]; then
   exit 0
 fi
 
+# Tests run by default to validate the checkout. A project build.sh can set
+# PROJECT_TESTS=0 to build only, for upstream suites that are flaky, need
+# missing hardware/credentials, or are too heavy for the hosted runner.
+RUN_TESTS="${PROJECT_TESTS:-1}"
+
 run_maven() {
   local mvn_cmd=(mvn)
   [[ -x ./mvnw ]] && mvn_cmd=(./mvnw)
-  "${mvn_cmd[@]}" -B -ntp -DskipITs test
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    "${mvn_cmd[@]}" -B -ntp -DskipTests -DskipITs package
+  else
+    "${mvn_cmd[@]}" -B -ntp -DskipITs test
+  fi
 }
 
 run_gradle() {
   local gradle_cmd=(gradle)
   [[ -x ./gradlew ]] && gradle_cmd=(./gradlew)
-  "${gradle_cmd[@]}" --no-daemon test
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    "${gradle_cmd[@]}" --no-daemon build -x test
+  else
+    "${gradle_cmd[@]}" --no-daemon test
+  fi
 }
 
 run_node() {
   if [[ -f pnpm-lock.yaml ]]; then
     corepack enable
     pnpm install --frozen-lockfile
-    pnpm test
+    if [[ "$RUN_TESTS" == 0 ]]; then pnpm run build; else pnpm test; fi
   elif [[ -f yarn.lock ]]; then
     corepack enable
     yarn install --immutable || yarn install --frozen-lockfile
-    yarn test
+    if [[ "$RUN_TESTS" == 0 ]]; then yarn run build; else yarn test; fi
   else
     if [[ -f package-lock.json || -f npm-shrinkwrap.json ]]; then npm ci; else npm install; fi
-    npm test
+    if [[ "$RUN_TESTS" == 0 ]]; then npm run build --if-present; else npm test; fi
   fi
 }
 
@@ -108,7 +117,9 @@ run_python() {
   python -m pip install --upgrade pip build pytest tox
   if [[ -f requirements.txt ]]; then python -m pip install -r requirements.txt; fi
   python -m pip install -e '.[test]' || python -m pip install -e .
-  if [[ -d tests || -f pytest.ini || -f tox.ini ]]; then
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    python -m build
+  elif [[ -d tests || -f pytest.ini || -f tox.ini ]]; then
     python -m pytest
   else
     python -m build
@@ -120,11 +131,11 @@ if [[ -f pom.xml ]]; then
 elif [[ -f build.gradle || -f build.gradle.kts || -f gradlew ]]; then
   run_gradle
 elif [[ -f build.xml ]]; then
-  ant test || ant
-elif [[ -f build.sbt ]]; then
-  if [[ -x ./sbt ]]; then ./sbt test; else sbt test; fi
+  if [[ "$RUN_TESTS" == 0 ]]; then ant; else ant test || ant; fi
 elif [[ -f go.mod ]]; then
-  if [[ -f Makefile ]] && make -qp 2>/dev/null | grep -Eq '^test:'; then
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    go build ./...
+  elif [[ -f Makefile ]] && make -qp 2>/dev/null | grep -Eq '^test:'; then
     make test
   else
     go test ./...
@@ -134,20 +145,28 @@ elif [[ -f Cargo.toml ]]; then
     sudo apt-get update
     sudo apt-get install -y protobuf-compiler
   fi
-  cargo test --workspace --all-targets
-elif [[ -f rebar.config || -f rebar.config.script ]]; then
-  if [[ -x ./rebar3 ]]; then ./rebar3 eunit; else rebar3 eunit; fi
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    cargo build --workspace --all-targets
+  else
+    cargo test --workspace --all-targets
+  fi
 elif [[ -f mix.exs ]]; then
   mix local.hex --force
   mix local.rebar --force
   mix deps.get
-  mix test
+  if [[ "$RUN_TESTS" == 0 ]]; then mix compile; else mix test; fi
+elif [[ -f rebar.config || -f rebar.config.script ]]; then
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    if [[ -x ./rebar3 ]]; then ./rebar3 compile; else rebar3 compile; fi
+  else
+    if [[ -x ./rebar3 ]]; then ./rebar3 eunit; else rebar3 eunit; fi
+  fi
 elif [[ -f package.json ]]; then
   run_node
 elif [[ -f pyproject.toml || -f setup.py || -f setup.cfg ]]; then
   run_python
 elif compgen -G '*.sln' >/dev/null || compgen -G '*.csproj' >/dev/null; then
-  dotnet test
+  if [[ "$RUN_TESTS" == 0 ]]; then dotnet build; else dotnet test; fi
 elif [[ -f configure || -f configure.ac || -f autogen.sh || -f buildconf ]]; then
   sudo apt-get update
   sudo apt-get install -y autoconf automake libtool libtool-bin
@@ -156,23 +175,35 @@ elif [[ -f configure || -f configure.ac || -f autogen.sh || -f buildconf ]]; the
   [[ -x ./configure ]] || autoreconf -fi
   ./configure
   make
-  make check
+  if [[ "$RUN_TESTS" != 0 ]]; then make check; fi
 elif [[ -f CMakeLists.txt ]]; then
-  cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
-  cmake --build build --parallel 2
-  ctest --test-dir build --output-on-failure
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+    cmake --build build --parallel 2
+  else
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+    cmake --build build --parallel 2
+    ctest --test-dir build --output-on-failure
+  fi
 elif [[ -f WORKSPACE || -f WORKSPACE.bazel || -f MODULE.bazel ]]; then
-  if command -v bazelisk >/dev/null; then bazelisk test //...; else npx --yes @bazel/bazelisk test //...; fi
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    if command -v bazelisk >/dev/null; then bazelisk build //...; else npx --yes @bazel/bazelisk build //...; fi
+  else
+    if command -v bazelisk >/dev/null; then bazelisk test //...; else npx --yes @bazel/bazelisk test //...; fi
+  fi
 elif [[ -f Gemfile || -f Rakefile ]]; then
-  command -v bundle >/dev/null || gem install bundler
   bundle install
-  bundle exec rake test || bundle exec rake
+  if [[ "$RUN_TESTS" == 0 ]]; then
+    bundle exec rake
+  else
+    bundle exec rake test || bundle exec rake
+  fi
 elif [[ -f composer.json ]]; then
   composer install --no-interaction
-  composer test || vendor/bin/phpunit
+  if [[ "$RUN_TESTS" != 0 ]]; then composer test || vendor/bin/phpunit; fi
 elif [[ -f Makefile || -f makefile || -f GNUmakefile ]]; then
   make
-  if make -qp 2>/dev/null | grep -Eq '^test:'; then make test; fi
+  if [[ "$RUN_TESTS" != 0 ]] && make -qp 2>/dev/null | grep -Eq '^test:'; then make test; fi
 else
   echo "No supported build system was detected in $PROJECT_NAME." >&2
   find . -maxdepth 2 -type f | sort | head -200 >&2
