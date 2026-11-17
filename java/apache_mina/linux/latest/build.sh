@@ -14,7 +14,8 @@ if [ -z "${JAVA_HOME_8_X64:-}" ]; then
     tar -xzf "$J8DIR/jdk8.tar.gz" -C "$J8DIR" --strip-components=1
   fi
   export JAVA_HOME_8_X64="$J8DIR"
-fiexport JAVA_HOME="$JAVA_HOME_8_X64"
+fi
+export JAVA_HOME="$JAVA_HOME_8_X64"
 export PATH="$JAVA_HOME/bin:$PATH"
 export PROJECT_BUILD_COMMAND='find . -name pom.xml -exec sed -i -E -e "s#(<source>)(1\.[0-9]|1\.3|5|6|7)(</source>)#\18\3#g" -e "s#(<target>)(1\.[0-9]|1\.3|5|6|7)(</target>)#\18\3#g" -e "s#(<maven\.compiler\.source>)(1\.[0-9]|1\.3|5|6|7)(</maven\.compiler\.source>)#\18\3#g" -e "s#(<maven\.compiler\.target>)(1\.[0-9]|1\.3|5|6|7)(</maven\.compiler\.target>)#\18\3#g" {} + && mvn -B -ntp -DskipTests -DskipITs package'
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
