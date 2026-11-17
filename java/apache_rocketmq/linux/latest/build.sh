@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_SUBMODULES=1
 export PROJECT_TESTS=0
 export PROJECT_NAME='Apache Rocketmq'
 export PROJECT_REPOSITORY='https://github.com/apache/rocketmq.git'

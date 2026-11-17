@@ -37,7 +37,9 @@ else
   fi
 fi
 
-cd "$work_root/source"
+if [[ "${PROJECT_SUBMODULES:-0}" == 1 && -e "$work_root/source/.git" ]]; then
+  git -C "$work_root/source" submodule update --init --recursive --depth 1
+ficd "$work_root/source"
 git rev-parse HEAD 2>/dev/null || true
 
 if [[ -n "${PROJECT_BUILD_ROOT:-}" ]]; then
