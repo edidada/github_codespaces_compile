@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export PROJECT_SUBMODULES=1
 export PROJECT_BUILD_COMMAND='cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --parallel 2'
 export PROJECT_TESTS=0
 export PROJECT_NAME='Apache TVM'
