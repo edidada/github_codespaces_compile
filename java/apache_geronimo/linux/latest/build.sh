@@ -14,7 +14,8 @@ if [ -z "${JAVA_HOME_8_X64:-}" ]; then
     tar -xzf "$J8DIR/jdk8.tar.gz" -C "$J8DIR" --strip-components=1
   fi
   export JAVA_HOME_8_X64="$J8DIR"
-fiexport JAVA_HOME="$JAVA_HOME_8_X64"
+fi
+export JAVA_HOME="$JAVA_HOME_8_X64"
 export PATH="$JAVA_HOME/bin:$PATH"
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"
