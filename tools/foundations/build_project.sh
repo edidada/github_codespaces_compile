@@ -35,8 +35,11 @@ else
       git -C "$work_root/source" checkout "$PROJECT_REF"
     fi
   fi
+  if [[ "${PROJECT_SUBMODULES:-0}" == 1 ]]; then
+    echo "Initializing git submodules for the project checkout"
+    git -C "$work_root/source" submodule update --init --recursive --depth 1
+  fi
 fi
-
 cd "$work_root/source"
 git rev-parse HEAD 2>/dev/null || true
 
