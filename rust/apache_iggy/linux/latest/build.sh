@@ -6,6 +6,6 @@ export PROJECT_REPOSITORY='https://github.com/apache/iggy.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 
-export PROJECT_BUILD_COMMAND='sudo apt-get update -qq && sudo apt-get install -y -qq pkg-config libhwloc-dev && cargo build --workspace --all-targets'
+export PROJECT_BUILD_COMMAND='sudo apt-get update -qq && sudo apt-get install -y -qq pkg-config libudev-dev && cargo build --workspace --all-targets'
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"
