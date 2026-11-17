@@ -8,7 +8,9 @@ cd "$(dirname "$0")"
 rm -rf opencv
 git clone --quiet --depth=1 -b 4.13.0 https://github.com/opencv/opencv.git
 
-echo "== configure =="
+sudo apt-get update -qq && sudo apt-get install -y -qq python3-numpy python3-dev
+echo '== configure =='
+
 cmake -S opencv -B opencv/build \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTS=OFF \
