@@ -6,6 +6,6 @@ export PROJECT_REPOSITORY='http://svn.apache.org/repos/asf/logging/chainsaw/trun
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
 
-export PROJECT_BUILD_COMMAND='sed -i -e 's#<tasks>#<target>#g' -e 's#</tasks>#</target>#g' pom.xml && mvn -B -ntp -DskipTests -DskipITs package'
+export PROJECT_BUILD_COMMAND='sed -i "s#<tasks>#<target>#g; s#</tasks>#</target>#g" pom.xml && mvn -B -ntp -DskipTests -DskipITs package'
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"
