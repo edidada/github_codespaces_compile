@@ -6,5 +6,7 @@ export PROJECT_REPOSITORY='https://github.com/apache/solr.git'
 export PROJECT_VERSION='10_0_0'
 export PROJECT_REF='releases/solr/10.0.0'
 
+export JAVA_HOME="$JAVA_HOME_21_X64"
+export PATH="$JAVA_HOME/bin:$PATH"
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec "$repository_root/tools/foundations/build_project.sh"
