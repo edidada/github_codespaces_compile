@@ -55,17 +55,20 @@ echo "PASS: 源码就位 commit=$commit"
 echo "==== 3. make 自举（bootstrap → ncgen → nncgen）===="
 # GCC 15（Ubuntu 26.04 默认）以 C23 为默认标准，third_party/zmac 的 K&R 老代码里
 # bookmark()/getlocal() 空参数列表会被当成"无参"而报 too many arguments/conflicting types。
-# 仅当 GCC 主版本 >= 15 时回退到 gnu89，避免影响 gcc 11/13 的 22.04/24.04/arm 腿。
+# 仅当 GCC 主版本 >= 15 时显式固定到 gnu17（GCC 11/13 的默认标准，既兼容 zmac 的 K&R
+# 又支持 rt/cgen/cowgol.h 的 C99 for 声明），不影响 gcc 11/13 的 22.04/24.04/arm 腿。
 GCC_MAJ="$(gcc -dumpversion 2>/dev/null | cut -d. -f1)"
 echo "GCC major: ${GCC_MAJ:-unknown}"
 NPROC="$( (command -v nproc >/dev/null && nproc) || echo 4 )"
 NEED_GNU89=0
 if [ -n "$GCC_MAJ" ] && [ "$GCC_MAJ" -ge 15 ] 2>/dev/null; then NEED_GNU89=1; fi
 if [ "$NEED_GNU89" -eq 1 ]; then
-  # zmac 是 host 工具用 $(HOSTCFLAGS)，其余用 $(CFLAGS)；make 命令行变量优先级最高，
-  # 会写入 .obj/build.ninja 传给实际编译命令。仅 GCC>=15 回退 gnu89。
-  echo "GCC>=15: CFLAGS/HOSTCFLAGS 回退 gnu89"
-  if ! make -j"$NPROC" CFLAGS="-std=gnu89 -g -Og" HOSTCFLAGS="-std=gnu89 -g -Og" >"$LOG_DIR/make.log" 2>&1; then
+  # GCC 15 默认 C23：zmac 的 K&R 空参数列表会被当无参而报错；但 gnu89 又太老，
+  # rt/cgen/cowgol.h 用了 C99 的 for 循环声明。gnu17 是 GCC 11/13（已通过的腿）的
+  # 默认标准，既兼容 zmac 的 K&R 又支持 for 声明。显式指定覆盖 C23 默认值即可。
+  # zmac 是 host 工具用 $(HOSTCFLAGS)，其余用 $(CFLAGS)；make 命令行变量优先级最高。
+  echo "GCC>=15: CFLAGS/HOSTCFLAGS 固定 gnu17"
+  if ! make -j"$NPROC" CFLAGS="-std=gnu17 -g -Og" HOSTCFLAGS="-std=gnu17 -g -Og" >"$LOG_DIR/make.log" 2>&1; then
     echo "FATAL: Cowgol make 失败，日志尾部：" >&2
     tail -n 180 "$LOG_DIR/make.log" >&2
     exit 1
