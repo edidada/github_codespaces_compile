@@ -34,7 +34,16 @@ JANET_BIN=""
 
 if [ "$WIN" -eq 1 ]; then
   echo "==== 2. Windows: MSVC build_win.bat 自举构建 ===="
-  # workflow 已注入 MSVC 环境（ilammy/msvc-dev-cmd@v1），这里只需 cmd 调用 bat。
+  # workflow 已注入 MSVC 环境（ilammy/msvc-dev-cmd@v1）。
+  # 关键：bash 的 PATH 里 Git Bash 的 /usr/bin（GNU coreutils 的 link）排在 MSVC 前面，
+  # 传给 cmd.exe 后 build_win.bat 里的 `link` 会被解析成 GNU link 而非 MSVC link.exe
+  # （报错 "link: extra operand"）。把 MSVC 工具链 bin 提到 PATH 最前，确保 cl/link/lib
+  # 都解析到 MSVC 版本。用 cmd 原生反斜杠路径，避免 MSYS 路径转换。
+  if [ -n "${VCToolsInstallDir:-}" ]; then
+    VC_TOOLS_WIN="${VCToolsInstallDir}bin\\Hostx64\\x64"
+    export PATH="$VC_TOOLS_WIN:$PATH"
+    echo "MSVC tools: $VC_TOOLS_WIN"
+  fi
   # cmd.exe 的 /c 在 MSYS 里会被路径转换，用 //c 规避。
   if ! cmd.exe //c "build_win.bat" >"$LOG_DIR/build.log" 2>&1; then
     tail -n 120 "$LOG_DIR/build.log" >&2
