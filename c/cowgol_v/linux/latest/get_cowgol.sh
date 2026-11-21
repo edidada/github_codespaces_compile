@@ -58,12 +58,19 @@ echo "==== 3. make 自举（bootstrap → ncgen → nncgen）===="
 # 仅当 GCC 主版本 >= 15 时回退到 gnu89，避免影响 gcc 11/13 的 22.04/24.04/arm 腿。
 GCC_MAJ="$(gcc -dumpversion 2>/dev/null | cut -d. -f1)"
 echo "GCC major: ${GCC_MAJ:-unknown}"
-if [ -n "$GCC_MAJ" ] && [ "$GCC_MAJ" -ge 15 ] 2>/dev/null; then
-  export CFLAGS="-std=gnu89 -g -Og"
-  echo "CFLAGS=$CFLAGS (GCC>=15: zmac K&R 兼容)"
-fi
 NPROC="$( (command -v nproc >/dev/null && nproc) || echo 4 )"
-if ! make -j"$NPROC" >"$LOG_DIR/make.log" 2>&1; then
+NEED_GNU89=0
+if [ -n "$GCC_MAJ" ] && [ "$GCC_MAJ" -ge 15 ] 2>/dev/null; then NEED_GNU89=1; fi
+if [ "$NEED_GNU89" -eq 1 ]; then
+  # zmac 是 host 工具用 $(HOSTCFLAGS)，其余用 $(CFLAGS)；make 命令行变量优先级最高，
+  # 会写入 .obj/build.ninja 传给实际编译命令。仅 GCC>=15 回退 gnu89。
+  echo "GCC>=15: CFLAGS/HOSTCFLAGS 回退 gnu89"
+  if ! make -j"$NPROC" CFLAGS="-std=gnu89 -g -Og" HOSTCFLAGS="-std=gnu89 -g -Og" >"$LOG_DIR/make.log" 2>&1; then
+    echo "FATAL: Cowgol make 失败，日志尾部：" >&2
+    tail -n 180 "$LOG_DIR/make.log" >&2
+    exit 1
+  fi
+elif ! make -j"$NPROC" >"$LOG_DIR/make.log" 2>&1; then
   echo "FATAL: Cowgol make 失败，日志尾部：" >&2
   tail -n 180 "$LOG_DIR/make.log" >&2
   exit 1
