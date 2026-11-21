@@ -3,8 +3,8 @@
 # MinZ（oisee/minz）：纯 Go 的 Z80 现代语言编译器工具链（mz 编译器 / mza 汇编器 /
 # mze 模拟器），支持 Nanz/C89/Pascal/Frill 等前端，极小目标后端代表。无外部依赖。
 # 端到端：go build 出 mz/mza/mze → mz 把 Nanz hello 编成 Z80 汇编 → mza 汇编成 CP/M .com
-# → mze 模拟器运行输出 "Hello!"（Windows 腿例外：上游 mze 的 syscall 不兼容 Windows，
-#   故 Windows 只编 mz+mza，验证到产出有效 .com 为止）。
+# → mze 模拟器运行输出 "Hello!"（mze 仅在 Linux 可编：上游 syscall.Select 在 Windows/macOS
+#   均不兼容；非 Linux 腿编 mz+mza 并验证 .com 产物）。
 set -euo pipefail
 
 WORK_DIR="$(pwd)/_minz_build"
@@ -22,6 +22,13 @@ case "$OS" in
 esac
 EXT=""
 [ "$WIN" -eq 1 ] && EXT=".exe"
+# mze 模拟器只在 Linux 可编：上游 v0.25.4 的 cpm_tick_input.go 用 syscall.Select，
+# Windows（无 FdSet/Select）与 macOS（Select 返回 1 值、代码要 2 值）都不能编译。
+# 非 Linux 腿编 mz+mza 并验证 .com 产物即可，跳过 mze。
+MZE_OK=0
+case "$OS" in
+  Linux) MZE_OK=1 ;;
+esac
 echo "==== 0. 宿主环境 ===="
 uname -a
 command -v go >/dev/null 2>&1 || { echo "FATAL: go 未安装" >&2; exit 127; }
@@ -49,10 +56,10 @@ build_one() {
 }
 build_one mz ./cmd/minzc
 build_one mza ./cmd/mza
-if [ "$WIN" -eq 1 ]; then
-  echo "SKIP: Windows 平台上游 mze 依赖 syscall.FdSet/Select（Windows 不支持），跳过模拟器"
-else
+if [ "$MZE_OK" -eq 1 ]; then
   build_one mze ./cmd/mze
+else
+  echo "SKIP: 当前平台 $OS 上游 mze 的 syscall.Select/FdSet 不兼容，跳过模拟器"
 fi
 cd "$SRC_DIR"
 MZ="$ART_DIR/mz${EXT}"
@@ -76,8 +83,8 @@ fi
 [ -s "$ART_DIR/hello.com" ] || { echo "FATAL: hello.com 为空" >&2; exit 1; }
 echo "PASS: hello.com $(wc -c < "$ART_DIR/hello.com") bytes"
 
-EMU_INFO="skipped (windows mze not supported upstream)"
-if [ "$WIN" -ne 1 ]; then
+EMU_INFO="skipped (mze syscall incompatible on $OS)"
+if [ "$MZE_OK" -eq 1 ]; then
   echo "==== 4. mze 模拟器运行 ====="
   emu_out="$("$MZE" "$ART_DIR/hello.com" -t cpm 2>&1)" || {
     echo "FATAL: mze 模拟器运行失败: $emu_out" >&2
