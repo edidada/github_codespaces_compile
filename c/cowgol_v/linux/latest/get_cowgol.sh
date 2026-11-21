@@ -53,6 +53,15 @@ commit="$(git rev-parse --short HEAD)"
 echo "PASS: 源码就位 commit=$commit"
 
 echo "==== 3. make 自举（bootstrap → ncgen → nncgen）===="
+# GCC 15（Ubuntu 26.04 默认）以 C23 为默认标准，third_party/zmac 的 K&R 老代码里
+# bookmark()/getlocal() 空参数列表会被当成"无参"而报 too many arguments/conflicting types。
+# 仅当 GCC 主版本 >= 15 时回退到 gnu89，避免影响 gcc 11/13 的 22.04/24.04/arm 腿。
+GCC_MAJ="$(gcc -dumpversion 2>/dev/null | cut -d. -f1)"
+echo "GCC major: ${GCC_MAJ:-unknown}"
+if [ -n "$GCC_MAJ" ] && [ "$GCC_MAJ" -ge 15 ] 2>/dev/null; then
+  export CFLAGS="-std=gnu89 -g -Og"
+  echo "CFLAGS=$CFLAGS (GCC>=15: zmac K&R 兼容)"
+fi
 NPROC="$( (command -v nproc >/dev/null && nproc) || echo 4 )"
 if ! make -j"$NPROC" >"$LOG_DIR/make.log" 2>&1; then
   echo "FATAL: Cowgol make 失败，日志尾部：" >&2
