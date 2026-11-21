@@ -40,9 +40,17 @@ if [ "$WIN" -eq 1 ]; then
   # （报错 "link: extra operand"）。把 MSVC 工具链 bin 提到 PATH 最前，确保 cl/link/lib
   # 都解析到 MSVC 版本。用 cmd 原生反斜杠路径，避免 MSYS 路径转换。
   if [ -n "${VCToolsInstallDir:-}" ]; then
-    VC_TOOLS_WIN="${VCToolsInstallDir}bin\\Hostx64\\x64"
-    export PATH="$VC_TOOLS_WIN:$PATH"
-    echo "MSVC tools: $VC_TOOLS_WIN"
+    # VCToolsInstallDir 是 Windows 路径（C:\...），直接拼进 bash PATH 时其中的冒号
+    # 会被当成 PATH 分隔符而拆断。用 cygpath -u 转成 /c/... POSIX 形式再前置，
+    # 这样 cmd.exe 继承到的 PATH 里 MSVC 的 link.exe/cl.exe 排在 GNU link 之前。
+    VC_TOOLS_POSIX="$(cygpath -u "${VCToolsInstallDir}bin/Hostx64/x64" 2>/dev/null)"
+    if [ -n "$VC_TOOLS_POSIX" ] && [ -d "$VC_TOOLS_POSIX" ]; then
+      export PATH="$VC_TOOLS_POSIX:$PATH"
+      echo "MSVC tools (POSIX): $VC_TOOLS_POSIX"
+    fi
+    # 再把 Git Bash 的 /usr/bin 里 GNU link/coreutils 的相对优先级压低：
+    # 直接确认 cmd 解析到的 link 是 MSVC 版本。
+    command -v link || true
   fi
   # cmd.exe 的 /c 在 MSYS 里会被路径转换，用 //c 规避。
   if ! cmd.exe //c "build_win.bat" >"$LOG_DIR/build.log" 2>&1; then
