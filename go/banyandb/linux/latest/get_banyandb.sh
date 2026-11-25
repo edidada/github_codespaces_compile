@@ -4,9 +4,9 @@ export PROJECT_NAME='Apache SkyWalking BanyanDB'
 export PROJECT_REPOSITORY='https://github.com/apache/skywalking-banyandb.git'
 export PROJECT_VERSION='latest'
 export PROJECT_REF=''
-# 上游 pkg/flow、pkg/test/flow 的测试依赖 mockgen 生成的 mock（Makefile generate 目标），
-# 干净克隆下这些包无法编译测试；此处构建全部包并跳过这两个包。
-export PROJECT_BUILD_COMMAND='go build ./... && go test $(go list ./... | grep -v -e "banyandb/pkg/flow$" -e "banyandb/pkg/flow/" -e "banyandb/pkg/test/flow")'
+# api/proto 下的 bydbql、fodc 等代码由 `make generate` 生成，干净克隆缺失；
+# 这里先生成再构建，并跳过依赖 Docker 的 test/integration。
+export PROJECT_BUILD_COMMAND='make generate && go build ./... && go test $(go list ./... | grep -v -e "/test/integration" -e "/test/e2e")'
 
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 exec bash "$repository_root/tools/foundations/build_project.sh"
