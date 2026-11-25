@@ -8,4 +8,4 @@ export PROJECT_REF=''
 export PROJECT_BUILD_COMMAND='sudo apt-get update && sudo apt-get install -y libtirpc-dev libnsl-dev rpcsvc-proto autoconf automake libtool && (./autogen.sh 2>/dev/null || autoreconf -fi); ./configure CPPFLAGS="-I/usr/include/tirpc" LDFLAGS="-ltirpc" && make -j2'
 
 repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
-exec bash "$repository_root/tools/build_project.sh" 2>/dev/null || exec bash "$repository_root/tools/foundations/build_project.sh"
+exec bash "$repository_root/tools/foundations/build_project.sh"
